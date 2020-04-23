@@ -13,7 +13,7 @@ import {
 export default class extends Document {
   static async getInitialProps(args) {
     const documentProps = await Document.getInitialProps(args);
-    const { req, renderPage } = args[0];
+    const { req, renderPage } = args;
     const page = renderPage();
 
     return { ...documentProps, ...page };
