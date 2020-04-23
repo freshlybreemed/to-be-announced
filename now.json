@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "MONGO_URL": "@mongo-url"
+    }
+  },
+  "env": {
+    "MONGO_URL": "@mongo-url"
+  }
+}
