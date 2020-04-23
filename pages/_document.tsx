@@ -85,7 +85,7 @@ fbq('track', 'PageView'); `,
             </>
           )}
         </Head>
-        <body>
+        <body className="sans-serif">
           <Main />
           <NextScript />
         </body>
