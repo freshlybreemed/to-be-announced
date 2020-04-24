@@ -1,5 +1,5 @@
 import * as React from "react";
-import { formatDate } from "../lib";
+import { formatDate, formatTime } from "../lib";
 interface EventProps {
   event: any;
 }
@@ -23,9 +23,16 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
             <p className="mv0">{`${event.location.streetAddress}`} </p>
             <p className="mt0">{`${event.location.city}, ${event.location.state} `}</p>
 
-            <p className="b">{`${formatDate(new Date(event.startDate))}`}</p>
+            <p className="b mb0">{`${formatDate(
+              new Date(event.startDate)
+            )} `}</p>
+            <p className=" mt0">{`${formatTime(
+              new Date(event.startDate)
+            )} - ${formatTime(new Date(event.endDate))}`}</p>
 
-            <a className="b--white dib br-100 b--solid pa2 f3 fw5">Tickets</a>
+            <a className="b--white dib noselect dim br-100 b--solid pa2 ph4 f3 fw5">
+              Tickets
+            </a>
           </div>
           <div className="w-60-l dib kirbytext">
             <p dangerouslySetInnerHTML={{ __html: event.description }} />
