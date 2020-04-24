@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@types/js-cookie": "^2.2.6",
+    "@types/mongodb": "^3.5.10",
     "@types/redux-logger": "^3.0.7",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
