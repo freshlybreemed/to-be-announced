@@ -6,7 +6,7 @@ export const Footer: React.FunctionComponent = () => (
     <ul className=" fr db pa0 ma0 pt2">
       <li className="fl tr mr2 list">
         <a
-          className="fl dib no-underline white "
+          className="fl dib dim no-underline white "
           target="_blank"
           href="https://instagram.com/vimarethomas"
         >
@@ -15,7 +15,7 @@ export const Footer: React.FunctionComponent = () => (
       </li>
       <li className="fl tr mr2 list">
         <a
-          className="fl dib no-underline white "
+          className="fl dim dib no-underline white "
           target="_blank"
           href="https://twitter.com/vimarethomas"
         >
@@ -24,7 +24,7 @@ export const Footer: React.FunctionComponent = () => (
       </li>
       <li className="fl tr mr2 list ">
         <a
-          className="fl dib no-underline white "
+          className="fl dib dim no-underline white "
           target="_blank"
           href="https://www.linkedin.com/in/vimarethomas/"
         >
