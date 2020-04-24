@@ -5,7 +5,13 @@ import App from "next/app";
 import { getStore } from "../src/store";
 
 export default class extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps({
+    Component,
+    ctx,
+  }: {
+    Component: any;
+    ctx: any;
+  }) {
     const server = !!ctx.req;
     const store = getStore(undefined, server);
     const state = store.getState();

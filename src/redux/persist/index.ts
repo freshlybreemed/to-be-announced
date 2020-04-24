@@ -1,30 +1,33 @@
-import {Reducer} from 'redux'
+import { Reducer } from "redux";
 
-const defaultState = {} as PersistState
-export const reducer: Reducer<PersistState> = (state = defaultState, action) => {
-  const {type, payload} = action
+const defaultState = {} as PersistState;
+export const reducer: Reducer<PersistState> = (
+  state = defaultState,
+  action
+) => {
+  const { type, payload } = action;
   switch (type) {
     case ActionTypes.SAVE_USER_INFO:
       return {
         ...state,
-        userInfo: payload
-      }
+        userInfo: payload,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
 enum ActionTypes {
-  SAVE_USER_INFO = 'save user information'
+  SAVE_USER_INFO = "save user information",
 }
 
-export function saveUserInfo(userInfo) {
+export function saveUserInfo(userInfo: any) {
   return {
-    type:    ActionTypes.SAVE_USER_INFO,
-    payload: userInfo
-  }
+    type: ActionTypes.SAVE_USER_INFO,
+    payload: userInfo,
+  };
 }
 
 export interface PersistState {
-  userInfo: any
+  userInfo: any;
 }

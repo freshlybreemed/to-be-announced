@@ -11,9 +11,9 @@ import {
 } from "../src/constants/env";
 
 export default class extends Document {
-  static async getInitialProps(args) {
+  static async getInitialProps(args: any) {
     const documentProps = await Document.getInitialProps(args);
-    const { req, renderPage } = args;
+    const { renderPage } = args;
     const page = renderPage();
 
     return { ...documentProps, ...page };

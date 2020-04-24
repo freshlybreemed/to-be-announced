@@ -19,6 +19,7 @@
     "ts:check": "tsc --noEmit"
   },
   "dependencies": {
+    "@types/redux-logger": "^3.0.7",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "date-fns": "^2.12.0",
