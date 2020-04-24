@@ -17,7 +17,14 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
           <div className="w-40-l dib">
             <h3 className="gray">{`${event.organizer} presents `}</h3>
             <h1 className="f2">{event.title}</h1>
-            <p>{`${event.location.streetAddress} ${event.location.city}, ${event.location.state} `}</p>
+            <p className="mv0 b pb1">
+              {`${event.location.name.split(",")[0]}`}{" "}
+            </p>
+            <p className="mv0">{`${event.location.streetAddress}`} </p>
+            <p className="mt0">{`${event.location.city}, ${event.location.state} `}</p>
+
+            <p className="b">{`${formatDate(new Date(event.startDate))}`}</p>
+
             <a className="b--white dib br-100 b--solid pa2 f3 fw5">Tickets</a>
           </div>
           <div className="w-60-l dib kirbytext">
