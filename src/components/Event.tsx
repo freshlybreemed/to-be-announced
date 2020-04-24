@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { formatDate } from "../lib";
 interface EventProps {
   event: any;
 }
@@ -12,16 +12,15 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
         experiences.
       </h1> */}
       <img className="w-100" src={event.image} />
-      <div className="db w-100 page fixedPadding">
+      <div className="db mw6 mw8-ns mv4 page ">
         <div className="mt2 mb6 about contain center w-90-l ph3 ph0-l flex-l">
           <div className="w-40-l dib">
             <h3 className="gray">{`${event.organizer} presents `}</h3>
             <h1 className="f2">{event.title}</h1>
             <p>{`${event.location.streetAddress} ${event.location.city}, ${event.location.state} `}</p>
-            <a className="b--white dib br4 b--solid pa2 f3 fw5">Tickets</a>
+            <a className="b--white dib br-100 b--solid pa2 f3 fw5">Tickets</a>
           </div>
           <div className="w-60-l dib kirbytext">
-            <p dangerouslySetInnerHTML={{ __html: event.description }}></p>
             <p dangerouslySetInnerHTML={{ __html: event.description }} />
             <h2 className="ttu">Line Up</h2>
             <p>
@@ -56,35 +55,55 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
               <br />
               Co-founder, Developer
             </p>
-            <h2 className="ttu">Related Events</h2>
-            <a className="flex relative justify-between ">
-              {/* <div
-                style={{
-                  backgroundImage:
-                    "https://dice-media.imgix.net/attachments/2020-04-15/7c480368-77f5-4fc9-bac6…r=300&q=30&dpr=2&lossless=true&auto=format&crop=faces&fit=crop&h=250&w=250",
-                }}
-              ></div> */}
-            </a>
-            <p>
-              The best way to get in touch is to email{" "}
-              <a
-                className="no-underline white"
-                href="mailto:info@interfacelovers.com"
-                target="_blank"
-              >
-                info@interfacelovers.com
-              </a>
-              . You can also follow us on Twitter{" "}
-              <a
-                className="no-underline white"
-                href="https://twitter.com/theloversmag"
-                target="_blank"
-              >
-                @theloversmag
-              </a>
-              .
-            </p>
           </div>
+        </div>
+
+        <div className="ph3">
+          <h2 className="ttu">Related Events</h2>
+          <section className="dib">
+            <div className="fl w-50 w-25-ns mr3">
+              <img
+                className="db w-100"
+                src="http://tachyons.io/img/5.jpg"
+                alt="night sky over house"
+              />
+              <h3 className="ttu pb1 mb0">Hotel Room </h3>
+              <h4 className="ttu gray mv1 pb3">
+                {formatDate(new Date("2020-04-24T01:21:01Z"))}
+              </h4>
+              <span className="b pa2 mt2 input-reset ba b--white grow pointer f4">
+                <a className="no-underline white">More Info</a>
+              </span>
+            </div>
+            <div className="fl w-50 w-25-ns mr3">
+              <img
+                className="db w-100"
+                src="http://tachyons.io/img/6.jpg"
+                alt="night sky over water"
+              />
+              <h3 className="ttu pb1 mb0">Hotel Room </h3>
+              <h4 className="ttu gray mv1 pb3">
+                {formatDate(new Date("2020-04-24T01:21:01Z"))}
+              </h4>
+              <span className="b pa2 mt2 input-reset ba b--white grow pointer f4">
+                <a className="no-underline white">More Info</a>
+              </span>
+            </div>
+            <div className="fl w-50 w-25-ns mr3">
+              <img
+                className="db w-100"
+                src="http://tachyons.io/img/3.jpg"
+                alt="bay bridge at night"
+              />
+              <h3 className="ttu pb1 mb0">Hotel Room </h3>
+              <h4 className="ttu gray mv1 pb3">
+                {formatDate(new Date("2020-04-24T01:21:01Z"))}
+              </h4>
+              <span className="b pa2 mt2 input-reset ba b--white grow pointer f4">
+                <a className="no-underline white">More Info</a>
+              </span>
+            </div>
+          </section>
         </div>
       </div>
     </div>
