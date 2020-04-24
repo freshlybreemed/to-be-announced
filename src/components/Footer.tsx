@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const Footer: React.FunctionComponent = (props) => (
+export const Footer: React.FunctionComponent = () => (
   <footer className="overflow-hidden pb0 mt2">
     <span className="fl pt2">© TBA 2020, all rights reserved</span>
     <ul className=" fr db pa0 ma0 pt2">

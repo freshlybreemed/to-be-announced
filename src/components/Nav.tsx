@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 
-export const Nav: React.FunctionComponent = (props) => (
+export const Nav: React.FunctionComponent = () => (
   <div className="overflow-hidden  mb5">
     <a className="fl fr-ns no-underline gray f3 fw6" href="https://thms.works/">
       TBA{" "}
