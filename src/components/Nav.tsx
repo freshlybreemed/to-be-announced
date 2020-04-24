@@ -2,28 +2,38 @@ import * as React from "react";
 import Link from "next/link";
 
 export const Nav: React.FunctionComponent = (props) => (
-  <nav className=" tc overflow-hidden db mb5">
-    <a className="fl fr-ns no-underline gray f3" href="https://thms.works/">
-      TBA
+  <div className="overflow-hidden  mb5">
+    <a className="fl fr-ns no-underline gray f3 fw6" href="https://thms.works/">
+      TBA{" "}
     </a>
-    {/* <div className="fl">
-      <ul className="db fl  pb0">
-        <li className="fl mr2 list">
-          <a className="dim work no-underline white f3" href="/">
-            Events
-          </a>
-        </li>
-        <li className="fl mr2 list">
-          <a className="dim  no-underline white f3" href="/profile">
-            About
-          </a>
-        </li>
-        <li className="fl mr2 list">
-          <a className="dim no-underline white f3" href="/lab">
-            Sign-Up
-          </a>
-        </li>
-      </ul>
-    </div> */}
-  </nav>
+    <ul className=" fr f3 db pa0 ma0 ">
+      <li className="fl tr mr2 list">
+        <a
+          className="fl dib no-underline white "
+          target="_blank"
+          href="https://instagram.com/vimarethomas"
+        >
+          Events
+        </a>
+      </li>
+      <li className="fl tr mr2 list">
+        <a
+          className="fl dib no-underline white "
+          target="_blank"
+          href="https://twitter.com/vimarethomas"
+        >
+          About
+        </a>
+      </li>
+      <li className="fl tr mr2 list ">
+        <a
+          className="fl dib no-underline white "
+          target="_blank"
+          href="https://www.linkedin.com/in/vimarethomas/"
+        >
+          Home
+        </a>
+      </li>
+    </ul>
+  </div>
 );
