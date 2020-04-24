@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const Home: React.FunctionComponent = (props) => (
+export const Home: React.FunctionComponent = () => (
   <div className={"pv4"}>
     <h1>
       I'm a freelance <span className="gothic">art director</span> and{" "}
