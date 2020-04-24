@@ -1,10 +1,14 @@
 {
   "build": {
     "env": {
-      "MONGO_URL": "@mongo-url"
+      "MONGO_URL": "@mongo-url",
+      "FIREBASE_API_KEY": "@firebase-api-key",
+      "FIREBASE_APP_ID": "@firebase-app-id"
     }
   },
   "env": {
-    "MONGO_URL": "@mongo-url"
+    "MONGO_URL": "@mongo-url",
+    "FIREBASE_API_KEY": "@firebase-api-key",
+    "FIREBASE_APP_ID": "@firebase-app-id"
   }
 }
