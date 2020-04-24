@@ -75,7 +75,7 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
         <div className="ph3">
           <h2 className="ttu">Related Events</h2>
           <section className="dib">
-            <div className="fl w-50 w-25-ns mr3">
+            <div className="fl w-50 w-30-ns mr3">
               <img
                 className="db w-100"
                 src="http://tachyons.io/img/5.jpg"
@@ -89,25 +89,11 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
                 <a className="no-underline white">More Info</a>
               </span>
             </div>
-            <div className="fl w-50 w-25-ns mr3">
+            <div className="fl w-50 w-30-ns mr3">
               <img
                 className="db w-100"
                 src="http://tachyons.io/img/6.jpg"
                 alt="night sky over water"
-              />
-              <h3 className="ttu pb1 mb0">Hotel Room </h3>
-              <h4 className="ttu gray mv1 pb3">
-                {formatDate(new Date("2020-04-24T01:21:01Z"))}
-              </h4>
-              <span className="b pa2 mt2 input-reset ba b--white grow pointer f4">
-                <a className="no-underline white">More Info</a>
-              </span>
-            </div>
-            <div className="fl w-50 w-25-ns mr3">
-              <img
-                className="db w-100"
-                src="http://tachyons.io/img/3.jpg"
-                alt="bay bridge at night"
               />
               <h3 className="ttu pb1 mb0">Hotel Room </h3>
               <h4 className="ttu gray mv1 pb3">
