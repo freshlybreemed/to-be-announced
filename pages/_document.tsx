@@ -11,9 +11,9 @@ import {
 } from "../src/constants/env";
 
 export default class extends Document {
-  static async getInitialProps(...args) {
-    const documentProps = await Document.getInitialProps(...args);
-    const { req, renderPage } = args[0];
+  static async getInitialProps(args) {
+    const documentProps = await Document.getInitialProps(args);
+    const { req, renderPage } = args;
     const page = renderPage();
 
     return { ...documentProps, ...page };
@@ -85,7 +85,7 @@ fbq('track', 'PageView'); `,
             </>
           )}
         </Head>
-        <body>
+        <body className="sans-serif">
           <Main />
           <NextScript />
         </body>

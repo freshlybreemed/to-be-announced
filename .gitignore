@@ -1,0 +1,7 @@
+.now
+node_modules
+.env
+.env.build
+.next
+yarn.lock
+out

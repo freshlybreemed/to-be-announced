@@ -7,19 +7,17 @@ import PropTypes from "prop-types";
 import { Layout } from "../../src/components/Layout";
 import absoluteUrl from "next-absolute-url";
 
-const Page: NextPage = (props) => (
+const Page: NextPage = ({ event }: any) => (
   <Layout>
-    <Event event={props.event} />
+    <Event event={event} />
   </Layout>
 );
 
 Page.getInitialProps = async (ctx) => {
-  // const subreddit = "typescript";
   const { origin } = absoluteUrl(ctx.req);
   const { slug } = ctx.query;
   const response = await axios.get(`${origin}/api/event/${slug}`);
   const result = response.data[0];
-  // console.log(result.title);
   return {
     event: result,
   };
