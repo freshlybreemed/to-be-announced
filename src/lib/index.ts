@@ -40,6 +40,6 @@ const getCookieFromServer = (key: string, req: any) => {
   }
   return rawCookie.split('=')[1];
 };
-export const formatDate = (date: Date) => format(date, ' ccc. MMMM d, yyyy');
+export const formatDate = (date: Date) => format(date, ' ccc. MMMM d');
 
 export const formatTime = (date: Date) => format(date, 'h:mm a');
