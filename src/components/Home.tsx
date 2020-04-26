@@ -19,7 +19,7 @@ export const Home: React.FunctionComponent = () => (
       <div className="">
         <h1 className="f1-ns f2 ">
           Discover live experiences that match your passions or create your own
-          with online ticketing tools.
+          with online ticketing tools
         </h1>
         <div className="mb4">
           <a className="b--white dib noselect dim br-100 b--solid pa2 mb2 ph4 f3 fw5 mr3">
@@ -31,10 +31,22 @@ export const Home: React.FunctionComponent = () => (
         </div>
       </div>
     </div>
-    <h1 className="mw8 ml4-ns pv3">
-      Upcoming Events in <span className="gray">Los Angeles</span>
-    </h1>
-    <ul className="overflow-hidden list v-base items-center justify-between flex">
+    <div className="mw8 ml4-ns pt4 mt2 pb1 f2-ns f3 fw5 ">
+      Upcoming Events in <span className="gray">Los Angeles</span>{' '}
+      <span className="mt3 dim">
+        <svg
+          className="white "
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+        </svg>
+      </span>
+    </div>
+    {/* <ul className="overflow-hidden list v-base items-center justify-between flex">
       <li className="mr3 mw-100 mw-48-l">
         <a className="transition" href="/">
           <img
@@ -69,10 +81,10 @@ export const Home: React.FunctionComponent = () => (
         <h3 className="fw5 f3 mb0">Trippe Redd</h3>
         <h4 className="fw5 gray f4 mt1">The Noho, LA</h4>
       </li>
-    </ul>
+    </ul> */}
 
-    <div className="db w-100 pt4 ">
-      <ul className="overflow-hidden list v-base ">
+    <div className="db w-100 pt2 ">
+      <ul className="overflow-hidden list v-base ml4-ns pl0-ns ph3">
         <li className="fl mw-100 mw-48-l">
           <a className="transition" href="/">
             <img
