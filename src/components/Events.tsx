@@ -1,25 +1,10 @@
-import * as React from 'react';
-import { formatDate } from '../lib';
+import * as React from "react";
+import { formatDate } from "../lib";
 
 export const Events: React.FunctionComponent = () => (
-  <div className={'pv3 '}>
+  <div className={"pv3 "}>
     <div className="mw8 ml4-ns ">
       <h1 className="f1-ns f2 ">Find upcoming events near you </h1>
-      {/* <div className="mw8 ml4-ns pt4 mt2 pb1 f2-ns f3 fw5 ">
-        Upcoming Events in <span className="gray">Los Angeles</span>{' '}
-        <span className="mt3">
-          <svg
-            className="white "
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-          </svg>
-        </span>
-      </div> */}
 
       <div className="mb4">
         <svg

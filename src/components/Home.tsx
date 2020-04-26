@@ -1,7 +1,7 @@
-import * as React from 'react';
+import * as React from "react";
 
 export const Home: React.FunctionComponent = () => (
-  <div className={'pv4 '}>
+  <div className={"pv4 "}>
     <div className="mw8 ml4-ns ">
       {/* <div
         className="relative db overflow-hidden"
@@ -32,7 +32,7 @@ export const Home: React.FunctionComponent = () => (
       </div>
     </div>
     <div className="mw8 ml4-ns pt4 mt2 pb1 f2-ns f3 fw5 ">
-      Upcoming Events in <span className="gray">Los Angeles</span>{' '}
+      Upcoming Events in <span className="gray">Los Angeles</span>{" "}
       <span className="mt3 dim">
         <svg
           className="white "
