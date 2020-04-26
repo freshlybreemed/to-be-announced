@@ -1,33 +1,29 @@
-import * as React from "react";
-import { formatDate, formatTime } from "../lib";
+import * as React from 'react';
+import { formatDate, formatTime } from '../lib';
 interface EventProps {
   event: any;
 }
 export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
+  console.log(event.description);
   return (
-    <div className={"pv1"}>
-      {/* <h1>
-        I'm a freelance <span className="gothic">art director</span> and{" "}
-        <span className="gothic">product designer</span> building digital
-        experiences.
-      </h1> */}
-      <img className="w-100" src={event.image} />
-      <div className="db mw6 mw8-ns mv4 page ">
-        <div className="mt2 mb6 about contain center w-90-l ph3 ph0-l flex-l">
+    <div className={'pv1'}>
+      <img className="w-90 center db" src={event.image} />
+      <div className="db mw6 mw8-ns mv4 page f4-ns">
+        <div className="mt2 mb4 about contain center w-90-l ph3 ph0-l flex-l">
           <div className="w-40-l dib">
             <h3 className="gray">{`${event.organizer} presents `}</h3>
             <h1 className="f2">{event.title}</h1>
             <p className="mv0 b pb1">
-              {`${event.location.name.split(",")[0]}`}{" "}
+              {`${event.location.name.split(',')[0]}`}{' '}
             </p>
             <p className="mv0">{`${event.location.streetAddress}`} </p>
             <p className="mt0">{`${event.location.city}, ${event.location.state} `}</p>
 
             <p className="b mb0">{`${formatDate(
-              new Date(event.startDate)
+              new Date(event.startDate),
             )} `}</p>
             <p className=" mt0">{`${formatTime(
-              new Date(event.startDate)
+              new Date(event.startDate),
             )} - ${formatTime(new Date(event.endDate))}`}</p>
 
             <a className="b--white dib noselect dim br-100 b--solid pa2 ph4 f3 fw5">
@@ -35,10 +31,15 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
             </a>
           </div>
           <div className="w-60-l dib kirbytext">
-            <p dangerouslySetInnerHTML={{ __html: event.description }} />
+            <div dangerouslySetInnerHTML={{ __html: event.description }} />
             <h2 className="ttu">Line Up</h2>
+            <img
+              className="db mw-100 "
+              src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
+              alt=""
+            />
             <p>
-              William Channer,{" "}
+              <strong> William Channer, </strong>
               <a
                 className="no-underline white"
                 href="https://twitter.com/williamchanner"
@@ -49,8 +50,13 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
               <br />
               Founder, Editor
             </p>
+            <img
+              className="db mw-100 "
+              src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
+              alt=""
+            />
             <p>
-              Timothy Achumba,{" "}
+              <strong>Timothy Achumba, </strong>
               <a
                 className="no-underline white"
                 href="https://twitter.com/timothyachumba"
@@ -61,8 +67,13 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
               <br />
               Co-founder, Designer
             </p>
+            <img
+              className="db mw-100 "
+              src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
+              alt=""
+            />
             <p>
-              Iheanyi Ekechukwu,{" "}
+              <strong>Iheanyi Ekechukwu, </strong>
               <a href="https://twitter.com/kwuchu" target="_blank">
                 @kwuchu
               </a>
@@ -74,36 +85,48 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
 
         <div className="ph3">
           <h2 className="ttu">Related Events</h2>
-          <section className="dib">
-            <div className="fl w-50 w-30-ns mr3">
-              <img
-                className="db w-100"
-                src="http://tachyons.io/img/5.jpg"
-                alt="night sky over house"
-              />
-              <h3 className="ttu pb1 mb0">Hotel Room </h3>
-              <h4 className="ttu gray mv1 pb3">
-                {formatDate(new Date("2020-04-24T01:21:01Z"))}
+          <ul className="overflow-hidden list v-base flex pl0 justify-center">
+            <li className="mr3 mw-100 mw-48-l">
+              <a className="transition" href="/">
+                <img
+                  className="db mw-100 "
+                  src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
+                  alt=""
+                />
+              </a>
+              <h3 className="fw5 f3-ns f4 mb0">Tierra Whack</h3>
+              <h4 className="fw5 gray f4-ns f5 mt1">The Wiltern, LA</h4>
+            </li>
+            <li className="mr3 mw-100 mw-48-l">
+              <a className="transition" href="/">
+                <img
+                  className="db mw-100 "
+                  src="https://s1.ticketm.net/dam/a/12d/520e1ff8-9df2-4847-bca7-668e25d5e12d_1286191_RETINA_PORTRAIT_16_9.jpg"
+                  alt=""
+                />
+              </a>
+              <h3 className="fw5 f3-ns f4 mb0">Azizi Gibson</h3>
+              <h4 className="fw5 gray f4-ns f5 mt1">Bootsie Bellows, LA</h4>
+            </li>
+
+            <li className=" mw-100 mw-48-l">
+              <a className="transition" href="/">
+                <img
+                  className="db mw-100 "
+                  src="https://s1.ticketm.net/dam/a/040/997d0de0-af52-4455-bc48-813f05a4f040_1205621_RETINA_PORTRAIT_16_9.jpg"
+                  alt=""
+                />
+              </a>
+              <h3 className="fw5 f3-ns f4 mb0">Trippe Redd</h3>
+              <h4 className="fw5 gray f4-ns f5 mt1">The Noho, LA</h4>
+              <h4 className="fw5 f4 gray mb1 pb3">
+                {formatDate(new Date('2020-04-24T01:21:01Z'))}
               </h4>
               <span className="b pa2 mt2 input-reset ba b--white grow pointer f4">
                 <a className="no-underline white">More Info</a>
               </span>
-            </div>
-            <div className="fl w-50 w-30-ns mr3">
-              <img
-                className="db w-100"
-                src="http://tachyons.io/img/6.jpg"
-                alt="night sky over water"
-              />
-              <h3 className="ttu pb1 mb0">Hotel Room </h3>
-              <h4 className="ttu gray mv1 pb3">
-                {formatDate(new Date("2020-04-24T01:21:01Z"))}
-              </h4>
-              <span className="b pa2 mt2 input-reset ba b--white grow pointer f4">
-                <a className="no-underline white">More Info</a>
-              </span>
-            </div>
-          </section>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
