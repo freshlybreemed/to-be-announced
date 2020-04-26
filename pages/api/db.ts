@@ -2,11 +2,6 @@
 import { MongoClient } from 'mongodb';
 import url from 'url';
 
-declare var process: {
-  env: {
-    MONGO_URL: string;
-  };
-};
 // Create cached connection variable
 let cachedDb: any = null;
 module.exports = async () => {
@@ -33,7 +28,7 @@ module.exports = async () => {
   // Select the database through the connection,
   // using the database path of the connection string
   const database = await client.db(
-    url.parse(process.env.MONGO_URL).pathname.substr(1),
+    url.parse(process.env.MONGO_URL || '').pathname.substr(1),
   );
 
   // Cache the database connection and return the connection
