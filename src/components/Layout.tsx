@@ -13,7 +13,7 @@ export const Layout: React.FunctionComponent = (props) => (
       />
     </Head>
     <Nav />
-    <main>{props.children}</main>
+    <main className={"pv4 "}>{props.children}</main>
     <Footer />
   </div>
 );
