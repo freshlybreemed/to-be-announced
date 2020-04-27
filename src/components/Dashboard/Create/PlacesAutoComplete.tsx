@@ -64,7 +64,11 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
       } = suggestion;
 
       return (
-        <li className="dim" key={id} onClick={handleSelect(suggestion)}>
+        <li
+          className="dim mv1 noselect"
+          key={id}
+          onClick={handleSelect(suggestion)}
+        >
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>
       );
@@ -80,7 +84,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
         className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-50 mr3"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && <ul className="list">{renderSuggestions()}</ul>}
+      {status === "OK" && <ul className="list pl0">{renderSuggestions()}</ul>}
     </div>
   );
 };
