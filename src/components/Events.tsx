@@ -1,6 +1,62 @@
 import * as React from "react";
 import { formatDate } from "../lib";
 
+const events = [
+  {
+    image:
+      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
+    title: "Tierra Whack",
+    date: formatDate(new Date()),
+    city: "Los Angeles",
+    price: "FREE",
+    venue: "YouTube",
+  },
+  {
+    image:
+      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
+    title: "Tierra Whack",
+    date: formatDate(new Date()),
+    city: "Los Angeles",
+    price: "FREE",
+    venue: "YouTube",
+  },
+  {
+    image:
+      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
+    title: "Tierra Whack",
+    date: formatDate(new Date()),
+    city: "Los Angeles",
+    price: "FREE",
+    venue: "YouTube",
+  },
+  {
+    image:
+      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
+    title: "Tierra Whack",
+    date: formatDate(new Date()),
+    city: "Los Angeles",
+    price: "FREE",
+    venue: "YouTube",
+  },
+  {
+    image:
+      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
+    title: "Tierra Whack",
+    date: formatDate(new Date()),
+    city: "Los Angeles",
+    price: "FREE",
+    venue: "YouTube",
+  },
+  {
+    image:
+      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
+    title: "Tierra Whack",
+    date: formatDate(new Date()),
+    city: "Los Angeles",
+    price: "FREE",
+    venue: "YouTube",
+  },
+];
 export const Events: React.FunctionComponent = () => (
   <div className={"pv3 "}>
     <div className="mw8 ml4-ns ">
@@ -27,177 +83,22 @@ export const Events: React.FunctionComponent = () => (
       </div>
     </div>
     <main className="mw8 ml4-ns center">
-      <article className="dt w-90 bb b--gray pb2 mt2">
-        <div className="dtc w2 w3-ns v-mid">
-          <img
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            className="db h2 h3-ns"
-          />
-        </div>
-        <div className="dtc v-mid pl3">
-          <h1 className="f6 f5-ns fw7 lh-title  mv0">Tierra Whack</h1>
-          <h2 className="f6 fw6 mt0 mb0 gray">{formatDate(new Date())}</h2>
-        </div>
-        <div className="dtc v-mid tr">
-          <h1 className="f6 f5-ns fw7 lh-title  ttu mv0">FREE</h1>
-          <h1 className="f6 f5-ns fw7 lh-title   mv0">Youtube</h1>
-          <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2>
-        </div>
-      </article>
-      <article className="dt w-90 bb b--gray pb2 mt2">
-        <div className="dtc w2 w3-ns v-mid">
-          <img
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            className="db h2 h3-ns"
-          />
-        </div>
-        <div className="dtc v-mid pl3">
-          <h1 className="f6 f5-ns fw6 lh-title  mv0">Arnoldo Degraff</h1>
-          <h2 className="f6 fw4 mt0 mb0 =">@99xx88randomhandle</h2>
-        </div>
-        <div className="dtc v-mid">
-          <form className="w-100 tr">
-            <button
-              className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 ="
-              type="submit"
-            >
-              + Follow
-            </button>
-          </form>
-        </div>
-      </article>
-      <article className="dt w-90 bb b--gray pb2 mt2">
-        <div className="dtc w2 w3-ns v-mid">
-          <img
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            className="db h2 h3-ns"
-          />
-        </div>
-        <div className="dtc v-mid pl3">
-          <h1 className="f6 f5-ns fw6 lh-title  mv0">Deirdre Lachance</h1>
-          <h2 className="f6 fw4 mt0 mb0 =">@favfavfav</h2>
-        </div>
-        <div className="dtc v-mid">
-          <form className="w-100 tr">
-            <button
-              className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 ="
-              type="submit"
-            >
-              + Follow
-            </button>
-          </form>
-        </div>
-      </article>
-      <article className="dt w-90 bb b--gray pb2 mt2">
-        <div className="dtc w2 w3-ns v-mid">
-          <img
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            className="db h2 h3-ns"
-          />
-        </div>
-        <div className="dtc v-mid pl3">
-          <h1 className="f6 f5-ns fw6 lh-title  mv0">Frederic Starner</h1>
-          <h2 className="f6 fw4 mt0 mb0 =">@hungryhippofanatic</h2>
-        </div>
-        <div className="dtc v-mid">
-          <form className="w-100 tr">
-            <button
-              className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 ="
-              type="submit"
-            >
-              + Follow
-            </button>
-          </form>
-        </div>
-      </article>
-      <article className="dt w-90 bb b--gray pb2 mt2">
-        <div className="dtc w2 w3-ns v-mid">
-          <img
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            className="db h2 h3-ns"
-          />
-        </div>
-        <div className="dtc v-mid pl3">
-          <h1 className="f6 f5-ns fw6 lh-title mv0">Cleveland Ridout</h1>
-          <h2 className="f6 fw4 mt0 mb0 =">@purethinking</h2>
-        </div>
-        <div className="dtc v-mid">
-          <form className="w-100 tr">
-            <button
-              className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 ="
-              type="submit"
-            >
-              + Follow
-            </button>
-          </form>
-        </div>
-      </article>
-      <article className="dt w-90 bb b--gray pb2 mt2">
-        <div className="dtc w2 w3-ns v-mid">
-          <img
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            className="db h2 h3-ns"
-          />
-        </div>
-        <div className="dtc v-mid pl3">
-          <h1 className="f6 f5-ns fw6 lh-title mv0">Leticia Fearon</h1>
-          <h2 className="f6 fw4 mt0 mb0 =">@retrofeels</h2>
-        </div>
-        <div className="dtc v-mid">
-          <form className="w-100 tr">
-            <button
-              className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 ="
-              type="submit"
-            >
-              + Follow
-            </button>
-          </form>
-        </div>
-      </article>
-      <article className="dt w-90 bb b--gray pb2 mt2">
-        <div className="dtc w2 w3-ns v-mid">
-          <img
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            className="db h2 h3-ns"
-          />
-        </div>
-        <div className="dtc v-mid pl3">
-          <h1 className="f6 f5-ns fw6 lh-title mv0">Ahmad Backer</h1>
-          <h2 className="f6 fw4 mt0 mb0 ">@ahmadBB</h2>
-        </div>
-        <div className="dtc v-mid">
-          <form className="w-100 tr">
-            <button
-              className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 ="
-              type="submit"
-            >
-              + Follow
-            </button>
-          </form>
-        </div>
-      </article>
-      <article className="dt w-90 bb b--gray pb2 mt2">
-        <div className="dtc w2 w3-ns v-mid">
-          <img
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            className="db h2 h3-ns"
-          />
-        </div>
-        <div className="dtc v-mid pl3">
-          <h1 className="f6 f5-ns fw6 lh-title black mv0">Carlie Noakes</h1>
-          <h2 className="f6 fw4 mt0 mb0 =">@carnoakes99</h2>
-        </div>
-        <div className="dtc v-mid">
-          <form className="w-100 tr">
-            <button
-              className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 ="
-              type="submit"
-            >
-              + Follow
-            </button>
-          </form>
-        </div>
-      </article>
+      {events.map((curr) => (
+        <article className="dt w-90 bb b--gray pb2 mt2 bg-black">
+          <div className="dtc w2 w3-ns v-mid">
+            <img src={curr.image} className="db h2 h3-ns" />
+          </div>
+          <div className="dtc v-mid pl3">
+            <h1 className="f6 f5-ns fw7 lh-title  mv0">{curr.title}</h1>
+            <h2 className="f6 fw6 mt0 mb0 gray">{curr.date}</h2>
+          </div>
+          <div className="dtc v-mid tr">
+            <h1 className="f6 f5-ns fw7 lh-title  ttu mv0">{curr.price}</h1>
+            <h1 className="f6 f5-ns fw7 lh-title   mv0">{curr.venue}</h1>
+            <h2 className="f6 fw6 mt0 mb0 gray">{curr.city}</h2>
+          </div>
+        </article>
+      ))}
     </main>
   </div>
 );
