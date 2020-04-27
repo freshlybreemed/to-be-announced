@@ -1,11 +1,11 @@
-import { format } from 'date-fns';
-import cookie from 'js-cookie';
+import { format } from "date-fns";
+import cookie from "js-cookie";
 
 export const setCookie = (key: string, value: string) => {
   if (process.browser) {
     cookie.set(key, value, {
       expires: 1,
-      path: '/',
+      path: "/",
     });
   }
 };
@@ -33,13 +33,22 @@ const getCookieFromServer = (key: string, req: any) => {
     return undefined;
   }
   const rawCookie = req.headers.cookie
-    .split(';')
+    .split(";")
     .find((c: any) => c.trim().startsWith(`${key}=`));
   if (!rawCookie) {
     return undefined;
   }
-  return rawCookie.split('=')[1];
+  return rawCookie.split("=")[1];
 };
-export const formatDate = (date: Date) => format(date, ' ccc. MMMM d');
+export const formatDate = (date: Date) => format(date, " ccc. MMMM d");
 
-export const formatTime = (date: Date) => format(date, 'h:mm a');
+export const formatTime = (date: Date) => format(date, "h:mm a");
+
+// Format price
+export const formatPrice = (number: string) => {
+  const fnumber = parseFloat(number);
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(fnumber);
+};

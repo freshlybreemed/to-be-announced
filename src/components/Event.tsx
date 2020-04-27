@@ -6,15 +6,17 @@ interface EventProps {
 export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
   console.log(event.description);
   return (
-    <div className={'pv1'}>
+    <div>
       <img className="w-90 center db" src={event.image} />
       <div className="db mw6 mw8-ns mv4 page f4-ns">
+        <div className="mt2 mb4 about contain center w-90-l ph3 ph0-l ">
+          <h3 className="gray mb1 pb1 f4">{`${event.organizer} presents `}</h3>
+          <h1 className="f1 mt0 pt0">{event.title}</h1>
+        </div>
         <div className="mt2 mb4 about contain center w-90-l ph3 ph0-l flex-l">
-          <div className="w-40-l dib">
-            <h3 className="gray">{`${event.organizer} presents `}</h3>
-            <h1 className="f2">{event.title}</h1>
+          <div className="w-40-l dib mb1 pb1">
             <p className="mv0 b pb1">
-              {`${event.location.name.split(',')[0]}`}{' '}
+              {`${event.location.name.split(',')[0]}`}
             </p>
             <p className="mv0">{`${event.location.streetAddress}`} </p>
             <p className="mt0">{`${event.location.city}, ${event.location.state} `}</p>
@@ -26,11 +28,11 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
               new Date(event.startDate),
             )} - ${formatTime(new Date(event.endDate))}`}</p>
 
-            <a className="b--white dib noselect dim br-100 b--solid pa2 ph4 f3 fw5">
+            <a className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph4 f3 fw5">
               Tickets
             </a>
           </div>
-          <div className="w-60-l dib kirbytext">
+          <div className="w-60-l dib">
             <div dangerouslySetInnerHTML={{ __html: event.description }} />
             <h2 className="ttu">Line Up</h2>
             <img
