@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
 export const SideBar: React.FunctionComponent = () => (
-  <nav className="w-100 w-25-m w-25-l mb4 mb0-l ph3-m ph3-l">
+  <nav className="w-100 w-25-m w-25-l mb4 mb0-l ph3-m ph3-l bg-black">
     <h2 className="ttu mt0 mb2 f5 fw5 white">Manage</h2>
     <ul className="list pl0 mt0 mb4 f4">
       <li className="mb2">
