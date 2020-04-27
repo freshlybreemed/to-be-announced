@@ -47,7 +47,8 @@ export const Login: React.FunctionComponent = ({}) => {
 
   return (
     <div className={"pv1"}>
-      <h1>TBA fills rooms with fans - Login now to get started</h1>
+      <h1 className="f1-ns f2 mt0">Welcome to TBA</h1>
+      <h2 className="gray">Login now to get started</h2>
       <form className="mw6 mv5">
         <div className="mv1">
           <label className="db fw6 lh-copy f6" htmlFor="email-address">
