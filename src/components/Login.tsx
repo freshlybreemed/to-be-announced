@@ -54,7 +54,7 @@ export const Login: React.FunctionComponent = ({}) => {
             Email
           </label>
           <input
-            className="pa2 input-reset ba bg-black white w-100"
+            className="bt-0 br-0 bl-0 bb pa2 input-reset ba bg-black  white w-100"
             type="email"
             value={email}
             onChange={(event) => {
@@ -68,7 +68,7 @@ export const Login: React.FunctionComponent = ({}) => {
             Password
           </label>
           <input
-            className="pa2 input-reset ba bg-black white w-100"
+            className="bt-0 br-0 bl-0 bb pa2 input-reset ba bg-black white w-100"
             type="password"
             value={password}
             onChange={(event) => {
