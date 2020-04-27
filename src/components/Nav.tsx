@@ -8,7 +8,7 @@ export const Nav: React.FunctionComponent = () => {
     Router.push("/");
   };
   return (
-    <div className="overflow-hidden  mb5">
+    <main className="overflow-hidden relative mb5">
       <a className="fl fr-ns no-underline gray f3 fw6" href="/">
         <span className="sc-683qsc-1 gyQBaO">TBA</span>
       </a>
@@ -40,6 +40,6 @@ export const Nav: React.FunctionComponent = () => {
           </li>
         )}
       </ul>
-    </div>
+    </main>
   );
 };

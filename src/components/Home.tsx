@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export const Home: React.FunctionComponent = () => (
-  <div className={"pv4 "}>
+  <div className={"pv4 relative "}>
     <div className="mw8 ml4-ns ">
       {/* <div
         className="relative db overflow-hidden"
@@ -17,15 +17,15 @@ export const Home: React.FunctionComponent = () => (
       </div> */}
 
       <div className="">
-        <h1 className="f1-ns f2 ">
+        <h1 className="f1-ns f2">
           Discover live experiences that match your passions or create your own
           with online ticketing tools
         </h1>
         <div className="mb4">
-          <a className="b--white dib noselect dim br-100 b--solid pa2 mb2 ph4 f3 fw5 mr3">
+          <a className="b--white dib noselect dim br-100 b--solid bg-black pa2 mb2 ph4 f3 fw5 mr3">
             Sign Up
           </a>
-          <a className="b--white dib noselect dim br-100 b--solid pa2 mb2 ph4 f3 fw5">
+          <a className="b--white dib bg-black noselect dim br-100 b--solid pa2 mb2 ph4 f3 fw5">
             Submit An Event
           </a>
         </div>
