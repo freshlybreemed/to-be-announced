@@ -16,23 +16,21 @@ export const Home: React.FunctionComponent = () => (
         </video>
       </div> */}
 
-      <div className="">
-        <h1 className="f1-ns f2">
-          Discover live experiences that match your passions or create your own
-          with online ticketing tools
-        </h1>
-        <div className="mb4">
-          <a className="b--white dib noselect dim br-100 b--solid bg-black pa2 mb2 ph4 f3 fw5 mr3">
-            Sign Up
-          </a>
-          <a className="b--white dib bg-black noselect dim br-100 b--solid pa2 mb2 ph4 f3 fw5">
-            Submit An Event
-          </a>
-        </div>
+      <h1 className="f1-ns f2">
+        Discover live experiences that match your passions or create your own
+        with online ticketing tools
+      </h1>
+      <div className="mb4">
+        <a className="b--white dib noselect  br-100 b--solid bg-black hover-bg-white hover-black pa2 mb2 ph4 f3 fw5 mr3">
+          Sign Up
+        </a>
+        <a className="b--white dib bg-black noselect hover-bg-white hover-black  br-100 b--solid pa2 mb2 ph4 f3 fw5">
+          Submit An Event
+        </a>
       </div>
     </div>
     <div className="mw8 ml4-ns pt4 mt2 pb1 f2-ns f3 fw5 ">
-      Upcoming Events in <span className="gray">Los Angeles</span>{" "}
+      Upcoming Events in <span className="gray">Los Angeles</span>{' '}
       <span className="mt3 dim">
         <svg
           className="white "
