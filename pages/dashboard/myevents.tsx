@@ -1,6 +1,6 @@
 import * as React from "react";
 import { NextPage } from "next";
-import { MyEvents } from "../../src/components/Dashboard/MyEvents";
+import { MyEvents } from "../../src/components/Dashboard/MyEvents/MyEvents";
 import { SideBar } from "../../src/components/Dashboard/SideBar";
 import { Layout } from "../../src/components/Layout";
 
