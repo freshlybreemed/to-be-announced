@@ -1,64 +1,65 @@
-import * as React from "react";
-import { formatDate } from "../lib";
+import * as React from 'react';
+import { formatDate } from '../lib';
+import FadeIn from 'react-fade-in';
 
 const events = [
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
 ];
 export const Events: React.FunctionComponent = () => (
-  <div className={"pv3 "}>
+  <div className={'pv3 '}>
     <div className="mw8 ml4-ns ">
       <h1 className="f1-ns f2 ">Find upcoming events near you </h1>
 
