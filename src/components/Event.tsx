@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { formatDate, formatTime } from '../lib';
+import * as React from "react";
+import { formatDate, formatTime } from "../lib";
 interface EventProps {
   event: any;
 }
@@ -16,16 +16,16 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
         <div className="mt2 mb4 about contain center w-90-l ph3 ph0-l flex-l">
           <div className="w-40-l dib mb1 pb1">
             <p className="mv0 b pb1">
-              {`${event.location.name.split(',')[0]}`}
+              {`${event.location.name.split(",")[0]}`}
             </p>
             <p className="mv0">{`${event.location.streetAddress}`} </p>
             <p className="mt0">{`${event.location.city}, ${event.location.state} `}</p>
 
             <p className="b mb0">{`${formatDate(
-              new Date(event.startDate),
+              new Date(event.startDate)
             )} `}</p>
             <p className=" mt0">{`${formatTime(
-              new Date(event.startDate),
+              new Date(event.startDate)
             )} - ${formatTime(new Date(event.endDate))}`}</p>
 
             <a className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph4 f3 fw5">
@@ -122,7 +122,7 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
               <h3 className="fw5 f3-ns f4 mb0">Trippe Redd</h3>
               <h4 className="fw5 gray f4-ns f5 mt1">The Noho, LA</h4>
               <h4 className="fw5 f4 gray mb1 pb3">
-                {formatDate(new Date('2020-04-24T01:21:01Z'))}
+                {formatDate(new Date("2020-04-24T01:21:01Z"))}
               </h4>
               <span className="b pa2 mt2 input-reset ba b--white grow pointer f4">
                 <a className="no-underline white">More Info</a>
