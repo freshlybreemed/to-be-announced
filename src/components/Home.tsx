@@ -1,7 +1,7 @@
-import * as React from 'react';
+import * as React from "react";
 
 export const Home: React.FunctionComponent = () => (
-  <div className={'pv4 relative '}>
+  <div className={"pv4 relative "}>
     <div className="mw8 ml4-ns ">
       {/* <div
         className="relative db overflow-hidden"
