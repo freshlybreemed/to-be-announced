@@ -84,22 +84,24 @@ export const Events: React.FunctionComponent = () => (
       </div>
     </div>
     <main className="mw8 ml4-ns center">
-      {events.map((curr) => (
-        <article className="dt w-90 bb b--gray pb2 mt2 bg-black">
-          <div className="dtc w2 w3-ns v-mid">
-            <img src={curr.image} className="db h2 h3-ns" />
-          </div>
-          <div className="dtc v-mid pl3">
-            <h1 className="f6 f5-ns fw7 lh-title  mv0">{curr.title}</h1>
-            <h2 className="f6 fw6 mt0 mb0 gray">{curr.date}</h2>
-          </div>
-          <div className="dtc v-mid tr">
-            <h1 className="f6 f5-ns fw7 lh-title  ttu mv0">{curr.price}</h1>
-            <h1 className="f6 f5-ns fw7 lh-title   mv0">{curr.venue}</h1>
-            <h2 className="f6 fw6 mt0 mb0 gray">{curr.city}</h2>
-          </div>
-        </article>
-      ))}
+      <FadeIn>
+        {events.map((curr) => (
+          <article className="dt w-90 bb b--gray pb2 mt2 bg-black">
+            <div className="dtc w2 w3-ns v-mid">
+              <img src={curr.image} className="db h2 h3-ns" />
+            </div>
+            <div className="dtc v-mid pl3">
+              <h1 className="f6 f5-ns fw7 lh-title  mv0">{curr.title}</h1>
+              <h2 className="f6 fw6 mt0 mb0 gray">{curr.date}</h2>
+            </div>
+            <div className="dtc v-mid tr">
+              <h1 className="f6 f5-ns fw7 lh-title  ttu mv0">{curr.price}</h1>
+              <h1 className="f6 f5-ns fw7 lh-title   mv0">{curr.venue}</h1>
+              <h2 className="f6 fw6 mt0 mb0 gray">{curr.city}</h2>
+            </div>
+          </article>
+        ))}
+      </FadeIn>
     </main>
   </div>
 );
