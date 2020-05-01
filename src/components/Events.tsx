@@ -1,64 +1,65 @@
-import * as React from "react";
-import { formatDate } from "../lib";
+import * as React from 'react';
+import { formatDate } from '../lib';
+import FadeIn from 'react-fade-in';
 
 const events = [
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
   {
     image:
-      "https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg",
-    title: "Tierra Whack",
+      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+    title: 'Tierra Whack',
     date: formatDate(new Date()),
-    city: "Los Angeles",
-    price: "FREE",
-    venue: "YouTube",
+    city: 'Los Angeles',
+    price: 'FREE',
+    venue: 'YouTube',
   },
 ];
 export const Events: React.FunctionComponent = () => (
-  <div className={"pv3 "}>
+  <div className={'pv3 '}>
     <div className="mw8 ml4-ns ">
       <h1 className="f1-ns f2 ">Find upcoming events near you </h1>
 
@@ -83,22 +84,24 @@ export const Events: React.FunctionComponent = () => (
       </div>
     </div>
     <main className="mw8 ml4-ns center">
-      {events.map((curr) => (
-        <article className="dt w-90 bb b--gray pb2 mt2 bg-black">
-          <div className="dtc w2 w3-ns v-mid">
-            <img src={curr.image} className="db h2 h3-ns" />
-          </div>
-          <div className="dtc v-mid pl3">
-            <h1 className="f6 f5-ns fw7 lh-title  mv0">{curr.title}</h1>
-            <h2 className="f6 fw6 mt0 mb0 gray">{curr.date}</h2>
-          </div>
-          <div className="dtc v-mid tr">
-            <h1 className="f6 f5-ns fw7 lh-title  ttu mv0">{curr.price}</h1>
-            <h1 className="f6 f5-ns fw7 lh-title   mv0">{curr.venue}</h1>
-            <h2 className="f6 fw6 mt0 mb0 gray">{curr.city}</h2>
-          </div>
-        </article>
-      ))}
+      <FadeIn>
+        {events.map((curr) => (
+          <article className="dt w-90 bb b--gray pb2 mt2 bg-black">
+            <div className="dtc w2 w3-ns v-mid">
+              <img src={curr.image} className="db h2 h3-ns" />
+            </div>
+            <div className="dtc v-mid pl3">
+              <h1 className="f6 f5-ns fw7 lh-title  mv0">{curr.title}</h1>
+              <h2 className="f6 fw6 mt0 mb0 gray">{curr.date}</h2>
+            </div>
+            <div className="dtc v-mid tr">
+              <h1 className="f6 f5-ns fw7 lh-title  ttu mv0">{curr.price}</h1>
+              <h1 className="f6 f5-ns fw7 lh-title   mv0">{curr.venue}</h1>
+              <h2 className="f6 fw6 mt0 mb0 gray">{curr.city}</h2>
+            </div>
+          </article>
+        ))}
+      </FadeIn>
     </main>
   </div>
 );
