@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
-} from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside";
+} from 'use-places-autocomplete';
+import useOnclickOutside from 'react-cool-onclickoutside';
 interface EventLocationProps {
   setLocation: any;
 }
@@ -33,7 +33,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
   const handleInput = (e) => {
     // Update the keyword of the input element
     setValue(e.target.value);
-    setLocation("");
+    setLocation('');
   };
 
   const handleSelect = ({ description }) => () => {
@@ -49,10 +49,10 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
         return getLatLng(results[0]);
       })
       .then(({ lat, lng }) => {
-        console.log("📍 Coordinates: ", { lat, lng });
+        console.log('📍 Coordinates: ', { lat, lng });
       })
       .catch((error) => {
-        console.log("😱 Error: ", error);
+        console.log('😱 Error: ', error);
       });
   };
 
@@ -81,10 +81,10 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
         onChange={handleInput}
         disabled={!ready}
         placeholder="Event Location"
-        className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-50 mr3"
+        className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-50-ns w-100 mr3"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && <ul className="list pl0">{renderSuggestions()}</ul>}
+      {status === 'OK' && <ul className="list pl0">{renderSuggestions()}</ul>}
     </div>
   );
 };
