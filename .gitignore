@@ -5,3 +5,4 @@ node_modules
 .next
 yarn.lock
 out
+yarn-error.log
