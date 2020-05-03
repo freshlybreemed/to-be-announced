@@ -41,6 +41,7 @@ export default class extends Document {
             name="format-detection"
             content="telephone=no, address=no, email=no"
           />
+          <link rel="stylesheet" href="/static/extra.css" />
           <link rel="stylesheet" href="/static/styles.min.css" />
           <link
             rel="stylesheet"
