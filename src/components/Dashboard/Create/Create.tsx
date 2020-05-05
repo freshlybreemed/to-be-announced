@@ -4,6 +4,7 @@ import Cleave from 'cleave.js/react';
 import DateTime from 'react-datetime';
 
 import { PlacesAutoComplete } from './PlacesAutoComplete';
+import { TicketCreationForm } from './TicketCreationForm';
 import { UploadFlyer } from './UploadFlyer';
 export const Create: React.FunctionComponent = () => {
   const today = new Date().toISOString().slice(0, 10).split('-');
@@ -124,7 +125,7 @@ export const Create: React.FunctionComponent = () => {
       </div>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
-      <UploadFlyer setImage={setImage} />
+      <TicketCreationForm />
     </article>
   );
 };
