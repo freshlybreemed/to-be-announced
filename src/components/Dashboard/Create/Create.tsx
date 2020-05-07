@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Cleave from 'cleave.js/react';
-import Datetime from 'react-datetime';
 import axios from 'axios';
 import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
+import { DateTimePicker } from './DateTimePicker';
 import { UploadFlyer } from './UploadFlyer';
 import { formatDate } from '../../../lib';
 
@@ -51,35 +51,7 @@ export const Create: React.FunctionComponent = () => {
     setToggleTicketCreation(false);
     setCurrentTicket(null);
   };
-  class MyDTPicker extends React.Component {
-    render() {
-      return (
-        <Datetime
-          // renderInput={this.renderInput}
-          value={startDate}
-          onBlur={(e) => setStartDate(e.toString())}
-          className="black"
-          timeConstraints={{ minutes: { step: 40, min: 0, max: 24 } }}
-        />
-      );
-    }
-    renderInput(props, openCalendar, closeCalendar) {
-      function clear() {
-        props.onChange({ target: { value: '' } });
-      }
-      return (
-        <div>
-          <input
-            {...props}
-            className="pa2 bt-0 br-0 bl-0 input-reset bb  black mr3  w-75-ns w-100"
-          />
-          <button onClick={openCalendar}>open calendar</button>
-          <button onClick={closeCalendar}>close calendar</button>
-          <button onClick={clear}>clear</button>
-        </div>
-      );
-    }
-  }
+
   const renderTime = () => (
     <ul
       onClick={() => setRenderStartTimes(!renderStartTimes)}
@@ -194,7 +166,7 @@ export const Create: React.FunctionComponent = () => {
           {renderStartTimes && renderTime()}
         </div>
       </div>
-      <MyDTPicker />
+      <DateTimePicker startDate={startDate} setStartDate={setStartDate} />{' '}
       <div className="mv3">
         <input
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
