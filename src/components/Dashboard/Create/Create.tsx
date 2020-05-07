@@ -6,14 +6,16 @@ import axios from 'axios';
 import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
 import { UploadFlyer } from './UploadFlyer';
+import { formatDate } from '../../../lib';
 
-// interface TicketProps {
-//   name: string;
-//   quantity: number;
-//   price: number;
-//   description: string;
-//   enabled: boolean;
-// }
+interface TicketProps {
+  ticketName: string;
+  quantity: number;
+  price: number;
+  description: string;
+  enabled: boolean;
+  _id: number;
+}
 export const Create: React.FunctionComponent = () => {
   const [name, setName] = useState<string>('');
   const [location, setLocation] = useState<string>('');
@@ -22,7 +24,33 @@ export const Create: React.FunctionComponent = () => {
   const [startTime, setStartTime] = useState<string>('');
   const [renderStartTimes, setRenderStartTimes] = useState<boolean>(false);
   const [eventType, setEventType] = useState<string>('');
+  const [currentTicket, setCurrentTicket] = useState<TicketProps>();
+  const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
+    false,
+  );
+  const [ticketTypes, setTicketTypes] = useState<TicketProps[]>([]);
 
+  const addTicket = (ticket: TicketProps) => {
+    const tickets = ticketTypes;
+    ticket._id = Math.round(Math.random() * ticketTypes.length);
+    tickets.push(ticket);
+    setTicketTypes(tickets);
+    setToggleTicketCreation(false);
+  };
+
+  const updateTicket = (ticket: TicketProps) => {
+    const tickets = ticketTypes.map((curr) => {
+      console.log(ticket, curr);
+      if (curr._id === ticket._id) {
+        return ticket;
+      } else {
+        return curr;
+      }
+    });
+    setTicketTypes(tickets);
+    setToggleTicketCreation(false);
+    setCurrentTicket(null);
+  };
   class MyDTPicker extends React.Component {
     render() {
       return (
@@ -87,6 +115,7 @@ export const Create: React.FunctionComponent = () => {
     image,
     startDate,
     startTime,
+    ticketTypes,
   });
   const handleSubmit = async () => {
     const eventInfo = {
