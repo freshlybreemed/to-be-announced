@@ -9,14 +9,9 @@ export const UploadFlyer: React.FunctionComponent<EventImageProps> = ({
   setImage,
 }) => {
   const [uploading, setUploading] = useState<boolean>(false);
-
-  // const getBase64 =(img, callback)=> {
-  //     const reader = new FileReader();
-  //     reader.addEventListener('load', () => callback(reader.result));
-  //     reader.readAsDataURL(img);
-  //   }
   console.log(uploading);
-  const processUpload = async (e: any) => {
+
+  const processUpload = async (e: File) => {
     setUploading(true);
 
     const formData = new FormData();
@@ -36,46 +31,49 @@ export const UploadFlyer: React.FunctionComponent<EventImageProps> = ({
       });
   };
 
-  //    const beforeUpload = (file) =>{
-  //     const isJPGorPNG = file.type === 'image/jpeg' || file.type === 'image/png'
-  //     if (!isJPGorPNG) {
-  //       console.error('You can only upload JPG or PNG file!');
-  //     }
-  //     const isLt5M = file.size / 1024 / 1024 < 5;
-  //     if (!isLt5M) {
-  //         console.error('Image must smaller than 5MB!');
-  //     }
-  //     return isJPGorPNG && isLt5M;
-  //   }
+  const beforeUpload = (file: File) => {
+    const isJPGorPNG = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJPGorPNG) {
+      console.error('You can only upload JPG or PNG file!');
+    }
+    const isLt5M = file.size / 1024 / 1024 < 5;
+    if (!isLt5M) {
+      console.error('Image must smaller than 5MB!');
+    }
+    return isJPGorPNG && isLt5M;
+  };
   const handleChange = async (selectorFiles: FileList) => {
-    console.log(selectorFiles[0]);
-    await processUpload(selectorFiles[0]);
+    const file = selectorFiles[0];
+    beforeUpload(file) && (await processUpload(file));
   };
 
-  //   const handleChange = ({ onSuccess, onError, file }) => {
-  //     console.log("info",file)
-  //     // if (info.file.status === 'uploading') {
-  //     //   this.setState({ loading: true });
-  //     //   console.log("uploading")
-  //     //   return;
-  //     // }
-  //     // if (info.file.status === 'done') {
-  //       // Get this url from response in real world.
-  //       processUpload(file)
-  //       .then(() => {
-  //         onSuccess(null, file);
-  //       })
-  //       .catch(() => {
-  //         // call onError();
-  //         onError(null, file);
-  //       });
-
-  //     // }
-  //   };
-
   return (
-    <div>
-      <input type="file" onChange={(e) => handleChange(e.target.files)} />
+    <div className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 ">
+      <input
+        style={{ cursor: 'pointer' }}
+        type="file"
+        className="overflow-hidden o-0 absolute"
+        onChange={(e) => handleChange(e.target.files)}
+      />
+      <span className="w-100">
+        <div>
+          <i aria-label="icon: plus" className="center">
+            <svg
+              viewBox="64 64 896 896"
+              focusable="false"
+              data-icon="plus"
+              width="1em"
+              height="1em"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path>
+              <path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"></path>
+            </svg>
+          </i>
+          <div className="">Upload Event Image</div>
+        </div>
+      </span>
     </div>
   );
 };
