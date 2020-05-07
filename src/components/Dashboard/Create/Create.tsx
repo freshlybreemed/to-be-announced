@@ -43,7 +43,7 @@ export const Create: React.FunctionComponent = () => {
         <div>
           <input
             {...props}
-            className="pa2 bt-0 br-0 bl-0 input-reset bb  black mr3  w-50-ns w-100"
+            className="pa2 bt-0 br-0 bl-0 input-reset bb  black mr3  w-75-ns w-100"
           />
           <button onClick={openCalendar}>open calendar</button>
           <button onClick={closeCalendar}>close calendar</button>
@@ -100,14 +100,14 @@ export const Create: React.FunctionComponent = () => {
     await axios.post('/api/event', eventInfo);
   };
   return (
-    <article className="w-100 w-75-m w-75-l ph3-m ph3-l">
+    <article className="w-100  ph3-m ph3-l tc">
       <h1 className="f1-ns f2 mt0">Create Event</h1>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Select Event Type</h2>
-      <div className="flex items-center  center nl3 nr3 pt4 mb4">
+      <div className="flex items-center db center pt4 mb4">
         {(eventType === '' || eventType === 'venue') && (
           <div
-            className=" b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph4 f5 fw5 mr3 white"
+            className=" b--white hover-bg-white center hover-black db noselect br-100 b--solid pa2 ph4 f5 fw5 white"
             onClick={() => setEventType('venue')}
           >
             Venue
@@ -115,7 +115,7 @@ export const Create: React.FunctionComponent = () => {
         )}
         {(eventType === '' || eventType === 'online') && (
           <div
-            className=" b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph4 f5 fw5 white"
+            className=" b--white hover-bg-white center hover-black db noselect br-100 b--solid pa2 ph4 f5 fw5 white"
             onClick={() => setEventType('online')}
           >
             Online Event
@@ -130,7 +130,7 @@ export const Create: React.FunctionComponent = () => {
           onChange={(event) => {
             setName(event.currentTarget.value);
           }}
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-50-ns w-100"
+          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white  w-75-ns w-100"
           placeholder="Event Name"
         />
       </div>
@@ -139,8 +139,9 @@ export const Create: React.FunctionComponent = () => {
       </div>
       <div className="mv3">
         <Cleave
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3 w-50-ns w-100"
+          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white  w-75-ns w-100"
           placeholder="Start Date"
+          style={{ boxSizing: 'initial' }}
           options={{
             date: true,
             delimiter: '-',
@@ -151,33 +152,103 @@ export const Create: React.FunctionComponent = () => {
         />
       </div>
       <div className="mv3">
-        {/* <input
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-50 mr3"
-          placeholder="Start Time"
-        /> */}
-
-        <div className=" pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-50-ns w-100 ">
+        <div
+          className=" pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-75-ns w-100 center "
+          style={{ boxSizing: 'initial' }}
+        >
           <div
-            className=""
+            className="tl gray"
             onClick={() => setRenderStartTimes(!renderStartTimes)}
           >
             {startTime.length > 0 ? startTime : 'Start Time'}
           </div>
           {renderStartTimes && renderTime()}
-          {/* </div> */}
         </div>
       </div>
       <MyDTPicker />
       <div className="mv3">
         <input
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3 mb3 w-50-ns w-100"
+          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
           placeholder="End Date"
         />
       </div>
       <UploadFlyer setImage={setImage} />
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
-      <TicketCreationForm />
+      <main className="w-75 tl center">
+        {ticketTypes.map((curr) => (
+          <article className="dt w-100 bb b--gray pb2 mt2">
+            <div className="dtc v-mid pl3">
+              <h1 className="f6 f5-ns fw7 lh-title mv0 underline-hover">
+                <a className="white no-underline" href="">
+                  {curr.ticketName}
+                </a>
+              </h1>
+              <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
+                new Date(2),
+              )}`}</h2>
+              <div>
+                <label className="switch">
+                  <input type="checkbox" />
+                  <span>
+                    {/* <em></em> */}
+                    <strong></strong>
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div className="dtc v-mid tr">
+              <h1 className="f6 f5-ns fw7 lh-title mv0">0/{curr.quantity}</h1>
+              <h1 className="f6 f5-ns fw7 lh-title gray mv0">Free</h1>
+              {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
+            </div>
+            <div
+              className="dtc v-mid tr white"
+              onClick={() => {
+                setToggleTicketCreation(true);
+                setCurrentTicket(curr);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                fill="currentColor"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z" />
+              </svg>
+            </div>
+          </article>
+        ))}
+      </main>
+      {!toggleTicketCreation && (
+        <div
+          onClick={() => setToggleTicketCreation(true)}
+          className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+        >
+          Create A Ticket{' '}
+        </div>
+      )}
+      {toggleTicketCreation && (
+        <div>
+          <TicketCreationForm
+            addTicket={addTicket}
+            ticket={currentTicket}
+            updateTicket={updateTicket}
+          />{' '}
+          <div
+            onClick={() => {
+              setToggleTicketCreation(false);
+              setCurrentTicket(undefined);
+            }}
+            className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5"
+          >
+            Cancel
+          </div>
+        </div>
+      )}
+      <br />{' '}
       <div
         className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph4 f3 fw5"
         onClick={() => handleSubmit()}

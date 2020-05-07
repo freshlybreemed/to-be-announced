@@ -22,7 +22,7 @@ export const TicketCreationForm: React.FunctionComponent = () => {
           onChange={(event) => {
             setTicketName(event.currentTarget.value);
           }}
-          className="pa2 bt-0 br-0 bl-0 input-reset  bb bg-black white mr3  w-50-ns w-100"
+          className="pa2 bt-0 br-0 bl-0 input-reset  bb bg-black white mr3  w-75-ns w-100"
           placeholder="Ticket Name"
         />
       </div>
@@ -32,7 +32,7 @@ export const TicketCreationForm: React.FunctionComponent = () => {
           onChange={(event) => {
             setQuantity(event.currentTarget.value);
           }}
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-50-ns w-100"
+          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-75-ns w-100"
           placeholder="Ticket Quantity"
         />
       </div>
@@ -42,12 +42,12 @@ export const TicketCreationForm: React.FunctionComponent = () => {
           onChange={(event) => {
             setDescription(event.currentTarget.value);
           }}
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-50-ns w-100"
+          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-75-ns w-100"
           placeholder="Ticket Description"
         />
       </div>
       <div className="mt3">
-        <label className="pa2 input-reset mr3 gray w-50-ns w-100">
+        <label className="pa2 input-reset mr3 gray w-75-ns w-100">
           Refundable?
         </label>
         <input type="checkbox" />

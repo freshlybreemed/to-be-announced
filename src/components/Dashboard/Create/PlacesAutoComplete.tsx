@@ -81,7 +81,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
         onChange={handleInput}
         disabled={!ready}
         placeholder="Event Location"
-        className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-50-ns w-100 mr3"
+        className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-75-ns w-100 "
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === 'OK' && <ul className="list pl0">{renderSuggestions()}</ul>}
