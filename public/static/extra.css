@@ -1,0 +1,423 @@
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content li {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+/*!
+ * https://github.com/YouCanBookMe/react-datetime
+ */
+
+.rdt {
+  position: relative;
+}
+.rdtPicker {
+  display: none;
+  position: absolute;
+  width: 250px;
+  padding: 4px;
+  margin-top: 1px;
+  z-index: 99999 !important;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f9f9f9;
+}
+.rdtOpen .rdtPicker {
+  display: block;
+}
+.rdtStatic .rdtPicker {
+  box-shadow: none;
+  position: static;
+}
+
+.rdtPicker .rdtTimeToggle {
+  text-align: center;
+}
+
+.rdtPicker table {
+  width: 100%;
+  margin: 0;
+}
+.rdtPicker td,
+.rdtPicker th {
+  text-align: center;
+  height: 28px;
+}
+.rdtPicker td {
+  cursor: pointer;
+}
+.rdtPicker td.rdtDay:hover,
+.rdtPicker td.rdtHour:hover,
+.rdtPicker td.rdtMinute:hover,
+.rdtPicker td.rdtSecond:hover,
+.rdtPicker .rdtTimeToggle:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+.rdtPicker td.rdtOld,
+.rdtPicker td.rdtNew {
+  color: #999999;
+}
+.rdtPicker td.rdtToday {
+  position: relative;
+}
+.rdtPicker td.rdtToday:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-bottom: 7px solid #428bca;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+.rdtPicker td.rdtActive,
+.rdtPicker td.rdtActive:hover {
+  background-color: #428bca;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.rdtPicker td.rdtActive.rdtToday:before {
+  border-bottom-color: #fff;
+}
+.rdtPicker td.rdtDisabled,
+.rdtPicker td.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.rdtPicker td span.rdtOld {
+  color: #999999;
+}
+.rdtPicker td span.rdtDisabled,
+.rdtPicker td span.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+.rdtPicker th {
+  border-bottom: 1px solid #f9f9f9;
+}
+.rdtPicker .dow {
+  width: 14.2857%;
+  border-bottom: none;
+  cursor: default;
+}
+.rdtPicker th.rdtSwitch {
+  width: 100px;
+}
+.rdtPicker th.rdtNext,
+.rdtPicker th.rdtPrev {
+  font-size: 21px;
+  vertical-align: top;
+}
+
+.rdtPrev span,
+.rdtNext span {
+  display: block;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.rdtPicker th.rdtDisabled,
+.rdtPicker th.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+.rdtPicker thead tr:first-child th {
+  cursor: pointer;
+}
+.rdtPicker thead tr:first-child th:hover {
+  background: #eeeeee;
+}
+
+.rdtPicker tfoot {
+  border-top: 1px solid #f9f9f9;
+}
+
+.rdtPicker button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.rdtPicker button:hover {
+  background-color: #eee;
+}
+
+.rdtPicker thead button {
+  width: 100%;
+  height: 100%;
+}
+
+td.rdtMonth,
+td.rdtYear {
+  height: 50px;
+  width: 25%;
+  cursor: pointer;
+}
+td.rdtMonth:hover,
+td.rdtYear:hover {
+  background: #eee;
+}
+
+.rdtCounters {
+  display: inline-block;
+}
+
+.rdtCounters > div {
+  float: left;
+}
+
+.rdtCounter {
+  height: 100px;
+}
+
+.rdtCounter {
+  width: 40px;
+}
+
+.rdtCounterSeparator {
+  line-height: 100px;
+}
+
+.rdtCounter .rdtBtn {
+  height: 40%;
+  line-height: 40px;
+  cursor: pointer;
+  display: block;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+.rdtCounter .rdtBtn:hover {
+  background: #eee;
+}
+.rdtCounter .rdtCount {
+  height: 20%;
+  font-size: 1.2em;
+}
+
+.rdtMilli {
+  vertical-align: middle;
+  padding-left: 8px;
+  width: 48px;
+}
+
+.rdtMilli input {
+  width: 100%;
+  font-size: 1.2em;
+  margin-top: 37px;
+}
+
+.rdtTime td {
+  cursor: default;
+}
+
+.switch {
+  height: 24px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+.switch input {
+  display: none;
+}
+.switch input + span {
+  padding-left: 50px;
+  min-height: 24px;
+  line-height: 24px;
+  display: block;
+  color: #99a3ba;
+  position: relative;
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+.switch input + span:before,
+.switch input + span:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 12px;
+}
+.switch input + span:before {
+  top: 0;
+  left: 0;
+  width: 42px;
+  height: 24px;
+  background: #e4ecfa;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.switch input + span:after {
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  top: 3px;
+  left: 3px;
+  box-shadow: 0 1px 3px rgba(18, 22, 33, 0.1);
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+.switch input + span em {
+  width: 8px;
+  height: 7px;
+  background: #0ec755;
+  position: absolute;
+  left: 8px;
+  bottom: 7px;
+  border-radius: 2px;
+  display: block;
+  z-index: 1;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+.switch input + span em:before {
+  content: '';
+  width: 2px;
+  height: 2px;
+  border-radius: 1px;
+  background: #fff;
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  margin: -1px 0 0 -1px;
+}
+.switch input + span em:after {
+  content: '';
+  display: block;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border: 1px solid #99a3ba;
+  border-bottom: 0;
+  width: 6px;
+  height: 4px;
+  left: 1px;
+  bottom: 6px;
+  position: absolute;
+  z-index: 1;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+  -webkit-transform: rotate(-35deg) translate(0, 1px);
+  transform: rotate(-35deg) translate(0, 1px);
+}
+.switch input + span strong {
+  font-weight: normal;
+  position: relative;
+  display: block;
+  top: 1px;
+}
+.switch input + span strong:before,
+.switch input + span strong:after {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  font-family: 'Mukta Malar', Arial;
+  -webkit-backface-visibility: hidden;
+}
+.switch input + span strong:before {
+  content: '• Deactivated';
+  -webkit-transition: all 0.3s ease 0.2s;
+  transition: all 0.3s ease 0.2s;
+}
+.switch input + span strong:after {
+  content: '• On Sale';
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #12ac1a;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-transform: translate(2px, 0);
+  transform: translate(2px, 0);
+}
+.switch input:checked + span:before {
+  background: rgba(86, 40, 238, 0.35);
+}
+.switch input:checked + span:after {
+  background: #fff;
+  -webkit-transform: translate(18px, 0);
+  transform: translate(18px, 0);
+}
+.switch input:checked + span em {
+  -webkit-transform: translate(18px, 0);
+  transform: translate(18px, 0);
+  background: #0abb10;
+}
+.switch input:checked + span em:after {
+  border-color: #19cc87;
+  -webkit-transform: rotate(0deg) translate(0, 0);
+  transform: rotate(0deg) translate(0, 0);
+}
+.switch input:checked + span strong:before {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-transform: translate(-2px, 0);
+  transform: translate(-2px, 0);
+}
+.switch input:checked + span strong:after {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  -webkit-transition: all 0.3s ease 0.2s;
+  transition: all 0.3s ease 0.2s;
+}

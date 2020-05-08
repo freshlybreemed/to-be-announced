@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export const wrapAsync = (handler: any) => async (
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) => {
   const db = await connect();
   return cors(
@@ -12,10 +12,10 @@ export const wrapAsync = (handler: any) => async (
       .then((result: any) => {
         res.setHeader(
           'cache-control',
-          's-maxage=1 maxage=0, stale-while-revalidate',
+          's-maxage=1 maxage=0, stale-while-revalidate'
         );
         return res.json(result);
       })
-      .catch((error: any) => res.status(500).json({ error: error.message })),
+      .catch((error: any) => res.status(500).json({ error: error.message }))
   );
 };

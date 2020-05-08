@@ -1,5 +1,5 @@
-import * as React from "react";
-import Document, { Head, Main, NextScript } from "next/document";
+import * as React from 'react';
+import Document, { Head, Main, NextScript } from 'next/document';
 import {
   DEV,
   FB_TRACKING_ID,
@@ -8,7 +8,7 @@ import {
   SITE_IMAGE,
   SITE_NAME,
   SITE_TITLE,
-} from "../src/constants/env";
+} from '../src/constants/env';
 
 export default class extends Document {
   static async getInitialProps(args: any) {
@@ -41,6 +41,7 @@ export default class extends Document {
             name="format-detection"
             content="telephone=no, address=no, email=no"
           />
+          <link rel="stylesheet" href="/static/extra.css" />
           <link rel="stylesheet" href="/static/styles.min.css" />
           <link
             rel="stylesheet"
@@ -78,7 +79,7 @@ fbq('track', 'PageView'); `,
             <>
               <script
                 src="https://cdn.ravenjs.com/3.17.0/raven.min.js"
-                {...{ crossOrigin: "anonymous" }}
+                {...{ crossOrigin: 'anonymous' }}
               />
               <script
                 dangerouslySetInnerHTML={{
