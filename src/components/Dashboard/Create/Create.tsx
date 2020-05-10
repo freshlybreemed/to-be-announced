@@ -6,7 +6,7 @@ import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
 import { UploadFlyer } from './UploadFlyer';
-import { formatDate, formatPrice } from '../../../lib';
+import { formatDate, formatPrice, getCookieFromBrowser } from '../../../lib';
 
 interface TicketProps {
   ticketName: string;
@@ -92,8 +92,9 @@ export const Create: React.FunctionComponent = () => {
   console.log(eventDetails);
 
   const handleSubmit = async () => {
+    const userId = getCookieFromBrowser('userId');
     await axios
-      .post('/api/event', eventDetails)
+      .post('/api/event', { ...eventDetails, userId })
       .then((res) => console.log(res.data));
   };
   return (
