@@ -75,7 +75,15 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
       </div>
       {!ticket && (
         <div
-          onClick={() => addTicket({ ticketName, quantity, description })}
+          onClick={() =>
+            addTicket({
+              ticketName,
+              quantity,
+              description,
+              price,
+              enabled: true,
+            })
+          }
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
           Add
@@ -84,7 +92,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
       {ticket && (
         <div
           onClick={() =>
-            updateTicket({ ticketName, quantity, description, _id })
+            updateTicket({ ticketName, quantity, description, _id, price })
           }
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
