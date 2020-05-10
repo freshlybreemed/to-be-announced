@@ -24,9 +24,9 @@ export const Create: React.FunctionComponent = () => {
   const [startTime, setStartTime] = useState<string>('');
   const [renderStartTimes, setRenderStartTimes] = useState<boolean>(false);
   const [eventType, setEventType] = useState<string>('');
-  const [currentTicket, setCurrentTicket] = useState<TicketProps>();
+  const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
-    false,
+    false
   );
   const [ticketTypes, setTicketTypes] = useState<TicketProps[]>([]);
 
