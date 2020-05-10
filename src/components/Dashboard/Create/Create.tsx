@@ -79,8 +79,7 @@ export const Create: React.FunctionComponent = () => {
   const setEventLocation = (addy: string) => {
     setLocation(addy);
   };
-
-  console.log({
+  const eventDetails = {
     name,
     location,
     eventType,
@@ -88,17 +87,14 @@ export const Create: React.FunctionComponent = () => {
     startDate,
     startTime,
     ticketTypes,
-  });
+  };
+
+  console.log(eventDetails);
+
   const handleSubmit = async () => {
-    const eventInfo = {
-      name,
-      location,
-      eventType,
-      image,
-      startDate: new Date(startDate),
-      startTime,
-    };
-    await axios.post('/api/event', eventInfo);
+    await axios
+      .post('/api/event', eventDetails)
+      .then((res) => console.log(res.data));
   };
   return (
     <article className="w-100  ph3-m ph3-l tc">
