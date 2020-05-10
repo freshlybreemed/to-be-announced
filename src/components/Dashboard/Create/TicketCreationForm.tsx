@@ -14,14 +14,14 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
   ticket,
 }) => {
   const [ticketName, setTicketName] = useState<string>(
-    ticket ? ticket.ticketName : ''
+    ticket ? ticket.ticketName : '',
   );
-  const [quantity, setQuantity] = useState<string>(
-    ticket ? ticket.quantity : ''
+  const [quantity, setQuantity] = useState<number>(
+    ticket ? ticket.quantity : '',
   );
   const [price, setPrice] = useState<number>(ticket ? ticket.price : '');
   const [description, setDescription] = useState<string>(
-    ticket ? ticket.description : ''
+    ticket ? ticket.description : '',
   );
   const [_id] = useState<string>(ticket ? ticket._id : '');
   console.log({ ticket, ticketName, quantity, description });
@@ -64,7 +64,6 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
           style={{ boxSizing: 'initial' }}
           value={price}
           onChange={(event) => {
-            setPrice(`${event.currentTarget.value}`);
             setPrice(parseInt(event.currentTarget.value));
           }}
           options={

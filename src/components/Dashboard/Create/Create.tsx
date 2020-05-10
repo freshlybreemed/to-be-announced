@@ -11,7 +11,7 @@ import { formatDate, formatPrice, getCookieFromBrowser } from '../../../lib';
 interface TicketProps {
   ticketName: string;
   quantity: number;
-  price: string;
+  price: number;
   description: string;
   enabled: boolean;
   _id: number;
