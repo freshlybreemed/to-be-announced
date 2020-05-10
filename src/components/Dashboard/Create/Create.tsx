@@ -32,6 +32,7 @@ export const Create: React.FunctionComponent = () => {
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
+    ticket.enabled = true;
     ticket._id = Math.round(Math.random() * ticketTypes.length);
     tickets.push(ticket);
     setTicketTypes(tickets);
@@ -177,7 +178,7 @@ export const Create: React.FunctionComponent = () => {
         {ticketTypes.map((curr) => (
           <article className="dt w-100 bb b--gray pb2 mt2">
             <div className="dtc v-mid pl3">
-              <h1 className="f6 f5-ns fw7 lh-title mv0 underline-hover">
+              <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
                 <a className="white no-underline" href="">
                   {curr.ticketName}
                 </a>
