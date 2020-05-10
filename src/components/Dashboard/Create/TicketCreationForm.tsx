@@ -19,7 +19,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
   const [quantity, setQuantity] = useState<string>(
     ticket ? ticket.quantity : ''
   );
-  const [price, setPrice] = useState<string>(ticket ? ticket.price : '');
+  const [price, setPrice] = useState<number>(ticket ? ticket.price : '');
   const [description, setDescription] = useState<string>(
     ticket ? ticket.description : ''
   );
@@ -42,7 +42,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
         <input
           value={quantity}
           onChange={(event) => {
-            setQuantity(event.currentTarget.value);
+            setQuantity(parseInt(event.currentTarget.value));
           }}
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-75-ns w-100"
           placeholder="Ticket Quantity"
@@ -65,6 +65,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
           value={price}
           onChange={(event) => {
             setPrice(`${event.currentTarget.value}`);
+            setPrice(parseInt(event.currentTarget.value));
           }}
           options={
             {
