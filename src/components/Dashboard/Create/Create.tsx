@@ -6,12 +6,12 @@ import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
 import { UploadFlyer } from './UploadFlyer';
-import { formatDate } from '../../../lib';
+import { formatDate, formatPrice } from '../../../lib';
 
 interface TicketProps {
   ticketName: string;
   quantity: number;
-  price: number;
+  price: string;
   description: string;
   enabled: boolean;
   _id: number;
@@ -206,7 +206,9 @@ export const Create: React.FunctionComponent = () => {
             </div>
             <div className="dtc v-mid tr">
               <h1 className="f6 f5-ns fw7 lh-title mv0">0/{curr.quantity}</h1>
-              <h1 className="f6 f5-ns fw7 lh-title gray mv0">Free</h1>
+              <h1 className="f6 f5-ns fw7 lh-title gray mv0">
+                {formatPrice(curr.price)}
+              </h1>
               {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
             </div>
             <div
