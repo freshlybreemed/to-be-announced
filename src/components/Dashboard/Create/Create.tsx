@@ -26,23 +26,23 @@ export const Create: React.FunctionComponent = () => {
   const [eventType, setEventType] = useState<string>('');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
-    false
+    false,
   );
-  const [ticketTypes, setTicketTypes] = useState<TicketProps[]>([]);
+  const [ticketTypes, setTicketTypes] = useState<Object>({});
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
     ticket.enabled = true;
-    ticket._id = Math.round(Math.random() * ticketTypes.length);
-    tickets.push(ticket);
+    // ticket._id = Math.round(Math.random() * ticketTypes.length);
+    tickets[ticket.ticketName] = ticket;
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
   };
 
   const updateTicket = (ticket: TicketProps) => {
-    const tickets = ticketTypes.map((curr) => {
+    const tickets = Object.keys(ticketTypes).map((curr) => {
       console.log(ticket, curr);
-      if (curr._id === ticket._id) {
+      if (ticketTypes[curr]._id === ticket._id) {
         return ticket;
       } else {
         return curr;
@@ -175,25 +175,28 @@ export const Create: React.FunctionComponent = () => {
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
       <main className="w-75 tl center">
-        {ticketTypes.map((curr) => (
+        {Object.keys(ticketTypes).map((curr) => (
           <article className="dt w-100 bb b--gray pb2 mt2">
             <div className="dtc v-mid pl3">
               <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
                 <a className="white no-underline" href="">
-                  {curr.ticketName}
+                  {ticketTypes[curr].ticketName}
                 </a>
               </h1>
               <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
-                new Date(2)
+                new Date(2),
               )}`}</h2>
               <div>
                 <label className="switch">
                   <input
                     type="checkbox"
                     onChange={() =>
-                      updateTicket({ ...curr, enabled: !curr.enabled })
+                      updateTicket({
+                        ...ticketTypes[curr],
+                        enabled: !ticketTypes[curr].enabled,
+                      })
                     }
-                    checked={curr.enabled}
+                    checked={ticketTypes[curr].enabled}
                   />
                   <span>
                     {/* <em></em> */}
@@ -203,9 +206,11 @@ export const Create: React.FunctionComponent = () => {
               </div>
             </div>
             <div className="dtc v-mid tr">
-              <h1 className="f6 f5-ns fw7 lh-title mv0">0/{curr.quantity}</h1>
+              <h1 className="f6 f5-ns fw7 lh-title mv0">
+                0/{ticketTypes[curr].quantity}
+              </h1>
               <h1 className="f6 f5-ns fw7 lh-title gray mv0">
-                {formatPrice(curr.price)}
+                {formatPrice(ticketTypes[curr].price)}
               </h1>
               {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
             </div>
@@ -213,7 +218,7 @@ export const Create: React.FunctionComponent = () => {
               className="dtc v-mid tr white"
               onClick={() => {
                 setToggleTicketCreation(true);
-                setCurrentTicket(curr);
+                setCurrentTicket(ticketTypes[curr]);
               }}
             >
               <svg
