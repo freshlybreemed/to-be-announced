@@ -186,11 +186,17 @@ export const Create: React.FunctionComponent = () => {
                 </a>
               </h1>
               <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
-                new Date(2),
+                new Date(2)
               )}`}</h2>
               <div>
                 <label className="switch">
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() =>
+                      updateTicket({ ...curr, enabled: !curr.enabled })
+                    }
+                    checked={curr.enabled}
+                  />
                   <span>
                     {/* <em></em> */}
                     <strong></strong>
