@@ -2,5 +2,5 @@ import { wrapAsync } from '../helpers';
 import { NextApiRequest } from 'next';
 
 export default wrapAsync(async (req: NextApiRequest, db: any) =>
-  db.collection('tba').find({ slug: req.query.slug }).toArray()
+  db.collection('tba-events').find({ slug: req.query.slug }).toArray()
 );
