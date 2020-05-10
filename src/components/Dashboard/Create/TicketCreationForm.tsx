@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import Cleave from 'cleave.js/react';
 
 interface TicketProps {
   addTicket: any;
@@ -13,14 +14,14 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
   ticket,
 }) => {
   const [ticketName, setTicketName] = useState<string>(
-    ticket ? ticket.ticketName : '',
+    ticket ? ticket.ticketName : ''
   );
   const [quantity, setQuantity] = useState<string>(
-    ticket ? ticket.quantity : '',
+    ticket ? ticket.quantity : ''
   );
   const [price, setPrice] = useState<string>(ticket ? ticket.price : '');
   const [description, setDescription] = useState<string>(
-    ticket ? ticket.description : '',
+    ticket ? ticket.description : ''
   );
   const [_id] = useState<string>(ticket ? ticket._id : '');
   console.log({ ticket, ticketName, quantity, description });
@@ -58,11 +59,18 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
         />
       </div>
       <div className="mv3">
-        <input
+        {/* <span>$</span> */}
+        <Cleave
+          style={{ boxSizing: 'initial' }}
           value={price}
           onChange={(event) => {
-            setPrice(event.currentTarget.value);
+            setPrice(`${event.currentTarget.value}`);
           }}
+          options={
+            {
+              // prefix: true ? '$' : '',
+            }
+          }
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-75-ns w-100"
           placeholder="Ticket Price"
         />
