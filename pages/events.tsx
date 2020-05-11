@@ -6,7 +6,10 @@ import { Layout } from '../src/components/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 
-const Page: NextPage = (events) => (
+interface EventsProps {
+  events: any;
+}
+const Page: NextPage<EventsProps> = ({ events }) => (
   <Layout>
     <Events events={events} />
   </Layout>
@@ -22,6 +25,6 @@ Page.getInitialProps = async (ctx) => {
   };
 };
 Page.propTypes = {
-  events: PropTypes.object,
+  events: PropTypes.array,
 };
 export default Page;
