@@ -15,18 +15,16 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
         </div>
         <div className="mt2 mb4 about contain center w-90-l ph3 ph0-l flex-l">
           <div className="w-40-l dib mb1 pb1">
-            <p className="mv0 b pb1">
-              {`${event.location.name.split(",")[0]}`}
-            </p>
+            <p className="mv0 b pb1">{`${event.location.split(',')[0]}`}</p>
             <p className="mv0">{`${event.location.streetAddress}`} </p>
             <p className="mt0">{`${event.location.city}, ${event.location.state} `}</p>
 
             <p className="b mb0">{`${formatDate(
               new Date(event.startDate)
             )} `}</p>
-            <p className=" mt0">{`${formatTime(
+            {/* <p className=" mt0">{`${formatTime(
               new Date(event.startDate)
-            )} - ${formatTime(new Date(event.endDate))}`}</p>
+            )} - ${formatTime(new Date(event.endDate))}`}</p> */}
 
             <a className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph4 f3 fw5">
               Tickets
