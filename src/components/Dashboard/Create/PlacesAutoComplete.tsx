@@ -36,7 +36,8 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     setLocation('');
   };
 
-  const handleSelect = ({ description }) => () => {
+  const handleSelect = ({ description, structured_formatting }) => () => {
+    const venue = structured_formatting.main_text;
     // When user selects a place, we can replace the keyword without request data from API
     // by setting the second parameter as "false"
     setValue(description, false);
@@ -45,7 +46,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     getGeocode({ address: description })
       .then((results) => {
         console.log(results);
-        setLocation(results[0].formatted_address);
+        setLocation(`${venue}, ${results[0].formatted_address}`);
         return getLatLng(results[0]);
       })
       .then(({ lat, lng }) => {
