@@ -1,11 +1,11 @@
-import * as React from "react";
-import { NextPage } from "next";
-import axios from "axios";
-import { Event } from "../../src/components/Event";
-import PropTypes from "prop-types";
+import * as React from 'react';
+import { NextPage } from 'next';
+import axios from 'axios';
+import { Event } from '../../src/components/Event';
+import PropTypes from 'prop-types';
 
-import { Layout } from "../../src/components/Layout";
-import absoluteUrl from "next-absolute-url";
+import { Layout } from '../../src/components/Layout';
+import absoluteUrl from 'next-absolute-url';
 
 const Page: NextPage = ({ event }: any) => (
   <Layout>

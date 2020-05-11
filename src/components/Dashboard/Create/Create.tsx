@@ -27,7 +27,7 @@ export const Create: React.FunctionComponent = () => {
   const [slug, setSlug] = useState<string>('');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
-    false,
+    false
   );
   const [ticketTypes, setTicketTypes] = useState<Object>({});
 
@@ -194,7 +194,7 @@ export const Create: React.FunctionComponent = () => {
                 </a>
               </h1>
               <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
-                new Date(2),
+                new Date(2)
               )}`}</h2>
               <div>
                 <label className="switch">

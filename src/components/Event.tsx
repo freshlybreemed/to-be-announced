@@ -1,5 +1,5 @@
-import * as React from "react";
-import { formatDate, formatTime } from "../lib";
+import * as React from 'react';
+import { formatDate } from '../lib';
 interface EventProps {
   event: any;
 }
@@ -120,7 +120,7 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
               <h3 className="fw5 f3-ns f4 mb0">Trippe Redd</h3>
               <h4 className="fw5 gray f4-ns f5 mt1">The Noho, LA</h4>
               <h4 className="fw5 f4 gray mb1 pb3">
-                {formatDate(new Date("2020-04-24T01:21:01Z"))}
+                {formatDate(new Date('2020-04-24T01:21:01Z'))}
               </h4>
               <span className="b pa2 mt2 input-reset ba b--white grow pointer f4">
                 <a className="no-underline white">More Info</a>
