@@ -1,69 +1,72 @@
 import * as React from 'react';
 import { formatDate } from '../lib';
 import FadeIn from 'react-fade-in';
-const eventList = [
-  {
-    image:
-      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-    title: 'Tierra Whack',
-    date: formatDate(new Date()),
-    city: 'Los Angeles',
-    price: 'FREE',
-    venue: 'YouTube',
-  },
-  {
-    image:
-      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-    title: 'Tierra Whack',
-    date: formatDate(new Date()),
-    city: 'Los Angeles',
-    price: 'FREE',
-    venue: 'YouTube',
-  },
-  {
-    image:
-      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-    title: 'Tierra Whack',
-    date: formatDate(new Date()),
-    city: 'Los Angeles',
-    price: 'FREE',
-    venue: 'YouTube',
-  },
-  {
-    image:
-      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-    title: 'Tierra Whack',
-    date: formatDate(new Date()),
-    city: 'Los Angeles',
-    price: 'FREE',
-    venue: 'YouTube',
-  },
-  {
-    image:
-      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-    title: 'Tierra Whack',
-    date: formatDate(new Date()),
-    city: 'Los Angeles',
-    price: 'FREE',
-    venue: 'YouTube',
-  },
-  {
-    image:
-      'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-    title: 'Tierra Whack',
-    date: formatDate(new Date()),
-    city: 'Los Angeles',
-    price: 'FREE',
-    venue: 'YouTube',
-  },
-];
+// const eventList = [
+//   {
+//     image:
+//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+//     title: 'Tierra Whack',
+//     date: formatDate(new Date()),
+//     city: 'Los Angeles',
+//     price: 'FREE',
+//     venue: 'YouTube',
+//   },
+//   {
+//     image:
+//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+//     title: 'Tierra Whack',
+//     date: formatDate(new Date()),
+//     city: 'Los Angeles',
+//     price: 'FREE',
+//     venue: 'YouTube',
+//   },
+//   {
+//     image:
+//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+//     title: 'Tierra Whack',
+//     date: formatDate(new Date()),
+//     city: 'Los Angeles',
+//     price: 'FREE',
+//     venue: 'YouTube',
+//   },
+//   {
+//     image:
+//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+//     title: 'Tierra Whack',
+//     date: formatDate(new Date()),
+//     city: 'Los Angeles',
+//     price: 'FREE',
+//     venue: 'YouTube',
+//   },
+//   {
+//     image:
+//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+//     title: 'Tierra Whack',
+//     date: formatDate(new Date()),
+//     city: 'Los Angeles',
+//     price: 'FREE',
+//     venue: 'YouTube',
+//   },
+//   {
+//     image:
+//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
+//     title: 'Tierra Whack',
+//     date: formatDate(new Date()),
+//     city: 'Los Angeles',
+//     price: 'FREE',
+//     venue: 'YouTube',
+//   },
+// ];
 
 interface EventsProps {
   events: any;
 }
-export const Events: React.FunctionComponent<EventsProps> = (events) => {
+export const Events: React.FunctionComponent<EventsProps> = ({ events }) => {
   console.log(events);
 
+  // const getPrice = (event) =>{
+
+  // }
   return (
     <div className={'pv3 '}>
       <div className="mw8 ml4-ns ">
@@ -91,19 +94,32 @@ export const Events: React.FunctionComponent<EventsProps> = (events) => {
       </div>
       <main className="mw8 ml4-ns center">
         <FadeIn>
-          {eventList.map((curr) => (
-            <article className="dt w-90 bb b--gray pb2 mt2 bg-black">
+          {events.map((curr) => (
+            <article className="dt w-90 bb b--gray pb2 mt2 bg-black dim">
               <div className="dtc w2 w3-ns v-mid">
                 <img src={curr.image} className="db h2 h3-ns" />
               </div>
               <div className="dtc v-mid pl3">
-                <h1 className="f6 f5-ns fw7 lh-title  mv0">{curr.title}</h1>
-                <h2 className="f6 fw6 mt0 mb0 gray">{curr.date}</h2>
+                <a
+                  href={`/e/${curr.slug}`}
+                  className="f6 f5-ns fw7 white no-underline lh-title underline-hover  mv0"
+                >
+                  {curr.name}
+                </a>
+                <h2 className="f6 fw6 mt0 mb0 gray">
+                  {formatDate(new Date(curr.startDate))}
+                </h2>
               </div>
               <div className="dtc v-mid tr">
                 <h1 className="f6 f5-ns fw7 lh-title  ttu mv0">{curr.price}</h1>
-                <h1 className="f6 f5-ns fw7 lh-title   mv0">{curr.venue}</h1>
-                <h2 className="f6 fw6 mt0 mb0 gray">{curr.city}</h2>
+                <h1 className="f6 f5-ns fw7 lh-title   mv0">
+                  {curr.location.split(',')[0]}
+                </h1>
+                <h2 className="f6 fw6 mt0 mb0 gray">
+                  {`${curr.location.split(',')[2]}, ${
+                    curr.location.split(',')[3].split(' ')[1]
+                  }`}
+                </h2>
               </div>
             </article>
           ))}
