@@ -24,6 +24,7 @@ export const Create: React.FunctionComponent = () => {
   const [startTime, setStartTime] = useState<string>('');
   const [renderStartTimes, setRenderStartTimes] = useState<boolean>(false);
   const [eventType, setEventType] = useState<string>('');
+  const [slug, setSlug] = useState<string>('');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
     false,
@@ -82,6 +83,7 @@ export const Create: React.FunctionComponent = () => {
   };
   const eventDetails = {
     name,
+    slug,
     location,
     eventType,
     image,
@@ -169,6 +171,14 @@ export const Create: React.FunctionComponent = () => {
         <input
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
           placeholder="End Date"
+        />
+      </div>
+      <div className="mv3">
+        <input
+          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
+          value={slug}
+          onChange={(e) => setSlug(e.currentTarget.value)}
+          placeholder="Event URL"
         />
       </div>
       <UploadFlyer setImage={setImage} />
