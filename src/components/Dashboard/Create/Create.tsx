@@ -6,7 +6,7 @@ import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
 import { UploadFlyer } from './UploadFlyer';
-import { formatDate } from '../../../lib';
+import { formatDate, formatPrice, getCookieFromBrowser } from '../../../lib';
 
 interface TicketProps {
   ticketName: string;
@@ -18,30 +18,32 @@ interface TicketProps {
 }
 export const Create: React.FunctionComponent = () => {
   const [name, setName] = useState<string>('');
-  const [location, setLocation] = useState<string>('');
+  const [location, setLocation] = useState<object>({});
   const [image, setImage] = useState<string>('');
   const [startDate, setStartDate] = useState<string>('');
   const [startTime, setStartTime] = useState<string>('');
   const [renderStartTimes, setRenderStartTimes] = useState<boolean>(false);
   const [eventType, setEventType] = useState<string>('');
-  const [currentTicket, setCurrentTicket] = useState<TicketProps>();
+  const [slug, setSlug] = useState<string>('');
+  const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
-    false,
+    false
   );
-  const [ticketTypes, setTicketTypes] = useState<TicketProps[]>([]);
+  const [ticketTypes, setTicketTypes] = useState<Object>({});
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
-    ticket._id = Math.round(Math.random() * ticketTypes.length);
-    tickets.push(ticket);
+    ticket.enabled = true;
+    // ticket._id = Math.round(Math.random() * ticketTypes.length);
+    tickets[ticket.ticketName] = ticket;
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
   };
 
   const updateTicket = (ticket: TicketProps) => {
-    const tickets = ticketTypes.map((curr) => {
+    const tickets = Object.keys(ticketTypes).map((curr) => {
       console.log(ticket, curr);
-      if (curr._id === ticket._id) {
+      if (ticketTypes[curr]._id === ticket._id) {
         return ticket;
       } else {
         return curr;
@@ -76,29 +78,27 @@ export const Create: React.FunctionComponent = () => {
     </ul>
   );
 
-  const setEventLocation = (addy: string) => {
+  const setEventLocation = (addy: object) => {
     setLocation(addy);
   };
-
-  console.log({
+  const eventDetails = {
     name,
+    slug,
     location,
     eventType,
     image,
     startDate,
     startTime,
     ticketTypes,
-  });
+  };
+
+  console.log(eventDetails);
+
   const handleSubmit = async () => {
-    const eventInfo = {
-      name,
-      location,
-      eventType,
-      image,
-      startDate: new Date(startDate),
-      startTime,
-    };
-    await axios.post('/api/event', eventInfo);
+    const userId = getCookieFromBrowser('userId');
+    await axios
+      .post('/api/event', { ...eventDetails, userId })
+      .then((res) => console.log(res.data));
   };
   return (
     <article className="w-100  ph3-m ph3-l tc">
@@ -173,24 +173,41 @@ export const Create: React.FunctionComponent = () => {
           placeholder="End Date"
         />
       </div>
+      <div className="mv3">
+        <input
+          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
+          value={slug}
+          onChange={(e) => setSlug(e.currentTarget.value)}
+          placeholder="Event URL"
+        />
+      </div>
       <UploadFlyer setImage={setImage} />
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
       <main className="w-75 tl center">
-        {ticketTypes.map((curr) => (
+        {Object.keys(ticketTypes).map((curr) => (
           <article className="dt w-100 bb b--gray pb2 mt2">
             <div className="dtc v-mid pl3">
-              <h1 className="f6 f5-ns fw7 lh-title mv0 underline-hover">
+              <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
                 <a className="white no-underline" href="">
-                  {curr.ticketName}
+                  {ticketTypes[curr].ticketName}
                 </a>
               </h1>
               <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
-                new Date(2),
+                new Date(2)
               )}`}</h2>
               <div>
                 <label className="switch">
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={() =>
+                      updateTicket({
+                        ...ticketTypes[curr],
+                        enabled: !ticketTypes[curr].enabled,
+                      })
+                    }
+                    checked={ticketTypes[curr].enabled}
+                  />
                   <span>
                     {/* <em></em> */}
                     <strong></strong>
@@ -199,15 +216,19 @@ export const Create: React.FunctionComponent = () => {
               </div>
             </div>
             <div className="dtc v-mid tr">
-              <h1 className="f6 f5-ns fw7 lh-title mv0">0/{curr.quantity}</h1>
-              <h1 className="f6 f5-ns fw7 lh-title gray mv0">Free</h1>
+              <h1 className="f6 f5-ns fw7 lh-title mv0">
+                0/{ticketTypes[curr].quantity}
+              </h1>
+              <h1 className="f6 f5-ns fw7 lh-title gray mv0">
+                {formatPrice(ticketTypes[curr].price)}
+              </h1>
               {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
             </div>
             <div
               className="dtc v-mid tr white"
               onClick={() => {
                 setToggleTicketCreation(true);
-                setCurrentTicket(curr);
+                setCurrentTicket(ticketTypes[curr]);
               }}
             >
               <svg

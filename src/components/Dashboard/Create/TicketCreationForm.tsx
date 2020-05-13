@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import Cleave from 'cleave.js/react';
 
 interface TicketProps {
   addTicket: any;
@@ -15,10 +16,10 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
   const [ticketName, setTicketName] = useState<string>(
     ticket ? ticket.ticketName : '',
   );
-  const [quantity, setQuantity] = useState<string>(
+  const [quantity, setQuantity] = useState<number>(
     ticket ? ticket.quantity : '',
   );
-  const [price, setPrice] = useState<string>(ticket ? ticket.price : '');
+  const [price, setPrice] = useState<number>(ticket ? ticket.price : '');
   const [description, setDescription] = useState<string>(
     ticket ? ticket.description : '',
   );
@@ -41,7 +42,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
         <input
           value={quantity}
           onChange={(event) => {
-            setQuantity(event.currentTarget.value);
+            setQuantity(parseInt(event.currentTarget.value));
           }}
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-75-ns w-100"
           placeholder="Ticket Quantity"
@@ -58,11 +59,18 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
         />
       </div>
       <div className="mv3">
-        <input
+        {/* <span>$</span> */}
+        <Cleave
+          style={{ boxSizing: 'initial' }}
           value={price}
           onChange={(event) => {
-            setPrice(event.currentTarget.value);
+            setPrice(parseInt(event.currentTarget.value));
           }}
+          options={
+            {
+              // prefix: true ? '$' : '',
+            }
+          }
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-75-ns w-100"
           placeholder="Ticket Price"
         />
@@ -75,7 +83,15 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
       </div>
       {!ticket && (
         <div
-          onClick={() => addTicket({ ticketName, quantity, description })}
+          onClick={() =>
+            addTicket({
+              ticketName,
+              quantity,
+              description,
+              price,
+              enabled: true,
+            })
+          }
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
           Add
@@ -84,7 +100,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
       {ticket && (
         <div
           onClick={() =>
-            updateTicket({ ticketName, quantity, description, _id })
+            updateTicket({ ticketName, quantity, description, _id, price })
           }
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
