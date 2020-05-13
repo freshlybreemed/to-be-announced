@@ -15,9 +15,11 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
         </div>
         <div className="mt2 mb4 about contain center w-90-l ph3 ph0-l flex-l">
           <div className="w-40-l dib mb1 pb1">
-            <p className="mv0 b pb1">{`${event.location.split(',')[0]}`}</p>
-            <p className="mv0">{`${event.location.streetAddress}`} </p>
-            <p className="mt0">{`${event.location.city}, ${event.location.state} `}</p>
+            <p className="mv0 b pb1">{`${event.location.venue}`}</p>
+            <p className="mv0">{`${event.location.address.split(',')[0]}`} </p>
+            <p className="mt0">{`${event.location.address.split(',')[1]}, ${
+              event.location.address.split(',')[2]
+            } `}</p>
 
             <p className="b mb0">{`${formatDate(
               new Date(event.startDate)
