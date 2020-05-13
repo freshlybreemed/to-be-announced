@@ -45,8 +45,13 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     // Get latitude and longitude via utility functions
     getGeocode({ address: description })
       .then((results) => {
-        console.log(results);
-        setLocation(`${venue}, ${results[0].formatted_address}`);
+        console.log(results[0]);
+        const location = {
+          venue,
+          address: results[0].formatted_address,
+          placeId: results[0].place_id,
+        };
+        setLocation(location);
         return getLatLng(results[0]);
       })
       .then(({ lat, lng }) => {

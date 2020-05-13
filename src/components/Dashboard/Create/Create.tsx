@@ -18,7 +18,7 @@ interface TicketProps {
 }
 export const Create: React.FunctionComponent = () => {
   const [name, setName] = useState<string>('');
-  const [location, setLocation] = useState<string>('');
+  const [location, setLocation] = useState<object>({});
   const [image, setImage] = useState<string>('');
   const [startDate, setStartDate] = useState<string>('');
   const [startTime, setStartTime] = useState<string>('');
@@ -78,7 +78,7 @@ export const Create: React.FunctionComponent = () => {
     </ul>
   );
 
-  const setEventLocation = (addy: string) => {
+  const setEventLocation = (addy: object) => {
     setLocation(addy);
   };
   const eventDetails = {
