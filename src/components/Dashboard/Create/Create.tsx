@@ -78,21 +78,25 @@ export const Create: React.FunctionComponent = () => {
       <h1 className="f1-ns f2 mt0">Create Event</h1>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Select Event Type</h2>
-      <div className="flex items-center db center pt4 mb4">
+      <div className=" pt4 mb4">
         {(eventType === '' || eventType === 'venue') && (
-          <div
-            className=" b--white hover-bg-white center hover-black db noselect br-100 b--solid pa2 ph4 f5 fw5 white"
-            onClick={() => setEventType('venue')}
-          >
-            Venue
+          <div className="dib mr3">
+            <span
+              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4 f4 fw5  "
+              onClick={() => setEventType('venue')}
+            >
+              Venue
+            </span>
           </div>
         )}
         {(eventType === '' || eventType === 'online') && (
-          <div
-            className=" b--white hover-bg-white center hover-black db noselect br-100 b--solid pa2 ph4 f5 fw5 white"
-            onClick={() => setEventType('online')}
-          >
-            Online Event
+          <div className="dib">
+            <span
+              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4 f4 fw5 white"
+              onClick={() => setEventType('online')}
+            >
+              Online Event
+            </span>
           </div>
         )}
       </div>
