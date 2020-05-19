@@ -83,7 +83,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
         <div className="flex flex-wrap justify-between w-100 nr3 mb4">
           <section className="fl w-48-ns w-100 mb2 ">
             <div className="bg-black-80  pl0 ">
-              <span className="f3 fw6  br-100 b--solid pv2 ph3 ">
+              <span className="f3-ns f4 fw6  br-100 b--solid pv2 ph3 mv2">
                 Sales By Ticket Types{' '}
               </span>
               <div className="pt4 ">
@@ -122,7 +122,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
 
           <section className="fl w-48-ns w-100 mb2 ">
             <div className="bg-black-80  pa2 pa3-ns ">
-              <span className="f3 fw6 br-100 b--solid pv2 ph3 mb2">
+              <span className="f3-ns f4 fw6 br-100 b--solid pv2 ph3 mv2">
                 Payouts{' '}
               </span>
               <p className="pt4">
@@ -138,7 +138,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
         </div>
         <section className="fl w-90 ">
           <div className="bg-black-80">
-            <span className="f3 fw6  br-100 b--solid pv2 ph3 mb2">
+            <span className="f3-ns f4 fw6  br-100 b--solid pv2 ph3 mv2">
               Attendee List{' '}
             </span>
             <div className="pt4 ">
