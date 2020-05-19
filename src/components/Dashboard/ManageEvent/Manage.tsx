@@ -15,15 +15,15 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
   return (
     <div className={'w-100'}>
       <main className="mw8 ml4-ns center">
-        <article className="dt w-90  pb2 mt2">
-          <div className="dtc w2 w3-ns v-mid">
-            <img src={event.image} className="db h3 h4-ns" />
-          </div>
-          <div className="dtc v-mid pl3">
-            <h1 className="f4 f3-ns fw7 lh-title mv0 underline-hover">
+        <article className="dt-ns tc tl-ns dt--fixed-ns w-90-ns  pb2 mv2">
+          {/* <div className="dtc-ns ">
+            <img src={event.image} className="db w-50" />
+          </div> */}
+          <div className="dtc-ns pl3">
+            <h1 className="f4-ns f5 fw7 lh-title mv0 underline-hover">
               <a className="white no-underline">{event.name}</a>
             </h1>
-            <h2 className="f4 fw6 lh-title mv0 underline-hover">
+            <h2 className="f4-ns f5 fw6 lh-title mv0 underline-hover">
               <a
                 className="white no-underline"
                 target="_blank"
@@ -32,17 +32,17 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
                 {event.location.venue}
               </a>
             </h2>
-            <h2 className="f4 fw6 mt0 mb0 gray">
+            <h2 className="f4-ns f5 fw6 mv0 gray">
               {`${formatDate(new Date(event.startDate), 'long')} ${formatTime(
                 new Date(event.startDate)
               )}`}
             </h2>
-            <h2 className="f4 fw6 mt0 mb0 green">• Live</h2>
+            <h2 className="f4-ns f5 fw6 mt0 mb0 green">• Live</h2>
           </div>
-          <div className="dtc v-mid tr">
+          <div className="dtc-ns v-mid tr-ns tc">
             <a
               href={`/e/${event.slug}`}
-              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mb2 ph4 f3 fw5 "
+              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2 ph3 f3-ns f4 fw5 "
             >
               View Event
             </a>
