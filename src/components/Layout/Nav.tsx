@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getCookieFromBrowser, removeCookie } from '../lib';
+import { getCookieFromBrowser, removeCookie } from '../../lib';
 import Router from 'next/router';
 export const Nav: React.FunctionComponent = () => {
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;

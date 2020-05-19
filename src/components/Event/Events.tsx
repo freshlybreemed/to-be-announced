@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { formatDate } from '../lib';
+import { formatDate } from '../../lib';
 import FadeIn from 'react-fade-in';
 // const eventList = [
 //   {
