@@ -19,7 +19,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
           {/* <div className="dtc-ns ">
             <img src={event.image} className="db w-50" />
           </div> */}
-          <div className="dtc-ns pl3">
+          <div className="dtc-ns pl3-ns">
             <h1 className="f4-ns f5 fw7 lh-title mv0 underline-hover">
               <a className="white no-underline">{event.name}</a>
             </h1>
@@ -37,7 +37,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
                 new Date(event.startDate)
               )}`}
             </h2>
-            <h2 className="f4-ns f5 fw6 mt0 mb0 green">• Live</h2>
+            <h2 className="f4-ns f5 fw6 mv0 green">• Live</h2>
           </div>
           <div className="dtc-ns v-mid tr-ns tc">
             <a
