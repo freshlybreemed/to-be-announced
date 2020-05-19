@@ -144,18 +144,18 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
             <div className="pt4 ">
               <div className="overflow-auto">
                 <table
-                  className="f6 w-100 mw8 center"
+                  className="f6-ns f7 w-100 mw8 center"
                   style={{ borderCollapse: 'collapse' }}
                 >
                   <thead>
-                    <tr className="f5 fw7 tl">
+                    <tr className="f5-ns f6 fw7 tl">
                       <th className="pa1 bb b--gray bw1 ">Date</th>
                       <th className="pa1 bb b--gray bw1  ">Email</th>
                       <th className="pa1 bb b--gray bw1  ">Quantity</th>
                       <th className="pa1 bb b--gray bw1 ">Total Sales</th>
                     </tr>
                   </thead>
-                  <tbody className="lh-copy f4">
+                  <tbody className="lh-copy f4-ns f5">
                     <tr className="dim">
                       <td className="pa1">
                         {formatDate(new Date(), 'shorter')}
