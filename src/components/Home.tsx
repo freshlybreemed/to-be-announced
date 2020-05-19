@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
 export const Home: React.FunctionComponent = () => (
-  <div className={"pv4 relative "}>
+  <div className={'pv4 relative '}>
     <div className="mw8 ml4-ns ">
       {/* <div
         className="relative db overflow-hidden"
@@ -30,66 +30,8 @@ export const Home: React.FunctionComponent = () => (
       </div>
     </div>
     <div className="mw8 ml4-ns pt4 mt2 pb1 f2-ns f3 fw5 ">
-      Upcoming Events in <span className="gray">Los Angeles</span>{" "}
-      <span className="mt3 dim">
-        <svg
-          className="white "
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-        </svg>
-      </span>
+      Upcoming Events in <span className="gray">Los Angeles</span>
     </div>
-    <div className="mw8  pt0 pb1 f4-ns f6 fw5 ">
-      <ul className="list overflow-hidden flex">
-        <li className="mr2 dim">This weekend</li>
-        <li className="mr2 dim">Free</li>
-        <li className="mr2 dim">Music</li>
-        <li className="mr2 dim">Food & Drink</li>
-        <li className="mr2 dim">Charity & Causes</li>
-      </ul>
-    </div>
-    {/* <ul className="overflow-hidden list v-base items-center justify-between flex">
-      <li className="mr3 mw-100 mw-48-l">
-        <a className="transition" href="/">
-          <img
-            className="db mw-100 "
-            src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-            alt=""
-          />
-        </a>
-        <h3 className="fw5 f3 mb0">Tierra Whack</h3>
-        <h4 className="fw5 gray f4 mt1">The Wiltern, LA</h4>
-      </li>
-      <li className="mr3 mw-100 mw-48-l">
-        <a className="transition" href="/">
-          <img
-            className="db mw-100 "
-            src="https://s1.ticketm.net/dam/a/12d/520e1ff8-9df2-4847-bca7-668e25d5e12d_1286191_RETINA_PORTRAIT_16_9.jpg"
-            alt=""
-          />
-        </a>
-        <h3 className="fw5 f3 mb0">Azizi Gibson</h3>
-        <h4 className="fw5 gray f4 mt1">Bootsie Bellows, LA</h4>
-      </li>
-
-      <li className=" mw-100 mw-48-l">
-        <a className="transition" href="/">
-          <img
-            className="db mw-100 "
-            src="https://s1.ticketm.net/dam/a/040/997d0de0-af52-4455-bc48-813f05a4f040_1205621_RETINA_PORTRAIT_16_9.jpg"
-            alt=""
-          />
-        </a>
-        <h3 className="fw5 f3 mb0">Trippe Redd</h3>
-        <h4 className="fw5 gray f4 mt1">The Noho, LA</h4>
-      </li>
-    </ul> */}
-
     <div className="db w-100 pt2 ">
       <ul className="overflow-hidden list v-base ml4-ns pl0-ns ph3">
         <li className="fl mw-100 mw-48-l">

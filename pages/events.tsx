@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { NextPage } from 'next';
-import { Events } from '../src/components/Events';
-import { Layout } from '../src/components/Layout';
+import { Events } from '../src/components/Event/Events';
+import { Layout } from '../src/components/Layout/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 

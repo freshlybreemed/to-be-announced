@@ -40,16 +40,23 @@ const getCookieFromServer = (key: string, req: any) => {
   }
   return rawCookie.split('=')[1];
 };
-export const formatDate = (date: Date, type = 'short') =>
-  type === 'short'
-    ? format(date, ' ccc. MMMM d')
-    : format(date, ' cccc MMMM d');
+export const formatDate = (date: Date, type = 'short') => {
+  switch (type) {
+    case 'short':
+      return format(date, ' ccc. MMMM d');
+    case 'shorter':
+      return format(date, ' MMMM d');
+    default:
+      return format(date, ' cccc MMMM d');
+  }
+};
 
 export const formatTime = (date: Date) => format(date, 'h:mm a');
 
 // Format price
 export const formatPrice = (number: string) => {
   const fnumber = parseFloat(number);
+  if (fnumber === 0) return 'FREE';
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',

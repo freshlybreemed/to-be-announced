@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Cleave from 'cleave.js/react';
 import axios from 'axios';
 import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
@@ -21,8 +20,7 @@ export const Create: React.FunctionComponent = () => {
   const [location, setLocation] = useState<object>({});
   const [image, setImage] = useState<string>('');
   const [startDate, setStartDate] = useState<string>('');
-  const [startTime, setStartTime] = useState<string>('');
-  const [renderStartTimes, setRenderStartTimes] = useState<boolean>(false);
+  const [endDate, setEndDate] = useState<string>('');
   const [eventType, setEventType] = useState<string>('');
   const [slug, setSlug] = useState<string>('');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
@@ -54,30 +52,6 @@ export const Create: React.FunctionComponent = () => {
     setCurrentTicket(null);
   };
 
-  const renderTime = () => (
-    <ul
-      onClick={() => setRenderStartTimes(!renderStartTimes)}
-      className="pl0 list "
-    >
-      {[
-        '12:00 AM',
-        '12:30 AM',
-        '1:00 AM',
-        '1:30 AM',
-        '2:00 AM',
-        '2:30 AM',
-        '3:00 AM',
-        '3:30 AM',
-        '4:00 AM',
-        '5:00 AM',
-      ].map((curr) => (
-        <li onClick={() => setStartTime(curr)} className="dim mv1 noselect">
-          {curr}
-        </li>
-      ))}
-    </ul>
-  );
-
   const setEventLocation = (addy: object) => {
     setLocation(addy);
   };
@@ -88,7 +62,6 @@ export const Create: React.FunctionComponent = () => {
     eventType,
     image,
     startDate,
-    startTime,
     ticketTypes,
   };
 
@@ -105,21 +78,25 @@ export const Create: React.FunctionComponent = () => {
       <h1 className="f1-ns f2 mt0">Create Event</h1>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Select Event Type</h2>
-      <div className="flex items-center db center pt4 mb4">
+      <div className=" pt4 mb4">
         {(eventType === '' || eventType === 'venue') && (
-          <div
-            className=" b--white hover-bg-white center hover-black db noselect br-100 b--solid pa2 ph4 f5 fw5 white"
-            onClick={() => setEventType('venue')}
-          >
-            Venue
+          <div className="dib mr3">
+            <span
+              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4 f4 fw5  "
+              onClick={() => setEventType('venue')}
+            >
+              Venue
+            </span>
           </div>
         )}
         {(eventType === '' || eventType === 'online') && (
-          <div
-            className=" b--white hover-bg-white center hover-black db noselect br-100 b--solid pa2 ph4 f5 fw5 white"
-            onClick={() => setEventType('online')}
-          >
-            Online Event
+          <div className="dib">
+            <span
+              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4 f4 fw5 white"
+              onClick={() => setEventType('online')}
+            >
+              Online Event
+            </span>
           </div>
         )}
       </div>
@@ -138,39 +115,17 @@ export const Create: React.FunctionComponent = () => {
       <div className="mv3 ">
         <PlacesAutoComplete setLocation={setEventLocation} />
       </div>
+      <DateTimePicker
+        start={true}
+        startDate={startDate}
+        setStartDate={setStartDate}
+      />
       <div className="mv3">
-        <Cleave
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white  w-75-ns w-100"
-          placeholder="Start Date"
-          style={{ boxSizing: 'initial' }}
-          options={{
-            date: true,
-            delimiter: '-',
-            datePattern: ['m', 'd', 'Y'],
-          }}
-          value={startDate}
-          onChange={(e) => setStartDate(e.currentTarget.value)}
-        />
-      </div>
-      <div className="mv3">
-        <div
-          className=" pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-75-ns w-100 center "
-          style={{ boxSizing: 'initial' }}
-        >
-          <div
-            className="tl gray"
-            onClick={() => setRenderStartTimes(!renderStartTimes)}
-          >
-            {startTime.length > 0 ? startTime : 'Start Time'}
-          </div>
-          {renderStartTimes && renderTime()}
-        </div>
-      </div>
-      <DateTimePicker startDate={startDate} setStartDate={setStartDate} />{' '}
-      <div className="mv3">
-        <input
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
-          placeholder="End Date"
+        <DateTimePicker
+          start={false}
+          endDate={endDate}
+          startDate={startDate}
+          setEndDate={setEndDate}
         />
       </div>
       <div className="mv3">

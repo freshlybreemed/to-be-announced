@@ -1,8 +1,8 @@
-import * as React from "react";
-import { NextPage } from "next";
-import { Dashboard } from "../../src/components/Dashboard/Dashboard";
-import { SideBar } from "../../src/components/Dashboard/SideBar";
-import { Layout } from "../../src/components/Layout";
+import * as React from 'react';
+import { NextPage } from 'next';
+import { Dashboard } from '../../src/components/Dashboard/Dashboard';
+import { SideBar } from '../../src/components/Dashboard/SideBar';
+import { Layout } from '../../src/components/Layout/Layout';
 
 const Page: NextPage = () => (
   <Layout>

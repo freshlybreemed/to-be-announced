@@ -1,6 +1,6 @@
-import * as React from "react";
-import * as css from "../src/components/Home.css";
-import { Layout } from "../src/components/Layout";
+import * as React from 'react';
+import * as css from '../src/components/Home.css';
+import { Layout } from '../src/components/Layout/Layout';
 
 export default () => (
   <Layout>

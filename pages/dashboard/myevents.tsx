@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { NextPage } from 'next';
 import { MyEvents } from '../../src/components/Dashboard/ManageEvent/MyEvents';
-import { SideBar } from '../../src/components/Dashboard/SideBar';
-import { Layout } from '../../src/components/Layout';
+import { Layout } from '../../src/components/Layout/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 import PropTypes from 'prop-types';
@@ -15,7 +14,6 @@ const Page: NextPage<Props> = ({ events }) => (
     <div>
       <div className="mw8 center pv4 ph3" id="dashboard">
         <section className="flex-m flex-l nl3-m nr3-m nl3-l nr3-l">
-          <SideBar />
           <MyEvents events={events} />
         </section>
       </div>
