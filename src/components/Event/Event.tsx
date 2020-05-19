@@ -22,12 +22,12 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
   return (
     <div>
       <img className="w-90 center db" src={event.image} />
-      <div className="db mw6 mw8-ns mv4 page f4-ns">
-        <div className="mt2 mb4 about contain center w-90-l ph3 ph0-l ">
-          <h3 className="gray mb1 pb1 f3">{`TBA presents `}</h3>
-          <h1 className="f1 mt0 pt0">{event.title}</h1>
+      <div className="db mw6 mw8-ns mv3 page f4-ns">
+        <div className="mt2 mb1  center w-90-l ph3 ph0-l ">
+          <h3 className="gray mv0  f4-ns f5">{`TBA presents `}</h3>
+          <h1 className="f1-ns f2 mv0 mb2 pt2">{event.name}</h1>
         </div>
-        <div className="mt2 mb4 about contain center w-90-l ph3 ph0-l flex-l">
+        <div className=" mb2 center w-90-l ph3 ph0-l flex-l">
           <div className="w-40-l dib mb1 pb1">
             <p className="mv0 b pb1">{`${event.location.venue}`}</p>
             <p className="mv0">{`${event.location.address.split(',')[0]}`} </p>
@@ -37,7 +37,7 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
 
             <p className="b mb2">{`${formatDate(
               new Date(event.startDate)
-            )} `}</p>
+            )}`}</p>
             {/* <p className=" mt0">{`${formatTime(
               new Date(event.startDate)
             )} - ${formatTime(new Date(event.endDate))}`}</p> */}
