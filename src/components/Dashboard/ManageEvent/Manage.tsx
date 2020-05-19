@@ -14,9 +14,6 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
   console.log(event);
   return (
     <div className={'w-100'}>
-      <div className="mw8 ml4-ns ">
-        <h1 className="f1-ns f2 mt0">Event Dashboard</h1>
-      </div>
       <main className="mw8 ml4-ns center">
         <article className="dt w-90  pb2 mt2">
           <div className="dtc w2 w3-ns v-mid">
