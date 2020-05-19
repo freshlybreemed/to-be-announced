@@ -52,7 +52,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
           </div>
         </article>
         <div className="flex flex-wrap items-center  nr3 mb4">
-          <article className="mw5 bg-black-80 br3 w-33 pa3 pa4-ns mv3 ba b--gray mr3">
+          <article className="mw8 bg-black-80 br3 w-33-ns w-100 pa3 pa4-ns mv3 ba b--gray mr3">
             <div className="tc">
               <svg
                 className="white"
@@ -69,7 +69,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
               <h2 className="f5 fw4 gray mt0">$123.00</h2>
             </div>
           </article>
-          <article className="mw5 bg-black-80 br3 w-33 pa3 pa4-ns mv3 ba b--gray mr3">
+          <article className="mw8 bg-black-80 br3 w-33-ns w-100 pa3 pa4-ns mv3 ba b--gray mr3">
             <div className="tc">
               <svg
                 className="white"
@@ -87,7 +87,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
             </div>
           </article>
 
-          <article className="mw5 bg-black-80 br3 w-33 pa3 pa4-ns mv3 ba b--gray">
+          <article className="mw8 bg-black-80 br3 w-33-ns w-100 pa3 pa4-ns mv3 ba b--gray">
             <div className="tc">
               <svg
                 className="white"
