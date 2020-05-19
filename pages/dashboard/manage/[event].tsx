@@ -16,7 +16,7 @@ const Page: NextPage<Props> = ({ event }) => (
       src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
     />
 
-    <div className="mw8 center pv4 ph3 overflow-hidden" id="dashboard">
+    <div className="mw8 center pv2 ph3 overflow-hidden" id="dashboard">
       <section className="flex-m flex-l nl3-m nr3-m nl3-l nr3-l">
         <ManageEvent event={event} />
       </section>
