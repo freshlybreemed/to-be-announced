@@ -14,7 +14,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
   console.log(event);
   return (
     <div className={'w-100'}>
-      <main className="mw8 ml4-ns center">
+      <main className="mw9 ml4-ns center">
         <article className="dt-ns tc tl-ns dt--fixed-ns w-90-ns  pb2 mv2">
           {/* <div className="dtc-ns ">
             <img src={event.image} className="db w-50" />
@@ -142,67 +142,68 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
               Attendee List{' '}
             </span>
             <div className="pt4 ">
-              <div className="overflow-auto">
-                <table
-                  className="f6-ns f7 w-100 mw8 center"
-                  style={{ borderCollapse: 'collapse' }}
-                >
-                  <thead>
-                    <tr className="f5-ns f6 fw7 tl">
-                      <th className="pa1 bb b--gray bw1 ">Date</th>
-                      <th className="pa1 bb b--gray bw1  ">Email</th>
-                      <th className="pa1 bb b--gray bw1  ">Quantity</th>
-                      <th className="pa1 bb b--gray bw1 ">Total Sales</th>
-                    </tr>
-                  </thead>
-                  <tbody className="lh-copy f4-ns f5">
-                    <tr className="dim">
-                      <td className="pa1">
-                        {formatDate(new Date(), 'shorter')}
-                      </td>
-                      <td className="pa1">hassan@company.co</td>
-                      <td className="pa1">1</td>
-                      <td className="pa1">{formatPrice('174')}</td>
-                    </tr>
-                    <tr className="dim">
-                      <td className="pa1  bt b--gray">
-                        {formatDate(new Date(), 'shorter')}
-                      </td>
-                      {/* <td className="pa1 bt b--gray">Taral Hicks</td> */}
-                      <td className="pa1 bt b--gray">taral@company.co</td>
-                      <td className="pa1 bt b--gray">2</td>
-                      <td className="pa1 bt b--gray">{formatPrice('14')}</td>
-                    </tr>
-                    <tr className="dim">
-                      <td className="pa1  bt b--gray">
-                        {formatDate(new Date(), 'shorter')}
-                      </td>
-                      {/* <td className="pa1 bt b--gray">Tyrin Turner</td> */}
-                      <td className="pa1 bt b--gray">ty@companyn.co</td>
-                      <td className="pa1 bt b--gray">4</td>
-                      <td className="pa1 bt b--gray">{formatPrice('17')}</td>
-                    </tr>
-                    <tr className="dim">
-                      <td className="pa1  bt b--gray">
-                        {formatDate(new Date(), 'shorter')}
-                      </td>
-                      {/* <td className="pa1 bt b--gray">Oliver Grant</td> */}
-                      <td className="pa1 bt b--gray">oliverg@companyn.co</td>
-                      <td className="pa1 bt b--gray">1</td>
-                      <td className="pa1 bt b--gray">{formatPrice('34')}</td>
-                    </tr>
-                    <tr className="dim">
-                      <td className="pa1 bt b--gray">
-                        {formatDate(new Date(), 'shorter')}
-                      </td>
-                      {/* <td className="pa1 bt b--gray">Dean Blanc</td> */}
-                      <td className="pa1 bt b--gray">dean@companyain.co</td>
-                      <td className="pa1 bt b--gray">2</td>
-                      <td className="pa1">{formatPrice('174')}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <table
+                className="f6-ns f7 w-100  center"
+                style={{ borderCollapse: 'collapse' }}
+              >
+                <thead>
+                  <tr className="f5-ns f6 fw7 tl">
+                    <th className="pa1 bb b--gray bw1 ">Date</th>
+                    <th className="pa1 bb b--gray bw1  ">Email</th>
+                    <th className="pa1 bb b--gray bw1  ">Quantity</th>
+                    <th className="pa1 bb b--gray bw1 ">Total Sales</th>
+                  </tr>
+                </thead>
+                <tbody className="lh-copy f4-ns f6">
+                  <tr className="dim">
+                    <td className="pa1">{formatDate(new Date(), 'shorter')}</td>
+                    <td className="pa1">hassan@company.co</td>
+                    <td className="pa1">1</td>
+                    <td className="pa1">{formatPrice('174')}</td>
+                  </tr>
+                  <tr className="dim">
+                    <td className="pa1  bt b--gray">
+                      {formatDate(new Date(), 'shorter')}
+                    </td>
+                    {/* <td className="pa1 bt b--gray">Taral Hicks</td> */}
+                    <td className="pa1 bt b--gray">taral@company.co</td>
+                    <td className="pa1 bt b--gray">2</td>
+                    <td className="pa1 bt b--gray">{formatPrice('14')}</td>
+                  </tr>
+                  <tr className="dim">
+                    <td className="pa1  bt b--gray">
+                      {formatDate(new Date(), 'shorter')}
+                    </td>
+                    {/* <td className="pa1 bt b--gray">Tyrin Turner</td> */}
+                    <td className="pa1 bt b--gray">ty@companyn.co</td>
+                    <td className="pa1 bt b--gray">4</td>
+                    <td className="pa1 bt b--gray">{formatPrice('17')}</td>
+                  </tr>
+                  <tr className="dim">
+                    <td className="pa1  bt b--gray">
+                      {formatDate(new Date(), 'shorter')}
+                    </td>
+                    {/* <td className="pa1 bt b--gray">Oliver Grant</td> */}
+                    <td className="pa1 bt b--gray">oliverg@companyn.co</td>
+                    <td className="pa1 bt b--gray">1</td>
+                    <td className="pa1 bt b--gray">{formatPrice('34')}</td>
+                  </tr>
+                  <tr className="dim">
+                    <td className="pa1 bt b--gray">
+                      {formatDate(new Date(), 'shorter')}
+                    </td>
+                    {/* <td className="pa1 bt b--gray">Dean Blanc</td> */}
+                    <td className="pa1 bt b--gray">dean@companyain.co</td>
+                    <td className="pa1 bt b--gray">2</td>
+                    <td className="pa1">{formatPrice('174')}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <span className="b bb">
+                <a className="white no-underline" href="">
+                  See More...
+                </a>
+              </span>
             </div>
           </div>
         </section>
