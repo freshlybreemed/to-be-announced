@@ -6,14 +6,15 @@ import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
 import { UploadFlyer } from './UploadFlyer';
 import { formatDate, formatPrice, getCookieFromBrowser } from '../../../lib';
+import { Editor } from './TextEditor';
 
 interface TicketProps {
   ticketName: string;
   quantity: number;
   price: number;
+  _id: number;
   description: string;
   enabled: boolean;
-  _id: number;
 }
 export const Create: React.FunctionComponent = () => {
   const [name, setName] = useState<string>('');
@@ -25,26 +26,27 @@ export const Create: React.FunctionComponent = () => {
   const [slug, setSlug] = useState<string>('');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
-    false
+    false,
   );
   const [ticketTypes, setTicketTypes] = useState<Object>({});
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
     ticket.enabled = true;
-    // ticket._id = Math.round(Math.random() * ticketTypes.length);
+    ticket._id = Object.keys(ticketTypes).length;
     tickets[ticket.ticketName] = ticket;
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
   };
 
   const updateTicket = (ticket: TicketProps) => {
-    const tickets = Object.keys(ticketTypes).map((curr) => {
-      console.log(ticket, curr);
-      if (ticketTypes[curr]._id === ticket._id) {
-        return ticket;
+    const tickets = {};
+    Object.keys(ticketTypes).map((curr) => {
+      console.log(ticket, curr, ticketTypes[curr]._id);
+      if (ticket._id === ticketTypes[curr]._id) {
+        tickets[ticket.ticketName] = ticket;
       } else {
-        return curr;
+        tickets[curr] = ticketTypes[curr];
       }
     });
     setTicketTypes(tickets);
@@ -75,6 +77,14 @@ export const Create: React.FunctionComponent = () => {
   };
   return (
     <article className="w-100  ph3-m ph3-l tc">
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/draft-js/0.11.5/Draft.min.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/draftail@1.3.0/dist/draftail.css"
+      />
       <h1 className="f1-ns f2 mt0">Create Event</h1>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Select Event Type</h2>
@@ -128,7 +138,7 @@ export const Create: React.FunctionComponent = () => {
           setEndDate={setEndDate}
         />
       </div>
-      <div className="mv3">
+      <div className="mt3">
         <input
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
           value={slug}
@@ -136,7 +146,14 @@ export const Create: React.FunctionComponent = () => {
           placeholder="Event URL"
         />
       </div>
-      <UploadFlyer setImage={setImage} />
+      <div className="mb3">
+        <UploadFlyer setImage={setImage} />
+      </div>
+      <hr className="o-20" />
+      <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Event Description</h2>
+      <div className="mv3 pv3 w-75-ns w-100 center">
+        <Editor />
+      </div>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
       <main className="w-75 tl center">
@@ -149,7 +166,7 @@ export const Create: React.FunctionComponent = () => {
                 </a>
               </h1>
               <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
-                new Date(2)
+                new Date(2),
               )}`}</h2>
               <div>
                 <label className="switch">
