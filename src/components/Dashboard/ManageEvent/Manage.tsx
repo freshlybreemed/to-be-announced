@@ -34,7 +34,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
             </h2>
             <h2 className="f4-ns f5 fw6 mv0 gray">
               {`${formatDate(new Date(event.startDate), 'long')} ${formatTime(
-                new Date(event.startDate)
+                new Date(event.startDate),
               )}`}
             </h2>
             <h2 className="f4-ns f5 fw6 mv0 green">• Live</h2>
