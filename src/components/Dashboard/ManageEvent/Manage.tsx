@@ -121,7 +121,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
           </section>
 
           <section className="fl w-48-ns w-100 mb2 ">
-            <div className="bg-black-80  pa2 pa3-ns ">
+            <div className="bg-black-80  ">
               <span className="f3-ns f4 fw6 br-100 b--solid pv2 ph3 mv2">
                 Payouts{' '}
               </span>
