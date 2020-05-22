@@ -15,7 +15,7 @@ export const MyEvents: React.FunctionComponent<EventProps> = ({ events }) => {
         {events.map((curr) => (
           <article className="dt w-90 bb b--gray pb2 mt2">
             <div className="dtc w2 w3-ns v-mid">
-              <img src={curr.image} className="db h2 h3-ns" />
+              <img src={curr.image} className="db h3" />
             </div>
             <div className="dtc v-mid pl3">
               <h1 className="f6 f5-ns fw7 lh-title mv0 underline-hover">
@@ -44,7 +44,7 @@ export const MyEvents: React.FunctionComponent<EventProps> = ({ events }) => {
           <div className="dtc w2 w3-ns v-mid">
             <img
               src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-              className="db h2 h3-ns"
+              className="db h3"
             />
           </div>
           <div className="dtc v-mid pl3">
