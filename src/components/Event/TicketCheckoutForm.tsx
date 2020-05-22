@@ -43,8 +43,8 @@ export const TicketCheckoutForm: React.FunctionComponent<EventProps> = ({
     setEmptyCart(Object.keys(cart).length > 0 ? false : true);
   };
   return (
-    <div className=" w-100">
-      <h2 className="ttu mt0">Tickets</h2>
+    <div className="w-60-l dib w-100">
+      <h2 className="ttu ">Tickets</h2>
       <form className="w-100">
         <ul className="list pl0 mt0 measure center">
           {Object.keys(ticketTypes).map((curr) => {
