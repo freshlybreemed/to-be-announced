@@ -157,7 +157,11 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
                 <tbody className="lh-copy f4-ns f6">
                   <tr className="dim">
                     <td className="pa1">{formatDate(new Date(), 'shorter')}</td>
-                    <td className="pa1">hassan@company.co</td>
+                    <td className="pa1">
+                      <a href="" className="white no-underline">
+                        hassan@company.co
+                      </a>
+                    </td>
                     <td className="pa1">1</td>
                     <td className="pa1">{formatPrice('174')}</td>
                   </tr>
@@ -166,7 +170,11 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
                       {formatDate(new Date(), 'shorter')}
                     </td>
                     {/* <td className="pa1 bt b--gray">Taral Hicks</td> */}
-                    <td className="pa1 bt b--gray">taral@company.co</td>
+                    <td className="pa1 bt b--gray">
+                      <a href="" className="white no-underline">
+                        taral@company.co
+                      </a>
+                    </td>
                     <td className="pa1 bt b--gray">2</td>
                     <td className="pa1 bt b--gray">{formatPrice('14')}</td>
                   </tr>
