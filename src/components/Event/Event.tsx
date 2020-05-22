@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import FadeIn from 'react-fade-in';
 import { formatDate } from '../../lib';
 import { TicketCheckoutForm } from './TicketCheckoutForm';
 interface EventProps {
@@ -60,7 +61,7 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
             )}
           </div>
           {mode === 0 && (
-            <>
+            <FadeIn>
               <div className="w-60-l dib">
                 <div dangerouslySetInnerHTML={{ __html: event.description }} />
                 <h2 className="ttu">Line Up</h2>
@@ -112,57 +113,61 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
                   Co-founder, Developer
                 </p>
               </div>
-            </>
+            </FadeIn>
           )}
           {mode === 1 && (
-            <TicketCheckoutForm
-              cart={cart}
-              setCart={setCart}
-              ticketTypes={tickets}
-              setMode={setMode}
-            />
+            <FadeIn>
+              <TicketCheckoutForm
+                cart={cart}
+                setCart={setCart}
+                ticketTypes={tickets}
+                setMode={setMode}
+              />
+            </FadeIn>
           )}
         </div>
         {mode === 0 && (
-          <div className="ph3">
-            <h2 className="ttu">Related Events</h2>
-            <ul className="overflow-hidden list v-base flex pl0 justify-center">
-              <li className="mr3 mw-100 mw-48-l">
-                <a className="transition" href="/">
-                  <img
-                    className="db mw-100 "
-                    src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-                    alt=""
-                  />
-                </a>
-                <h3 className="fw5 f3-ns f4 mb0">Tierra Whack</h3>
-                <h4 className="fw5 gray f4-ns f5 mt1">The Wiltern, LA</h4>
-              </li>
-              <li className="mr3 mw-100 mw-48-l">
-                <a className="transition" href="/">
-                  <img
-                    className="db mw-100 "
-                    src="https://s1.ticketm.net/dam/a/12d/520e1ff8-9df2-4847-bca7-668e25d5e12d_1286191_RETINA_PORTRAIT_16_9.jpg"
-                    alt=""
-                  />
-                </a>
-                <h3 className="fw5 f3-ns f4 mb0">Azizi Gibson</h3>
-                <h4 className="fw5 gray f4-ns f5 mt1">Bootsie Bellows, LA</h4>
-              </li>
+          <FadeIn>
+            <div className="ph3">
+              <h2 className="ttu">Related Events</h2>
+              <ul className="overflow-hidden list v-base flex pl0 justify-center">
+                <li className="mr3 mw-100 mw-48-l">
+                  <a className="transition" href="/">
+                    <img
+                      className="db mw-100 "
+                      src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
+                      alt=""
+                    />
+                  </a>
+                  <h3 className="fw5 f3-ns f4 mb0">Tierra Whack</h3>
+                  <h4 className="fw5 gray f4-ns f5 mt1">The Wiltern, LA</h4>
+                </li>
+                <li className="mr3 mw-100 mw-48-l">
+                  <a className="transition" href="/">
+                    <img
+                      className="db mw-100 "
+                      src="https://s1.ticketm.net/dam/a/12d/520e1ff8-9df2-4847-bca7-668e25d5e12d_1286191_RETINA_PORTRAIT_16_9.jpg"
+                      alt=""
+                    />
+                  </a>
+                  <h3 className="fw5 f3-ns f4 mb0">Azizi Gibson</h3>
+                  <h4 className="fw5 gray f4-ns f5 mt1">Bootsie Bellows, LA</h4>
+                </li>
 
-              <li className=" mw-100 mw-48-l">
-                <a className="transition" href="/">
-                  <img
-                    className="db mw-100 "
-                    src="https://s1.ticketm.net/dam/a/040/997d0de0-af52-4455-bc48-813f05a4f040_1205621_RETINA_PORTRAIT_16_9.jpg"
-                    alt=""
-                  />
-                </a>
-                <h3 className="fw5 f3-ns f4 mb0">Trippe Redd</h3>
-                <h4 className="fw5 gray f4-ns f5 mt1">The Noho, LA</h4>
-              </li>
-            </ul>
-          </div>
+                <li className=" mw-100 mw-48-l">
+                  <a className="transition" href="/">
+                    <img
+                      className="db mw-100 "
+                      src="https://s1.ticketm.net/dam/a/040/997d0de0-af52-4455-bc48-813f05a4f040_1205621_RETINA_PORTRAIT_16_9.jpg"
+                      alt=""
+                    />
+                  </a>
+                  <h3 className="fw5 f3-ns f4 mb0">Trippe Redd</h3>
+                  <h4 className="fw5 gray f4-ns f5 mt1">The Noho, LA</h4>
+                </li>
+              </ul>
+            </div>
+          </FadeIn>
         )}
       </div>
     </div>
