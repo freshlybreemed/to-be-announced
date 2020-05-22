@@ -118,16 +118,19 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
             </FadeIn>
           )}
           {mode === 1 && (
-            <FadeIn>
-              <TicketCheckoutForm
-                cart={cart}
-                setCart={setCart}
-                ticketTypes={tickets}
-                setMode={setMode}
+            <div className="w-60-l w-100 dib">
+              <FadeIn>
+                <TicketCheckoutForm
+                  cart={cart}
+                  setCart={setCart}
+                  ticketTypes={tickets}
+                  setMode={setMode}
                   total={total}
                   setTotal={setTotal}
-              />
-            </FadeIn>
+                />
+              </FadeIn>
+            </div>
+          )}
           {mode === 2 && (
             <div className="w-60-l w-100 dib">
               <FadeIn>
