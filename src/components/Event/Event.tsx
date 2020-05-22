@@ -9,6 +9,7 @@ interface EventProps {
 export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
   const [mode, setMode] = useState<number>(0);
   const [cart, setCart] = useState<any>({});
+  const [total, setTotal] = useState<number>(0);
   let tixs = {};
   Object.keys(event.ticketTypes).map((curr) => {
     tixs[curr] = Object.assign({
@@ -122,6 +123,8 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
                 setCart={setCart}
                 ticketTypes={tickets}
                 setMode={setMode}
+                  total={total}
+                  setTotal={setTotal}
               />
             </FadeIn>
           )}

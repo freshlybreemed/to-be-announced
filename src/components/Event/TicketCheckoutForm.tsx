@@ -7,6 +7,8 @@ interface EventProps {
   setMode: any;
   cart: any;
   setCart: any;
+  total: any;
+  setTotal: any;
   ticketTypes: {
     ticketName: string;
     quantity: number;
@@ -22,8 +24,9 @@ export const TicketCheckoutForm: React.FunctionComponent<EventProps> = ({
   setMode,
   setCart,
   cart,
+  total,
+  setTotal,
 }) => {
-  const [total, setTotal] = useState<number>(0);
   const [emptyCart, setEmptyCart] = useState<boolean>(true);
 
   const updateCart = async (ticketName: any, count: number) => {
@@ -43,7 +46,7 @@ export const TicketCheckoutForm: React.FunctionComponent<EventProps> = ({
     setEmptyCart(Object.keys(cart).length > 0 ? false : true);
   };
   return (
-    <div className="w-60-l dib w-100">
+    <div>
       <h2 className="ttu ">Tickets</h2>
       <form className="w-100">
         <ul className="list pl0 mt0 measure center">
