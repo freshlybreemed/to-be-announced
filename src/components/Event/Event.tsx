@@ -3,6 +3,7 @@ import { useState } from 'react';
 import FadeIn from 'react-fade-in';
 import { formatDate } from '../../lib';
 import { TicketCheckoutForm } from './TicketCheckoutForm';
+import { UserCheckoutForm } from './UserCheckoutForm';
 interface EventProps {
   event: any;
 }
@@ -127,6 +128,12 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
                   setTotal={setTotal}
               />
             </FadeIn>
+          {mode === 2 && (
+            <div className="w-60-l w-100 dib">
+              <FadeIn>
+                <UserCheckoutForm setMode={setMode} total={total} />
+              </FadeIn>
+            </div>
           )}
         </div>
         {mode === 0 && (
