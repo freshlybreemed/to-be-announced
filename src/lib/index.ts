@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import cookie from 'js-cookie';
 
+export const stripeClient = process.env.STRIPE_DEV_CLIENT;
 export const setCookie = (key: string, value: string) => {
   if (process.browser) {
     cookie.set(key, value, {
