@@ -30,6 +30,32 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
     console.log('You have entered an invalid email address!');
     return false;
   };
+
+  const handleCheckout: React.FormEventHandler<HTMLSpanElement> = async (e) => {
+    e.preventDefault();
+    // Create a Checkout Session.
+    const response = await axios.post('/api/stripe', {
+      amount: total,
+      eventName,
+    });
+
+    if (response.data.statusCode === 500) {
+      console.error(response.data.message);
+      return;
+    }
+
+    // Redirect to Checkout.
+    const { error } = await stripe!.redirectToCheckout({
+      // Make the id field from the Checkout Session creation API response
+      // available to this file, so you can provide it as parameter here
+      // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+      sessionId: response.data.id,
+    });
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `error.message`.
+    console.warn(error.message);
+  };
   return (
     <div className=" w-100">
       <h2 className="ttu mt0">Checkout</h2>
@@ -81,7 +107,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
             Total: {formatPrice(total.toString())}
           </span>
           <span
-            onClick={() => setMode(3)}
+            onClick={handleCheckout}
             className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6 fr"
           >
             {total > 0 ? `Pay` : `Complete`}
