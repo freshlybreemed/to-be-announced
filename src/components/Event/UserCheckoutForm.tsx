@@ -3,20 +3,24 @@ import { useState } from 'react';
 import Cleave from 'cleave.js/react';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
+import { useStripe } from '@stripe/react-stripe-js';
+import axios from 'axios';
 
 interface EventProps {
   setMode: any;
   total: number;
+  eventName: string;
 }
 
 export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
-  setMode,
   total,
+  eventName,
 }) => {
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [emailAddress, setEmailAddress] = useState<string>('');
+  const stripe = useStripe();
 
   const validateEmail = (mail: string) => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
