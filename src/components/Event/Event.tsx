@@ -1,16 +1,23 @@
 import * as React from 'react';
 import { useState } from 'react';
 import FadeIn from 'react-fade-in';
-import { formatDate } from '../../lib';
+import { formatDate, stripeClient, formatTime } from '../../lib';
 import { TicketCheckoutForm } from './TicketCheckoutForm';
 import { UserCheckoutForm } from './UserCheckoutForm';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
 interface EventProps {
   event: any;
 }
+
+const stripePromise = loadStripe(stripeClient);
+
 export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
   const [mode, setMode] = useState<number>(0);
   const [cart, setCart] = useState<any>({});
   const [total, setTotal] = useState<number>(0);
+
   let tixs = {};
   Object.keys(event.ticketTypes).map((curr) => {
     tixs[curr] = Object.assign({
@@ -23,8 +30,8 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
   const [tickets] = useState<any>(tixs);
 
   return (
-    <div>
-      <img className="w-90 center db" src={event.image} />
+    <Elements stripe={stripePromise}>
+      <img className="w-100 center db" src={event.image} />
       <div className="db mw6 mw8-ns mv3 page f4-ns">
         <div className="mt2 mb1  center w-90-l ph3 ph0-l ">
           <h3 className="gray mv0  f4-ns f5">{`TBA presents `}</h3>
@@ -183,6 +190,6 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
           </FadeIn>
         )}
       </div>
-    </div>
+    </Elements>
   );
 };
