@@ -141,7 +141,11 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
           {mode === 2 && (
             <div className="w-60-l w-100 dib">
               <FadeIn>
-                <UserCheckoutForm setMode={setMode} total={total} />
+                <UserCheckoutForm
+                  setMode={setMode}
+                  total={total}
+                  eventName={event.name}
+                />
               </FadeIn>
             </div>
           )}
