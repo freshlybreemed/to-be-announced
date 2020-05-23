@@ -45,6 +45,7 @@ export const TicketCheckoutForm: React.FunctionComponent<EventProps> = ({
     setTotal(newTotal);
     setEmptyCart(Object.keys(cart).length > 0 ? false : true);
   };
+
   return (
     <div>
       <h2 className="ttu ">Tickets</h2>
