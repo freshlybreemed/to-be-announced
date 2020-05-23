@@ -20,6 +20,7 @@ export const Create: React.FunctionComponent = () => {
   const [name, setName] = useState<string>('');
   const [location, setLocation] = useState<object>({});
   const [image, setImage] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [eventType, setEventType] = useState<string>('');
@@ -61,9 +62,11 @@ export const Create: React.FunctionComponent = () => {
     name,
     slug,
     location,
+    description,
     eventType,
     image,
     startDate,
+    endDate,
     ticketTypes,
   };
 
@@ -153,7 +156,7 @@ export const Create: React.FunctionComponent = () => {
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Event Description</h2>
       <div className="mv3 pv3 w-75-ns w-100 center">
-        <Editor />
+        <Editor setDescription={setDescription} description={description} />
       </div>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
