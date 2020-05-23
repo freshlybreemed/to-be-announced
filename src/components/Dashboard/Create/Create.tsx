@@ -75,6 +75,7 @@ export const Create: React.FunctionComponent = () => {
       .post('/api/event', { ...eventDetails, userId })
       .then((res) => console.log(res.data));
   };
+
   return (
     <article className="w-100  ph3-m ph3-l tc">
       <link

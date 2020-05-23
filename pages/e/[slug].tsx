@@ -16,9 +16,9 @@ Page.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const { slug } = ctx.query;
   const response = await axios.get(`${origin}/api/event/${slug}`);
-  const result = response.data[0];
+  const event = response.data[0];
   return {
-    event: result,
+    event,
   };
 };
 Page.propTypes = {
