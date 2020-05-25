@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import FadeIn from 'react-fade-in';
-import { formatDate, stripeClient, formatTime } from '../../lib';
+import { stripeClient, formatEventTime } from '../../lib';
 import { TicketCheckoutForm } from './TicketCheckoutForm';
 import { UserCheckoutForm } from './UserCheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
@@ -45,13 +45,10 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
               event.location.address.split(',')[2]
             } `}</p>
 
-            <p className="b mb2">{`${formatDate(
-              new Date(event.startDate)
+            <p className="b mb2">{`${formatEventTime(
+              new Date(event.startDate),
+              new Date(event.endDate),
             )}`}</p>
-            {/* <p className=" mt0">{`${formatTime(
-              new Date(event.startDate)
-            )} - ${formatTime(new Date(event.endDate))}`}</p> */}
-
             {mode > 0 && (
               <span
                 onClick={() => setMode(0)}
