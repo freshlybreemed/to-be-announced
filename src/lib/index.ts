@@ -52,6 +52,9 @@ export const formatDate = (date: Date, type = 'short') => {
   }
 };
 
+export const formatEventTime = (startDate: Date, endDate: Date) =>
+  `${format(startDate, 'ccc. MMMM d h:mm a')}-${format(endDate, 'h:mm a')}`;
+
 export const formatTime = (date: Date) => format(date, 'h:mm a');
 
 // Format price
