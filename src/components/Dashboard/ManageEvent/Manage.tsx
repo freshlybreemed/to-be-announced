@@ -17,7 +17,7 @@ interface EventProps {
     location: any;
     startDate: string;
     slug: string;
-    ticketTypes: any;
+    ticketTypes: TicketProps[];
   };
 }
 export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
@@ -81,7 +81,9 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
                 <span className="f4-ns fw6 f5 ">Tickets Sold</span>
               </div>
               <div className="fl w-40  tr ">
-                <span className="f3 f4-ns fw6  ">73/120</span>
+                <span className="f3 f4-ns fw6  ">
+                  73/{ticketTypes.reduce((acc, curr) => acc + curr.quantity, 0)}
+                </span>
               </div>
             </div>
           </article>
