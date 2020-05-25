@@ -10,11 +10,13 @@ interface EventProps {
   setMode: any;
   total: number;
   eventName: string;
+  slug: string;
 }
 
 export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
   total,
   eventName,
+  slug,
 }) => {
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
@@ -37,6 +39,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
     const response = await axios.post('/api/stripe', {
       amount: total,
       eventName,
+      slug,
     });
 
     if (response.data.statusCode === 500) {

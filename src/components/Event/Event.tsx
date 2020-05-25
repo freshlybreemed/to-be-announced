@@ -145,6 +145,7 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
                   setMode={setMode}
                   total={total}
                   eventName={event.name}
+                  slug={event.slug}
                 />
               </FadeIn>
             </div>
