@@ -1,5 +1,14 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { formatDate, formatPrice, formatTime } from '../../../lib';
+interface TicketProps {
+  ticketName: string;
+  quantity: number;
+  price: number;
+  _id: number;
+  description: string;
+  enabled: boolean;
+}
 
 interface EventProps {
   event: {
@@ -8,18 +17,25 @@ interface EventProps {
     location: any;
     startDate: string;
     slug: string;
+    ticketTypes: any;
   };
 }
 export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
+  const [ticketTypes] = useState<any>(
+    Object.keys(event.ticketTypes).map((curr) => {
+      return event.ticketTypes[curr];
+    }),
+  );
+
   console.log(event);
   return (
     <div className={'w-100'}>
       <main className="mw9 ml4-ns center">
         <article className="dt-ns tc tl-ns dt--fixed-ns w-90-ns  pb2 mv2">
-          {/* <div className="dtc-ns ">
-            <img src={event.image} className="db w-50" />
-          </div> */}
-          <div className="dtc-ns pl3-ns">
+          <div className="dtc-ns v-mid">
+            <img src={event.image} className="db w-100" />
+          </div>
+          <div className="dtc-ns pl3-ns v-mid">
             <h1 className="f4-ns f5 fw7 lh-title mv0 underline-hover">
               <a className="white no-underline">{event.name}</a>
             </h1>
@@ -101,18 +117,20 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
                       </tr>
                     </thead>
                     <tbody className="lh-copy f4">
-                      <tr className="stripe-dark ">
-                        <td className="pa1 ">GA</td>
-                        <td className="pa1 ">{formatPrice('20')}</td>
-                        <td className="pa1">3/20</td>
-                        <td className="pa1 ">On Sale</td>
-                      </tr>
-                      <tr className="stripe-dark f4">
-                        <td className="pa1 bt b--gray ">RSVP</td>
-                        <td className="pa1 bt b--gray ">{formatPrice('0')}</td>
-                        <td className="pa1 bt b--gray ">49/50</td>
-                        <td className="pa1 bt b--gray ">On Sale</td>
-                      </tr>
+                      {ticketTypes.map((curr: TicketProps) => {
+                        return (
+                          <tr>
+                            <td className="pa1 ">{curr.ticketName}</td>
+                            <td className="pa1 ">
+                              {formatPrice(curr.price.toString())}
+                            </td>
+                            <td className="pa1">3/{curr.quantity}</td>
+                            <td className="pa1 ">
+                              {curr.enabled ? `On Sale` : `Sold Out`}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
