@@ -9,14 +9,7 @@ interface EventProps {
   setCart: any;
   total: any;
   setTotal: any;
-  ticketTypes: {
-    ticketName: string;
-    quantity: number;
-    price: number;
-    description: string;
-    enabled: boolean;
-    count: boolean;
-  };
+  ticketTypes: any;
 }
 
 export const TicketCheckoutForm: React.FunctionComponent<EventProps> = ({

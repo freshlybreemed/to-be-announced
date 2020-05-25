@@ -41,6 +41,7 @@ const getCookieFromServer = (key: string, req: any) => {
   }
   return rawCookie.split('=')[1];
 };
+
 export const formatDate = (date: Date, type = 'short') => {
   switch (type) {
     case 'short':

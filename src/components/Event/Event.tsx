@@ -28,7 +28,7 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
     });
   });
   const [tickets] = useState<any>(tixs);
-
+  // console.log(event);
   return (
     <Elements stripe={stripePromise}>
       <img className="w-100 center db" src={event.image} />
@@ -38,7 +38,7 @@ export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
           <h1 className="f1-ns f2 mv0 mb2 pt2">{event.name}</h1>
         </div>
         <div className=" mb2 center w-90-l ph3 ph0-l flex-l">
-          <div className="w-40-l wdib mb1 pb1">
+          <div className="w-40-l dib mb1 pb1">
             <p className="mv0 b pb1">{`${event.location.venue}`}</p>
             <p className="mv0">{`${event.location.address.split(',')[0]}`} </p>
             <p className="mt0">{`${event.location.address.split(',')[1]}, ${
