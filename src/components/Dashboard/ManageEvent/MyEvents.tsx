@@ -7,7 +7,7 @@ interface EventProps {
 export const MyEvents: React.FunctionComponent<EventProps> = ({ events }) => {
   console.log(events);
   return (
-    <div className={'w-100'}>
+    <div className={'w-100 vh-100'}>
       <div className="mw8 ml4-ns ">
         <h1 className="f1-ns f2 mt0">Manage Events</h1>
       </div>
