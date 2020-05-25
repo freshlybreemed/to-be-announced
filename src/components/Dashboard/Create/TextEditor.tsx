@@ -96,7 +96,7 @@ export const Editor: React.FunctionComponent<EventProps> = ({
 
   return (
     <DraftailEditor
-      rawContentState={fromHTML(description)}
+      rawContentState={description.length > 0 ? fromHTML(description) : null}
       onSave={onSave}
       blockTypes={[
         { type: BLOCK_TYPE.HEADER_THREE },
