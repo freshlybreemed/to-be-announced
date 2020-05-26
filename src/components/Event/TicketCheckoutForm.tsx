@@ -41,9 +41,8 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
 
   return (
     <div>
-      <h2 className="ttu ">Tickets</h2>
-      <form className="w-100">
-        <ul className="list pl0 mt0 measure center">
+      <form className="w-100 pt4 mw7 center">
+        <ul className="list pl0 mt0  ">
           {Object.keys(ticketTypes).map((curr) => {
             return (
               <TicketSelection
@@ -54,20 +53,20 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
             );
           })}
         </ul>
+        {!emptyCart && (
+          <div className="dib w-100">
+            <span className="fl pt2 f3-ns f4 db">
+              Total: {formatPrice(total.toString())}
+            </span>
+            <span
+              onClick={() => setMode(2)}
+              className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6 fr"
+            >
+              Next
+            </span>
+          </div>
+        )}
       </form>
-      {!emptyCart && (
-        <div className="dib w-100">
-          <span className="fl pt2 f3-ns f4 db">
-            Total: {formatPrice(total.toString())}
-          </span>
-          <span
-            onClick={() => setMode(2)}
-            className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6 fr"
-          >
-            Next
-          </span>
-        </div>
-      )}
     </div>
   );
 };

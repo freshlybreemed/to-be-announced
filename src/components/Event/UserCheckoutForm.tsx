@@ -61,14 +61,13 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
   };
   return (
     <div className=" w-100">
-      <h2 className="ttu mt0">Checkout</h2>
-      <form className="w-100">
+      <form className="w-100 pt4 mw7 center">
         <div className="mv3">
           <label className="f5-ns f6 fw7-ns fw5 db ">First Name</label>
 
           <input
             value={firstName}
-            className="bg-transparent white bb bt-0 br-0 bl-0  w-70-ns w-100"
+            className="bg-transparent white bb bt-0 br-0 bl-0  w-100"
             onChange={(e) => setFirstName(e.currentTarget.value)}
           />
         </div>
@@ -77,7 +76,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
 
           <input
             value={lastName}
-            className="bg-transparent white bb bt-0 br-0 bl-0  w-70-ns w-100"
+            className="bg-transparent white bb bt-0 br-0 bl-0  w-100"
             onChange={(e) => setLastName(e.currentTarget.value)}
           />
         </div>
@@ -86,7 +85,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
 
           <input
             value={emailAddress}
-            className="bg-transparent white bb bt-0 br-0 bl-0  w-70-ns w-100"
+            className="bg-transparent white bb bt-0 br-0 bl-0  w-100"
             onChange={(e) => {
               setEmailAddress(e.currentTarget.value);
               validateEmail(emailAddress);
@@ -99,24 +98,24 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
           <Cleave
             value={phoneNumber}
             options={{ phone: true, phoneRegionCode: 'US' }}
-            className="bg-transparent white bb bt-0 br-0 bl-0 w-70-ns w-100"
+            className="bg-transparent white bb bt-0 br-0 bl-0 w-100"
             onChange={(e) => setPhoneNumber(e.currentTarget.value)}
           />
         </div>
+        {
+          <div className="dib w-100 flex justify-between">
+            <span className="fl pt2 f3-ns f4 db">
+              Total: {formatPrice(total.toString())}
+            </span>
+            <span
+              onClick={handleCheckout}
+              className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6 fr"
+            >
+              {total > 0 ? `Pay` : `Complete`}
+            </span>
+          </div>
+        }
       </form>
-      {
-        <div className="dib w-100 flex justify-between">
-          <span className="fl pt2 f3-ns f4 db">
-            Total: {formatPrice(total.toString())}
-          </span>
-          <span
-            onClick={handleCheckout}
-            className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6 fr"
-          >
-            {total > 0 ? `Pay` : `Complete`}
-          </span>
-        </div>
-      }
     </div>
   );
 };

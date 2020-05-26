@@ -32,99 +32,171 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
   // console.log(event);
   return (
     <Elements stripe={stripePromise}>
-      <img className="w-100 center db" src={event.image} />
-      <div className="db mw6 mw8-ns mv3 page f4-ns">
-        <div className="mt2 mb1  center w-90-l ph3 ph0-l ">
-          <h3 className="gray mv0  f4-ns f5">{`TBA presents `}</h3>
-          <h1 className="f1-ns f2 mv0 mb2 pt2">{event.name}</h1>
-        </div>
-        <div className=" mb2 center w-90-l ph3 ph0-l flex-l">
-          <div className="w-40-l dib mb1 pb1">
-            <p className="mv0 b pb1">{`${event.location.venue}`}</p>
-            <p className="mv0">{`${event.location.address.split(',')[0]}`} </p>
-            <p className="mt0">{`${event.location.address.split(',')[1]}, ${
-              event.location.address.split(',')[2]
-            } `}</p>
+      <main className="mw9 ml4-ns center">
+        <img className="w-100 center db" src={event.image} />
 
-            <p className="b mb2">{`${formatEventTime(
-              new Date(event.startDate),
-              new Date(event.endDate),
-            )}`}</p>
-            {mode > 0 && (
-              <span
-                onClick={() => setMode(0)}
-                className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3  f3-ns f4 fw5-ns fw6 mr3"
+        <article className="dt-ns tc tl-ns w-90-l w-100-m  pb2 mv2">
+          {/* <div className="dtc-l dtc-m v-mid ">
+            <img src={event.image} className="db w-90" />
+          </div> */}
+          <div className="dtc-l dtc-m pl3-l pt2-m  v-mid f3-l f5 fw7">
+            <div className=" lh-title mb0 mt0-ns underline-hover">
+              <a className="white no-underline f1-ns f2">{event.name}</a>
+            </div>
+            <div className="f4-ns f5 fw6 lh-title mv0 underline-hover">
+              <a
+                className="white no-underline"
+                target="_blank"
+                href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
               >
-                Back
-              </span>
-            )}
-            {mode === 0 && (
-              <span
-                onClick={() => setMode(1)}
-                className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6"
-              >
-                Tickets
-              </span>
-            )}
+                {event.location.venue}
+              </a>
+            </div>
+            <div className="f4-ns f5 fw6 mv0 gray">
+              {`${formatEventTime(
+                new Date(event.startDate),
+                new Date(event.endDate),
+              )}`}
+            </div>
+            <h2 className="f4-ns f5 fw6 mv0 green">• Live</h2>
           </div>
+        </article>
+        {mode > 0 && (
+          <span
+            onClick={() => setMode(0)}
+            className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3  f3-ns f4 fw5-ns fw6 mr3"
+          >
+            Back
+          </span>
+        )}
+        {mode === 0 && (
+          <span
+            onClick={() => setMode(1)}
+            className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6"
+          >
+            Tickets
+          </span>
+        )}
+        <div className="flex flex-wrap justify-between w-100 nr3 mb4">
+          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3   mv1  bg-green">
+            <div className="cf">
+              <div className="fl w-60  tl  ">
+                <span className="f4-ns fw6 f5 ">Get Tickets</span>
+              </div>
+              <div className="fl w-40 tr">
+                <span className="f3 f4-ns fw6  ">$173.50</span>
+              </div>
+            </div>
+          </article>
+          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3  mv1 bg-purple">
+            <div className="cf">
+              <div className="fl w-60  tl ">
+                <span className="f4-ns fw6 f5 ">Tickets Sold</span>
+              </div>
+              <div className="fl w-40  tr ">
+                <span className="f3 f4-ns fw6  ">73/23</span>
+              </div>
+            </div>
+          </article>
+          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3  mv1 bg-blue">
+            <div className="cf v-mid">
+              <div className="fl w-60 tl ">
+                <span className="f4-ns fw6 f5 tc ">Page Views</span>
+              </div>
+              <div className="fl w-40   tr ">
+                <span className="f3 f4-ns fw6 ">743</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div className="flex flex-wrap justify-between w-100 nr3 mb4">
           {mode === 0 && (
-            <div className="w-60-l dib">
+            <div className=" dib">
               <FadeIn>
-                <div dangerouslySetInnerHTML={{ __html: event.description }} />
-                <h2 className="ttu">Line Up</h2>
-                <img
-                  className="db mw-100 "
-                  src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-                  alt=""
+                <section className="fl w-48-l w-100 mb2 ">
+                  <div className="bg-black-80  pl0 ">
+                    <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                      Description
+                    </span>
+                    <div
+                      className="pt4"
+                      dangerouslySetInnerHTML={{ __html: event.description }}
+                    />
+                  </div>
+                </section>
+                <section className="fl w-48-l w-100 mb2 pl3-l">
+                  <div className="bg-black-80  ">
+                    <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                      Line Up{' '}
+                    </span>
+                    <p className="pt4">
+                      <img
+                        className="db mw-100 "
+                        src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
+                        alt=""
+                      />
+                      <p>
+                        <strong> William Channer, </strong>
+                        <a
+                          className="no-underline white"
+                          href="https://twitter.com/williamchanner"
+                          target="_blank"
+                        >
+                          @williamchanner
+                        </a>
+                        <br />
+                        Founder, Editor
+                      </p>
+                      <img
+                        className="db mw-100 "
+                        src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
+                        alt=""
+                      />
+                      <p>
+                        <strong>Timothy Achumba, </strong>
+                        <a
+                          className="no-underline white"
+                          href="https://twitter.com/timothyachumba"
+                          target="_blank"
+                        >
+                          @timothyachumba
+                        </a>
+                        <br />
+                        Co-founder, Designer
+                      </p>
+                      <img
+                        className="db mw-100 "
+                        src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
+                        alt=""
+                      />
+                    </p>
+                  </div>
+                </section>
+              </FadeIn>
+            </div>
+          )}
+
+          {mode === 2 && (
+            <div className="w-100 dib">
+              <FadeIn>
+                <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                  Checkout
+                </span>
+                <UserCheckoutForm
+                  setMode={setMode}
+                  total={total}
+                  event={event}
+                  cart={cart}
                 />
-                <p>
-                  <strong> William Channer, </strong>
-                  <a
-                    className="no-underline white"
-                    href="https://twitter.com/williamchanner"
-                    target="_blank"
-                  >
-                    @williamchanner
-                  </a>
-                  <br />
-                  Founder, Editor
-                </p>
-                <img
-                  className="db mw-100 "
-                  src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-                  alt=""
-                />
-                <p>
-                  <strong>Timothy Achumba, </strong>
-                  <a
-                    className="no-underline white"
-                    href="https://twitter.com/timothyachumba"
-                    target="_blank"
-                  >
-                    @timothyachumba
-                  </a>
-                  <br />
-                  Co-founder, Designer
-                </p>
-                <img
-                  className="db mw-100 "
-                  src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-                  alt=""
-                />
-                <p>
-                  <strong>Iheanyi Ekechukwu, </strong>
-                  <a href="https://twitter.com/kwuchu" target="_blank">
-                    @kwuchu
-                  </a>
-                  <br />
-                  Co-founder, Developer
-                </p>
               </FadeIn>
             </div>
           )}
           {mode === 1 && (
-            <div className="w-60-l w-100 dib">
+            <div className="w-100 dib">
               <FadeIn>
+                <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                  Tickets
+                </span>
                 <TicketCheckoutForm
                   cart={cart}
                   setCart={setCart}
@@ -136,19 +208,10 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
               </FadeIn>
             </div>
           )}
-          {mode === 2 && (
-            <div className="w-60-l w-100 dib">
-              <FadeIn>
-                <UserCheckoutForm
-                  setMode={setMode}
-                  total={total}
-                  eventName={event.name}
-                  slug={event.slug}
-                />
-              </FadeIn>
-            </div>
-          )}
         </div>
+      </main>
+
+      <div className="db mw6 mw8-ns mv3 page f4-ns">
         {mode === 0 && (
           <FadeIn>
             <div className="ph3">
