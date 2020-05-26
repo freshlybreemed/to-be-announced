@@ -80,11 +80,11 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
             </div>
           </div>
         </article>
-        <div className="flex flex-wrap justify-between w-100 nr3 mb4">
+        <div className="flex flex-wrap justify-between w-100 nr3 mt3 mb5 pv3">
           {mode === 2 && (
             <div className="w-100 dib">
               <FadeIn>
-                <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv4">
                   Checkout
                 </span>
 
@@ -100,9 +100,9 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           {mode === 1 && (
             <div className="w-100 dib">
               <FadeIn>
-                {/* <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv4">
                   Tickets
-                </span> */}
+                </span>
                 <TicketCheckoutForm
                   cart={cart}
                   setCart={setCart}
@@ -116,24 +116,24 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           )}
           <div className=" dib">
             <FadeIn>
-              <section className="fl w-48-l w-100 mb2 ">
-                <div className=" pl0 ">
-                  <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+              <section className="fl w-48-l w-100 mv2 ">
+                <div className=" pl0 mt3">
+                  <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
                     Description
                   </span>
                   <div
-                    className="pt2-ns pt1"
+                    className="pt2-ns mt2 pt1"
                     dangerouslySetInnerHTML={{ __html: event.description }}
                   />
                 </div>
               </section>
-              <section className="fl w-48-l w-100 mb2 pl3-l">
-                <div className=" ">
-                  <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+              <section className="fl w-48-l w-100 mv2 pl3-l">
+                <div className="mt3 ">
+                  <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
                     Line Up
                   </span>
 
-                  <p className="pt2-ns pt1">
+                  <div className="pt2-ns mt4 pt1">
                     <img
                       className="db mw-100 "
                       src="https://wikibirthday.com/wp-content/uploads/2018/11/Chase-B-Wiki-Bio-Age-Height-Net-Worth-2018.jpg"
@@ -143,10 +143,10 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                       <strong> OG Chase B, </strong>
                       <a
                         className="no-underline white"
-                        href="https://twitter.com/williamchanner"
+                        href="https://instagram.com/ogchaseb"
                         target="_blank"
                       >
-                        @williamchanner
+                        @ogchaseb
                       </a>
                       <br />
                     </p>
@@ -159,10 +159,10 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                       <strong>Where's Nasty, </strong>
                       <a
                         className="no-underline white"
-                        href="https://twitter.com/timothyachumba"
+                        href="https://instagram.com/wheresnasty"
                         target="_blank"
                       >
-                        @timothyachumba
+                        @wheresnasty
                       </a>
                       <br />
                     </p>
@@ -175,14 +175,14 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                       <strong>DJ Steph Cakes, </strong>
                       <a
                         className="no-underline white"
-                        href="https://twitter.com/timothyachumba"
+                        href="https://instagram.com/djstephcakes"
                         target="_blank"
                       >
-                        @timothyachumba
+                        @djstephcakes
                       </a>
                       <br />
                     </p>
-                  </p>
+                  </div>
                 </div>
               </section>
             </FadeIn>
