@@ -1,6 +1,7 @@
 import React from 'react';
 import { convertFromRaw, convertToRaw } from 'draft-js';
 import { convertToHTML, convertFromHTML } from 'draft-convert';
+
 import {
   DraftailEditor,
   BLOCK_TYPE,
@@ -16,15 +17,10 @@ export const Editor: React.FunctionComponent<TextEditorProps> = ({
   setDescription,
   description,
 }) => {
-  if (process.browser) {
-    console.log(JSON.parse(sessionStorage.getItem('draftail:content')));
-  }
   const onSave = (content) => {
     setDescription(toHTML(content));
     window.sessionStorage.setItem('draftail:content', JSON.stringify(content));
   };
-
-  console.log(description);
 
   const exporterConfig = {
     blockToHTML: (block) => {
