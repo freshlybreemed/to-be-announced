@@ -35,11 +35,11 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
       <main className="mw9 ml4-ns center">
         <img className="w-100 center db" src={event.image} />
 
-        <article className="dt-ns tc tl-ns w-90-l w-100-m  pb2 mv2">
+        <article className="dt-ns tc tl-ns w-90-l w-100-m  pb2 mv3">
           {/* <div className="dtc-l dtc-m v-mid ">
             <img src={event.image} className="db w-90" />
           </div> */}
-          <div className="dtc-l dtc-m pl3-l pt2-m  v-mid f3-l f5 fw7">
+          <div className="dtc-l  pt2-m  v-mid f3-l f5 fw7">
             <div className=" lh-title mb0 mt0-ns underline-hover">
               <a className="white no-underline f1-ns f2">{event.name}</a>
             </div>
@@ -52,136 +52,42 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 {event.location.venue}
               </a>
             </div>
+            <div className="f4-ns f5 fw6 lh-title mv0 underline-hover">
+              <a
+                className="white no-underline"
+                target="_blank"
+                href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
+              >
+                {`${event.location.address.split(',')[1]}, ${
+                  event.location.address.split(',')[2].split(' ')[1]
+                }`}{' '}
+              </a>
+            </div>
             <div className="f4-ns f5 fw6 mv0 gray">
               {`${formatEventTime(
                 new Date(event.startDate),
-                new Date(event.endDate),
+                new Date(event.endDate)
               )}`}
             </div>
             <h2 className="f4-ns f5 fw6 mv0 green">• Live</h2>
           </div>
+          <div className="dtc-l v-mid tr-l tc f2-l f3 fw6">
+            <div
+              onClick={() => setMode(1)}
+              className="b--white dib-l   no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph4 mt2 "
+            >
+              Get Tickets
+            </div>
+          </div>
         </article>
-        {mode > 0 && (
-          <span
-            onClick={() => setMode(0)}
-            className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3  f3-ns f4 fw5-ns fw6 mr3"
-          >
-            Back
-          </span>
-        )}
-        {mode === 0 && (
-          <span
-            onClick={() => setMode(1)}
-            className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6"
-          >
-            Tickets
-          </span>
-        )}
         <div className="flex flex-wrap justify-between w-100 nr3 mb4">
-          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3   mv1  bg-green">
-            <div className="cf">
-              <div className="fl w-60  tl  ">
-                <span className="f4-ns fw6 f5 ">Get Tickets</span>
-              </div>
-              <div className="fl w-40 tr">
-                <span className="f3 f4-ns fw6  ">$173.50</span>
-              </div>
-            </div>
-          </article>
-          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3  mv1 bg-purple">
-            <div className="cf">
-              <div className="fl w-60  tl ">
-                <span className="f4-ns fw6 f5 ">Tickets Sold</span>
-              </div>
-              <div className="fl w-40  tr ">
-                <span className="f3 f4-ns fw6  ">73/23</span>
-              </div>
-            </div>
-          </article>
-          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3  mv1 bg-blue">
-            <div className="cf v-mid">
-              <div className="fl w-60 tl ">
-                <span className="f4-ns fw6 f5 tc ">Page Views</span>
-              </div>
-              <div className="fl w-40   tr ">
-                <span className="f3 f4-ns fw6 ">743</span>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div className="flex flex-wrap justify-between w-100 nr3 mb4">
-          {mode === 0 && (
-            <div className=" dib">
-              <FadeIn>
-                <section className="fl w-48-l w-100 mb2 ">
-                  <div className="bg-black-80  pl0 ">
-                    <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
-                      Description
-                    </span>
-                    <div
-                      className="pt4"
-                      dangerouslySetInnerHTML={{ __html: event.description }}
-                    />
-                  </div>
-                </section>
-                <section className="fl w-48-l w-100 mb2 pl3-l">
-                  <div className="bg-black-80  ">
-                    <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
-                      Line Up{' '}
-                    </span>
-                    <p className="pt4">
-                      <img
-                        className="db mw-100 "
-                        src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-                        alt=""
-                      />
-                      <p>
-                        <strong> William Channer, </strong>
-                        <a
-                          className="no-underline white"
-                          href="https://twitter.com/williamchanner"
-                          target="_blank"
-                        >
-                          @williamchanner
-                        </a>
-                        <br />
-                        Founder, Editor
-                      </p>
-                      <img
-                        className="db mw-100 "
-                        src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-                        alt=""
-                      />
-                      <p>
-                        <strong>Timothy Achumba, </strong>
-                        <a
-                          className="no-underline white"
-                          href="https://twitter.com/timothyachumba"
-                          target="_blank"
-                        >
-                          @timothyachumba
-                        </a>
-                        <br />
-                        Co-founder, Designer
-                      </p>
-                      <img
-                        className="db mw-100 "
-                        src="https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg"
-                        alt=""
-                      />
-                    </p>
-                  </div>
-                </section>
-              </FadeIn>
-            </div>
-          )}
-
           {mode === 2 && (
             <div className="w-100 dib">
               <FadeIn>
                 <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                   Checkout
                 </span>
+
                 <UserCheckoutForm
                   setMode={setMode}
                   total={total}
@@ -194,9 +100,9 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           {mode === 1 && (
             <div className="w-100 dib">
               <FadeIn>
-                <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                {/* <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                   Tickets
-                </span>
+                </span> */}
                 <TicketCheckoutForm
                   cart={cart}
                   setCart={setCart}
@@ -208,10 +114,83 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
               </FadeIn>
             </div>
           )}
+          <div className=" dib">
+            <FadeIn>
+              <section className="fl w-48-l w-100 mb2 ">
+                <div className=" pl0 ">
+                  <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                    Description
+                  </span>
+                  <div
+                    className="pt2-ns pt1"
+                    dangerouslySetInnerHTML={{ __html: event.description }}
+                  />
+                </div>
+              </section>
+              <section className="fl w-48-l w-100 mb2 pl3-l">
+                <div className=" ">
+                  <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+                    Line Up
+                  </span>
+
+                  <p className="pt2-ns pt1">
+                    <img
+                      className="db mw-100 "
+                      src="https://wikibirthday.com/wp-content/uploads/2018/11/Chase-B-Wiki-Bio-Age-Height-Net-Worth-2018.jpg"
+                      alt=""
+                    />
+                    <p>
+                      <strong> OG Chase B, </strong>
+                      <a
+                        className="no-underline white"
+                        href="https://twitter.com/williamchanner"
+                        target="_blank"
+                      >
+                        @williamchanner
+                      </a>
+                      <br />
+                    </p>
+                    <img
+                      className="db mw-100 "
+                      src="https://images.squarespace-cdn.com/content/v1/53d1dfbae4b039a3a0158351/1571371316055-UBE44B0C76GNTAA38875/ke17ZwdGBToddI8pDm48kFWxnDtCdRm2WA9rXcwtIYR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UcTSrQkGwCGRqSxozz07hWZrYGYYH8sg4qn8Lpf9k1pYMHPsat2_S1jaQY3SwdyaXg/675E1F44-FA8D-4762-8335-F862013AE729-10830-000009C3559CD954.JPG"
+                      alt=""
+                    />
+                    <p>
+                      <strong>Where's Nasty, </strong>
+                      <a
+                        className="no-underline white"
+                        href="https://twitter.com/timothyachumba"
+                        target="_blank"
+                      >
+                        @timothyachumba
+                      </a>
+                      <br />
+                    </p>
+                    <img
+                      className="db mw-100 "
+                      src="https://i1.sndcdn.com/avatars-000323351569-5jjgjf-t500x500.jpg"
+                      alt=""
+                    />
+                    <p>
+                      <strong>DJ Steph Cakes, </strong>
+                      <a
+                        className="no-underline white"
+                        href="https://twitter.com/timothyachumba"
+                        target="_blank"
+                      >
+                        @timothyachumba
+                      </a>
+                      <br />
+                    </p>
+                  </p>
+                </div>
+              </section>
+            </FadeIn>
+          </div>
         </div>
       </main>
 
-      <div className="db mw6 mw8-ns mv3 page f4-ns">
+      {/* <div className="db mw6 mw8-ns mv3 page f4-ns">
         {mode === 0 && (
           <FadeIn>
             <div className="ph3">
@@ -256,6 +235,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           </FadeIn>
         )}
       </div>
+     */}
     </Elements>
   );
 };
