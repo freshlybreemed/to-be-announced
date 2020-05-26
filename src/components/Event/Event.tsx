@@ -25,7 +25,6 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
       ticketName: event.ticketTypes[curr].ticketName,
       quantity: event.ticketTypes[curr].quantity,
       price: event.ticketTypes[curr].price,
-      count: 0,
     });
   });
   const [tickets] = useState<any>(tixs);

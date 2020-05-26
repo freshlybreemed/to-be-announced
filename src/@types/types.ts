@@ -19,7 +19,6 @@ export interface TicketProps {
 }
 
 export interface EventCartProps {
-  count: number;
   price: number;
   quantity: number;
   ticketName: string;
