@@ -1,9 +1,10 @@
 const connect = require('./db');
 const cors = require('micro-cors')();
-const mailgun = require('mailgun-js');
-import { EventProps } from '../../src/@types/types';
-const DOMAIN = 'sandboxaf4a2cef857b4556a257062d0ed5309a.mailgun.org';
+const nodemailer = require('nodemailer');
+import { EventProps, OrderProps } from '../../src/@types/types';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+export const dev = false;
 
 export const wrapAsync = (handler: any) => async (
   req: NextApiRequest,
@@ -24,29 +25,32 @@ export const wrapAsync = (handler: any) => async (
 };
 
 export const sendEmail = async (
-  email: string[],
+  emails: string[],
+  content: any,
   event: EventProps,
-  order: any
+  order: OrderProps
 ) => {
   try {
-    const mg = mailgun({
-      apiKey: process.env.MAILGUN,
-      domain: DOMAIN,
-    });
+    // Generate test SMTP service account from ethereal.email
 
-    for (var key in email) {
-      const data = {
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: 'smtp-relay.sendinblue.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'ebrima.jobe92@gmail.com', // generated ethereal user
+        pass: process.env.NODEMAILER, // generated ethereal password
+      },
+    });
+    const message = content.content(event, order);
+    for (var email in emails) {
+      await transporter.sendMail({
         from: `"TBA" <info@whatstba.com>`, // sender address
-        to: email[key],
-        subject: 'Hello',
-        text: 'Testing some Mailgun awesomness!',
-        template: 'test123',
-        'v:event': { event },
-        'v:order': order,
-      };
-      await mg.messages().send(data, function (error, body) {
-        if (error) console.log(error);
-        console.log(body);
+        to: emails[email], // list of receivers
+        subject: content.subject(event.name), // Subject line
+        text: message, // plain text body
+        html: message, // html body
       });
     }
   } catch (error) {

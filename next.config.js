@@ -18,7 +18,7 @@ module.exports = withCSS({
 
   env: {
     MONGO_URL: process.env.MONGO_URL,
-    MAILGUN: process.env.MAILGUN,
+    NODEMAILER: process.env.NODEMAILER,
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
     STRIPE_DEV_SECRET: process.env.STRIPE_DEV_SECRET,

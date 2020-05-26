@@ -4,7 +4,7 @@
       "MONGO_URL": "@mongo-url",
       "FIREBASE_API_KEY": "@firebase-api-key",
       "GOOGLE_API_KEY": "@google",
-      "MAILGUN": "@mailgun",
+      "NODEMAILER": "@nodemailer",
       "FIREBASE_APP_ID": "@firebase-app-id",
       "STRIPE_DEV_SECRET": "@stripe-dev-secret",
       "STRIPE_DEV_CLIENT": "@stripe-dev-client"
@@ -14,7 +14,7 @@
     "MONGO_URL": "@mongo-url",
     "FIREBASE_API_KEY": "@firebase-api-key",
     "GOOGLE_API_KEY": "@google",
-    "MAILGUN": "@mailgun",
+    "NODEMAILER": "@nodemailer",
     "FIREBASE_APP_ID": "@firebase-app-id",
     "STRIPE_DEV_SECRET": "@stripe-dev-secret",
     "STRIPE_DEV_CLIENT": "@stripe-dev-client"
