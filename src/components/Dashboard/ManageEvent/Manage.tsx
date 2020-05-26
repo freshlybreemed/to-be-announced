@@ -1,25 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { formatDate, formatPrice, formatTime } from '../../../lib';
-interface TicketProps {
-  ticketName: string;
-  quantity: number;
-  price: number;
-  _id: number;
-  description: string;
-  enabled: boolean;
-}
+import { TicketProps, EventProps } from '../../../@types/types';
 
-interface EventProps {
-  event: {
-    name: string;
-    image: string;
-    location: any;
-    startDate: string;
-    slug: string;
-    ticketTypes: TicketProps[];
-  };
-}
 export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
   const [ticketTypes] = useState<any>(
     Object.keys(event.ticketTypes).map((curr) => {

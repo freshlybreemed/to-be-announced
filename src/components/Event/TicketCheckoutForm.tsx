@@ -2,17 +2,17 @@ import * as React from 'react';
 import { useState } from 'react';
 import { formatPrice } from '../../lib';
 import { TicketSelection } from './TicketSelection';
-
-interface EventProps {
+import { EventCartProps } from '../../@types/types';
+interface TicketCheckout {
   setMode: any;
-  cart: any;
+  cart: EventCartProps[];
   setCart: any;
   total: any;
   setTotal: any;
   ticketTypes: any;
 }
 
-export const TicketCheckoutForm: React.FunctionComponent<EventProps> = ({
+export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
   ticketTypes,
   setMode,
   setCart,

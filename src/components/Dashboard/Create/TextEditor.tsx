@@ -8,11 +8,11 @@ import {
   ENTITY_TYPE,
 } from 'draftail';
 
-interface EventProps {
+interface TextEditorProps {
   description: string;
   setDescription: any;
 }
-export const Editor: React.FunctionComponent<EventProps> = ({
+export const Editor: React.FunctionComponent<TextEditorProps> = ({
   setDescription,
   description,
 }) => {

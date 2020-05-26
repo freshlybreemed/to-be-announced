@@ -6,14 +6,15 @@ import { TicketCheckoutForm } from './TicketCheckoutForm';
 import { UserCheckoutForm } from './UserCheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-
-interface EventProps {
-  event: any;
-}
+import { EventProps } from '../../@types/types';
 
 const stripePromise = loadStripe(stripeClient);
 
-export const Event: React.FunctionComponent<EventProps> = ({ event }) => {
+interface EventViewProps {
+  event: EventProps;
+}
+
+export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
   const [mode, setMode] = useState<number>(0);
   const [cart, setCart] = useState<any>({});
   const [total, setTotal] = useState<number>(0);

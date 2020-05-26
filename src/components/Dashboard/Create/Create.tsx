@@ -5,10 +5,11 @@ import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
 import { UploadFlyer } from './UploadFlyer';
+import { TicketProps, EventProps } from '../../../@types/types';
 import { formatDate, formatPrice, getCookieFromBrowser } from '../../../lib';
 import { Editor } from './TextEditor';
 
-interface TicketProps {
+export const Create: React.FunctionComponent<EventProps> = ({ event }) => {
   ticketName: string;
   quantity: number;
   price: number;
