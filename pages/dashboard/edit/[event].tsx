@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import { ManageEvent } from '../../../src/components/Dashboard/ManageEvent/Manage';
 import { Layout } from '../../../src/components/Layout/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
+import { Create } from '../../../src/components/Dashboard/Create/Create';
 import { EventProps } from '../../../src/@types/types';
 
 interface Props {
@@ -18,7 +18,7 @@ const Page: NextPage<Props> = ({ event }) => (
 
     <div className="mw9 center pv2 ph3-ns overflow-hidden" id="dashboard">
       <section className="flex-m flex-l nl3-m nr3-m nl3-l nr3-l">
-        <ManageEvent event={event} />
+        <Create event={event} />
       </section>
     </div>
   </Layout>

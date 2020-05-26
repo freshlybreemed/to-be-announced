@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Cleave from 'cleave.js/react';
+import { TicketProps } from '../../../@types/types';
 
-interface TicketProps {
+interface TicketingProps {
   addTicket: any;
   updateTicket: any;
-  ticket: any;
+  ticket: TicketProps;
 }
 
-export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
+export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   addTicket,
   updateTicket,
   ticket,
@@ -17,13 +18,12 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
     ticket ? ticket.ticketName : '',
   );
   const [quantity, setQuantity] = useState<number>(
-    ticket ? ticket.quantity : '',
+    ticket ? ticket.quantity : 0,
   );
-  const [price, setPrice] = useState<number>(ticket ? ticket.price : '');
+  const [price, setPrice] = useState<number>(ticket ? ticket.price : 0);
   const [description, setDescription] = useState<string>(
     ticket ? ticket.description : '',
   );
-  const [_id] = useState<string>(ticket ? ticket._id : '');
   console.log({ ticket, ticketName, quantity, description });
   return (
     <>
@@ -100,7 +100,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketProps> = ({
       {ticket && (
         <div
           onClick={() =>
-            updateTicket({ ticketName, quantity, description, _id, price })
+            updateTicket({ ticketName, quantity, description, price })
           }
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >

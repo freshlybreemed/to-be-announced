@@ -4,10 +4,10 @@ import { MyEvents } from '../../src/components/Dashboard/ManageEvent/MyEvents';
 import { Layout } from '../../src/components/Layout/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
-import PropTypes from 'prop-types';
+import { EventProps } from '../../src/@types/types';
 
 interface Props {
-  events: any;
+  events: EventProps;
 }
 const Page: NextPage<Props> = ({ events }) => (
   <Layout>
@@ -29,7 +29,5 @@ Page.getInitialProps = async (ctx) => {
     events: result,
   };
 };
-Page.propTypes = {
-  events: PropTypes.object,
-};
+
 export default Page;

@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import cookie from 'js-cookie';
-
+import moment from 'moment';
+export const stripeClient = process.env.STRIPE_DEV_CLIENT;
 export const setCookie = (key: string, value: string) => {
   if (process.browser) {
     cookie.set(key, value, {
@@ -40,6 +41,7 @@ const getCookieFromServer = (key: string, req: any) => {
   }
   return rawCookie.split('=')[1];
 };
+
 export const formatDate = (date: Date, type = 'short') => {
   switch (type) {
     case 'short':
@@ -51,6 +53,14 @@ export const formatDate = (date: Date, type = 'short') => {
   }
 };
 
+export const formatEventTime = (startDate: Date, endDate: Date) => {
+  var nextDay = moment(startDate.toString()).add(1, 'day');
+  return `${format(startDate, 'ccc. MMMM d h:mm a')} - ${
+    nextDay.isAfter(endDate)
+      ? format(endDate, 'h:mm a')
+      : format(endDate, 'ccc. MMMM d h:mm a')
+  }`;
+};
 export const formatTime = (date: Date) => format(date, 'h:mm a');
 
 // Format price
