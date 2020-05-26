@@ -6,6 +6,7 @@ export interface EventProps {
   startDate: string;
   endDate: string;
   slug: string;
+  eventType: string;
   ticketTypes: TicketProps[];
 }
 
