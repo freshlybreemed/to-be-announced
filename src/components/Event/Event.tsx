@@ -74,7 +74,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           <div className="dtc-l v-mid tr-l tc f2-l f3 fw6">
             <div
               onClick={() => setMode(1)}
-              className="b--white dib-l   no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph4 mt2 "
+              className=" dib-l bg-green  no-underline white noselect dim br-100  pa2 mr2 mt2-l ph4 mt2 "
             >
               Get Tickets
             </div>
