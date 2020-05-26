@@ -5,15 +5,16 @@ import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
 import { useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import { EventProps } from '../../../src/@types/types';
 
-interface EventProps {
+interface EventCheckoutProps {
   setMode: any;
   total: number;
-  event: any;
+  event: EventProps;
   cart: string;
 }
 
-export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
+export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
   total,
   event,
   cart,
@@ -38,7 +39,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
     // Create a Checkout Session.
     const response = await axios.post('/api/stripe', {
       amount: total,
-      eventName: event.eventName,
+      eventName: event.name,
       slug: event.slug,
       emailAddress,
       image: event.image,
