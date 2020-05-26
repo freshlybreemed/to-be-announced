@@ -23,7 +23,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
           {/* <div className="dtc-l dtc-m v-mid ">
             <img src={event.image} className="db w-90" />
           </div> */}
-          <div className="dtc-l dtc-m pl3-l pt2-m  v-mid f3-l f5 fw7">
+          <div className="dtc-l dtc-m pl3-l pt2-m pb2 v-mid f3-l f5 fw7">
             <div>
               <span className=" lh-title mb0 mt0-ns underline-hover">
                 <a className="white no-underline">{event.name}</a>
@@ -54,13 +54,13 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
           <div className="dtc-l dtc-m v-mid tr f4-l f5 fw5">
             <a
               href={`/e/${event.slug}`}
-              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2 mb2-m "
+              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2"
             >
               View
             </a>
             <a
               href={`/dashboard/edit/${event.slug}`}
-              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 "
+              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
             >
               Edit
             </a>
