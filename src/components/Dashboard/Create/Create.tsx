@@ -8,22 +8,24 @@ import { UploadFlyer } from './UploadFlyer';
 import { TicketProps, EventProps } from '../../../@types/types';
 import { formatDate, formatPrice, getCookieFromBrowser } from '../../../lib';
 import { Editor } from './TextEditor';
+import moment from 'moment';
 
-export const Create: React.FunctionComponent<EventProps> = ({ event }) => {
-  ticketName: string;
-  quantity: number;
-  price: number;
-  _id: number;
-  description: string;
-  enabled: boolean;
+interface EditProps {
+  event?: EventProps;
 }
-export const Create: React.FunctionComponent = () => {
-  const [name, setName] = useState<string>('');
-  const [location, setLocation] = useState<object>({});
+export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
+  const [name, setName] = useState<string>(event ? event.name : '');
+  const [location, setLocation] = useState<object>(event ? event.location : {});
   const [image, setImage] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [startDate, setStartDate] = useState<string>('');
-  const [endDate, setEndDate] = useState<string>('');
+  const [description, setDescription] = useState<string>(
+    event ? event.description : '',
+  );
+  const [startDate, setStartDate] = useState<string>(
+    event ? moment(event.startDate).format('llll') : '',
+  );
+  const [endDate, setEndDate] = useState<string>(
+    event ? moment(event.endDate).format('llll') : '',
+  );
   const [eventType, setEventType] = useState<string>('');
   const [slug, setSlug] = useState<string>('');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
