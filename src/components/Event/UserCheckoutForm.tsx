@@ -37,32 +37,41 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
 
   const handleCheckout: React.FormEventHandler<HTMLSpanElement> = async (e) => {
     e.preventDefault();
-    // Create a Checkout Session.
-    const response = await axios.post('/api/stripe', {
-      amount: total,
-      eventName: event.name,
-      slug: event.slug,
-      emailAddress,
-      image: event.image,
-      cart,
-    });
 
-    if (response.data.statusCode === 500) {
-      console.error(response.data.message);
-      return;
+    if (total === 0) {
+      const response = await axios.post('/api/ticket', {
+        order: { emailAddress, amount: total, cart },
+        event,
+      });
+      console.log(response.data);
+    } else {
+      // Create a Checkout Session.
+      const response = await axios.post('/api/stripe', {
+        amount: total,
+        eventName: event.name,
+        slug: event.slug,
+        emailAddress,
+        image: event.image,
+        cart,
+      });
+
+      if (response.data.statusCode === 500) {
+        console.error(response.data.message);
+        return;
+      }
+
+      // Redirect to Checkout.
+      const { error } = await stripe!.redirectToCheckout({
+        // Make the id field from the Checkout Session creation API response
+        // available to this file, so you can provide it as parameter here
+        // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+        sessionId: response.data.id,
+      });
+      // If `redirectToCheckout` fails due to a browser or network
+      // error, display the localized error message to your customer
+      // using `error.message`.
+      console.warn(error.message);
     }
-
-    // Redirect to Checkout.
-    const { error } = await stripe!.redirectToCheckout({
-      // Make the id field from the Checkout Session creation API response
-      // available to this file, so you can provide it as parameter here
-      // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-      sessionId: response.data.id,
-    });
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
-    console.warn(error.message);
   };
   return (
     <div className="pv3 w-100">
