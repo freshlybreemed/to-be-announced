@@ -9,14 +9,14 @@ import axios from 'axios';
 interface EventProps {
   setMode: any;
   total: number;
-  eventName: string;
-  slug: string;
+  event: any;
+  cart: string;
 }
 
 export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
   total,
-  eventName,
-  slug,
+  event,
+  cart,
 }) => {
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
@@ -38,8 +38,11 @@ export const UserCheckoutForm: React.FunctionComponent<EventProps> = ({
     // Create a Checkout Session.
     const response = await axios.post('/api/stripe', {
       amount: total,
-      eventName,
-      slug,
+      eventName: event.eventName,
+      slug: event.slug,
+      emailAddress,
+      image: event.image,
+      cart,
     });
 
     if (response.data.statusCode === 500) {
