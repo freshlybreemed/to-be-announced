@@ -5,9 +5,10 @@ import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 import PropTypes from 'prop-types';
 import { Create } from '../../../src/components/Dashboard/Create/Create';
+import { EventProps } from '../../../src/@types/types';
 
 interface Props {
-  event: any;
+  event: EventProps;
 }
 
 const Page: NextPage<Props> = ({ event }) => (
