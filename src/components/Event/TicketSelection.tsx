@@ -2,17 +2,11 @@ import * as React from 'react';
 import { formatPrice } from '../../lib';
 import classnames from 'classnames';
 import { useState } from 'react';
+import { TicketProps } from '../../@types/types';
 
 interface EventProps {
   updateCart: any;
-  ticketType: {
-    ticketName: string;
-    quantity: number;
-    price: string;
-    description: string;
-    enabled: boolean;
-    count: number;
-  };
+  ticketType: TicketProps;
 }
 
 export const TicketSelection: React.FunctionComponent<EventProps> = ({
@@ -21,7 +15,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
 }) => {
   const [quantity, setQuantity] = useState<number>(0);
 
-  const freeTix = parseInt(ticketType.price) > 0 ? false : true;
+  const freeTix = ticketType.price > 0 ? false : true;
   return (
     <li
       className={`flex items-center pa3 ph0-l ${classnames({
@@ -32,10 +26,10 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
       <div className="pl3-ns flex-auto">
         <span className="f4-ns f5 fw7-ns fw5 db ">{ticketType.ticketName}</span>
         <span className="f5-ns f6 fw6-ns fw4 db gray">
-          {`${formatPrice(ticketType.price)} `}
+          {`${formatPrice(ticketType.price.toString())} `}
           {!freeTix &&
             `+ ${formatPrice(
-              (parseFloat(ticketType.price) * 0.12).toString()
+              (parseFloat(ticketType.price.toString()) * 0.12).toString()
             )} FEE`}
         </span>
       </div>
