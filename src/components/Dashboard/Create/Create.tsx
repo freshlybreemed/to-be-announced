@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
@@ -16,23 +15,27 @@ interface EditProps {
 export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [name, setName] = useState<string>(event ? event.name : '');
   const [location, setLocation] = useState<object>(event ? event.location : {});
-  const [image, setImage] = useState<string>('');
+  const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(
-    event ? event.description : '',
+    event ? event.description : ''
   );
   const [startDate, setStartDate] = useState<string>(
-    event ? moment(event.startDate).format('llll') : '',
+    event ? moment(event.startDate).format('llll') : ''
   );
   const [endDate, setEndDate] = useState<string>(
-    event ? moment(event.endDate).format('llll') : '',
+    event ? moment(event.endDate).format('llll') : ''
   );
-  const [eventType, setEventType] = useState<string>('');
-  const [slug, setSlug] = useState<string>('');
+  const [eventType, setEventType] = useState<string>(
+    event ? event.eventType : ''
+  );
+  const [slug, setSlug] = useState<string>(event ? event.slug : '');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
-    false,
+    false
   );
-  const [ticketTypes, setTicketTypes] = useState<Object>({});
+  const [ticketTypes, setTicketTypes] = useState<Object>(
+    event ? event.ticketTypes : {}
+  );
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
@@ -130,7 +133,10 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         />
       </div>
       <div className="mv3 ">
-        <PlacesAutoComplete setLocation={setEventLocation} />
+        <PlacesAutoComplete
+          location={location}
+          setLocation={setEventLocation}
+        />
       </div>
       <DateTimePicker
         start={true}
@@ -157,78 +163,75 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         <UploadFlyer setImage={setImage} />
       </div>
       <hr className="o-20" />
-      <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Event Description</h2>
-      <div className="mv3 pv3 w-75-ns w-100 center">
-        <Editor setDescription={setDescription} description={description} />
-      </div>
-      <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
-      <main className="w-75 tl center">
-        {Object.keys(ticketTypes).map((curr) => (
-          <article className="dt w-100 bb b--gray pb2 mt2">
-            <div className="dtc v-mid pl3">
-              <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
-                <a className="white no-underline" href="">
-                  {ticketTypes[curr].ticketName}
-                </a>
-              </h1>
-              <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
-                new Date(2),
-              )}`}</h2>
-              <div>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    onChange={() =>
-                      updateTicket({
-                        ...ticketTypes[curr],
-                        enabled: !ticketTypes[curr].enabled,
-                      })
-                    }
-                    checked={ticketTypes[curr].enabled}
-                  />
-                  <span>
-                    {/* <em></em> */}
-                    <strong></strong>
-                  </span>
-                </label>
-              </div>
-            </div>
-            <div className="dtc v-mid tr">
-              <h1 className="f6 f5-ns fw7 lh-title mv0">
-                0/{ticketTypes[curr].quantity}
-              </h1>
-              <h1 className="f6 f5-ns fw7 lh-title gray mv0">
-                {formatPrice(ticketTypes[curr].price)}
-              </h1>
-              {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
-            </div>
-            <div
-              className="dtc v-mid tr white"
-              onClick={() => {
-                setToggleTicketCreation(true);
-                setCurrentTicket(ticketTypes[curr]);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                fill="currentColor"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z" />
-              </svg>
-            </div>
-          </article>
-        ))}
-      </main>
       {!toggleTicketCreation && (
-        <div
-          onClick={() => setToggleTicketCreation(true)}
-          className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
-        >
-          Create A Ticket{' '}
+        <div>
+          <div
+            onClick={() => setToggleTicketCreation(true)}
+            className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+          >
+            Create A Ticket{' '}
+          </div>{' '}
+          <main className="w-75 tl center">
+            {Object.keys(ticketTypes).map((curr) => (
+              <article className="dt w-100 bb b--gray pb2 mt2">
+                <div className="dtc v-mid pl3">
+                  <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
+                    <a className="white no-underline" href="">
+                      {ticketTypes[curr].ticketName}
+                    </a>
+                  </h1>
+                  <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
+                    new Date(2)
+                  )}`}</h2>
+                  <div>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          updateTicket({
+                            ...ticketTypes[curr],
+                            enabled: !ticketTypes[curr].enabled,
+                          })
+                        }
+                        checked={ticketTypes[curr].enabled}
+                      />
+                      <span>
+                        {/* <em></em> */}
+                        <strong></strong>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div className="dtc v-mid tr">
+                  <h1 className="f6 f5-ns fw7 lh-title mv0">
+                    0/{ticketTypes[curr].quantity}
+                  </h1>
+                  <h1 className="f6 f5-ns fw7 lh-title gray mv0">
+                    {formatPrice(ticketTypes[curr].price)}
+                  </h1>
+                  {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
+                </div>
+                <div
+                  className="dtc v-mid tr white"
+                  onClick={() => {
+                    setToggleTicketCreation(true);
+                    setCurrentTicket(ticketTypes[curr]);
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    fill="currentColor"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z" />
+                  </svg>
+                </div>
+              </article>
+            ))}
+          </main>
         </div>
       )}
       {toggleTicketCreation && (
@@ -249,7 +252,11 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           </div>
         </div>
       )}
-      <br />{' '}
+      <br /> <hr className="o-20" />
+      <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Event Description</h2>
+      <div className="mv3 pv3 w-75-ns w-100 center">
+        <Editor setDescription={setDescription} description={description} />
+      </div>
       <div
         className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph4 f3 fw5"
         onClick={() => handleSubmit()}

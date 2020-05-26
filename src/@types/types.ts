@@ -1,11 +1,16 @@
 export interface EventProps {
   name: string;
   image: string;
-  location: any;
+  location: {
+    venue: string;
+    address: string;
+    placeId: string;
+  };
   description: string;
   startDate: string;
   endDate: string;
   slug: string;
+  eventType: string;
   ticketTypes: TicketProps[];
 }
 
@@ -18,8 +23,16 @@ export interface TicketProps {
   enabled: boolean;
 }
 
+export interface OrderProps {
+  emailAddress: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  amount: number;
+  cart: any;
+}
+
 export interface EventCartProps {
-  count: number;
   price: number;
   quantity: number;
   ticketName: string;

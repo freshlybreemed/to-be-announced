@@ -40,6 +40,7 @@
     "mongodb": "^3.5.6",
     "next": "^9.3.6-canary.9",
     "next-absolute-url": "^1.1.1",
+    "nodemailer": "^6.4.6",
     "react": "^16.8.6",
     "react-cool-onclickoutside": "^1.4.5",
     "react-datetime": "^2.16.3",

@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import classnames from 'classnames';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -6,14 +7,16 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from 'react-cool-onclickoutside';
 interface EventLocationProps {
   setLocation: any;
+  location: any;
 }
 
 export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = ({
   setLocation,
+  location,
 }) => {
+  const [venue, setVenue] = useState<string>(location ? location.venue : '');
   const {
     ready,
-    value,
     suggestions: { status, data },
     setValue,
     clearSuggestions,
@@ -33,6 +36,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
   const handleInput = (e) => {
     // Update the keyword of the input element
     setValue(e.target.value);
+    setVenue(e.target.value);
     setLocation('');
   };
 
@@ -41,6 +45,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     // When user selects a place, we can replace the keyword without request data from API
     // by setting the second parameter as "false"
     setValue(description, false);
+    setVenue(description);
     clearSuggestions();
     // Get latitude and longitude via utility functions
     getGeocode({ address: description })
@@ -83,11 +88,13 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
   return (
     <div ref={ref}>
       <input
-        value={value}
+        value={venue}
         onChange={handleInput}
-        disabled={!ready}
+        disabled={!ready || location.venue}
         placeholder="Event Location"
-        className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-75-ns w-100 "
+        className={`pa2 bt-0 br-0 bl-0 input-reset bb bg-black  w-75-ns w-100 ${classnames(
+          { gray: location.venue, white: !location.venue }
+        )}`}
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === 'OK' && <ul className="list pl0">{renderSuggestions()}</ul>}

@@ -3,24 +3,24 @@ import { wrapAsync } from './helpers';
 import { NextApiRequest } from 'next';
 
 export default wrapAsync(async (req: NextApiRequest) => {
-  const { emailAddress, eventName, image, cart } = req.body;
+  const { emailAddress, eventName, image, cart, slug } = req.body;
   console.log(req.headers.host);
   const tickets = Object.keys(cart)
     .filter((curr) => cart[curr].price > 0)
     .map((curr) => {
       return {
         name: `${eventName} - ${curr} ${
-          cart[curr].count > 1 ? `Tickets` : `Ticket`
+          cart[curr].quantity > 1 ? `Tickets` : `Ticket`
         }`,
         amount: cart[curr].price * 112,
         currency: 'usd',
-        quantity: cart[curr].count,
+        quantity: cart[curr].quantity,
         images: [image],
       };
     });
-  const metaData = {};
+  const metaData = { slug };
   for (var curr in cart) {
-    metaData[curr] = cart[curr].count.toString();
+    metaData[curr] = cart[curr].quantity.toString();
   }
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],

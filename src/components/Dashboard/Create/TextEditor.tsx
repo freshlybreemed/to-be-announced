@@ -88,7 +88,9 @@ export const Editor: React.FunctionComponent<TextEditorProps> = ({
     raw ? convertToHTML(exporterConfig)(convertFromRaw(raw)) : '';
 
   const fromHTML = (html) =>
-    convertToRaw(convertFromHTML(importerConfig)(html));
+    typeof window !== 'undefined'
+      ? convertToRaw(convertFromHTML(importerConfig)(html))
+      : '';
 
   return (
     <DraftailEditor
