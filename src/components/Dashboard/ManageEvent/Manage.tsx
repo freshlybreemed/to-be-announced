@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { formatDate, formatPrice, formatTime } from '../../../lib';
+import { formatDate, formatPrice, formatEventTime } from '../../../lib';
 import { TicketProps, EventProps } from '../../../@types/types';
 
 export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
@@ -37,8 +37,9 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
             </div>
             <div>
               <span className="f4-ns f5 fw6 mv0 gray">
-                {`${formatDate(new Date(event.startDate), 'long')} ${formatTime(
+                {`${formatEventTime(
                   new Date(event.startDate),
+                  new Date(event.endDate),
                 )}`}
               </span>
             </div>
