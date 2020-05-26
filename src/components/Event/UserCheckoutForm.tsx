@@ -65,14 +65,14 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
     console.warn(error.message);
   };
   return (
-    <div className="pb5 w-100">
+    <div className="pv3 w-100">
       <form className="w-100 pt4 mw7 center">
         <div className="mv3">
           <label className="f5-ns f6 fw7-ns fw5 db pv2">First Name</label>
 
           <input
             value={firstName}
-            className="bg-transparent white bb bt-0 br-0 bl-0  w-100"
+            className="bg-transparent white bb bt-0 br-0 bl-0 pa2 mr3 w-100"
             onChange={(e) => setFirstName(e.currentTarget.value)}
           />
         </div>
@@ -81,7 +81,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
 
           <input
             value={lastName}
-            className="bg-transparent white bb bt-0 br-0 bl-0  w-100"
+            className="bg-transparent white bb bt-0 br-0 bl-0 pa2 mr3 w-100"
             onChange={(e) => setLastName(e.currentTarget.value)}
           />
         </div>
@@ -90,7 +90,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
 
           <input
             value={emailAddress}
-            className="bg-transparent white bb bt-0 br-0 bl-0  w-100"
+            className="bg-transparent white bb bt-0 br-0 bl-0 pa2 mr3 w-100"
             onChange={(e) => {
               setEmailAddress(e.currentTarget.value);
               validateEmail(emailAddress);
@@ -103,7 +103,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
           <Cleave
             value={phoneNumber}
             options={{ phone: true, phoneRegionCode: 'US' }}
-            className="bg-transparent white bb bt-0 br-0 bl-0 w-100"
+            className="bg-transparent white bb bt-0 br-0 bl-0 pa2 mr3 w-100"
             onChange={(e) => setPhoneNumber(e.currentTarget.value)}
           />
         </div>
@@ -116,7 +116,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
               onClick={handleCheckout}
               className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns ml fw6 fr"
             >
-              {total > 0 ? `Pay` : `Complete`}
+              {total > 0 ? `Pay` : `Next`}
             </span>{' '}
             <span
               onClick={() => setMode(1)}

@@ -40,7 +40,7 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
   };
 
   return (
-    <div className="pb5">
+    <div className="pv3">
       <form className="w-100 mv3 mw7 center">
         <ul className="list pl0 mt0  ">
           {Object.keys(ticketTypes).map((curr) => {

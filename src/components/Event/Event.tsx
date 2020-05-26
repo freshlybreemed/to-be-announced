@@ -79,7 +79,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
             </div>
           </div>
         </article>
-        <div className="flex flex-wrap justify-between w-100 nr3 mt3 mb5 pv3">
+        <div className="flex flex-wrap justify-between w-100 nr3 mv3 pv3">
           {mode === 2 && (
             <div className="w-100 dib">
               <FadeIn>

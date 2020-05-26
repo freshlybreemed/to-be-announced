@@ -72,7 +72,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
               // prefix: true ? '$' : '',
             }
           }
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-75-ns w-100"
+          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3   w-100"
           placeholder="Ticket Price"
         />
       </div>
@@ -108,6 +108,6 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           Update
         </div>
       )}
-    </>
+    </div>
   );
 };
