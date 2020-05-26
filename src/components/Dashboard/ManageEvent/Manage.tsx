@@ -3,7 +3,12 @@ import { useState } from 'react';
 import { formatDate, formatPrice, formatEventTime } from '../../../lib';
 import { TicketProps, EventProps } from '../../../@types/types';
 
-export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
+interface ManageProps {
+  event: EventProps;
+}
+export const ManageEvent: React.FunctionComponent<ManageProps> = ({
+  event,
+}) => {
   const [ticketTypes] = useState<any>(
     Object.keys(event.ticketTypes).map((curr) => {
       return event.ticketTypes[curr];

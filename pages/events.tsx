@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import * as React from 'react';
 import { NextPage } from 'next';
 import { Events } from '../src/components/Event/Events';
@@ -25,7 +24,5 @@ Page.getInitialProps = async (ctx) => {
     events: result,
   };
 };
-Page.propTypes = {
-  events: PropTypes.array,
-};
+
 export default Page;

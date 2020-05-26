@@ -4,7 +4,6 @@ import { ManageEvent } from '../../../src/components/Dashboard/ManageEvent/Manag
 import { Layout } from '../../../src/components/Layout/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
-import PropTypes from 'prop-types';
 import { EventProps } from '../../../src/@types/types';
 
 interface Props {
@@ -34,9 +33,6 @@ Page.getInitialProps = async (ctx) => {
   return {
     event: result[0],
   };
-};
-Page.propTypes = {
-  event: PropTypes.object,
 };
 
 export default Page;
