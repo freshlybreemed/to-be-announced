@@ -40,8 +40,8 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
   };
 
   return (
-    <div>
-      <form className="w-100 pt4 mw7 center">
+    <div className="pb5">
+      <form className="w-100  mw7 center">
         <ul className="list pl0 mt0  ">
           {Object.keys(ticketTypes).map((curr) => {
             return (
@@ -60,9 +60,15 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
             </span>
             <span
               onClick={() => setMode(2)}
-              className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-ns f4 fw5-ns fw6 fr"
+              className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns ml fw6 fr"
             >
               Next
+            </span>
+            <span
+              onClick={() => setMode(0)}
+              className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns mr2 fw6 fr"
+            >
+              Cancel
             </span>
           </div>
         )}
