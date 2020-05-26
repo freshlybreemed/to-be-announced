@@ -3,7 +3,7 @@ import { wrapAsync } from './helpers';
 import { NextApiRequest } from 'next';
 
 export default wrapAsync(async (req: NextApiRequest) => {
-  const { emailAddress, eventName, image, cart } = req.body;
+  const { emailAddress, eventName, image, cart, slug } = req.body;
   console.log(req.headers.host);
   const tickets = Object.keys(cart)
     .filter((curr) => cart[curr].price > 0)
@@ -18,7 +18,7 @@ export default wrapAsync(async (req: NextApiRequest) => {
         images: [image],
       };
     });
-  const metaData = {};
+  const metaData = { slug };
   for (var curr in cart) {
     metaData[curr] = cart[curr].quantity.toString();
   }
