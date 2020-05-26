@@ -3,24 +3,34 @@ import { wrapAsync } from './helpers';
 import { NextApiRequest } from 'next';
 
 export default wrapAsync(async (req: NextApiRequest) => {
-  const { amount, emailAddress, eventName } = req.body;
-  console.log(req.headers);
+  const { emailAddress, eventName, image, cart } = req.body;
+  console.log(req.headers.host);
+  const tickets = Object.keys(cart)
+    .filter((curr) => cart[curr].price > 0)
+    .map((curr) => {
+      return {
+        name: `${eventName} - ${curr} ${
+          cart[curr].count > 1 ? `Tickets` : `Ticket`
+        }`,
+        amount: cart[curr].price * 112,
+        currency: 'usd',
+        quantity: cart[curr].count,
+        images: [image],
+      };
+    });
+  const metaData = {};
+  for (var curr in cart) {
+    metaData[curr] = cart[curr].count.toString();
+  }
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     payment_intent_data: {
       metadata: {
         emailAddress,
+        ...metaData,
       },
     },
-    line_items: [
-      {
-        name: eventName,
-        description: 'Purchase Tickets',
-        amount: parseInt(amount) * 100,
-        currency: 'usd',
-        quantity: 1,
-      },
-    ],
+    line_items: tickets,
     success_url: `http://${req.headers.host}/user`,
     cancel_url: `http://${req.headers.host}/user/balance`,
   });
