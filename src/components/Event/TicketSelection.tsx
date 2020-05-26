@@ -48,7 +48,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
               updateCart(ticketType.ticketName, count - 1);
             }
           }}
-          className="f3  "
+          className="f3 noselect br-100 ph2 pb1 bg-white black"
         >
           -
         </span>
@@ -68,7 +68,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
               updateCart(ticketType.ticketName, count + 1);
             }
           }}
-          className="f3"
+          className="f3 noselect br-100 ph2 pb1 bg-white black"
         >
           +
         </span>
