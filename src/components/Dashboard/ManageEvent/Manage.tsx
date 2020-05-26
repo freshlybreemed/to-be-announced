@@ -31,41 +31,54 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
   return (
     <div className={'w-100'}>
       <main className="mw9 ml4-ns center">
-        <article className="dt-ns tc tl-ns dt--fixed-ns w-90-ns  pb2 mv2">
-          <div className="dtc-ns v-mid">
-            <img src={event.image} className="db w-100" />
-          </div>
-          <div className="dtc-ns pl3-ns v-mid">
-            <h1 className="f4-ns f5 fw7 lh-title mv0 underline-hover">
-              <a className="white no-underline">{event.name}</a>
-            </h1>
-            <h2 className="f4-ns f5 fw6 lh-title mv0 underline-hover">
-              <a
-                className="white no-underline"
-                target="_blank"
-                href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-              >
-                {event.location.venue}
-              </a>
-            </h2>
-            <h2 className="f4-ns f5 fw6 mv0 gray">
-              {`${formatDate(new Date(event.startDate), 'long')} ${formatTime(
-                new Date(event.startDate),
-              )}`}
-            </h2>
+        <article className="dt tc tl-ns w-90-l w-100-m  pb2 mv2">
+          {/* <div className="dtc-l dtc-m v-mid ">
+            <img src={event.image} className="db w-90" />
+          </div> */}
+          <div className="dtc-l dtc-m pl3-l pt2-m  v-mid f3-l f5 fw7">
+            <div>
+              <span className=" lh-title mb0 mt0-ns underline-hover">
+                <a className="white no-underline">{event.name}</a>
+              </span>
+            </div>
+            <div>
+              <span className="f4-ns f5 fw6 lh-title mv0 underline-hover">
+                <a
+                  className="white no-underline"
+                  target="_blank"
+                  href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
+                >
+                  {event.location.venue}
+                </a>
+              </span>
+            </div>
+            <div>
+              <span className="f4-ns f5 fw6 mv0 gray">
+                {`${formatDate(new Date(event.startDate), 'long')} ${formatTime(
+                  new Date(event.startDate),
+                )}`}
+              </span>
+            </div>
             <h2 className="f4-ns f5 fw6 mv0 green">• Live</h2>
           </div>
-          <div className="dtc-ns v-mid tr-ns tc">
+          <div className="w-auto-m dtc"></div>
+          <div className="dtc-l dtc-m v-mid tr f4-l f5 fw5">
             <a
               href={`/e/${event.slug}`}
-              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2 ph3 f3-ns f4 fw5 "
+              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2 mb2-m "
             >
-              View Event
+              View
+            </a>
+            <a
+              href={`/dashboard/edit/${event.slug}`}
+              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 "
+            >
+              Edit
             </a>
           </div>
         </article>
         <div className="flex flex-wrap justify-between w-100 nr3 mb4">
-          <article className="mw8 bg-black-80 br3 w-30-ns w-100 pa3   mv1  bg-green">
+          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3   mv1  bg-green">
             <div className="cf">
               <div className="fl w-60  tl  ">
                 <span className="f4-ns fw6 f5 ">Net Sales </span>
@@ -75,7 +88,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
               </div>
             </div>
           </article>
-          <article className="mw8 bg-black-80 br3 w-30-ns w-100 pa3  mv1 bg-purple">
+          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3  mv1 bg-purple">
             <div className="cf">
               <div className="fl w-60  tl ">
                 <span className="f4-ns fw6 f5 ">Tickets Sold</span>
@@ -87,7 +100,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
               </div>
             </div>
           </article>
-          <article className="mw8 bg-black-80 br3 w-30-ns w-100 pa3  mv1 bg-blue">
+          <article className="mw8 bg-black-80 br3 w-30-l w-100 pa3  mv1 bg-blue">
             <div className="cf v-mid">
               <div className="fl w-60 tl ">
                 <span className="f4-ns fw6 f5 tc ">Page Views</span>
@@ -99,9 +112,9 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
           </article>
         </div>
         <div className="flex flex-wrap justify-between w-100 nr3 mb4">
-          <section className="fl w-48-ns w-100 mb2 ">
+          <section className="fl w-48-l w-100 mb2 ">
             <div className="bg-black-80  pl0 ">
-              <span className="f3-ns f4 fw6  br-100 b--solid pv2 ph3 mv2">
+              <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                 Sales By Ticket Types{' '}
               </span>
               <div className="pt4 ">
@@ -142,7 +155,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
 
           <section className="fl w-48-ns w-100 mb2 ">
             <div className="bg-black-80  ">
-              <span className="f3-ns f4 fw6 br-100 b--solid pv2 ph3 mv2">
+              <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                 Payouts{' '}
               </span>
               <p className="pt4">
@@ -158,7 +171,7 @@ export const ManageEvent: React.FunctionComponent<EventProps> = ({ event }) => {
         </div>
         <section className="fl w-90 ">
           <div className="bg-black-80">
-            <span className="f3-ns f4 fw6  br-100 b--solid pv2 ph3 mv2">
+            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
               Attendee List{' '}
             </span>
             <div className="pt4 ">
