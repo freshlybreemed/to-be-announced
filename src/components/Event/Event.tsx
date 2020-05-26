@@ -35,9 +35,6 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
         <img className="w-100 center db" src={event.image} />
 
         <article className="dt-ns tc tl-ns w-90-l w-100-m  pb2 mv3">
-          {/* <div className="dtc-l dtc-m v-mid ">
-            <img src={event.image} className="db w-90" />
-          </div> */}
           <div className="dtc-l  pt2-m  v-mid f3-l f5 fw7">
             <div className=" lh-title mb0 mt0-ns underline-hover">
               <a className="white no-underline f1-ns f2">{event.name}</a>
@@ -131,7 +128,6 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                   <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
                     Line Up
                   </span>
-
                   <div className="pt2-ns mt4 pt1">
                     <img
                       className="db mw-100 "
