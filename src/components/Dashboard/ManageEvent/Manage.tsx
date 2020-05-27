@@ -106,7 +106,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                 Sales By Ticket Types{' '}
               </span>
-              <div className="pv4 ">
+              <div className="pt4 pb0-ns pb4  ">
                 <div className="overflow-auto">
                   <table
                     className="f6 w-100 mw8 center"
