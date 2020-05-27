@@ -66,12 +66,6 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
             >
               Next
             </span>
-            <span
-              onClick={() => setMode(0)}
-              className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns mr2 fw6 fr"
-            >
-              Cancel
-            </span>
           </div>
         )}
       </form>

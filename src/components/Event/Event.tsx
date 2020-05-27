@@ -7,7 +7,7 @@ import { UserCheckoutForm } from './UserCheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { EventProps } from '../../@types/types';
-
+import classnames from 'classnames';
 const stripePromise = loadStripe(stripeClient);
 
 interface EventViewProps {
@@ -69,10 +69,13 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           </div>
           <div className="dtc-l v-mid tr-l tc f2-l f3 fw6">
             <div
-              onClick={() => setMode(1)}
-              className=" dib-l bg-green  no-underline white noselect dim br-100  pa2 mr2 mt2-l ph4 mt2 "
+              onClick={() => (mode === 0 ? setMode(1) : setMode(0))}
+              className={`dib-l ${classnames({
+                'bg-green': mode === 0,
+                'bg-red': mode > 0,
+              })} no-underline white noselect dim br-100  pa2 mr2 mt2-l ph4 mt2 `}
             >
-              Get Tickets
+              {mode === 0 ? 'Get Tickets' : 'Cancel'}
             </div>
           </div>
         </article>
@@ -83,7 +86,6 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv4">
                   Checkout
                 </span>
-
                 <UserCheckoutForm
                   setMode={setMode}
                   total={total}
@@ -112,8 +114,8 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           )}
           <div className=" dib">
             <FadeIn>
-              <section className="fl w-48-l w-100 mv2 ">
-                <div className=" pl0 mt3">
+              <section className="fl w-48-l w-100 ">
+                <div className="pl0 ">
                   <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
                     Description
                   </span>
