@@ -20,6 +20,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   const [quantity, setQuantity] = useState<number>(
     ticket ? ticket.quantity : 0
   );
+  const [sold] = useState<number>(ticket ? ticket.sold : 0);
   const [price, setPrice] = useState<number>(ticket ? ticket.price : 0);
   const [description, setDescription] = useState<string>(
     ticket ? ticket.description : ''
@@ -90,6 +91,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
               quantity,
               description,
               price,
+              sold,
               enabled: true,
             })
           }
@@ -101,7 +103,14 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
       {ticket && (
         <div
           onClick={() =>
-            updateTicket({ ticketName, quantity, description, price })
+            updateTicket({
+              ticketName,
+              quantity,
+              description,
+              price,
+              // enabled,
+              sold,
+            })
           }
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >

@@ -18,6 +18,7 @@ export interface TicketProps {
   ticketName: string;
   quantity: number;
   price: number;
+  sold: number;
   _id: number;
   description: string;
   enabled: boolean;
