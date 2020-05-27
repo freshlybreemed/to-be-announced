@@ -43,17 +43,19 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
 
   const handleCheckout: React.FormEventHandler<HTMLSpanElement> = async (e) => {
     e.preventDefault();
-
-    if (total === 0) {
+    const order: OrderProps = {
+      emailAddress,
+      firstName,
+      lastName,
+      slug: event.slug,
+      phoneNumber,
+      total,
+      date: new Date(),
+      cart,
+    };
+    if (total >= 0) {
       const response = await axios.post('/api/ticket', {
-        order: {
-          emailAddress,
-          firstName,
-          lastName,
-          phoneNumber,
-          amount: total,
-          cart,
-        },
+        order,
         event,
       });
       console.log(response.data);
