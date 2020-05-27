@@ -5,13 +5,19 @@ import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
 import { useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import { EventProps } from '../../../src/@types/types';
+import {
+  EventProps,
+  OrderProps,
+  EventCartProps,
+} from '../../../src/@types/types';
 
 interface EventCheckoutProps {
   setMode: any;
   total: number;
   event: EventProps;
-  cart: string;
+  cart: {
+    [ticketName: string]: EventCartProps;
+  };
 }
 
 export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({

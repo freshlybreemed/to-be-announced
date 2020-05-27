@@ -28,8 +28,12 @@ export interface OrderProps {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  amount: number;
-  cart: any;
+  slug: string;
+  date: Date;
+  total: number;
+  cart: {
+    [ticketName: string]: EventCartProps;
+  };
 }
 
 export interface EventCartProps {
