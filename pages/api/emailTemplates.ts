@@ -1,5 +1,5 @@
 import { EventProps, OrderProps } from '../../src/@types/types';
-import { formatEventTime } from '../../src/lib/index';
+import { formatEventTime, formatDate, formatPrice } from '../../src/lib/index';
 export const ticketEmail = {
   subject: (eventName) => `You Just Scored Tickets to ${eventName}`,
   content: (event: EventProps, order: OrderProps) => `<!DOCTYPE html>
@@ -336,10 +336,7 @@ export const ticketEmail = {
                                             >
                                               <font
                                                 style="vertical-align: inherit;"
-                                                >${formatEventTime(
-                                                  new Date(event.startDate),
-                                                  new Date(event.endDate)
-                                                )}
+                                                >
                                               </font></font
                                             >
                                           </td>
@@ -573,7 +570,7 @@ export const ticketEmail = {
                                                   href=""
                                                   >#3849123</a
                                                 >
-                                                - February 25, 2020
+                                                - ${formatDate(order.date)}
                                               </font>
                                             </font>
                                           </td>
@@ -609,7 +606,9 @@ export const ticketEmail = {
                                                       font-weight: normal;
                                                     "
                                                   >
-                                                    ${order.firstName} ${order.lastName}
+                                                    ${order.firstName} ${
+                                                order.lastName
+                                              }
                                                   </span>
                                                 </td>
                                                 <td width="50%" valign="top">
@@ -626,7 +625,9 @@ export const ticketEmail = {
                                                       font-weight: normal;
                                                     "
                                                   >
-                                                    ${order.cart[curr].quantity} x
+                                                    ${
+                                                      order.cart[curr].quantity
+                                                    } x
                                                   </span>
   
                                                   <span
@@ -642,7 +643,7 @@ export const ticketEmail = {
                                                       font-weight: 600;
                                                     "
                                                   >
-                                                   ${curr}
+                                                   ${curr} Ticket
                                                   </span>
                                                 </td>
                                                 <td
@@ -664,7 +665,11 @@ export const ticketEmail = {
                                                       font-weight: normal;
                                                     "
                                                   >
-                                                    Free
+                                                    ${formatPrice(
+                                                      order.cart[
+                                                        curr
+                                                      ].price.toString()
+                                                    )}
                                                   </span>
                                                 </td>
                                               </tr><tr>
@@ -711,6 +716,40 @@ export const ticketEmail = {
                                             `;
                                             }
                                           )}
+                                          <tr>
+                                          <td
+                                            class="td-padding"
+                                            align="left"
+                                            style="
+                                              font-family: -apple-system,
+                                                BlinkMacSystemFont, avenir next,
+                                                avenir, helvetica neue,
+                                                helvetica, ubuntu, roboto, noto,
+                                                segoe ui, arial, sans-serif;
+                                              color: #212121 !important;
+                                              font-size: 16px;
+                                              line-height: 20px;
+                                              padding-left: 18px !important;
+                                              padding-right: 18px !important;
+                                              padding-bottom: 0px !important;
+                                              mso-line-height-rule: exactly;
+                                              mso-padding-alt: 18px 18px 0px
+                                                18px;
+                                            "
+                                          >
+                                            <font
+                                              style="vertical-align: inherit;"
+                                            >
+                                              <font
+                                                style="vertical-align: inherit;"
+                                                >${formatPrice(
+                                                  order.total.toString()
+                                                )}
+                                              </font></font
+                                            >
+                                          </td>
+                                        </tr>
+                                       
                                           </tbody>
                                         </table>
 
