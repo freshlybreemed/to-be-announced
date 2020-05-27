@@ -5,7 +5,9 @@ import { TicketSelection } from './TicketSelection';
 import { EventCartProps } from '../../@types/types';
 interface TicketCheckout {
   setMode: any;
-  cart: EventCartProps[];
+  cart: {
+    [ticketName: string]: EventCartProps;
+  };
   setCart: any;
   total: any;
   setTotal: any;

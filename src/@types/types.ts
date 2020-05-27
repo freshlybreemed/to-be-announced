@@ -18,6 +18,7 @@ export interface TicketProps {
   ticketName: string;
   quantity: number;
   price: number;
+  sold: number;
   _id: number;
   description: string;
   enabled: boolean;
@@ -28,8 +29,12 @@ export interface OrderProps {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  amount: number;
-  cart: any;
+  slug: string;
+  date: Date;
+  total: number;
+  cart: {
+    [ticketName: string]: EventCartProps;
+  };
 }
 
 export interface EventCartProps {

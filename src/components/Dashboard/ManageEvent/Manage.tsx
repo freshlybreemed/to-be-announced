@@ -12,7 +12,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
   const [ticketTypes] = useState<any>(
     Object.keys(event.ticketTypes).map((curr) => {
       return event.ticketTypes[curr];
-    }),
+    })
   );
 
   console.log(event);
@@ -44,7 +44,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               <span className="f4-ns f5 fw6 mv0 gray">
                 {`${formatEventTime(
                   new Date(event.startDate),
-                  new Date(event.endDate),
+                  new Date(event.endDate)
                 )}`}
               </span>
             </div>
@@ -106,7 +106,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                 Sales By Ticket Types{' '}
               </span>
-              <div className="pt4 ">
+              <div className="pv4 ">
                 <div className="overflow-auto">
                   <table
                     className="f6 w-100 mw8 center"

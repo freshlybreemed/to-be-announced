@@ -5,13 +5,19 @@ import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
 import { useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import { EventProps } from '../../../src/@types/types';
+import {
+  EventProps,
+  OrderProps,
+  EventCartProps,
+} from '../../../src/@types/types';
 
 interface EventCheckoutProps {
   setMode: any;
   total: number;
   event: EventProps;
-  cart: string;
+  cart: {
+    [ticketName: string]: EventCartProps;
+  };
 }
 
 export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
@@ -37,17 +43,19 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
 
   const handleCheckout: React.FormEventHandler<HTMLSpanElement> = async (e) => {
     e.preventDefault();
-
-    if (total === 0) {
+    const order: OrderProps = {
+      emailAddress,
+      firstName,
+      lastName,
+      slug: event.slug,
+      phoneNumber,
+      total,
+      date: new Date(),
+      cart,
+    };
+    if (total >= 0) {
       const response = await axios.post('/api/ticket', {
-        order: {
-          emailAddress,
-          firstName,
-          lastName,
-          phoneNumber,
-          amount: total,
-          cart,
-        },
+        order,
         event,
       });
       console.log(response.data);
