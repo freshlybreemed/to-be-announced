@@ -118,7 +118,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                     Description
                   </span>
                   <div
-                    className="pt2-ns mt2 pt1"
+                    className="pt2-ns mt2 pt1 f3-ns f4 lh-title "
                     dangerouslySetInnerHTML={{ __html: event.description }}
                   />
                 </div>
