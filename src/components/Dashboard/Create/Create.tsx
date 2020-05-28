@@ -47,15 +47,11 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   };
 
   const updateTicket = (ticket: TicketProps) => {
-    const tickets = {};
-    Object.keys(ticketTypes).map((curr) => {
-      console.log(ticket, curr, ticketTypes[curr]._id);
-      if (ticket._id === ticketTypes[curr]._id) {
-        tickets[ticket.ticketName] = ticket;
-      } else {
-        tickets[curr] = ticketTypes[curr];
-      }
-    });
+    const tickets = {
+      ...ticketTypes,
+      [ticket.ticketName]: ticket,
+    };
+
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
     setCurrentTicket(null);

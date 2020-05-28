@@ -109,7 +109,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
               quantity,
               description,
               price,
-              // enabled,
+              enabled,
               sold,
             })
           }
