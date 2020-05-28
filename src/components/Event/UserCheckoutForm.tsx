@@ -41,8 +41,8 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
     return false;
   };
 
-  const handleCheckout: React.FormEventHandler<HTMLSpanElement> = async (e) => {
-    e.preventDefault();
+  const handleCheckout = async () => {
+    setMode(3);
     const order: OrderProps = {
       emailAddress,
       firstName,
@@ -137,7 +137,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
               Total: {formatPrice(total.toString())}
             </span>
             <span
-              onClick={handleCheckout}
+              onClick={() => handleCheckout() && setMode(3)}
               className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns ml fw6 fr"
             >
               {total > 0 ? `Pay` : `Next`}
