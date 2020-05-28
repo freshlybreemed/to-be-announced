@@ -205,7 +205,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                 </div>
                 <div className="dtc v-mid tr">
                   <h1 className="f6 f5-ns fw7 lh-title mv0">
-                    0/{ticketTypes[curr].quantity}
+                    {ticketTypes[curr].sold}/{ticketTypes[curr].quantity}
                   </h1>
                   <h1 className="f6 f5-ns fw7 lh-title gray mv0">
                     {formatPrice(ticketTypes[curr].price)}

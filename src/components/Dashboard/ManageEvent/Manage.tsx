@@ -124,7 +124,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                             <td className="pa1 ">
                               {formatPrice(curr.price.toString())}
                             </td>
-                            <td className="pa1">3/{curr.quantity}</td>
+                            <td className="pa1">
+                              {curr.sold}/{curr.quantity}
+                            </td>
                             <td className="pa1 ">
                               {curr.enabled ? `On Sale` : `Sold Out`}
                             </td>
