@@ -100,6 +100,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                   ref={(ref) => {
                     reward.current = ref;
                   }}
+                  config={{ spread: 100 }}
                   type="emoji"
                 ></Reward>
               </div>
