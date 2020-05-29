@@ -30,11 +30,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
   };
   let tixs = {};
   Object.keys(event.ticketTypes).map((curr) => {
-    tixs[curr] = Object.assign({
-      ticketName: event.ticketTypes[curr].ticketName,
-      quantity: event.ticketTypes[curr].quantity,
-      price: event.ticketTypes[curr].price,
-    });
+    tixs[curr] = event.ticketTypes[curr];
   });
   const [tickets] = useState<any>(tixs);
   // console.log(event);
