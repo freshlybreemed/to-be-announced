@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { formatDate, formatPrice } from '../../lib';
 import FadeIn from 'react-fade-in';
-// const eventList = [
+import classnames from 'classnames';
 import { EventProps, TicketProps } from '../../@types/types';
 //     image:
 //       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
@@ -75,7 +75,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
     return formatPrice(lowestPrice.toString());
   };
   return (
-    <div className={'pv3 vh-75'}>
+    <div className={`pv3 ${classnames({ 'vh-50': events.length > 3 })}`}>
       <div className="mw8 ml4-ns ">
         <h1 className="f1-ns f2 ">Find upcoming events near you </h1>
         <div className="bg-black-80  pa3 pa4-ns br3 b--gray ba">
