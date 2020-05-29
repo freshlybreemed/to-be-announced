@@ -7,19 +7,21 @@ import { EventProps, TicketProps } from '../../@types/types';
 interface MyEventsProps {
   events: EventProps[];
 }
+
+const getLowestPrice = (ticketTypes: { [ticketName: string]: TicketProps }) => {
+  const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
+  const lowestPrice = tickets.reduce((acc, curr) =>
+    acc.price < curr.price && curr.enabled && curr.sold < curr.quantity
+      ? acc
+      : curr,
+  ).price;
+
+  return formatPrice(lowestPrice.toString());
+};
+
 export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   console.log(events);
 
-  const getPrice = (ticketTypes: { [ticketName: string]: TicketProps }) => {
-    const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
-    const lowestPrice = tickets.reduce((acc, curr) =>
-      acc.price < curr.price && curr.enabled && curr.sold < curr.quantity
-        ? acc
-        : curr,
-    ).price;
-
-    return formatPrice(lowestPrice.toString());
-  };
   return (
     <div className={`pv3 ${classnames({ 'vh-50': events.length > 3 })}`}>
       <div className="mw8 ml4-ns ">
