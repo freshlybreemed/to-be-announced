@@ -196,8 +196,8 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                   />
                 </div>
               </section>
-              <section className="fl w-48-l w-100 mv2 pl3-l">
-                <div className="mt3 ">
+              <section className="fl w-48-l w-100 mv2 mv0-ns mv2 pl3-l">
+                <div className="mt3 mt0-ns ">
                   <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
                     Line Up
                   </span>

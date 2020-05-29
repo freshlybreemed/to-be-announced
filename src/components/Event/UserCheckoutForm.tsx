@@ -88,45 +88,50 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
   return (
     <div className="pv3 w-100">
       <form className="w-100 pt4 mw7 center">
-        <div className="mv3">
-          <label className="f5-ns f6 fw7-ns fw5 db pv2">First Name</label>
+        <div className="dt w-100">
+          <div className="mv3 dtc w-48 pb3">
+            <label className="f5-ns f6 fw7-ns fw5 db pv2">First Name</label>
 
-          <input
-            value={firstName}
-            className="bg-transparent white bb bt-0 br-0 bl-0 pa2 mr3 w-100"
-            onChange={(e) => setFirstName(e.currentTarget.value)}
-          />
+            <input
+              value={firstName}
+              className="bg-transparent white bb pa2 mr3 w-90"
+              onChange={(e) => setFirstName(e.currentTarget.value)}
+            />
+          </div>
+          <div className="mv3 dtc w-48">
+            <label className="f5-ns f6 fw7-ns fw5 db pv2">Last Name</label>
+
+            <input
+              value={lastName}
+              className="bg-transparent white bb pa2 mr3 w-90"
+              onChange={(e) => setLastName(e.currentTarget.value)}
+            />
+          </div>
         </div>
-        <div className="mv3">
-          <label className="f5-ns f6 fw7-ns fw5 db pv2">Last Name</label>
+        <div className="dt w-100 mb2 pb2">
+          <div className="mv3 dtc w-48">
+            <label className="f5-ns f6 fw7-ns fw5 db pv2 ">Email Address</label>
 
-          <input
-            value={lastName}
-            className="bg-transparent white bb bt-0 br-0 bl-0 pa2 mr3 w-100"
-            onChange={(e) => setLastName(e.currentTarget.value)}
-          />
-        </div>
-        <div className="mv3">
-          <label className="f5-ns f6 fw7-ns fw5 db pv2 ">Email Address</label>
+            <input
+              value={emailAddress}
+              className="bg-transparent white bb pa2 mr3 w-90"
+              onChange={(e) => {
+                setEmailAddress(e.currentTarget.value);
+                validateEmail(emailAddress);
+              }}
+            />
+          </div>
+          <div className="mv3 dtc w-48">
+            <label className="f5-ns f6 fw7-ns fw5 db pv2 ">Phone Number</label>
 
-          <input
-            value={emailAddress}
-            className="bg-transparent white bb bt-0 br-0 bl-0 pa2 mr3 w-100"
-            onChange={(e) => {
-              setEmailAddress(e.currentTarget.value);
-              validateEmail(emailAddress);
-            }}
-          />
-        </div>
-        <div className="mv3">
-          <label className="f5-ns f6 fw7-ns fw5 db pv2 ">Phone Number</label>
-
-          <Cleave
-            value={phoneNumber}
-            options={{ phone: true, phoneRegionCode: 'US' }}
-            className="bg-transparent white bb bt-0 br-0 bl-0 pa2 mr3 w-100"
-            onChange={(e) => setPhoneNumber(e.currentTarget.value)}
-          />
+            <Cleave
+              value={phoneNumber}
+              style={{ boxSizing: 'initial' }}
+              options={{ phone: true, phoneRegionCode: 'US' }}
+              className="bg-transparent white bb pa2 mr3 w-90"
+              onChange={(e) => setPhoneNumber(e.currentTarget.value)}
+            />
+          </div>
         </div>
         {
           <div className="dib w-100 ">
