@@ -74,9 +74,9 @@ export const formatEventTime = (startDate: Date, endDate: Date) => {
 export const formatTime = (date: Date) => format(date, 'h:mm a');
 
 // Format price
-export const formatPrice = (number: string) => {
+export const formatPrice = (number: string, showNumber: boolean = false) => {
   const fnumber = parseFloat(number);
-  if (fnumber === 0) return 'FREE';
+  if (fnumber === 0 && !showNumber) return 'FREE';
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',

@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { formatDate, formatPrice, formatEventTime } from '../../../lib';
+import {
+  formatDate,
+  formatPrice,
+  formatEventTime,
+  getTicketCount,
+} from '../../../lib';
 import { TicketProps, EventProps } from '../../../@types/types';
 
 interface ManageProps {
@@ -80,7 +85,10 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               </div>
               <div className="fl w-40  tr ">
                 <span className="f3 f4-ns fw6  ">
-                  73/{ticketTypes.reduce((acc, curr) => acc + curr.quantity, 0)}
+                  {`${getTicketCount(event.ticketTypes)}/${ticketTypes.reduce(
+                    (acc, curr) => acc + curr.quantity,
+                    0,
+                  )}`}
                 </span>
               </div>
             </div>
