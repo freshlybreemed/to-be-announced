@@ -11,7 +11,9 @@ export interface EventProps {
   endDate: string;
   slug: string;
   eventType: string;
-  ticketTypes: TicketProps[];
+  ticketTypes: {
+    [ticketName: string]: TicketProps;
+  };
 }
 
 export interface TicketProps {

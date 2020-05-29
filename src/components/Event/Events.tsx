@@ -2,7 +2,7 @@ import * as React from 'react';
 import { formatDate } from '../../lib';
 import FadeIn from 'react-fade-in';
 // const eventList = [
-//   {
+import { EventProps, TicketProps } from '../../@types/types';
 //     image:
 //       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
 //     title: 'Tierra Whack',
@@ -58,10 +58,10 @@ import FadeIn from 'react-fade-in';
 //   },
 // ];
 
-interface EventsProps {
-  events: any;
+interface MyEventsProps {
+  events: EventProps[];
 }
-export const Events: React.FunctionComponent<EventsProps> = ({ events }) => {
+export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   console.log(events);
 
   // const getPrice = (event) =>{
@@ -93,7 +93,7 @@ export const Events: React.FunctionComponent<EventsProps> = ({ events }) => {
           </div>
           <main className="mw8 ml4-ns center">
             <FadeIn>
-              {events.map((curr) => (
+              {events.map((curr: EventProps, ind: number) => (
                 <article className="dt w-90 bb b--gray pb2 mt2 bg-black dim">
                   <div className="dtc w2 w3-ns v-mid">
                     <img src={curr.image} className="db h2 h3-ns" />
