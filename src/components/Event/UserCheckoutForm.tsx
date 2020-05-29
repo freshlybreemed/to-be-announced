@@ -54,11 +54,10 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
       cart,
     };
     if (total >= 0) {
-      const response = await axios.post('/api/ticket', {
+      await axios.post('/api/ticket', {
         order,
         event,
       });
-      console.log(response.data);
     } else {
       // Create a Checkout Session.
       const response = await axios.post('/api/stripe', {
