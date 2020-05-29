@@ -15,15 +15,16 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   ticket,
 }) => {
   const [ticketName, setTicketName] = useState<string>(
-    ticket ? ticket.ticketName : ''
+    ticket ? ticket.ticketName : '',
   );
   const [quantity, setQuantity] = useState<number>(
-    ticket ? ticket.quantity : 0
+    ticket ? ticket.quantity : 0,
   );
   const [sold] = useState<number>(ticket ? ticket.sold : 0);
+  const [enabled] = useState<boolean>(ticket ? ticket.enabled : true);
   const [price, setPrice] = useState<number>(ticket ? ticket.price : 0);
   const [description, setDescription] = useState<string>(
-    ticket ? ticket.description : ''
+    ticket ? ticket.description : '',
   );
   console.log({ ticket, ticketName, quantity, description });
   return (
@@ -108,7 +109,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
               quantity,
               description,
               price,
-              // enabled,
+              enabled,
               sold,
             })
           }

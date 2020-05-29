@@ -12,7 +12,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
   const [ticketTypes] = useState<any>(
     Object.keys(event.ticketTypes).map((curr) => {
       return event.ticketTypes[curr];
-    })
+    }),
   );
 
   console.log(event);
@@ -24,33 +24,29 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
             <img src={event.image} className="db w-90" />
           </div> */}
           <div className="dtc-l dtc-m pl3-l pt2-m pb2 v-mid f3-l f5 fw7">
-            <div>
-              <span className=" lh-title mb0 mt0-ns underline-hover">
-                <a className="white no-underline">{event.name}</a>
-              </span>
+            <div className=" lh-title mb0 mt0-ns underline-hover">
+              <a className="white no-underline">{event.name}</a>
             </div>
-            <div>
-              <span className="f4-ns f5 fw6 lh-title mv0 underline-hover">
-                <a
-                  className="white no-underline"
-                  target="_blank"
-                  href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-                >
-                  {event.location.venue}
-                </a>
-              </span>
+            <div className="f4-ns f5 fw6 lh-title mv0 underline-hover">
+              <a
+                className="white no-underline"
+                target="_blank"
+                href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
+              >
+                {event.location.venue}
+              </a>
             </div>
             <div>
               <span className="f4-ns f5 fw6 mv0 gray">
                 {`${formatEventTime(
                   new Date(event.startDate),
-                  new Date(event.endDate)
+                  new Date(event.endDate),
                 )}`}
               </span>
             </div>
             <h2 className="f4-ns f5 fw6 mv0 green">• Live</h2>
           </div>
-          <div className="w-auto-m dtc"></div>
+          <div className="w-auto-m dtc" />
           <div className="dtc-l dtc-m v-mid tr f4-l f5 fw5">
             <a
               href={`/e/${event.slug}`}
@@ -128,7 +124,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                             <td className="pa1 ">
                               {formatPrice(curr.price.toString())}
                             </td>
-                            <td className="pa1">3/{curr.quantity}</td>
+                            <td className="pa1">
+                              {curr.sold}/{curr.quantity}
+                            </td>
                             <td className="pa1 ">
                               {curr.enabled ? `On Sale` : `Sold Out`}
                             </td>

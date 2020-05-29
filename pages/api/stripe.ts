@@ -1,39 +1,49 @@
 const stripe = require('stripe')(process.env.STRIPE_DEV_SECRET);
 import { wrapAsync } from './helpers';
 import { NextApiRequest } from 'next';
+import { OrderProps, EventProps } from '../../src/@types/types';
 
-export default wrapAsync(async (req: NextApiRequest) => {
-  const { emailAddress, eventName, image, cart, slug } = req.body;
-  console.log(req.headers.host);
-  const tickets = Object.keys(cart)
-    .filter((curr) => cart[curr].price > 0)
+const saveCheckoutSession = async (order: OrderProps, db: any) =>
+  await db.collection('tba-checkout').insertOne(order);
+
+const generateStripeCheckout = async (event: EventProps, order: OrderProps) => {
+  const tickets = Object.keys(order.cart)
+    .filter((curr) => order.cart[curr].price > 0)
     .map((curr) => {
       return {
-        name: `${eventName} - ${curr} ${
-          cart[curr].quantity > 1 ? `Tickets` : `Ticket`
+        name: `${event.name} - ${curr} ${
+          order.cart[curr].quantity > 1 ? `Tickets` : `Ticket`
         }`,
-        amount: cart[curr].price * 112,
+        amount: order.cart[curr].price * 112,
         currency: 'usd',
-        quantity: cart[curr].quantity,
-        images: [image],
+        quantity: order.cart[curr].quantity,
+        images: [event.image],
       };
     });
-  const metaData = { slug };
-  for (var curr in cart) {
-    metaData[curr] = cart[curr].quantity.toString();
+  const metaData = { slug: event.slug };
+  for (var curr in order.cart) {
+    metaData[curr] = order.cart[curr].quantity.toString();
   }
+  console.log(metaData);
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     payment_intent_data: {
       metadata: {
-        emailAddress,
+        emailAddress: order.emailAddress,
         ...metaData,
       },
     },
     line_items: tickets,
-    success_url: `http://${req.headers.host}/user`,
-    cancel_url: `http://${req.headers.host}/user/balance`,
+    success_url: `https://whatstba.com/user`,
+    cancel_url: `https://whatstba.com/user/balance`,
   });
 
   return session;
+};
+
+export default wrapAsync(async (req: NextApiRequest, db: any) => {
+  const { event, order }: { event: EventProps; order: OrderProps } = req.body;
+
+  await saveCheckoutSession(order, db);
+  return await generateStripeCheckout(event, order);
 });

@@ -17,24 +17,24 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [location, setLocation] = useState<object>(event ? event.location : {});
   const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(
-    event ? event.description : ''
+    event ? event.description : '',
   );
   const [startDate, setStartDate] = useState<string>(
-    event ? moment(event.startDate).format('llll') : ''
+    event ? moment(event.startDate).format('llll') : '',
   );
   const [endDate, setEndDate] = useState<string>(
-    event ? moment(event.endDate).format('llll') : ''
+    event ? moment(event.endDate).format('llll') : '',
   );
   const [eventType, setEventType] = useState<string>(
-    event ? event.eventType : ''
+    event ? event.eventType : '',
   );
   const [slug, setSlug] = useState<string>(event ? event.slug : '');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
-    false
+    false,
   );
   const [ticketTypes, setTicketTypes] = useState<Object>(
-    event ? event.ticketTypes : {}
+    event ? event.ticketTypes : {},
   );
 
   const addTicket = (ticket: TicketProps) => {
@@ -47,15 +47,11 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   };
 
   const updateTicket = (ticket: TicketProps) => {
-    const tickets = {};
-    Object.keys(ticketTypes).map((curr) => {
-      console.log(ticket, curr, ticketTypes[curr]._id);
-      if (ticket._id === ticketTypes[curr]._id) {
-        tickets[ticket.ticketName] = ticket;
-      } else {
-        tickets[curr] = ticketTypes[curr];
-      }
-    });
+    const tickets = {
+      ...ticketTypes,
+      [ticket.ticketName]: ticket,
+    };
+
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
     setCurrentTicket(null);
@@ -182,7 +178,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                     </a>
                   </h1>
                   <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
-                    new Date(2)
+                    new Date(2),
                   )}`}</h2>
                   <div>
                     <label className="switch">
@@ -205,7 +201,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                 </div>
                 <div className="dtc v-mid tr">
                   <h1 className="f6 f5-ns fw7 lh-title mv0">
-                    0/{ticketTypes[curr].quantity}
+                    {ticketTypes[curr].sold}/{ticketTypes[curr].quantity}
                   </h1>
                   <h1 className="f6 f5-ns fw7 lh-title gray mv0">
                     {formatPrice(ticketTypes[curr].price)}
