@@ -39,4 +39,11 @@ const generateStripeCheckout = async (event: EventProps, order: OrderProps) => {
   });
 
   return session;
+};
+
+export default wrapAsync(async (req: NextApiRequest, db: any) => {
+  const { event, order }: { event: EventProps; order: OrderProps } = req.body;
+
+  await saveCheckoutSession(order, db);
+  return await generateStripeCheckout(event, order);
 });
