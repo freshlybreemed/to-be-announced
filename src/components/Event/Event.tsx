@@ -42,7 +42,6 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
     <Elements stripe={stripePromise}>
       <main className="mw9 ml4-ns center">
         <img className="w-100 center db" src={event.image} />
-
         <article className="dt-ns tc tl-ns w-90-l w-100-m  pb2 mv3">
           <div className="dtc-l  pt2-m  v-mid f3-l f5 fw7">
             <div className=" lh-title mb0 mt0-ns underline-hover">
