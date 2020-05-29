@@ -83,6 +83,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
       // using `error.message`.
       console.warn(error.message);
     }
+    setMode(4);
   };
   return (
     <div className="pv3 w-100">

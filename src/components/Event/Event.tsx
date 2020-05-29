@@ -15,10 +15,13 @@ interface EventViewProps {
 }
 
 export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
-  const [mode, setMode] = useState<number>(0);
+  const [step, setStep] = useState<number>(0);
   const [cart, setCart] = useState<any>({});
   const [total, setTotal] = useState<number>(0);
 
+  const setMode = (step: number) => {
+    setStep(step);
+  };
   let tixs = {};
   Object.keys(event.ticketTypes).map((curr) => {
     tixs[curr] = Object.assign({
@@ -69,18 +72,18 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           </div>
           <div className="dtc-l v-mid tr-l tc f2-l f3 fw6">
             <div
-              onClick={() => (mode === 0 ? setMode(1) : setMode(0))}
+                onClick={() => (step === 0 ? setMode(1) : setMode(0))}
               className={`dib-l ${classnames({
-                'bg-green': mode === 0,
-                'bg-red': mode > 0,
-              })} no-underline white noselect dim br-100  pa2 mr2 mt2-l ph4 mt2 `}
+                  'bg-green': step === 0,
+                  'bg-red': step > 0,
+                  'bg-animate': step >= 0,
             >
-              {mode === 0 ? 'Get Tickets' : 'Cancel'}
+                {step === 0 ? 'Get Tickets' : 'Cancel'}
             </div>
           </div>
         </article>
         <div className="flex flex-wrap justify-between w-100 nr3 mv3 pv3">
-          {mode === 3 && (
+          {step === 4 && (
             <div className="w-100 dib">
               <FadeIn>
                 <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv4">
@@ -94,7 +97,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
               </FadeIn>
             </div>
           )}
-          {mode === 2 && (
+          {step === 2 && (
             <div className="w-100 dib">
               <FadeIn>
                 <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv4">
@@ -109,7 +112,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
               </FadeIn>
             </div>
           )}
-          {mode === 1 && (
+          {step === 1 && (
             <div className="w-100 dib">
               <FadeIn>
                 <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv4">
