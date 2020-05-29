@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Router from 'next/router';
 import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
@@ -78,9 +79,13 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const handleSubmit = async () => {
     setLoading(true);
     const userId = getCookieFromBrowser('userId');
-    await axios
+    return await axios
       .post('/api/event', { ...eventDetails, userId })
-      .then((res) => console.log(res.data));
+      .catch((res) => {
+        setLoading(false);
+        console.error(res.data);
+      })
+      .then(() => Router.push(`/dashboard/manage/${eventDetails.slug}`));
   };
 
   return (
