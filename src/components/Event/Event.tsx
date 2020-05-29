@@ -107,7 +107,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv4">
                   Confirmation
                 </span>
-                <div className="pb4 f3-ns f4 lh-title">
+                <div className="pb4 f3-ns f4  tc lh-title">
                   <h1 className="mb1 ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
