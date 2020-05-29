@@ -64,7 +64,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                   </div>
                   <div className="dtc v-mid tr">
                     <h1 className="f6 f5-ns fw7 lh-title  ttu mv0">
-                      {curr.price}
+                      {getPrice(curr.ticketTypes)}
                     </h1>
                     <h1 className="f6 f5-ns fw7 lh-title   mv0">
                       {curr.location.venue}
