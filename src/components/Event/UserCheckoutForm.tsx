@@ -62,12 +62,8 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
     } else {
       // Create a Checkout Session.
       const response = await axios.post('/api/stripe', {
-        amount: total,
-        eventName: event.name,
-        slug: event.slug,
-        emailAddress,
-        image: event.image,
-        cart,
+        order,
+        event,
       });
 
       if (response.data.statusCode === 500) {
