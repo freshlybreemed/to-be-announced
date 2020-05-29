@@ -95,8 +95,8 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                   ref={(ref) => {
                     reward.current = ref;
                   }}
-                  config={{ spread: 100 }}
-                  type="emoji"
+                  config={{ spread: 150, lifetime: 400, elementCount: 350 }}
+                  type="confetti"
                 ></Reward>
               </div>
               <FadeIn>
@@ -104,7 +104,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                   Confirmation
                 </span>
                 <div className="pb4 f3-ns f4  tc lh-title">
-                  <h1 className="mb1 ">
+                  <div className="mb1 f1-ns f2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       // width="24"
@@ -117,7 +117,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                     </svg>
                     {'  '}
                     Thanks for your order!
-                  </h1>
+                  </div>
                   <span className="b">
                     Order{' '}
                     <a className="white no-underline" href="">
