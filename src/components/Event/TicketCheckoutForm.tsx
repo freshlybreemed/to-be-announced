@@ -1,3 +1,4 @@
+import FadeIn from 'react-fade-in';
 import * as React from 'react';
 import { useState } from 'react';
 import { formatPrice } from '../../lib';
@@ -56,17 +57,19 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
           })}
         </ul>
         {!emptyCart && (
-          <div className="dib w-100">
-            <span className="fl pt2 f3-ns f4 db">
-              Total: {formatPrice(total.toString())}
-            </span>
-            <span
-              onClick={() => setMode(2)}
-              className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns ml fw6 fr"
-            >
-              Next
-            </span>
-          </div>
+          <FadeIn>
+            <div className="dib w-100">
+              <span className="fl pt2 f3-ns f4 db">
+                Total: {formatPrice(total.toString())}
+              </span>
+              <span
+                onClick={() => setMode(2)}
+                className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns ml fw6 fr"
+              >
+                Next
+              </span>
+            </div>
+          </FadeIn>
         )}
       </form>
     </div>
