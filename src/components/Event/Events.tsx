@@ -3,60 +3,6 @@ import { formatDate, formatPrice } from '../../lib';
 import FadeIn from 'react-fade-in';
 import classnames from 'classnames';
 import { EventProps, TicketProps } from '../../@types/types';
-//     image:
-//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-//     title: 'Tierra Whack',
-//     date: formatDate(new Date()),
-//     city: 'Los Angeles',
-//     price: 'FREE',
-//     venue: 'YouTube',
-//   },
-//   {
-//     image:
-//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-//     title: 'Tierra Whack',
-//     date: formatDate(new Date()),
-//     city: 'Los Angeles',
-//     price: 'FREE',
-//     venue: 'YouTube',
-//   },
-//   {
-//     image:
-//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-//     title: 'Tierra Whack',
-//     date: formatDate(new Date()),
-//     city: 'Los Angeles',
-//     price: 'FREE',
-//     venue: 'YouTube',
-//   },
-//   {
-//     image:
-//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-//     title: 'Tierra Whack',
-//     date: formatDate(new Date()),
-//     city: 'Los Angeles',
-//     price: 'FREE',
-//     venue: 'YouTube',
-//   },
-//   {
-//     image:
-//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-//     title: 'Tierra Whack',
-//     date: formatDate(new Date()),
-//     city: 'Los Angeles',
-//     price: 'FREE',
-//     venue: 'YouTube',
-//   },
-//   {
-//     image:
-//       'https://s1.ticketm.net/dam/a/5d5/bcaf1027-1df0-4ea8-8366-6876e84b15d5_1315141_RETINA_PORTRAIT_16_9.jpg',
-//     title: 'Tierra Whack',
-//     date: formatDate(new Date()),
-//     city: 'Los Angeles',
-//     price: 'FREE',
-//     venue: 'YouTube',
-//   },
-// ];
 
 interface MyEventsProps {
   events: EventProps[];
