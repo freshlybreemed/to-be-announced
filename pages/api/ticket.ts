@@ -26,6 +26,6 @@ const updateTixCount = async (
 
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
   const { event, order } = req.body;
-  await updateTixCount(order, event, db);
-  return await sendEmail([order.emailAddress], ticketEmail, event, order);
+  return await updateTixCount(order, event, db);
+  // return await sendEmail([order.emailAddress], ticketEmail, event, order);
 });
