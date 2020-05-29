@@ -57,7 +57,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
         />
         <span
           onClick={() => {
-            if (quantity <= ticketType.quantity) {
+            if (quantity < ticketType.quantity - ticketType.sold) {
               setQuantity(quantity + 1);
               updateCart(ticketType.ticketName, quantity + 1);
             }
