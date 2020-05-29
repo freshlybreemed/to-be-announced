@@ -34,8 +34,8 @@ const generateStripeCheckout = async (event: EventProps, order: OrderProps) => {
       },
     },
     line_items: tickets,
-    success_url: `http://${req.headers.host}/user`,
-    cancel_url: `http://${req.headers.host}/user/balance`,
+    success_url: `https://whatstba.com/user`,
+    cancel_url: `https://whatstba.com/user/balance`,
   });
 
   return session;
