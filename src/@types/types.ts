@@ -10,6 +10,7 @@ export interface EventProps {
   startDate: string;
   endDate: string;
   slug: string;
+  gross: number;
   eventType: string;
   ticketTypes: {
     [ticketName: string]: TicketProps;

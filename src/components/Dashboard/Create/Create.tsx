@@ -70,6 +70,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     eventType,
     image,
     startDate,
+    gross: event ? event.gross : 0,
     endDate,
     ticketTypes,
   };
