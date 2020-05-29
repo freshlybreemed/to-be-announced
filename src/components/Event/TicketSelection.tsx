@@ -16,6 +16,8 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
   const [quantity, setQuantity] = useState<number>(0);
 
   const freeTix = ticketType.price > 0 ? false : true;
+  const soldOut = quantity + 1 > ticketType.quantity - ticketType.sold;
+  const disabled = !ticketType.enabled;
   return (
     <li
       className={`flex items-center pa3 ph0-l ${classnames({
@@ -29,43 +31,49 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
           {`${formatPrice(ticketType.price.toString())} `}
           {!freeTix &&
             `+ ${formatPrice(
-              (parseFloat(ticketType.price.toString()) * 0.12).toString()
+              (parseFloat(ticketType.price.toString()) * 0.12).toString(),
             )} FEE`}
         </span>
       </div>
       <div className="fr">
-        {/* <span className="f4-ns f5 fw4 ">Quantity: </span> */}
-        <span
-          onClick={() => {
-            if (quantity > 0) {
-              setQuantity(quantity - 1);
-              updateCart(ticketType.ticketName, quantity - 1);
-            }
-          }}
-          className="f3 noselect br-100 ph2 pb1 bg-white black"
-        >
-          -
-        </span>
-        <input
-          type="number"
-          value={quantity}
-          className="bg-transparent tc white bb bt-0 br-0 bl-0 w3-ns w2 mh3-ns mh1"
-          onChange={(e) => {
-            setQuantity(parseInt(e.currentTarget.value));
-            updateCart(ticketType.ticketName, e.currentTarget.value);
-          }}
-        />
-        <span
-          onClick={() => {
-            if (quantity <= ticketType.quantity) {
-              setQuantity(quantity + 1);
-              updateCart(ticketType.ticketName, quantity + 1);
-            }
-          }}
-          className="f3 noselect br-100 ph2 pb1 bg-white black"
-        >
-          +
-        </span>
+        {!disabled && (
+          <>
+            <span
+              onClick={() => {
+                if (quantity > 0) {
+                  setQuantity(quantity - 1);
+                  updateCart(ticketType.ticketName, quantity - 1);
+                }
+              }}
+              className="f3 noselect br-100 ph2 pb1 bg-white black"
+            >
+              -
+            </span>
+            <input
+              type="number"
+              value={quantity}
+              className="bg-transparent tc white bb bt-0 br-0 bl-0 w3-ns w2 mh3-ns mh1"
+              onChange={(e) => {
+                setQuantity(parseInt(e.currentTarget.value));
+                updateCart(ticketType.ticketName, e.currentTarget.value);
+              }}
+            />
+            <span
+              onClick={() => {
+                if (!soldOut) {
+                  setQuantity(quantity + 1);
+                  updateCart(ticketType.ticketName, quantity + 1);
+                }
+              }}
+              className={`f3 noselect br-100 ph2 pb1 ${classnames({
+                'bg-white': !soldOut,
+                'bg-white-': soldOut,
+              })} black`}
+            >
+              +
+            </span>
+          </>
+        )}
       </div>
     </li>
   );

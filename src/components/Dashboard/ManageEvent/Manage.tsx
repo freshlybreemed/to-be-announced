@@ -1,6 +1,13 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { formatDate, formatPrice, formatEventTime } from '../../../lib';
+import {
+  formatDate,
+  formatPrice,
+  formatEventTime,
+  getTicketCount,
+  getOrderTicketCount,
+} from '../../../lib';
+import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
 
 interface ManageProps {
@@ -23,8 +30,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
           {/* <div className="dtc-l dtc-m v-mid ">
             <img src={event.image} className="db w-90" />
           </div> */}
-          <div className="dtc-l dtc-m pl3-l pt2-m pb2 v-mid f3-l f5 fw7">
-            <div className=" lh-title mb0 mt0-ns underline-hover">
+          <div className="dtc-l dtc-m pl3-l pt2-m pb2 v-mid  fw7">
+            <div className=" lh-title f3 mb0 mt0-ns underline-hover">
               <a className="white no-underline">{event.name}</a>
             </div>
             <div className="f4-ns f5 fw6 lh-title mv0 underline-hover">
@@ -69,7 +76,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                 <span className="f4-ns fw6 f5 ">Net Sales </span>
               </div>
               <div className="fl w-40 tr">
-                <span className="f3 f4-ns fw6  ">$173.50</span>
+                <span className="f3 f4-ns fw6  ">
+                  {formatPrice(event.gross.toString(), true)}
+                </span>
               </div>
             </div>
           </article>
@@ -80,7 +89,10 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               </div>
               <div className="fl w-40  tr ">
                 <span className="f3 f4-ns fw6  ">
-                  73/{ticketTypes.reduce((acc, curr) => acc + curr.quantity, 0)}
+                  {`${getTicketCount(event.ticketTypes)}/${ticketTypes.reduce(
+                    (acc, curr) => acc + curr.quantity,
+                    0,
+                  )}`}
                 </span>
               </div>
             </div>
@@ -156,14 +168,14 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
             </div>
           </section>
         </div>
-        <section className="fl w-90 ">
+        <section className="fl w-100 ">
           <div className="bg-black-80">
-            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3-ns mv2">
               Attendee List{' '}
             </span>
-            <div className="pt4 ">
+            <div className="pt4 pr2-ns mr3-ns">
               <table
-                className="f6-ns f7 w-100  center"
+                className="f6-ns f7 w-100  pb2 center"
                 style={{ borderCollapse: 'collapse' }}
               >
                 <thead>
@@ -175,56 +187,26 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                   </tr>
                 </thead>
                 <tbody className="lh-copy f4-ns f6">
-                  <tr className="dim">
-                    <td className="pa1">{formatDate(new Date(), 'shorter')}</td>
-                    <td className="pa1">
-                      <a href="" className="white no-underline">
-                        hassan@company.co
-                      </a>
-                    </td>
-                    <td className="pa1">1</td>
-                    <td className="pa1">{formatPrice('174')}</td>
-                  </tr>
-                  <tr className="dim">
-                    <td className="pa1  bt b--gray">
-                      {formatDate(new Date(), 'shorter')}
-                    </td>
-                    {/* <td className="pa1 bt b--gray">Taral Hicks</td> */}
-                    <td className="pa1 bt b--gray">
-                      <a href="" className="white no-underline">
-                        taral@company.co
-                      </a>
-                    </td>
-                    <td className="pa1 bt b--gray">2</td>
-                    <td className="pa1 bt b--gray">{formatPrice('14')}</td>
-                  </tr>
-                  <tr className="dim">
-                    <td className="pa1  bt b--gray">
-                      {formatDate(new Date(), 'shorter')}
-                    </td>
-                    {/* <td className="pa1 bt b--gray">Tyrin Turner</td> */}
-                    <td className="pa1 bt b--gray">ty@companyn.co</td>
-                    <td className="pa1 bt b--gray">4</td>
-                    <td className="pa1 bt b--gray">{formatPrice('17')}</td>
-                  </tr>
-                  <tr className="dim">
-                    <td className="pa1  bt b--gray">
-                      {formatDate(new Date(), 'shorter')}
-                    </td>
-                    {/* <td className="pa1 bt b--gray">Oliver Grant</td> */}
-                    <td className="pa1 bt b--gray">oliverg@companyn.co</td>
-                    <td className="pa1 bt b--gray">1</td>
-                    <td className="pa1 bt b--gray">{formatPrice('34')}</td>
-                  </tr>
-                  <tr className="dim">
-                    <td className="pa1 bt b--gray">
-                      {formatDate(new Date(), 'shorter')}
-                    </td>
-                    {/* <td className="pa1 bt b--gray">Dean Blanc</td> */}
-                    <td className="pa1 bt b--gray">dean@companyain.co</td>
-                    <td className="pa1 bt b--gray">2</td>
-                    <td className="pa1">{formatPrice('174')}</td>
-                  </tr>
+                  {event.tickets.map((curr, ind) => {
+                    return (
+                      <tr className={`dim ${classnames({ bt: ind > 0 })}`}>
+                        <td className="pa1">
+                          {formatDate(new Date(curr.date), 'shorter')}
+                        </td>
+                        <td className="pa1">
+                          <a href="" className="white no-underline">
+                            {curr.emailAddress}
+                          </a>
+                        </td>
+                        <td className="pa1">
+                          {getOrderTicketCount(curr.cart)}
+                        </td>
+                        <td className="pa1">
+                          {formatPrice(curr.total.toString(), true)}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
               <span className="b bb">

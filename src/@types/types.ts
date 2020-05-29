@@ -8,10 +8,15 @@ export interface EventProps {
   };
   description: string;
   startDate: string;
+  organizerId: string;
+  tickets: OrderProps[];
   endDate: string;
   slug: string;
+  gross: number;
   eventType: string;
-  ticketTypes: TicketProps[];
+  ticketTypes: {
+    [ticketName: string]: TicketProps;
+  };
 }
 
 export interface TicketProps {

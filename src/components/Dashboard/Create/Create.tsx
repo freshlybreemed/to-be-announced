@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Router from 'next/router';
 import { PlacesAutoComplete } from './PlacesAutoComplete';
 import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
@@ -36,6 +37,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [ticketTypes, setTicketTypes] = useState<Object>(
     event ? event.ticketTypes : {},
   );
+  const [loading, setLoading] = useState<boolean>(false);
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
@@ -67,7 +69,10 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     description,
     eventType,
     image,
+    organizerId: '123',
+    tickets: event ? event.tickets : [],
     startDate,
+    gross: event ? event.gross : 0,
     endDate,
     ticketTypes,
   };
@@ -75,10 +80,15 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   console.log(eventDetails);
 
   const handleSubmit = async () => {
+    setLoading(true);
     const userId = getCookieFromBrowser('userId');
-    await axios
+    return await axios
       .post('/api/event', { ...eventDetails, userId })
-      .then((res) => console.log(res.data));
+      .catch((res) => {
+        setLoading(false);
+        console.error(res.data);
+      })
+      .then(() => Router.push(`/dashboard/manage/${eventDetails.slug}`));
   };
 
   return (
@@ -254,10 +264,11 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         <Editor setDescription={setDescription} description={description} />
       </div>
       <div
-        className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph4 f3 fw5"
+        className="mt4 b--white dib noselect br-100 b--solid pa2 ph4 f3 fw5"
         onClick={() => handleSubmit()}
       >
-        Submit
+        {loading && <i className="fa fa-spinner fa-spin mr2" />}
+        {loading ? 'Submitting...' : 'Submit'}
       </div>
     </article>
   );

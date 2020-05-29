@@ -1,7 +1,24 @@
 import { format } from 'date-fns';
 import cookie from 'js-cookie';
 import moment from 'moment';
+import { TicketProps, EventCartProps } from '../@types/types';
+
 export const stripeClient = process.env.STRIPE_DEV_CLIENT;
+
+export const getOrderTicketCount = (cart: {
+  [ticketName: string]: EventCartProps;
+}) => {
+  const tickets = Object.keys(cart).map((curr) => cart[curr]);
+  return tickets.reduce((acc, curr) => acc + curr.quantity, 0);
+};
+
+export const getTicketCount = (ticketTypes: {
+  [ticketName: string]: TicketProps;
+}) => {
+  const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
+  return tickets.reduce((acc, curr) => acc + curr.sold, 0);
+};
+
 export const setCookie = (key: string, value: string) => {
   if (process.browser) {
     cookie.set(key, value, {
@@ -64,9 +81,9 @@ export const formatEventTime = (startDate: Date, endDate: Date) => {
 export const formatTime = (date: Date) => format(date, 'h:mm a');
 
 // Format price
-export const formatPrice = (number: string) => {
+export const formatPrice = (number: string, showNumber: boolean = false) => {
   const fnumber = parseFloat(number);
-  if (fnumber === 0) return 'FREE';
+  if (fnumber === 0 && !showNumber) return 'FREE';
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
