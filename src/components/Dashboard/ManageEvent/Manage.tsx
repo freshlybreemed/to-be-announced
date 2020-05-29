@@ -5,6 +5,7 @@ import {
   formatPrice,
   formatEventTime,
   getTicketCount,
+  getOrderTicketCount,
 } from '../../../lib';
 import { TicketProps, EventProps } from '../../../@types/types';
 
@@ -183,56 +184,26 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                   </tr>
                 </thead>
                 <tbody className="lh-copy f4-ns f6">
-                  <tr className="dim">
-                    <td className="pa1">{formatDate(new Date(), 'shorter')}</td>
-                    <td className="pa1">
-                      <a href="" className="white no-underline">
-                        hassan@company.co
-                      </a>
-                    </td>
-                    <td className="pa1">1</td>
-                    <td className="pa1">{formatPrice('174')}</td>
-                  </tr>
-                  <tr className="dim">
-                    <td className="pa1  bt b--gray">
-                      {formatDate(new Date(), 'shorter')}
-                    </td>
-                    {/* <td className="pa1 bt b--gray">Taral Hicks</td> */}
-                    <td className="pa1 bt b--gray">
-                      <a href="" className="white no-underline">
-                        taral@company.co
-                      </a>
-                    </td>
-                    <td className="pa1 bt b--gray">2</td>
-                    <td className="pa1 bt b--gray">{formatPrice('14')}</td>
-                  </tr>
-                  <tr className="dim">
-                    <td className="pa1  bt b--gray">
-                      {formatDate(new Date(), 'shorter')}
-                    </td>
-                    {/* <td className="pa1 bt b--gray">Tyrin Turner</td> */}
-                    <td className="pa1 bt b--gray">ty@companyn.co</td>
-                    <td className="pa1 bt b--gray">4</td>
-                    <td className="pa1 bt b--gray">{formatPrice('17')}</td>
-                  </tr>
-                  <tr className="dim">
-                    <td className="pa1  bt b--gray">
-                      {formatDate(new Date(), 'shorter')}
-                    </td>
-                    {/* <td className="pa1 bt b--gray">Oliver Grant</td> */}
-                    <td className="pa1 bt b--gray">oliverg@companyn.co</td>
-                    <td className="pa1 bt b--gray">1</td>
-                    <td className="pa1 bt b--gray">{formatPrice('34')}</td>
-                  </tr>
-                  <tr className="dim">
-                    <td className="pa1 bt b--gray">
-                      {formatDate(new Date(), 'shorter')}
-                    </td>
-                    {/* <td className="pa1 bt b--gray">Dean Blanc</td> */}
-                    <td className="pa1 bt b--gray">dean@companyain.co</td>
-                    <td className="pa1 bt b--gray">2</td>
-                    <td className="pa1">{formatPrice('174')}</td>
-                  </tr>
+                  {event.tickets.map((curr, ind) => {
+                    return (
+                      <tr className={`dim ${classnames({ bt: ind > 0 })}`}>
+                        <td className="pa1">
+                          {formatDate(new Date(curr.date), 'shorter')}
+                        </td>
+                        <td className="pa1">
+                          <a href="" className="white no-underline">
+                            {curr.emailAddress}
+                          </a>
+                        </td>
+                        <td className="pa1">
+                          {getOrderTicketCount(curr.cart)}
+                        </td>
+                        <td className="pa1">
+                          {formatPrice(curr.total.toString(), true)}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
               <span className="b bb">
