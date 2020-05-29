@@ -129,8 +129,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                     </a>
                   </span>
                   <p>
-                    We've sent a confirmation email with details to
-                    ebrima.jobe92@gmail.com
+                    We've sent a confirmation email with details to your email.
                   </p>
                   <p className="gray">Questions? Text support to 411</p>
                 </div>
