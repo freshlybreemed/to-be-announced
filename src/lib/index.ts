@@ -1,7 +1,17 @@
 import { format } from 'date-fns';
 import cookie from 'js-cookie';
 import moment from 'moment';
+import { TicketProps } from '../@types/types';
+
 export const stripeClient = process.env.STRIPE_DEV_CLIENT;
+
+export const getTicketCount = (ticketTypes: {
+  [ticketName: string]: TicketProps;
+}) => {
+  const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
+  return tickets.reduce((acc, curr) => acc + curr.sold, 0);
+};
+
 export const setCookie = (key: string, value: string) => {
   if (process.browser) {
     cookie.set(key, value, {
