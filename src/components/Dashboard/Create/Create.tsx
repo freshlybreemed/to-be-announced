@@ -59,9 +59,8 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     setCurrentTicket(null);
   };
 
-  const setEventLocation = (addy: object) => {
-    setLocation(addy);
-  };
+  const setEventLocation = (addy: object) => setLocation(addy);
+
   const eventDetails = {
     name,
     slug,

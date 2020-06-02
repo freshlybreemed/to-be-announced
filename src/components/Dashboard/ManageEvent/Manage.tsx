@@ -72,7 +72,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               })}`}
             >
               • {live ? `Live` : `Sale Ended`}
-            </h2>          </div>
+            </h2>
+          </div>
           <div className="w-auto-m dtc" />
           <div className="dtc-l dtc-m v-mid tr f4-l f5 fw5">
             <a
@@ -196,8 +197,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
         </div>
         <section className="fl w-100 ">
           <div className="bg-black-80">
-            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3-ns mv2">
-              Attendee List{' '}
+            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+              Attendee List
             </span>
             <div className="pt4 pr2-ns mr3-ns">
               <table
