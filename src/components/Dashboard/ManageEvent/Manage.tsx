@@ -136,9 +136,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                       </tr>
                     </thead>
                     <tbody className="lh-copy f4">
-                      {ticketTypes.map((curr: TicketProps) => {
+                      {ticketTypes.map((curr: TicketProps, key: number) => {
                         return (
-                          <tr>
+                          <tr key={key}>
                             <td className="pa1 ">{curr.ticketName}</td>
                             <td className="pa1 ">
                               {formatPrice(curr.price.toString())}
@@ -196,7 +196,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                 <tbody className="lh-copy f4-ns f6">
                   {event.tickets.map((curr, ind) => {
                     return (
-                      <tr className={`dim ${classnames({ bt: ind > 0 })}`}>
+                      <tr key={ind} className={`dim ${classnames({ bt: ind > 0 })}`}>
                         <td className="pa1">
                           {formatDate(new Date(curr.date), 'shorter')}
                         </td>
