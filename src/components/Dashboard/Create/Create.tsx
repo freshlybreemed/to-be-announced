@@ -101,7 +101,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/draftail@1.3.0/dist/draftail.css"
       />
-      <h1 className="f1-ns f2 mt0">Create Event</h1>
+      <h1 className="f1-ns f2 mt0">{event ? `Edit` : `Create`} Event</h1>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Select Event Type</h2>
       <div className=" pt4 mb4">
