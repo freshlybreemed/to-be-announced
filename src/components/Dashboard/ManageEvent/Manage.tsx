@@ -16,6 +16,7 @@ interface ManageProps {
 export const ManageEvent: React.FunctionComponent<ManageProps> = ({
   event,
 }) => {
+  const [live] = useState<boolean>(new Date(event.startDate) > new Date())
   const [ticketTypes] = useState<any>(
     Object.keys(event.ticketTypes).map((curr) => {
       return event.ticketTypes[curr];
@@ -51,8 +52,14 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                 )}`}
               </span>
             </div>
-            <h2 className="f4-ns f5 fw6 mv0 green">• Live</h2>
-          </div>
+            <h2
+              className={`f4-ns f5 fw6 mv0 ${classnames({
+                green: live,
+                red: !live,
+              })}`}
+            >
+              • {live ? `Live` : `Sale Ended`}
+            </h2>          </div>
           <div className="w-auto-m dtc" />
           <div className="dtc-l dtc-m v-mid tr f4-l f5 fw5">
             <a
