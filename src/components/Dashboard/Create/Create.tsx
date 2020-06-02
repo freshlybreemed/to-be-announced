@@ -107,7 +107,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         {(eventType === '' || eventType === 'venue') && (
           <div className="dib mr3">
             <span
-              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4 f4 fw5  "
+              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4-ns ph3 f4-ns f6 fw5  "
               onClick={() => setEventType('venue')}
             >
               Venue
@@ -117,7 +117,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         {(eventType === '' || eventType === 'online') && (
           <div className="dib">
             <span
-              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4 f4 fw5 white"
+              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4-ns ph3 f4-ns f6 fw5 white"
               onClick={() => setEventType('online')}
             >
               Online Event
