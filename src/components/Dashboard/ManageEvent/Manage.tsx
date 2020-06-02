@@ -160,7 +160,13 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                               {curr.sold}/{curr.quantity}
                             </td>
                             <td className="pa1 ">
-                              {curr.enabled ? `On Sale` : `Sold Out`}
+                              {curr.enabled
+                                ? curr.quantity - curr.sold > 0
+                                  ? live
+                                    ? `On Sale`
+                                    : `Ended`
+                                  : `Sold Out`
+                                : `Hidden`}
                             </td>
                           </tr>
                         );
