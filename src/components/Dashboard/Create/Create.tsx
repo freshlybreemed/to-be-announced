@@ -196,7 +196,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           >
             Create A Ticket{' '}
           </div>{' '}
-          <main className="w-75 tl center">
+          <main className="w-75-ns w-100 tl center">
             {Object.keys(ticketTypes).map((curr) => (
               <article className="dt w-100 bb b--gray pb2 mt2">
                 <div className="dtc v-mid pl3">
