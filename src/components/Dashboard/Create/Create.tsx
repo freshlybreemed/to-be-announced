@@ -126,46 +126,60 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         )}
       </div>
       <hr className="o-20 mt4" />
-      <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Event Details</h2>
-      <div className="mv3">
-        <input
-          value={name}
-          onChange={(event) => {
-            setName(event.currentTarget.value);
-          }}
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white  w-75-ns w-100"
-          placeholder="Event Name"
-        />
-      </div>
-      <div className="mv3 ">
-        <PlacesAutoComplete
-          location={location}
-          setLocation={setEventLocation}
-        />
-      </div>
-      <DateTimePicker
-        start={true}
-        startDate={startDate}
-        setStartDate={setStartDate}
-      />
-      <div className="mv3">
+      <div className="w-75-ns w-100 center">
+        <div className="mv3">
+          <label className="f5-ns f6 fw7-ns fw5 db tl">
+            Enter Event Details
+          </label>
+          <input
+            value={name}
+            onChange={(event) => {
+              setName(event.currentTarget.value);
+            }}
+            className="pa2 bt-0 br-0 bl-0 bb input-reset bb bg-black white w-100"
+          />
+        </div>
+        <div className="mv3 ">
+          <label className="f5-ns f6 fw7-ns fw5 db tl">
+            Enter Event Location
+          </label>
+          <PlacesAutoComplete
+            location={location}
+            setLocation={setEventLocation}
+          />
+        </div>
+        <label className="f5-ns f6 fw7-ns fw5 db tl">Enter Start Time</label>
         <DateTimePicker
-          start={false}
-          endDate={endDate}
-          startDate={startDate}
-          setEndDate={setEndDate}
+          start={true}
+          isValidDate={validStartDate}
+          date={startDate}
+          setDate={setStartDate}
         />
-      </div>
-      <div className="mt3">
-        <input
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
-          value={slug}
-          onChange={(e) => setSlug(e.currentTarget.value)}
-          placeholder="Event URL"
-        />
-      </div>
-      <div className="mb3">
-        <UploadFlyer setImage={setImage} />
+        <div className="mv3">
+          <label className="f5-ns f6 fw7-ns fw5 db tl">Enter End Time</label>
+          <DateTimePicker
+            start={false}
+            isValidDate={validEndDate(new Date(startDate))}
+            date={endDate}
+            timeConstraints={{
+              minutes: { step: 40, min: 0, max: 24 },
+              ...timeConstraints(new Date(startDate)),
+            }}
+            setDate={setEndDate}
+          />
+        </div>
+        <div className="mt3">
+          <label className="f5-ns f6 fw7-ns fw5 db tl">Enter Event URL</label>
+          <input
+            className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3  w-100"
+            value={slug}
+            onChange={(e) => setSlug(e.currentTarget.value)}
+          />
+        </div>
+        <div className="mb3">
+          <img src={image} className="db" />
+          <UploadFlyer setImage={setImage} />
+        </div>
       </div>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
