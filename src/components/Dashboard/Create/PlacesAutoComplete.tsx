@@ -91,8 +91,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
         value={venue}
         onChange={handleInput}
         disabled={!ready || location.venue}
-        placeholder="Event Location"
-        className={`pa2 bt-0 br-0 bl-0 input-reset bb bg-black  w-75-ns w-100 ${classnames(
+        className={`pa2 bt-0 br-0 bl-0 input-reset bb bg-black w-100 ${classnames(
           { gray: location.venue, white: !location.venue }
         )}`}
       />
