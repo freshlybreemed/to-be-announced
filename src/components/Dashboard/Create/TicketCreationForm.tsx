@@ -22,7 +22,9 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   );
   const [sold] = useState<number>(ticket ? ticket.sold : 0);
   const [enabled] = useState<boolean>(ticket ? ticket.enabled : true);
-  const [price, setPrice] = useState<number>(ticket ? ticket.price : 0);
+  const [price, setPrice] = useState<string>(
+    ticket ? ticket.price.toString() : '0'
+  );
   const [description, setDescription] = useState<string>(
     ticket ? ticket.description : '',
   );
@@ -63,11 +65,14 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
       <div className="mv3">
         {/* <span>$</span> */}
         <label className="f5-ns f6 fw7-ns fw5 db tl">Price</label>
+        <span style={{ minWidth: '40px' }} className="absolute pv2 tl">
+          $
+        </span>
         <Cleave
           style={{ boxSizing: 'initial' }}
           value={price}
           onChange={(event) => {
-            setPrice(parseInt(event.currentTarget.value));
+            setPrice(event.currentTarget.value);
           }}
           options={
             {
@@ -91,7 +96,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
               ticketName,
               quantity,
               description,
-              price,
+              price: parseInt(price),
               sold,
               enabled: true,
             })
@@ -108,7 +113,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
               ticketName,
               quantity,
               description,
-              price,
+              price: parseInt(price),
               enabled,
               sold,
             })
