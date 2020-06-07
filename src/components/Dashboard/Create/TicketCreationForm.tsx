@@ -107,6 +107,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
             checkForErrors({ quantity: event.currentTarget.value });
           }}
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-100"
+          inputMode="decimal"
         />
         <small className="hljs-strong tl f6 db mv1 red">
           {ticketError.quantity}
@@ -119,7 +120,6 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           onChange={(event) => {
             setDescription(event.currentTarget.value);
           }}
-          inputMode="decimal"
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-100"
         />
       </div>
@@ -137,6 +137,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           }}
           options={{}}
           className="pv2 pl3 bt-0 br-0 bl-0 input-reset bb bg-black white mr3   w-100"
+          inputMode="decimal"
         />
         <small className="hljs-strong tl f6 db mv1 red">
           {ticketError.price}
