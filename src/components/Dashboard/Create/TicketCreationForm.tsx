@@ -41,7 +41,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
     ticketEndDate,
   };
   return (
-    <div className="mw6 center">
+    <div className="mw6 center w-75-ns w-100">
       <div className="mv3">
         <label className="f5-ns f6 fw7-ns fw5 db tl">Ticket Name</label>
 

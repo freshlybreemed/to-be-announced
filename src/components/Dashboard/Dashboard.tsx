@@ -7,7 +7,7 @@ export const Dashboard: React.FunctionComponent = () => (
       <h1 className="f1-ns f2 mv0">Welcome, Ebrima</h1>
     </header>
     <hr className="o-20" />
-    <div className="flex flex-wrap items-center justify-between pt4 mb4">
+    <div className="flex flex-wrap items-center justify-between pt1 mb4">
       <div className="flex flex-wrap  w-100 nr3 mb4">
         <article className="mw8 bg-black-80 br3 w-100 w-48-ns mr1-ns pa3   mv1  bg-green">
           <div className="cf f4-l fw6 f5-m f6 ">
