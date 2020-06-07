@@ -59,6 +59,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           onChange={(event) => {
             setDescription(event.currentTarget.value);
           }}
+          inputmode="decimal"
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-100"
         />
       </div>
