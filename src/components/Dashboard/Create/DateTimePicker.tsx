@@ -10,6 +10,7 @@ interface DateProps {
   ticketEndDate?: any;
   timeConstraints?: any;
   start?: boolean;
+  className?: string;
 }
 export const DateTimePicker: React.FunctionComponent<DateProps> = ({
   setDate,
