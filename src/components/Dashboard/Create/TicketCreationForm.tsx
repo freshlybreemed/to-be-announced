@@ -9,12 +9,14 @@ interface TicketingProps {
   addTicket: any;
   updateTicket: any;
   ticket: TicketProps;
+  startDate: string;
 }
 
 export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   addTicket,
   updateTicket,
   ticket,
+  startDate,
 }) => {
   const [ticketName, setTicketName] = useState<string>(
     ticket ? ticket.ticketName : '',
