@@ -102,6 +102,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
         <label className="f5-ns f6 fw7-ns fw5 db tl">Ticket Quantity</label>
         <input
           value={quantity}
+          type="number"
           onChange={async (event) => {
             setQuantity(event.currentTarget.value);
             checkForErrors({ quantity: event.currentTarget.value });
@@ -137,6 +138,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           }}
           options={{}}
           className="pv2 pl3 bt-0 br-0 bl-0 input-reset bb bg-black white mr3   w-100"
+          type="number"
           inputMode="decimal"
         />
         <small className="hljs-strong tl f6 db mv1 red">
