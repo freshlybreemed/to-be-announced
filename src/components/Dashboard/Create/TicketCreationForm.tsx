@@ -19,8 +19,9 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   const [ticketName, setTicketName] = useState<string>(
     ticket ? ticket.ticketName : '',
   );
-  const [quantity, setQuantity] = useState<number>(
-    ticket ? ticket.quantity : 0,
+  const [_id] = useState<number>(ticket ? ticket._id : 0);
+  const [quantity, setQuantity] = useState<string>(
+    ticket ? ticket.quantity.toString() : ''
   );
   const [sold] = useState<number>(ticket ? ticket.sold : 0);
   const [enabled] = useState<boolean>(ticket ? ticket.enabled : true);
@@ -33,6 +34,11 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   const [ticketEndDate, setTicketEndDate] = useState<string>(
     ticket ? ticket.ticketEndDate : ''
   );
+  const [ticketError, setTicketError] = useState<any>({
+    ticketName: '',
+    quantity: '',
+    price: '',
+  });
   const updatedTicket: TicketProps = {
     ticketName,
     _id,
@@ -43,6 +49,30 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
     enabled,
     ticketEndDate,
   };
+  const checkForErrors = async (item: any) => {
+    console.log(item, ticketError);
+    const key = Object.keys(item)[0];
+    switch (key) {
+      case 'ticketName':
+        return setTicketError({
+          ...ticketError,
+          ticketName: item[key].length > 0 ? '' : 'Ticket Name Missing',
+        });
+      case 'price':
+        return setTicketError({
+          ...ticketError,
+          price: /^\d+$/.test(item[key]) ? '' : 'Not a number',
+        });
+      case 'quantity':
+        return setTicketError({
+          ...ticketError,
+          quantity: item[key].length > 0 ? '' : 'Not a number',
+        });
+      default:
+        break;
+    }
+    console.log('yo', ticketError);
+  };
   return (
     <div className="mw6 center w-75-ns w-100">
       <div className="mv3">
@@ -50,21 +80,29 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
 
         <input
           value={ticketName}
-          onChange={(event) => {
+          onChange={async (event) => {
             setTicketName(event.currentTarget.value);
+            checkForErrors({ ticketName: event.currentTarget.value });
           }}
           className="pa2 bt-0 br-0 bl-0 input-reset  bb bg-black white mr3  w-100"
         />
+        <small className="hljs-strong tl f6 db mv1 red">
+          {ticketError.ticketName}
+        </small>
       </div>
       <div className="mv3">
         <label className="f5-ns f6 fw7-ns fw5 db tl">Ticket Quantity</label>
         <input
           value={quantity}
-          onChange={(event) => {
-            setQuantity(parseInt(event.currentTarget.value));
+          onChange={async (event) => {
+            setQuantity(event.currentTarget.value);
+            checkForErrors({ quantity: event.currentTarget.value });
           }}
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-100"
         />
+        <small className="hljs-strong tl f6 db mv1 red">
+          {ticketError.quantity}
+        </small>
       </div>
       <div className="mv3">
         <label className="f5-ns f6 fw7-ns fw5 db tl">Ticket Description</label>
