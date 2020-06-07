@@ -20,19 +20,22 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
   isValidDate,
   timeConstraints,
 }) => {
-  var yesterday = moment().subtract(1, 'day');
-  const validStartDate = (current: any) => current.isAfter(yesterday);
-  const validEndDate = (current: any) => current.isAfter(startDate);
-
+  console.log({
+    minutes: { step: 40, min: 0, max: 24 },
+    ...timeConstraints,
+  });
   return (
     <Datetime
       timeFormat=" h:mm a"
       //   dateFormat={false}
       input={true}
       isValidDate={isValidDate}
+      closeOnSelect={true}
       inputProps={{
         style: { boxSizing: 'initial' },
         //  placeholder: setTicketEndDate
+        //    ? ``
+        //    : `${start ? `Start` : `End`} Date`,
         className:
           'pa2 bt-0 br-0 bl-0 input-reset bb gray bg-black white w-100',
       }}
