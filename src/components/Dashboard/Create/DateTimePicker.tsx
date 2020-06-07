@@ -1,7 +1,6 @@
 import Datetime from 'react-datetime';
 import React from 'react';
 import moment from 'moment';
-
 interface DateProps {
   date?: any;
   setDate?: any;

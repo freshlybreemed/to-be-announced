@@ -78,7 +78,6 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
         />
       </div>
       <div className="mv3">
-        {/* <span>$</span> */}
         <label className="f5-ns f6 fw7-ns fw5 db tl">Price</label>
         <span style={{ minWidth: '40px' }} className="absolute pv2 tl">
           $
