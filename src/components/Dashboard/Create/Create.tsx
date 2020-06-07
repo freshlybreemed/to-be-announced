@@ -74,7 +74,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     description,
     eventType,
     image,
-    organizerId: '123',
     tickets: event ? event.tickets : [],
     startDate,
     gross: event ? event.gross : 0,

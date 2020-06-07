@@ -30,6 +30,16 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
     ticket ? ticket.description : '',
   );
   console.log({ ticket, ticketName, quantity, description });
+  const updatedTicket: TicketProps = {
+    ticketName,
+    _id,
+    quantity: parseInt(quantity),
+    description,
+    price: parseInt(price),
+    sold,
+    enabled,
+    ticketEndDate,
+  };
   return (
     <div className="mw6 center">
       <div className="mv3">
@@ -98,18 +108,10 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
         </label>
         <input type="checkbox" />
       </div>
+
       {!ticket && (
         <div
-          onClick={() =>
-            addTicket({
-              ticketName,
-              quantity,
-              description,
-              price: parseInt(price),
-              sold,
-              enabled: true,
-            })
-          }
+          onClick={() => createTicket(updatedTicket)}
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
           Add
@@ -117,16 +119,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
       )}
       {ticket && (
         <div
-          onClick={() =>
-            updateTicket({
-              ticketName,
-              quantity,
-              description,
-              price: parseInt(price),
-              enabled,
-              sold,
-            })
-          }
+          onClick={() => modifyTicket(updateTicket)}
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
           Update
