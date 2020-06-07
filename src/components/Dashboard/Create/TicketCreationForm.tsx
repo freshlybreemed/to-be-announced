@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Cleave from 'cleave.js/react';
+import { DateTimePicker } from './DateTimePicker';
 import { TicketProps } from '../../../@types/types';
 import { validTicketEndDate } from '../../../lib';
 
@@ -29,7 +30,9 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   const [description, setDescription] = useState<string>(
     ticket ? ticket.description : '',
   );
-  console.log({ ticket, ticketName, quantity, description });
+  const [ticketEndDate, setTicketEndDate] = useState<string>(
+    ticket ? ticket.ticketEndDate : ''
+  );
   const updatedTicket: TicketProps = {
     ticketName,
     _id,
@@ -70,7 +73,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           onChange={(event) => {
             setDescription(event.currentTarget.value);
           }}
-          inputmode="decimal"
+          inputMode="decimal"
           className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3  w-100"
         />
       </div>
