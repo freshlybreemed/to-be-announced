@@ -262,6 +262,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         <div>
           <TicketCreationForm
             addTicket={addTicket}
+            startDate={startDate}
             ticket={currentTicket}
             updateTicket={updateTicket}
           />{' '}
