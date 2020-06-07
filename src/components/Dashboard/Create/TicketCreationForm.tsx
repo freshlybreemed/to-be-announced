@@ -73,6 +73,12 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
     }
     console.log('yo', ticketError);
   };
+  const createTicket = async (ticket: TicketProps) => {
+    addTicket(ticket);
+  };
+  const modifyTicket = async (ticket: TicketProps) => {
+    updateTicket(ticket);
+  };
   return (
     <div className="mw6 center w-75-ns w-100">
       <div className="mv3">
