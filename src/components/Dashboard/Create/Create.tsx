@@ -182,7 +182,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           />
         </div>
         <div className="mb3">
-          <img src={image} className="db" />
+          <img src={image} className="db w-100" />
           <UploadFlyer setImage={setImage} />
         </div>
       </div>
