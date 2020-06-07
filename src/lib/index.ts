@@ -4,6 +4,21 @@ import moment from 'moment';
 import { TicketProps, EventCartProps } from '../@types/types';
 
 export const stripeClient = process.env.STRIPE_DEV_CLIENT;
+var yesterday = moment().subtract(1, 'day');
+
+export const validStartDate = (current: any) => current.isAfter(yesterday);
+
+export const validEndDate = (startDate: Date) => (current: any) =>
+  current > moment(startDate).subtract(1, 'day');
+
+export const timeConstraints = (endDate: Date) => {
+  return { hours: { min: moment(endDate).hour(), max: 24, step: 1 } };
+};
+
+export const validTicketEndDate = (startDate: string) => (current: any) =>
+  startDate === ''
+    ? current <= moment(new Date(startDate)).startOf('day')
+    : true;
 
 export const getOrderTicketCount = (cart: {
   [ticketName: string]: EventCartProps;

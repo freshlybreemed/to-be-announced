@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import Cleave from 'cleave.js/react';
 import { TicketProps } from '../../../@types/types';
+import { validTicketEndDate } from '../../../lib';
 
 interface TicketingProps {
   addTicket: any;
@@ -72,16 +73,23 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
         <Cleave
           style={{ boxSizing: 'initial' }}
           value={price}
-          onChange={(event) => {
+          onChange={async (event) => {
             setPrice(event.currentTarget.value);
+            checkForErrors({ price: event.currentTarget.value });
           }}
-          options={
-            {
-              // prefix: true ? '$' : '',
-            }
-          }
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mr3   w-100"
-          placeholder="Ticket Price"
+          options={{}}
+          className="pv2 pl3 bt-0 br-0 bl-0 input-reset bb bg-black white mr3   w-100"
+        />
+        <small className="hljs-strong tl f6 db mv1 red">
+          {ticketError.price}
+        </small>
+      </div>
+      <div className="mv3">
+        <label className="f5-ns f6 fw7-ns fw5 db tl">End Date</label>
+        <DateTimePicker
+          setDate={setTicketEndDate}
+          isValidDate={validTicketEndDate(startDate)}
+          date={ticketEndDate}
         />
       </div>
       <div className="mt3">

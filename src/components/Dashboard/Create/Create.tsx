@@ -6,7 +6,13 @@ import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
 import { UploadFlyer } from './UploadFlyer';
 import { TicketProps, EventProps } from '../../../@types/types';
-import { formatDate, formatPrice, getCookieFromBrowser } from '../../../lib';
+import {
+  formatDate,
+  formatPrice,
+  validEndDate,
+  validStartDate,
+  timeConstraints,
+} from '../../../lib';
 import { Editor } from './TextEditor';
 import moment from 'moment';
 
@@ -80,9 +86,9 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const userId = getCookieFromBrowser('userId');
+    const organizerId = '123';
     return await axios
-      .post('/api/event', { ...eventDetails, userId })
+      .post('/api/event', { ...eventDetails, organizerId })
       .catch((res) => {
         setLoading(false);
         console.error(res.data);
