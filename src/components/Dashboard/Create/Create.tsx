@@ -49,7 +49,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     const tickets = ticketTypes;
     ticket.enabled = true;
     ticket._id = Object.keys(ticketTypes).length;
-    tickets[ticket.ticketName] = ticket;
+    tickets[ticket._id] = ticket;
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
   };
@@ -57,7 +57,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const updateTicket = (ticket: TicketProps) => {
     const tickets = {
       ...ticketTypes,
-      [ticket.ticketName]: ticket,
+      [ticket._id]: ticket,
     };
 
     setTicketTypes(tickets);
