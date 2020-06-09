@@ -37,6 +37,9 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [eventType, setEventType] = useState<string>(
     event ? event.eventType : '',
   );
+  const [refunds, setRefundable] = useState<boolean>(
+    event ? event.refunds : true,
+  );
   const [slug, setSlug] = useState<string>(event ? event.slug : '');
   const [currentTicket, setCurrentTicket] = useState<TicketProps>(null);
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
@@ -92,6 +95,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     gross: event ? event.gross : 0,
     endDate,
     ticketTypes,
+    refunds,
   };
 
   console.log(eventDetails);
