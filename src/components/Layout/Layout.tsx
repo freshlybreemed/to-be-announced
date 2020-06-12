@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Nav } from './Nav';
-import { Footer } from '../Footer';
+import { Footer } from './Footer';
 import Head from 'next/head';
 
 export const Layout: React.FunctionComponent = (props) => (
