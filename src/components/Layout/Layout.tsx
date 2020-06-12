@@ -1,9 +1,17 @@
 import * as React from 'react';
-import { Nav, Footer } from './';
+import { Nav, Footer } from '.';
 import Head from 'next/head';
+import classnames from 'classnames';
 
-export const Layout: React.FunctionComponent = (props) => (
-  <div className="bg-black white pa4 relative">
+interface LayoutProps {
+  noPadding?: boolean;
+}
+export const Layout: React.FunctionComponent<LayoutProps> = (props) => (
+  <div
+    className={`bg-black white ${classnames({
+      pa4: !props.noPadding,
+    })} relative`}
+  >
     {/*language=PostCSS*/}
     <Head>
       <meta
