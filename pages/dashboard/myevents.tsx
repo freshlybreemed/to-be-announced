@@ -12,10 +12,8 @@ interface Props {
 const Page: NextPage<Props> = ({ events }) => (
   <Layout>
     <div>
-      <div className="mw8 center pv4 ph3" id="dashboard">
-        <section className="flex-m flex-l nl3-m nr3-m nl3-l nr3-l">
-          <MyEvents events={events} />
-        </section>
+      <div className="mw8-ns w-100 center pv4 ph3-ns" id="dashboard">
+        <MyEvents events={events} />
       </div>
     </div>
   </Layout>
