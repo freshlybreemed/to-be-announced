@@ -76,16 +76,18 @@ const getCookieFromServer = (key: string, req: any) => {
 
 export const formatDate = (date: Date, type = 'short') => {
   switch (type) {
+    case 'medium':
+      return format(date, ' ccc. MMMM d, yyyy');
     case 'short':
       return format(date, ' ccc. MMMM d');
     case 'shorter':
       return format(date, ' MMMM d');
     default:
-      return format(date, ' cccc MMMM d');
+      return;
   }
 };
 
-export const formatEventTime = (startDate: Date, endDate: Date) => {
+export const formatEventDateTime = (startDate: Date, endDate: Date) => {
   var nextDay = moment(startDate.toString()).add(1, 'day');
   return `${format(startDate, 'ccc. MMMM d h:mm a')} - ${
     nextDay.isAfter(endDate)
@@ -93,6 +95,15 @@ export const formatEventTime = (startDate: Date, endDate: Date) => {
       : format(endDate, 'ccc. MMMM d h:mm a')
   }`;
 };
+export const formatEventTime = (startDate: Date, endDate: Date) => {
+  var nextDay = moment(startDate.toString()).add(1, 'day');
+  return `${format(startDate, 'h:mm a')} - ${
+    nextDay.isAfter(endDate)
+      ? format(endDate, 'h:mm a')
+      : format(endDate, 'ccc. MMMM d h:mm a')
+  }`;
+};
+
 export const formatTime = (date: Date) => format(date, 'h:mm a');
 
 // Format price

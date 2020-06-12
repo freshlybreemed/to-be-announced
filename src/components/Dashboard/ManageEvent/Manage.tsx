@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {
   formatDate,
   formatPrice,
-  formatEventTime,
+  formatEventDateTime,
   getTicketCount,
   getOrderTicketCount,
 } from '../../../lib';
@@ -59,9 +59,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
             </div>
             <div>
               <span className="f4-ns f5 fw6 mv0 gray">
-                {`${formatEventTime(
+                {`${formatEventDateTime(
                   new Date(event.startDate),
-                  new Date(event.endDate),
+                  new Date(event.endDate)
                 )}`}
               </span>
             </div>
