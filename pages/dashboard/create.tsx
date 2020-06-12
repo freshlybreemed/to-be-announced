@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import { Create } from '../../src/components/Dashboard/Create/Create';
-import { Layout } from '../../src/components/Layout/Layout';
+import { Create } from '../../src/components/Dashboard';
+import { Layout } from '../../src/components/Layout';
 
 const Page: NextPage = () => (
   <Layout>

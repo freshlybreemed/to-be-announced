@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import { Layout } from '../../../src/components/Layout/Layout';
+import { Layout } from '../../../src/components/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
-import { Create } from '../../../src/components/Dashboard/Create/Create';
+import { Create } from '../../../src/components/Dashboard';
 import { EventProps } from '../../../src/@types/types';
 
 interface Props {
