@@ -1,5 +1,9 @@
 import { EventProps, OrderProps } from '../../src/@types/types';
-import { formatEventTime, formatDate, formatPrice } from '../../src/lib/index';
+import {
+  formatEventDateTime,
+  formatDate,
+  formatPrice,
+} from '../../src/lib/index';
 export const ticketEmail = {
   subject: (eventName) => `You Just Scored Tickets to ${eventName}`,
   content: (event: EventProps, order: OrderProps) => `<!DOCTYPE html>
@@ -336,7 +340,7 @@ export const ticketEmail = {
                                             >
                                               <font
                                                 style="vertical-align: inherit;"
-                                                >${formatEventTime(
+                                                >${formatEventDateTime(
                                                   new Date(event.startDate),
                                                   new Date(event.endDate)
                                                 )}

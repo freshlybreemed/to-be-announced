@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useRef } from 'react';
 import FadeIn from 'react-fade-in';
 import Reward from 'react-rewards';
-import { stripeClient, formatEventTime } from '../../lib';
+import { stripeClient, formatEventTime, formatDate } from '../../lib';
 import { TicketCheckoutForm } from './TicketCheckoutForm';
 import { UserCheckoutForm } from './UserCheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
@@ -19,6 +19,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
   const [step, setStep] = useState<number>(0);
   const [cart, setCart] = useState<any>({});
   const [total, setTotal] = useState<number>(0);
+  const [live] = useState<boolean>(new Date(event.startDate) > new Date());
   const reward = useRef<any>(null);
 
   const setMode = (step: number) => {
@@ -43,46 +44,95 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
             <div className=" lh-title mb0 mt0-ns underline-hover">
               <a className="white no-underline f1-ns f2">{event.name}</a>
             </div>
-            <div className="f4-ns f5 fw6 lh-title mv0 underline-hover">
-              <a
-                className="white no-underline"
-                target="_blank"
-                href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-              >
-                {event.location.venue}
-              </a>
-            </div>
-            <div className="f4-ns f5 fw6 lh-title mv0 underline-hover">
-              <a
-                className="white no-underline"
-                target="_blank"
-                href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-              >
-                {`${event.location.address.split(',')[1]}, ${
-                  event.location.address.split(',')[2].split(' ')[1]
-                }`}{' '}
-              </a>
-            </div>
-            <div className="f4-ns f5 fw6 mv0 gray">
-              {`${formatEventTime(
-                new Date(event.startDate),
-                new Date(event.endDate),
-              )}`}
-            </div>
-            <h2 className="f4-ns f5 fw6 mv0 green">• Live</h2>
+            <table
+              style={{ borderCollapse: 'collapse' }}
+              // style={{ display: 'grid' }}
+              className="f4-ns f5 fw6 lh-title mv1 center-s underline-hover white"
+            >
+              <tr>
+                <td rowSpan={2} className="mt0 pt0 v-top">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    className="pr1  "
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
+                  </svg>
+                </td>
+                <td>
+                  <a
+                    className=" v-top white  no-underline"
+                    target="_blank"
+                    href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
+                  >
+                    {event.location.venue}
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className=" f4-ns f5 fw5 lh-solid mv0 underline-hover ">
+                  <a
+                    className="gray no-underline"
+                    target="_blank"
+                    href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
+                  >
+                    {`${event.location.address.split(',')[1]}, ${
+                      event.location.address.split(',')[2].split(' ')[1]
+                    }`}{' '}
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <table className="f4-ns f5 fw6 pt1 mv1 center-s  white">
+              <tr>
+                <td rowSpan={2} className="mt0 v-top">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    className="pr1 "
+                    fill="currentColor"
+                  >
+                    <path d="M20 20h-4v-4h4v4zm-6-10h-4v4h4v-4zm6 0h-4v4h4v-4zm-12 6h-4v4h4v-4zm6 0h-4v4h4v-4zm-6-6h-4v4h4v-4zm16-8v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2z" />
+                  </svg>
+                </td>
+                <td className="pv0 f4-ns f5 fw6 dtc v-top lh-solid mv0 underline-hover white">
+                  {`${formatDate(new Date(event.startDate), 'medium')}`}
+                </td>
+              </tr>
+              <tr>
+                <td className="f4-ns f5 fw5 dtc lh-title mv0 pt0 underline-hover gray">
+                  {`${formatEventTime(
+                    new Date(event.startDate),
+                    new Date(event.endDate)
+                  )}`}
+                </td>
+              </tr>
+            </table>
+            {/* <h2
+              className={`f4-ns f5 fw6 mv0 ${classnames({
+                green: live,
+                red: !live,
+              })}`}
+            >
+              • {live ? `Live` : `Sale Ended`}
+            </h2> */}
           </div>
           {step < 3 && (
             <div className="dtc-l v-mid tr-l tc f2-l f3 fw6">
               <div
                 onClick={() => (step === 0 ? setMode(1) : setMode(0))}
                 className={`dib-l ${classnames({
-                  'bg-green': step === 0,
-                  'bg-red': step > 0,
+                  'bg-green': step === 0 && live,
+                  'bg-red': step > 0 || !live,
                   'bg-animate': step >= 0,
                   // 'o- /': step > 0,
                 })} no-underline white  noselect br-100  pa2 mr2 mt2-l ph4 mt2 `}
               >
-                {step === 0 ? 'Get Tickets' : 'Cancel'}
+                {!live ? 'Sale Ended' : step === 0 ? 'Get Tickets' : 'Cancel'}
               </div>
             </div>
           )}

@@ -22,7 +22,7 @@ export const SideBar: React.FunctionComponent = () => {
           </a>
         </li>
         <li className="mb2">
-          <a href="#" className="block link dim gray">
+          <a href="/dashboard/payouts" className="block link dim gray">
             Payouts
           </a>
         </li>

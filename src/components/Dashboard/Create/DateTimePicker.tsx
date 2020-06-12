@@ -1,45 +1,49 @@
 import Datetime from 'react-datetime';
 import React from 'react';
 import moment from 'moment';
-
 interface DateProps {
-  startDate?: any;
-  endDate?: any;
+  date?: any;
+  setDate?: any;
   setEndDate?: any;
   setStartDate?: any;
-  start: boolean;
+  isValidDate?: any;
+  ticketEndDate?: any;
+  timeConstraints?: any;
+  start?: boolean;
+  className?: string;
 }
 export const DateTimePicker: React.FunctionComponent<DateProps> = ({
-  startDate,
-  setStartDate,
-  setEndDate,
-  endDate,
-  start,
+  setDate,
+  date,
+  // start,
+  className,
+  isValidDate,
+  timeConstraints,
 }) => {
-  var yesterday = moment().subtract(1, 'day');
-  const validStartDate = (current: any) => current.isAfter(yesterday);
-  const validEndDate = (current: any) => current.isAfter(startDate);
-
+  console.log({
+    minutes: { step: 40, min: 0, max: 24 },
+    ...timeConstraints,
+  });
   return (
     <Datetime
       timeFormat=" h:mm a"
       //   dateFormat={false}
       input={true}
-      isValidDate={start ? validStartDate : validEndDate}
+      isValidDate={isValidDate}
+      closeOnSelect={true}
       inputProps={{
         style: { boxSizing: 'initial' },
-        placeholder: `${start ? `Start` : `End`} Date`,
+        //  placeholder: setTicketEndDate
+        //    ? ``
+        //    : `${start ? `Start` : `End`} Date`,
         className:
-          'pa2 bt-0 br-0 bl-0 input-reset bb gray bg-black white  w-75-ns w-100',
+          'pa2 bt-0 br-0 bl-0 input-reset bb gray bg-black white w-100',
       }}
-      value={start ? startDate : endDate}
-      onBlur={(e) =>
-        start
-          ? setStartDate(moment(e.toString()))
-          : setEndDate(moment(e.toString()))
-      }
-      className="black"
-      timeConstraints={{ minutes: { step: 40, min: 0, max: 24 } }}
+      value={date}
+      onBlur={(e) => setDate(moment(e.toString()))}
+      onChange={(e) => setDate(moment(e.toString()))}
+      className={`black ${className}`}
+      timeConstraints={timeConstraints}
     />
   );
 };

@@ -26,8 +26,8 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
     <div className={`pv3 ${classnames({ 'vh-50': events.length > 3 })}`}>
       <div className="mw8 ml4-ns ">
         <h1 className="f1-ns f2 ">Find upcoming events near you </h1>
-        <div className="bg-black-80 overflow-hidden pa2 pa3-ns br3 b--gray ba">
-          <div className="mb4 tc">
+        <div className="bg-near-black overflow-hidden pa2 pa3-ns br3 ">
+          <div className="mb4 ph4 ">
             <svg
               className="white mt3"
               xmlns="http://www.w3.org/2000/svg"
@@ -39,10 +39,10 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
               <path d="M23.822 20.88l-6.353-6.354c.93-1.465 1.467-3.2 1.467-5.059.001-5.219-4.247-9.467-9.468-9.467s-9.468 4.248-9.468 9.468c0 5.221 4.247 9.469 9.468 9.469 1.768 0 3.421-.487 4.839-1.333l6.396 6.396 3.119-3.12zm-20.294-11.412c0-3.273 2.665-5.938 5.939-5.938 3.275 0 5.94 2.664 5.94 5.938 0 3.275-2.665 5.939-5.94 5.939-3.274 0-5.939-2.664-5.939-5.939z" />
             </svg>
             <input
-              className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white w-70-l w-50-m w-40 mr3"
+              className="pa2 bt-0 br-0 bl-0 input-reset bb bg-transparent white w-70-l w-50-m w-40 mr3"
               placeholder="Search events"
             />
-            <a className="b--white dib noselect dim br-100 b--solid pa2 mb2 ph3-ns ph2 f3-ns f5 fw5-ns fw4 mr3">
+            <a className="tr b--white dib noselect dim br-100 b--solid pa2 mb2 ph3-ns ph2 f3-ns f5 fw5-ns fw4 mr3">
               Search
             </a>
           </div>
@@ -52,7 +52,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                 <article
                   className={`dt w-100 ${classnames({
                     bt: ind > 0,
-                  })} b--gray pv2 mt2 bg-black dim`}
+                  })}  pv2 mt2 dim`}
                 >
                   <div className="dtc w2 w3-ns v-mid">
                     <img src={curr.image} className="db h2 h3-ns" />

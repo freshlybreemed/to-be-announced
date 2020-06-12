@@ -3,12 +3,13 @@ import { useState } from 'react';
 import {
   formatDate,
   formatPrice,
-  formatEventTime,
+  formatEventDateTime,
   getTicketCount,
   getOrderTicketCount,
 } from '../../../lib';
 import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
+import { useMediaQuery } from 'react-responsive';
 
 interface ManageProps {
   event: EventProps;
@@ -16,7 +17,7 @@ interface ManageProps {
 export const ManageEvent: React.FunctionComponent<ManageProps> = ({
   event,
 }) => {
-  const [live] = useState<boolean>(new Date(event.startDate) > new Date())
+  const [live] = useState<boolean>(new Date(event.startDate) > new Date());
   const [ticketTypes] = useState<any>(
     Object.keys(event.ticketTypes).map((curr) => {
       return event.ticketTypes[curr];
@@ -24,6 +25,18 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
   );
 
   console.log(event);
+  const isNS = useMediaQuery({
+    query: '(min-width: 30em)',
+  });
+  const isL = useMediaQuery({ query: '(min-width: 60em)' });
+  const isM = useMediaQuery({
+    query: '(max-width: 60em) and (min-width: 30em)',
+  });
+  console.log('isNs', isNS);
+  console.log('isS', !isNS);
+  console.log('isL', isL);
+  console.log('isM', isM);
+
   return (
     <div className={'w-100'}>
       <main className="mw9 ml4-ns center">
@@ -46,9 +59,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
             </div>
             <div>
               <span className="f4-ns f5 fw6 mv0 gray">
-                {`${formatEventTime(
+                {`${formatEventDateTime(
                   new Date(event.startDate),
-                  new Date(event.endDate),
+                  new Date(event.endDate)
                 )}`}
               </span>
             </div>
@@ -59,7 +72,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               })}`}
             >
               • {live ? `Live` : `Sale Ended`}
-            </h2>          </div>
+            </h2>
+          </div>
           <div className="w-auto-m dtc" />
           <div className="dtc-l dtc-m v-mid tr f4-l f5 fw5">
             <a
@@ -147,7 +161,13 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                               {curr.sold}/{curr.quantity}
                             </td>
                             <td className="pa1 ">
-                              {curr.enabled ? `On Sale` : `Sold Out`}
+                              {curr.enabled
+                                ? curr.quantity - curr.sold > 0
+                                  ? live
+                                    ? `On Sale`
+                                    : `Ended`
+                                  : `Sold Out`
+                                : `Hidden`}
                             </td>
                           </tr>
                         );
@@ -177,8 +197,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
         </div>
         <section className="fl w-100 ">
           <div className="bg-black-80">
-            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3-ns mv2">
-              Attendee List{' '}
+            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+              Attendee List
             </span>
             <div className="pt4 pr2-ns mr3-ns">
               <table
@@ -188,23 +208,34 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                 <thead>
                   <tr className="f5-ns f6 fw7 tl">
                     <th className="pa1 bb b--gray bw1 ">Date</th>
-                    <th className="pa1 bb b--gray bw1  ">Email</th>
+                    <th className="pa1 bb b--gray bw1 ">Name</th>
+                    {isL && <th className="pa1 bb b--gray bw1  ">Email</th>}
                     <th className="pa1 bb b--gray bw1  ">Quantity</th>
                     <th className="pa1 bb b--gray bw1 ">Total Sales</th>
                   </tr>
                 </thead>
-                <tbody className="lh-copy f4-ns f6">
+                <tbody className="lh-copy f4-l f5-m f6">
                   {event.tickets.map((curr, ind) => {
                     return (
-                      <tr key={ind} className={`dim ${classnames({ bt: ind > 0 })}`}>
+                      <tr
+                        key={ind}
+                        className={`dim ${classnames({ bt: ind > 0 })}`}
+                      >
                         <td className="pa1">
                           {formatDate(new Date(curr.date), 'shorter')}
                         </td>
                         <td className="pa1">
                           <a href="" className="white no-underline">
-                            {curr.emailAddress}
+                            {`${curr.firstName} ${curr.lastName}`}
                           </a>
                         </td>
+                        {isL && (
+                          <td className="pa1">
+                            <a href="" className="white no-underline">
+                              {curr.emailAddress}
+                            </a>
+                          </td>
+                        )}
                         <td className="pa1">
                           {getOrderTicketCount(curr.cart)}
                         </td>
@@ -216,8 +247,11 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                   })}
                 </tbody>
               </table>
-              <span className="b bb">
-                <a className="white no-underline" href="">
+              <span className="pv2 b bb">
+                <a
+                  className="white no-underline"
+                  href={`/dashboard/manage/${event.slug}/attendees`}
+                >
                   See More...
                 </a>
               </span>

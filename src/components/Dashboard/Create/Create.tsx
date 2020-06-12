@@ -6,7 +6,13 @@ import { TicketCreationForm } from './TicketCreationForm';
 import { DateTimePicker } from './DateTimePicker';
 import { UploadFlyer } from './UploadFlyer';
 import { TicketProps, EventProps } from '../../../@types/types';
-import { formatDate, formatPrice, getCookieFromBrowser } from '../../../lib';
+import {
+  formatDate,
+  formatPrice,
+  validEndDate,
+  validStartDate,
+  timeConstraints,
+} from '../../../lib';
 import { Editor } from './TextEditor';
 import moment from 'moment';
 
@@ -43,7 +49,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     const tickets = ticketTypes;
     ticket.enabled = true;
     ticket._id = Object.keys(ticketTypes).length;
-    tickets[ticket.ticketName] = ticket;
+    tickets[ticket._id] = ticket;
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
   };
@@ -51,17 +57,27 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const updateTicket = (ticket: TicketProps) => {
     const tickets = {
       ...ticketTypes,
-      [ticket.ticketName]: ticket,
+      [ticket._id]: ticket,
     };
 
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
     setCurrentTicket(null);
   };
+  const removeTicket = (ticket: TicketProps) => {
+    const tickets = {
+      ...ticketTypes,
+    };
+    delete tickets[ticket.ticketName];
+    console.log(tickets);
 
-  const setEventLocation = (addy: object) => {
-    setLocation(addy);
+    setTicketTypes(tickets);
+    setToggleTicketCreation(false);
+    setCurrentTicket(null);
   };
+
+  const setEventLocation = (addy: object) => setLocation(addy);
+
   const eventDetails = {
     name,
     slug,
@@ -69,7 +85,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     description,
     eventType,
     image,
-    organizerId: '123',
     tickets: event ? event.tickets : [],
     startDate,
     gross: event ? event.gross : 0,
@@ -81,9 +96,9 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const userId = getCookieFromBrowser('userId');
+    const organizerId = '123';
     return await axios
-      .post('/api/event', { ...eventDetails, userId })
+      .post('/api/event', { ...eventDetails, organizerId })
       .catch((res) => {
         setLoading(false);
         console.error(res.data);
@@ -108,7 +123,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         {(eventType === '' || eventType === 'venue') && (
           <div className="dib mr3">
             <span
-              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4 f4 fw5  "
+              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4-ns ph3 f4-ns f6 fw5  "
               onClick={() => setEventType('venue')}
             >
               Venue
@@ -118,7 +133,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         {(eventType === '' || eventType === 'online') && (
           <div className="dib">
             <span
-              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4 f4 fw5 white"
+              className=" b--white hover-bg-white center hover-black  noselect br-100 b--solid pa2 ph4-ns ph3 f4-ns f6 fw5 white"
               onClick={() => setEventType('online')}
             >
               Online Event
@@ -127,46 +142,60 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         )}
       </div>
       <hr className="o-20 mt4" />
-      <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Event Details</h2>
-      <div className="mv3">
-        <input
-          value={name}
-          onChange={(event) => {
-            setName(event.currentTarget.value);
-          }}
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white  w-75-ns w-100"
-          placeholder="Event Name"
-        />
-      </div>
-      <div className="mv3 ">
-        <PlacesAutoComplete
-          location={location}
-          setLocation={setEventLocation}
-        />
-      </div>
-      <DateTimePicker
-        start={true}
-        startDate={startDate}
-        setStartDate={setStartDate}
-      />
-      <div className="mv3">
+      <div className="w-75-ns w-100 center">
+        <div className="mv3">
+          <label className="f5-ns f6 fw7-ns fw5 db tl">
+            Enter Event Details
+          </label>
+          <input
+            value={name}
+            onChange={(event) => {
+              setName(event.currentTarget.value);
+            }}
+            className="pa2 bt-0 br-0 bl-0 bb input-reset bb bg-black white w-100"
+          />
+        </div>
+        <div className="mv3 ">
+          <label className="f5-ns f6 fw7-ns fw5 db tl">
+            Enter Event Location
+          </label>
+          <PlacesAutoComplete
+            location={location}
+            setLocation={setEventLocation}
+          />
+        </div>
+        <label className="f5-ns f6 fw7-ns fw5 db tl">Enter Start Time</label>
         <DateTimePicker
-          start={false}
-          endDate={endDate}
-          startDate={startDate}
-          setEndDate={setEndDate}
+          start={true}
+          isValidDate={validStartDate}
+          date={startDate}
+          setDate={setStartDate}
         />
-      </div>
-      <div className="mt3">
-        <input
-          className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3 w-75-ns w-100"
-          value={slug}
-          onChange={(e) => setSlug(e.currentTarget.value)}
-          placeholder="Event URL"
-        />
-      </div>
-      <div className="mb3">
-        <UploadFlyer setImage={setImage} />
+        <div className="mv3">
+          <label className="f5-ns f6 fw7-ns fw5 db tl">Enter End Time</label>
+          <DateTimePicker
+            start={false}
+            isValidDate={validEndDate(new Date(startDate))}
+            date={endDate}
+            timeConstraints={{
+              minutes: { step: 40, min: 0, max: 24 },
+              ...timeConstraints(new Date(startDate)),
+            }}
+            setDate={setEndDate}
+          />
+        </div>
+        <div className="mt3">
+          <label className="f5-ns f6 fw7-ns fw5 db tl">Enter Event URL</label>
+          <input
+            className="pa2 bt-0 br-0 bl-0 input-reset bb bg-black white mb3  w-100"
+            value={slug}
+            onChange={(e) => setSlug(e.currentTarget.value)}
+          />
+        </div>
+        <div className="mb3">
+          <img src={image} className="db w-100" />
+          <UploadFlyer setImage={setImage} />
+        </div>
       </div>
       <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Ticket Details</h2>
@@ -178,7 +207,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           >
             Create A Ticket{' '}
           </div>{' '}
-          <main className="w-75 tl center">
+          <main className="w-75-ns w-100 tl center">
             {Object.keys(ticketTypes).map((curr) => (
               <article className="dt w-100 bb b--gray pb2 mt2">
                 <div className="dtc v-mid pl3">
@@ -244,7 +273,9 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         <div>
           <TicketCreationForm
             addTicket={addTicket}
+            startDate={startDate}
             ticket={currentTicket}
+            removeTicket={removeTicket}
             updateTicket={updateTicket}
           />{' '}
           <div

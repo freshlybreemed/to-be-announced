@@ -26,6 +26,7 @@ export interface TicketProps {
   sold: number;
   _id: number;
   description: string;
+  ticketEndDate: string;
   enabled: boolean;
 }
 

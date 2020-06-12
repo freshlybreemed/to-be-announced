@@ -9,10 +9,10 @@ export const Nav: React.FunctionComponent = () => {
   // };
   return (
     <main className="overflow-hidden relative mb5-ns mb3">
-      <a className="fl fr-ns no-underline gray f3 fw6" href="/">
+      <a className="fl fr-ns no-underline gray f3-l f4-m f5 fw6" href="/">
         <span className="sc-683qsc-1 gyQBaO">TBA</span>
       </a>
-      <ul className=" fr f3 db pa0 ma0 ">
+      <ul className=" fr f3-l f4-m f5 db pa0 ma0 ">
         <li className="fl tr mr3 list">
           <a className="fl dib dim no-underline white " href="/events">
             Events
