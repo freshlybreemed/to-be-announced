@@ -25,7 +25,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   );
   const [_id] = useState<number>(ticket ? ticket._id : 0);
   const [quantity, setQuantity] = useState<string>(
-    ticket ? ticket.quantity.toString() : ''
+    ticket ? ticket.quantity.toString() : '0'
   );
   const [sold] = useState<number>(ticket ? ticket.sold : 0);
   const [enabled] = useState<boolean>(ticket ? ticket.enabled : true);
