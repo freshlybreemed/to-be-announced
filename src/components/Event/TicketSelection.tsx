@@ -36,7 +36,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
         </span>
       </div>
       <div className="fr">
-        {!disabled && (
+        {!disabled && !soldOut && (
           <>
             <span
               onClick={() => {
@@ -74,6 +74,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
             </span>
           </>
         )}
+        {soldOut && <div className="f4-ns f5 fw7-ns fw5 ph4">Sold Out</div>}
       </div>
     </li>
   );
