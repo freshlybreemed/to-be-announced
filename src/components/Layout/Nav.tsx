@@ -27,7 +27,7 @@ export const Nav: React.FunctionComponent = () => {
   }
   return (
     <div
-      className="overflow-hidden dt flex justify-between relative mb5-ns mb3 flex 
+      className="overflow-hidden dt flex justify-between relative mb5-ns mb3 pa4-ns flex 
   "
     >
       <div id="dtc fl" className="white" onMouseDown={handleMouseDown}>
@@ -41,9 +41,24 @@ export const Nav: React.FunctionComponent = () => {
           <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
         </svg>
       </div>
-      <div id="flyoutMenu" onMouseDown={handleMouseDown} className={visibility}>
-        <div className="pl4 pt4 fw8 f4">X</div>
-        <div className="pa5 flex flex-wrap justify-between w-100">
+      <div id="flyoutMenu" className={visibility}>
+        <div
+          className="overflow-hidden dt flex justify-between relative  pa4-ns flex 
+  "
+        >
+          <div className="pa4 fw8 f4 white" onMouseDown={handleMouseDown}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              fill="currentColor"
+              height="15"
+              viewBox="0 0 24 24"
+            >
+              <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
+            </svg>
+          </div>
+        </div>
+        <div className="pa5 pt2 flex flex-wrap justify-between w-100">
           <div className="pv3 w-50-ns w-100">
             <h2
               className="ttu mt0 mb2 f6 fw7 gray "
@@ -71,10 +86,16 @@ export const Nav: React.FunctionComponent = () => {
             >
               Browse
             </h2>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1 ">
+            <a
+              href="/events"
+              className="white no-underline fw6 f4 b db pv1 mv1 "
+            >
               Search Events
             </a>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
+            <a
+              href="/venues"
+              className="white no-underline fw6 f4 b db pv1 mv1"
+            >
               Venues
             </a>
           </div>
@@ -86,13 +107,22 @@ export const Nav: React.FunctionComponent = () => {
             >
               Manage
             </h2>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1 ">
+            <a
+              href="/dashboard/myevents"
+              className="white no-underline fw6 f4 b db pv1 mv1 "
+            >
               My Events
             </a>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
+            <a
+              href="/dashboard/payouts"
+              className="white no-underline fw6 f4 b db pv1 mv1"
+            >
               Payouts
             </a>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
+            <a
+              href="/dashboard/create"
+              className="white no-underline fw6 f4 b db pv1 mv1"
+            >
               Create Event
             </a>
           </div>
