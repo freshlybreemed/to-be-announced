@@ -247,8 +247,11 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                   })}
                 </tbody>
               </table>
-              <span className="b bb">
-                <a className="white no-underline" href="">
+              <span className="pv2 b bb">
+                <a
+                  className="white no-underline"
+                  href={`/dashboard/manage/${event.slug}/attendees`}
+                >
                   See More...
                 </a>
               </span>
