@@ -21,9 +21,9 @@ export default wrapAsync(async (req: NextApiRequest, db: any) => {
     return await db
       .collection('tba-event')
       .find({
-        startDate: {
-          $gte: new Date(),
-        },
+        // startDate: {
+        //   $gte: new Date(),
+        // },
       })
       .toArray();
   }
