@@ -64,6 +64,17 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     setToggleTicketCreation(false);
     setCurrentTicket(null);
   };
+  const removeTicket = (ticket: TicketProps) => {
+    const tickets = {
+      ...ticketTypes,
+    };
+    delete tickets[ticket.ticketName];
+    console.log(tickets);
+
+    setTicketTypes(tickets);
+    setToggleTicketCreation(false);
+    setCurrentTicket(null);
+  };
 
   const setEventLocation = (addy: object) => setLocation(addy);
 
@@ -264,6 +275,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
             addTicket={addTicket}
             startDate={startDate}
             ticket={currentTicket}
+            removeTicket={removeTicket}
             updateTicket={updateTicket}
           />{' '}
           <div

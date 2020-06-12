@@ -8,6 +8,7 @@ import { validTicketEndDate } from '../../../lib';
 interface TicketingProps {
   addTicket: any;
   updateTicket: any;
+  removeTicket: any;
   ticket: TicketProps;
   startDate: string;
 }
@@ -17,9 +18,10 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   updateTicket,
   ticket,
   startDate,
+  removeTicket,
 }) => {
   const [ticketName, setTicketName] = useState<string>(
-    ticket ? ticket.ticketName : '',
+    ticket ? ticket.ticketName : ''
   );
   const [_id] = useState<number>(ticket ? ticket._id : 0);
   const [quantity, setQuantity] = useState<string>(
@@ -75,12 +77,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
     }
     console.log('yo', ticketError);
   };
-  const createTicket = async (ticket: TicketProps) => {
-    addTicket(ticket);
-  };
-  const modifyTicket = async (ticket: TicketProps) => {
-    updateTicket(ticket);
-  };
+
   return (
     <div className="mw6 center w-75-ns w-100">
       <div className="mv3">
@@ -162,19 +159,27 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
 
       {!ticket && (
         <div
-          onClick={() => createTicket(updatedTicket)}
+          onClick={() => addTicket(updatedTicket)}
           className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
           Add
         </div>
       )}
       {ticket && (
-        <div
-          onClick={() => modifyTicket(updatedTicket)}
-          className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
-        >
-          Update
-        </div>
+        <>
+          <div
+            onClick={() => updateTicket(updatedTicket)}
+            className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+          >
+            Update
+          </div>
+          <div
+            onClick={() => removeTicket(updatedTicket)}
+            className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+          >
+            Remove
+          </div>
+        </>
       )}
     </div>
   );
