@@ -16,7 +16,7 @@ export const timeConstraints = (endDate: Date) => {
 };
 
 export const validTicketEndDate = (startDate: string) => (current: any) =>
-  startDate === ''
+  startDate !== ''
     ? current <= moment(new Date(startDate)).startOf('day')
     : true;
 
