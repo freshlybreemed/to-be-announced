@@ -18,15 +18,6 @@ export const Footer: React.FunctionComponent = () => (
           Privacy Policy
         </a>
       </li>
-      <li className="fl tr mr2 list ">
-        <a
-          className="fl dib dim no-underline white "
-          target="_blank"
-          href="https://www.linkedin.com/in/vimarethomas/"
-        >
-          Submit An Event
-        </a>
-      </li>
     </ul>
   </footer>
 );
