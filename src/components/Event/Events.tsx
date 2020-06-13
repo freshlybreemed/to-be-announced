@@ -1,10 +1,16 @@
 import * as React from 'react';
-import { formatDate, formatPrice } from '../../lib';
+import { formatDate, formatPrice, formatTime } from '../../lib';
 import FadeIn from 'react-fade-in';
 import classnames from 'classnames';
 import { EventProps, TicketProps } from '../../@types/types';
 import { useMediaQuery } from 'react-responsive';
+import { useEffect, useState } from 'react';
 
+function useMounted() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted;
+}
 interface MyEventsProps {
   events: EventProps[];
 }
@@ -21,7 +27,7 @@ const getLowestPrice = (ticketTypes: { [ticketName: string]: TicketProps }) => {
 };
 
 export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
-  console.log(events);
+  const isMounted = useMounted();
   const isL = useMediaQuery({ query: '(min-width: 60em)' });
   const isM = useMediaQuery({
     query: '(max-width: 60em) and (min-width: 40em)',
@@ -50,69 +56,76 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
               className="pa2 bt-0 br-0 bl-0 input-reset bb bg-transparent white w-70-l w-50-m w-40 mr3"
               placeholder="Search events"
             />
-            <a className="tr b--white dib noselect dim br-100 b--solid pa2 mb2 ph3-ns ph2 f3-ns f5 fw5-ns fw4 mr3">
+            <a className="tr b--white dib noselect dim br-100 b--solid pa2 mb2 ph3-ns ph2 f3-l f5-m f6 fw5-ns fw4 mr3">
               Search
             </a>
           </div>
-          <div
-            className="center"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: `${classnames({
-                'repeat(3, 1fr)': isL,
-                'repeat(2, 1fr)': isM,
-                'repeat(1, 1fr)': isS,
-              })}`,
-              gridColumnGap: classnames({
-                '32px': isL,
-                '16px': isM,
-                '8px': isS,
-              }),
-              gridRowGap: classnames({ '64px': isL, '32px': isM || isS }),
-              boxSizing: 'inherit',
-            }}
-          >
+          {isMounted ? (
             <FadeIn>
-              {events.map((curr: EventProps) => (
-                <div className="w-100 ">
-                  <a className="white no-underline" href={`/e/${curr.slug}`}>
-                    <div
-                      className="w-100 h-100 relative flex"
-                      style={{ boxSizing: 'inherit' }}
-                    >
-                      {' '}
+              <div
+                className="center"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: `${classnames({
+                    'repeat(3, 1fr)': isL,
+                    'repeat(2, 1fr)': isM,
+                    'repeat(1, 1fr)': isS,
+                  })}`,
+                  gridColumnGap: classnames({
+                    '32px': isL,
+                    '16px': isM,
+                    '8px': isS,
+                  }),
+                  gridRowGap: classnames({ '64px': isL, '32px': isM || isS }),
+                  boxSizing: 'inherit',
+                }}
+              >
+                {events.map((curr: EventProps, ind) => (
+                  <div className="w-100 mb3" key={ind}>
+                    <a className="white no-underline" href={`/e/${curr.slug}`}>
                       <div
-                        style={{
-                          backgroundImage: `url("${curr.image}")`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center center',
-                          top: '0px',
-                          left: '0px',
-                          width: '300px',
-                          height: '200px',
-                        }}
-                        className="o-100  "
-                      ></div>
-                    </div>
-                    <h4 className="f5 fw4 mb0">
-                      {' '}
-                      {formatDate(new Date(curr.startDate))}
-                    </h4>
-                    <h4 className="f4 fw8 mt2 mb0 ttu">{curr.name}</h4>
-                    <h4 className="f5 fw6 mt1 pt1 ">
-                      {getLowestPrice(curr.ticketTypes)} - {curr.location.venue}
-                    </h4>
-                  </a>
-                  <a
-                    href={`/e/${curr.slug}`}
-                    className="bg-black white br-100 pa2 tc f4-ns f6 fw6-ns fw5 grow no-underline ph4 b--solid "
-                  >
-                    Get Tickets
-                  </a>
-                </div>
-              ))}
+                        className="w-100 h-100 relative flex"
+                        style={{ boxSizing: 'inherit' }}
+                      >
+                        <div
+                          style={{
+                            backgroundImage: `url("${curr.image}")`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center center',
+                            top: '0px',
+                            left: '0px',
+                            width: '300px',
+                            height: '200px',
+                          }}
+                          className="o-100  "
+                        ></div>
+                      </div>
+                      <h4 className="f5 fw4 mb0">
+                        {formatDate(new Date(curr.startDate))}
+                        {' — '}
+                        {formatTime(new Date(curr.startDate))}
+                      </h4>
+                      <h4 className="f4 fw8 mt2 mb0 ttu">{curr.name}</h4>
+                      <h4 className="f5 fw6 mt1 pt1 ">
+                        {getLowestPrice(curr.ticketTypes)} -{' '}
+                        {curr.location.venue}
+                      </h4>
+                    </a>
+                    <a
+                      href={`/e/${curr.slug}`}
+                      className="bg-black white br-100 pa2 tc f4-ns f6 fw6-ns fw5 grow no-underline ph4 b--solid "
+                    >
+                      Get Tickets
+                    </a>
+                  </div>
+                ))}
+              </div>
             </FadeIn>
-          </div>
+          ) : (
+            <div className="f1 tc">
+              <i className="fa fa-spinner fa-spin  " />
+            </div>
+          )}
         </div>
       </div>
     </div>
