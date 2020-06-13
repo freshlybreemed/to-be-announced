@@ -31,7 +31,9 @@ export const Nav: React.FunctionComponent = () => {
       className="overflow-hidden dt flex  justify-between relative mb5-ns mb3  flex 
   "
     >
-      <div className="fl f3 fw6">Social Ticketing</div>
+      <a href="/" className="fl f3 fw6 white no-underline">
+        Social Ticketing
+      </a>
       <div id="flyoutMenu" className={visibility}>
         <div
           className="overflow-hidden dt flex fr justify-between relative  flex 
