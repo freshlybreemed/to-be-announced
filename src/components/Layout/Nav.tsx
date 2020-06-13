@@ -27,14 +27,13 @@ export const Nav: React.FunctionComponent = () => {
   }
   return (
     <div
-      style={{ zIndex: 1 }}
       className="overflow-hidden dt flex  justify-between relative mb5-ns mb3  flex 
   "
     >
       <a href="/" className="fl f3 fw6 white no-underline">
         Social Ticketing
       </a>
-      <div id="flyoutMenu" className={visibility}>
+      <div id="flyoutMenu" className={`${visibility}`} style={{ zIndex: 2 }}>
         <div
           className="overflow-hidden dt flex fr justify-between relative  flex 
   "
