@@ -213,6 +213,19 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           >
             Create A Ticket{' '}
           </div>{' '}
+          <div className="mt3">
+            <label className="pa2 mr3 gray switch">
+              Refundable?
+              <input
+                type="checkbox"
+                onChange={() => setRefundable(!refunds)}
+                checked={refunds}
+              />{' '}
+              <span>
+                <strong></strong>
+              </span>
+            </label>
+          </div>
           <main className="w-75-ns w-100 tl center">
             {Object.keys(ticketTypes).map((curr) => (
               <article className="dt w-100 bb b--gray pb2 mt2">
@@ -305,7 +318,13 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         onClick={() => handleSubmit()}
       >
         {loading && <i className="fa fa-spinner fa-spin mr2" />}
-        {loading ? 'Submitting...' : 'Submit'}
+        {loading
+          ? event
+            ? 'Updating...'
+            : 'Submitting...'
+          : event
+          ? 'Update'
+          : 'Submit'}
       </div>
     </article>
   );
