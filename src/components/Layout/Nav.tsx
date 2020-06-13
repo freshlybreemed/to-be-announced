@@ -27,26 +27,21 @@ export const Nav: React.FunctionComponent = () => {
   }
   return (
     <div
-      className="overflow-hidden dt flex justify-between relative mb5-ns mb3 pa4-ns pa2 flex 
+      className="overflow-hidden dt flex  justify-between relative mb5-ns mb3  flex 
   "
     >
-      <div id="dtc fl" className="white" onMouseDown={handleMouseDown}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
-        </svg>
-      </div>
-      <div id="flyoutMenu" className={visibility}>
+      <a href="/" className="fl f3 fw6 white no-underline">
+        Social Ticketing
+      </a>
+      <div id="flyoutMenu" className={`${visibility}`} style={{ zIndex: 2 }}>
         <div
-          className="overflow-hidden dt flex justify-between relative  pa4-ns pa2 flex 
+          className="overflow-hidden dt flex fr justify-between relative  flex 
   "
         >
-          <div className="pa4 fw8 f4 white" onMouseDown={handleMouseDown}>
+          <div
+            className="pa4-ns pa3 fw8 f4 white"
+            onMouseDown={handleMouseDown}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="15"
@@ -107,6 +102,12 @@ export const Nav: React.FunctionComponent = () => {
             >
               Manage
             </h2>
+            <a
+              href="/dashboard"
+              className="white no-underline fw6 f4 b db pv1 mv1 "
+            >
+              Dashboard
+            </a>
             <a
               href="/dashboard/myevents"
               className="white no-underline fw6 f4 b db pv1 mv1 "
@@ -176,8 +177,19 @@ export const Nav: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
-      <ul className="tr f3-l f4-m f5 dtc pa0 ma0 ">
-        <li className="fl tr mr3 list">
+      <ul className="fr f3-l f4-m f5 dtc pa0 ma0 ">
+        <li className="white list" onMouseDown={handleMouseDown}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
+          </svg>
+        </li>
+        {/* <li className="fl tr mr3 list">
           <a className="fl dib dim no-underline white " href="/events">
             Events
           </a>
@@ -186,7 +198,7 @@ export const Nav: React.FunctionComponent = () => {
           <a className="fl dib dim no-underline white " href="/dashboard">
             Dashboard
           </a>
-        </li>
+        </li> */}
         {/* {isLoggedIn ? (
           <li className="fl tr mr3 list ">
             <a
@@ -196,10 +208,24 @@ export const Nav: React.FunctionComponent = () => {
               Logout
             </a>
           </li>
-        ) : (
+          <li className="fl tr mr3 list">
+            <a className="fl dib dim no-underline white " href="/dashboard">
+              Dashboard
+            </a>
+          </li>
+          {/* {isLoggedIn ? (
           <li className="fl tr mr3 list ">
+          <a
+          onClick={handleLogout}
+          className="fl dib dim no-underline white "
+          >
+          Logout
+          </a>
+          </li>
+          ) : (
+            <li className="fl tr mr3 list ">
             <a className="fl dib dim no-underline white " href="/login">
-              Login
+            Login
             </a>
           </li>
         )} */}

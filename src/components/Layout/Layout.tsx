@@ -9,7 +9,7 @@ interface LayoutProps {
 export const Layout: React.FunctionComponent<LayoutProps> = (props) => (
   <div
     className={`bg-black white ${classnames({
-      pa4: !props.noPadding,
+      'pa4-ns pa3': !props.noPadding,
     })} relative`}
   >
     {/*language=PostCSS*/}
