@@ -12,6 +12,7 @@ export interface EventProps {
   tickets: OrderProps[];
   endDate: string;
   slug: string;
+  refunds: boolean;
   gross: number;
   eventType: string;
   ticketTypes: {
