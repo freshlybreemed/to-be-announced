@@ -102,6 +102,12 @@ export const Nav: React.FunctionComponent = () => {
               Manage
             </h2>
             <a
+              href="/dashboard"
+              className="white no-underline fw6 f4 b db pv1 mv1 "
+            >
+              Dashboard
+            </a>
+            <a
               href="/dashboard/myevents"
               className="white no-underline fw6 f4 b db pv1 mv1 "
             >
