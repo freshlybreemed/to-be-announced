@@ -2,8 +2,8 @@ import * as React from 'react';
 import { NextPage } from 'next';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
-import { Event } from '../../src/components/Event/Event';
-import { Layout } from '../../src/components/Layout/Layout';
+import { Event } from '../../src/components/Event';
+import { Layout } from '../../src/components/Layout';
 import { EventProps } from '../../src/@types/types';
 
 interface EventSearchProps {

@@ -3,6 +3,7 @@ import { formatDate, formatPrice } from '../../lib';
 import FadeIn from 'react-fade-in';
 import classnames from 'classnames';
 import { EventProps, TicketProps } from '../../@types/types';
+import { useMediaQuery } from 'react-responsive';
 
 interface MyEventsProps {
   events: EventProps[];
@@ -13,7 +14,7 @@ const getLowestPrice = (ticketTypes: { [ticketName: string]: TicketProps }) => {
   const lowestPrice = tickets.reduce((acc, curr) =>
     acc.price < curr.price && curr.enabled && curr.sold < curr.quantity
       ? acc
-      : curr,
+      : curr
   ).price;
 
   return formatPrice(lowestPrice.toString());
@@ -21,13 +22,20 @@ const getLowestPrice = (ticketTypes: { [ticketName: string]: TicketProps }) => {
 
 export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   console.log(events);
-
+  const isL = useMediaQuery({ query: '(min-width: 60em)' });
+  const isM = useMediaQuery({
+    query: '(max-width: 60em) and (min-width: 40em)',
+  });
+  const isS = useMediaQuery({
+    query: '(max-width: 40em)',
+  });
+  console.log(isL, isM);
   return (
-    <div className={`pv3 ${classnames({ 'vh-50': events.length > 3 })}`}>
-      <div className="mw8 ml4-ns ">
+    <div className={`pv3 relative`}>
+      <div className=" ml4-ns ">
         <h1 className="f1-ns f2 ">Find upcoming events near you </h1>
         <div className="bg-near-black overflow-hidden pa2 pa3-ns br3 ">
-          <div className="mb4 ph4 ">
+          <div className="mb4 ph2 ">
             <svg
               className="white mt3"
               xmlns="http://www.w3.org/2000/svg"
@@ -46,45 +54,65 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
               Search
             </a>
           </div>
-          <main className="ph4 center">
+          <div
+            className="center"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: `${classnames({
+                'repeat(3, 1fr)': isL,
+                'repeat(2, 1fr)': isM,
+                'repeat(1, 1fr)': isS,
+              })}`,
+              gridColumnGap: classnames({
+                '32px': isL,
+                '16px': isM,
+                '8px': isS,
+              }),
+              gridRowGap: classnames({ '64px': isL, '32px': isM || isS }),
+              boxSizing: 'inherit',
+            }}
+          >
             <FadeIn>
-              {events.map((curr: EventProps, ind: number) => (
-                <article
-                  className={`dt w-100 ${classnames({
-                    bt: ind > 0,
-                  })}  pv2 mt2 dim`}
-                >
-                  <div className="dtc w2 w3-ns v-mid">
-                    <img src={curr.image} className="db h2 h3-ns" />
-                  </div>
-                  <div className="dtc v-mid pl3">
-                    <a
-                      href={`/e/${curr.slug}`}
-                      className="f7 f5-ns fw7-ns fw6 white no-underline lh-title underline-hover  mv0"
+              {events.map((curr: EventProps) => (
+                <div className="w-100 ">
+                  <a className="white no-underline" href={`/e/${curr.slug}`}>
+                    <div
+                      className="w-100 h-100 relative flex"
+                      style={{ boxSizing: 'inherit' }}
                     >
-                      {curr.name}
-                    </a>
-                    <h2 className="f7 f5-ns fw6-ns fw5 mt0 mb0 gray">
+                      {' '}
+                      <div
+                        style={{
+                          backgroundImage: `url("${curr.image}")`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center center',
+                          top: '0px',
+                          left: '0px',
+                          width: '300px',
+                          height: '200px',
+                        }}
+                        className="o-100  "
+                      ></div>
+                    </div>
+                    <h4 className="f5 fw4 mb0">
+                      {' '}
                       {formatDate(new Date(curr.startDate))}
-                    </h2>
-                  </div>
-                  <div className="dtc v-mid tr">
-                    <h1 className="f7 f5-ns fw7 lh-title  ttu mv0">
-                      {getLowestPrice(curr.ticketTypes)}
-                    </h1>
-                    <h1 className="f7 f5-ns fw7 lh-title   mv0">
-                      {curr.location.venue}
-                    </h1>
-                    <h2 className="f6-ns f7 fw6-ns fw5 mt0 mb0 gray">
-                      {`${curr.location.address.split(',')[1]}, ${
-                        curr.location.address.split(',')[2].split(' ')[1]
-                      }`}
-                    </h2>
-                  </div>
-                </article>
+                    </h4>
+                    <h4 className="f4 fw8 mt2 mb0 ttu">{curr.name}</h4>
+                    <h4 className="f5 fw6 mt1 pt1 ">
+                      {getLowestPrice(curr.ticketTypes)} - {curr.location.venue}
+                    </h4>
+                  </a>
+                  <a
+                    href={`/e/${curr.slug}`}
+                    className="bg-black white br-100 pa2 tc f4-ns f6 fw6-ns fw5 grow no-underline ph4 b--solid "
+                  >
+                    Get Tickets
+                  </a>
+                </div>
               ))}
             </FadeIn>
-          </main>
+          </div>
         </div>
       </div>
     </div>

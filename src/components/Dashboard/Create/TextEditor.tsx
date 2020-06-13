@@ -13,7 +13,7 @@ interface TextEditorProps {
   description: string;
   setDescription: any;
 }
-export const Editor: React.FunctionComponent<TextEditorProps> = ({
+export const TextEditor: React.FunctionComponent<TextEditorProps> = ({
   setDescription,
   description,
 }) => {

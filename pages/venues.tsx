@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import { Login } from '../src/components/Login';
+import { Venues } from '../src/components/Venues/Venues';
 import { Layout } from '../src/components/Layout/';
 
 const Page: NextPage = () => (
-  <Layout>
-    <Login />
+  <Layout noPadding={true}>
+    <Venues />
   </Layout>
 );
 

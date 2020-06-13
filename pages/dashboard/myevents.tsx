@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import { MyEvents } from '../../src/components/Dashboard/MyEvents/MyEvents';
-import { Layout } from '../../src/components/Layout/Layout';
+import { MyEvents } from '../../src/components/Dashboard/';
+import { Layout } from '../../src/components/Layout/';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 import { EventProps } from '../../src/@types/types';

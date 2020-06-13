@@ -2,7 +2,7 @@ import FadeIn from 'react-fade-in';
 import * as React from 'react';
 import { useState } from 'react';
 import { formatPrice } from '../../lib';
-import { TicketSelection } from './TicketSelection';
+import { TicketSelection } from './';
 import { EventCartProps } from '../../@types/types';
 interface TicketCheckout {
   setMode: any;

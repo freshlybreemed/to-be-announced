@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
-import { PlacesAutoComplete } from './PlacesAutoComplete';
-import { TicketCreationForm } from './TicketCreationForm';
-import { DateTimePicker } from './DateTimePicker';
-import { UploadFlyer } from './UploadFlyer';
+import {
+  PlacesAutoComplete,
+  TicketCreationForm,
+  DateTimePicker,
+  UploadFlyer,
+  TextEditor,
+} from '../';
 import { TicketProps, EventProps } from '../../../@types/types';
 import {
   formatDate,
@@ -13,7 +16,6 @@ import {
   validStartDate,
   timeConstraints,
 } from '../../../lib';
-import { Editor } from './TextEditor';
 import moment from 'moment';
 
 interface EditProps {
@@ -292,7 +294,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
       <br /> <hr className="o-20" />
       <h2 className="ttu mt0 mb1 f6 fw5 silver">Enter Event Description</h2>
       <div className="mv3 pv3 w-75-ns w-100 center">
-        <Editor setDescription={setDescription} description={description} />
+        <TextEditor setDescription={setDescription} description={description} />
       </div>
       <div
         className="mt4 b--white dib noselect br-100 b--solid pa2 ph4 f3 fw5"
