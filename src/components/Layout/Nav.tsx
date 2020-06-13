@@ -27,7 +27,7 @@ export const Nav: React.FunctionComponent = () => {
   }
   return (
     <div
-      className="overflow-hidden dt flex justify-between relative mb5-ns mb3 pa4-ns pa2 flex 
+      className="overflow-hidden dt flex justify-between relative mb5-ns mb3  flex 
   "
     >
       <div id="dtc fl" className="white" onMouseDown={handleMouseDown}>
@@ -43,10 +43,13 @@ export const Nav: React.FunctionComponent = () => {
       </div>
       <div id="flyoutMenu" className={visibility}>
         <div
-          className="overflow-hidden dt flex justify-between relative  pa4-ns pa2 flex 
+          className="overflow-hidden dt flex justify-between relative  flex 
   "
         >
-          <div className="pa4 fw8 f4 white" onMouseDown={handleMouseDown}>
+          <div
+            className="pa4-ns pa3 fw8 f4 white"
+            onMouseDown={handleMouseDown}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="15"
