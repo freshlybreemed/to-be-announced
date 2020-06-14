@@ -25,7 +25,7 @@ export const Venues: React.FunctionComponent = () => {
       />
       <div className={'w-100 ph4 pt4 bg-white black'}>
         <div className="pb4">
-          <h3 className="mw8 ttu fw4">Information</h3>
+          <h3 className="mw8 ttu fw5">Information</h3>
           <div className="fw6 f5 pv1">Capacity</div>
           <div className="fw7 f4">200</div>
         </div>
@@ -46,7 +46,7 @@ export const Venues: React.FunctionComponent = () => {
 
       <div className={'w-100 ph4  pt4 bg-black white'}>
         <div className="pb4">
-          <h3 className="mw8 ttu fw4">Photo Gallery</h3>
+          <h3 className="mw8 ttu fw5">Photo Gallery</h3>
 
           <img
             src="https://dice-media.imgix.net/attachments/2020-01-15/b7a5dd28-2559-4af6-a0c4-35fcc4a13a03.jpg"
@@ -56,7 +56,7 @@ export const Venues: React.FunctionComponent = () => {
       </div>
       <div className={'w-100 ph4  pt4 bg-white black'}>
         <div className="pb4">
-          <h3 className="mw8 ttu fw4">Upcoming Events</h3>
+          <h3 className="mw8 ttu fw5">Upcoming Events</h3>
           {isMounted && (
             <div
               style={{
@@ -91,7 +91,7 @@ export const Venues: React.FunctionComponent = () => {
                       backgroundPosition: 'center center',
                       top: '0px',
                       left: '0px',
-                      width: '350px',
+                      width: '300px',
                       height: '250px',
                     }}
                     className="o-100  "
@@ -120,7 +120,7 @@ export const Venues: React.FunctionComponent = () => {
                       backgroundPosition: 'center center',
                       top: '0px',
                       left: '0px',
-                      width: '350px',
+                      width: '300px',
                       height: '250px',
                     }}
                     className="o-100  "
@@ -148,7 +148,7 @@ export const Venues: React.FunctionComponent = () => {
                       backgroundPosition: 'center center',
                       top: '0px',
                       left: '0px',
-                      width: '350px',
+                      width: '300px',
                       height: '250px',
                     }}
                     className="o-100  "
