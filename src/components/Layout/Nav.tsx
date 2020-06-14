@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-// import { getCookieFromBrowser, removeCookie } from '../../lib';
-// import Router from 'next/router';
+import { getCookieFromBrowser, removeCookie } from '../../lib';
+import Router from 'next/router';
 export const Nav: React.FunctionComponent = () => {
-  // const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
-  // const handleLogout = () => {
-  //   removeCookie('id_token');
-  //   Router.push('/');
-  // };
+  const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
+  const handleLogout = () => {
+    removeCookie('id_token');
+    Router.push('/');
+  };
   const [visible, setVisible] = useState<boolean>(false);
   const handleMouseDown = (e) => {
     toggleMenu();
@@ -61,26 +61,12 @@ export const Nav: React.FunctionComponent = () => {
             >
               Social Ticketing
             </h2>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1 ">
+            <a
+              href="/events"
+              className="white no-underline fw6 f4 b db pv1 mv1 "
+            >
               About
             </a>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
-              Brand Partnerships
-            </a>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
-              Press
-            </a>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
-              Contact
-            </a>
-          </div>
-          <div className="pv3 w-50-ns w-100">
-            <h2
-              className="ttu mt0 mb2 f6 fw7 gray "
-              style={{ letterSpacing: '0.08em' }}
-            >
-              Browse
-            </h2>
             <a
               href="/events"
               className="white no-underline fw6 f4 b db pv1 mv1 "
@@ -93,6 +79,16 @@ export const Nav: React.FunctionComponent = () => {
             >
               Venues
             </a>
+            {isLoggedIn ? (
+              <a
+                href="/venues"
+                className="white no-underline fw6 f4 b db pv1 mv1"
+              >
+                `Log In`
+              </a>
+            ) : (
+              <div onClick={handleLogout}> Log Out</div>
+            )}
           </div>
 
           <div className="pv3 w-50-ns w-100">
@@ -189,46 +185,6 @@ export const Nav: React.FunctionComponent = () => {
             <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
           </svg>
         </li>
-        {/* <li className="fl tr mr3 list">
-          <a className="fl dib dim no-underline white " href="/events">
-            Events
-          </a>
-        </li>
-        <li className="fl tr list">
-          <a className="fl dib dim no-underline white " href="/dashboard">
-            Dashboard
-          </a>
-        </li> */}
-        {/* {isLoggedIn ? (
-          <li className="fl tr mr3 list ">
-            <a
-              onClick={handleLogout}
-              className="fl dib dim no-underline white "
-            >
-              Logout
-            </a>
-          </li>
-          <li className="fl tr mr3 list">
-            <a className="fl dib dim no-underline white " href="/dashboard">
-              Dashboard
-            </a>
-          </li>
-          {/* {isLoggedIn ? (
-          <li className="fl tr mr3 list ">
-          <a
-          onClick={handleLogout}
-          className="fl dib dim no-underline white "
-          >
-          Logout
-          </a>
-          </li>
-          ) : (
-            <li className="fl tr mr3 list ">
-            <a className="fl dib dim no-underline white " href="/login">
-            Login
-            </a>
-          </li>
-        )} */}
       </ul>
     </div>
   );
