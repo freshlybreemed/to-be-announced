@@ -32,8 +32,20 @@ export const Layout: React.FunctionComponent<LayoutProps> = (props) => (
         backgroundSize: 'cover',
       }}
     />
-    <Nav />
+    <div
+      className={`${classnames({
+        'pa4-ns pa3': props.noPadding,
+      })}`}
+    >
+      <Nav />
+    </div>
     <main className="relative">{props.children}</main>
-    <Footer />
+    <div
+      className={`${classnames({
+        'pa4-ns pa3': props.noPadding,
+      })}`}
+    >
+      <Footer />
+    </div>
   </div>
 );
