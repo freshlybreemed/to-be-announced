@@ -79,12 +79,16 @@ export const Nav: React.FunctionComponent = () => {
             >
               Venues
             </a>
-            <a
-              href="/venues"
-              className="white no-underline fw6 f4 b db pv1 mv1"
-            >
-              {isLoggedIn ? `Log In` : `Log Out`}
-            </a>
+            {isLoggedIn ? (
+              <a
+                href="/venues"
+                className="white no-underline fw6 f4 b db pv1 mv1"
+              >
+                `Log In`
+              </a>
+            ) : (
+              <div onClick={handleLogout}> Log Out</div>
+            )}
           </div>
 
           <div className="pv3 w-50-ns w-100">
