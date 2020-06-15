@@ -12,12 +12,16 @@ export interface EventProps {
   tickets: OrderProps[];
   endDate: string;
   slug: string;
+  password: string;
   refunds: boolean;
   gross: number;
+  listed: boolean;
   eventType: string;
   ticketTypes: {
     [ticketName: string]: TicketProps;
   };
+  changedDate: string;
+  publishDate: string;
 }
 
 export interface TicketProps {

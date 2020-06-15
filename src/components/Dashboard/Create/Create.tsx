@@ -23,7 +23,9 @@ interface EditProps {
 }
 export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [name, setName] = useState<string>(event ? event.name : '');
-  const [location, setLocation] = useState<object>(event ? event.location : {});
+  const [location, setLocation] = useState<EventProps['location']>(
+    event ? event.location : { venue: '', address: '', placeId: '' }
+  );
   const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(
     event ? event.description : '',
@@ -45,7 +47,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
     false,
   );
-  const [ticketTypes, setTicketTypes] = useState<Object>(
+  const [ticketTypes, setTicketTypes] = useState<EventProps['ticketTypes']>(
     event ? event.ticketTypes : {},
   );
   const [loading, setLoading] = useState<boolean>(false);
@@ -81,18 +83,23 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     setCurrentTicket(null);
   };
 
-  const setEventLocation = (addy: object) => setLocation(addy);
+  const setEventLocation = (addy: EventProps['location']) => setLocation(addy);
 
-  const eventDetails = {
+  const eventDetails: EventProps = {
     name,
     slug,
     location,
     description,
     eventType,
+    organizerId: '123',
     image,
     tickets: event ? event.tickets : [],
     startDate,
     gross: event ? event.gross : 0,
+    password: event ? event.password : null,
+    listed: event ? event.listed : true,
+    publishDate: event ? event.publishDate : new Date().toString(),
+    changedDate: new Date().toString(),
     endDate,
     ticketTypes,
     refunds,
