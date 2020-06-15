@@ -25,17 +25,13 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
   );
 
   console.log(event);
-  const isNS = useMediaQuery({
-    query: '(min-width: 30em)',
-  });
+  // const isNS = useMediaQuery({
+  //   query: '(min-width: 30em)',
+  // });
   const isL = useMediaQuery({ query: '(min-width: 60em)' });
-  const isM = useMediaQuery({
-    query: '(max-width: 60em) and (min-width: 30em)',
-  });
-  console.log('isNs', isNS);
-  console.log('isS', !isNS);
-  console.log('isL', isL);
-  console.log('isM', isM);
+  // const isM = useMediaQuery({
+  //   query: '(max-width: 60em) and (min-width: 30em)',
+  // });
 
   return (
     <div className={'w-100'}>

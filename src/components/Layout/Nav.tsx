@@ -63,31 +63,37 @@ export const Nav: React.FunctionComponent = () => {
             </h2>
             <a
               href="/events"
-              className="white no-underline fw6 f4 b db pv1 mv1 "
+              className="white dim no-underline fw6 f4 b db pv1 mv1 "
             >
               About
             </a>
             <a
               href="/events"
-              className="white no-underline fw6 f4 b db pv1 mv1 "
+              className="white dim no-underline fw6 f4 b db pv1 mv1 "
             >
               Search Events
             </a>
             <a
               href="/venues"
-              className="white no-underline fw6 f4 b db pv1 mv1"
+              className="white dim no-underline fw6 f4 b db pv1 mv1"
             >
               Venues
             </a>
             {isLoggedIn ? (
               <a
                 href="/venues"
-                className="white no-underline fw6 f4 b db pv1 mv1"
+                className="white dim no-underline fw6 f4 b db pv1 mv1"
               >
                 `Log In`
               </a>
             ) : (
-              <div onClick={handleLogout}> Log Out</div>
+              <div
+                className="white dim no-underline fw6 f4 b db pv1 mv1"
+                onClick={handleLogout}
+              >
+                {' '}
+                Log Out
+              </div>
             )}
           </div>
 
@@ -100,25 +106,25 @@ export const Nav: React.FunctionComponent = () => {
             </h2>
             <a
               href="/dashboard"
-              className="white no-underline fw6 f4 b db pv1 mv1 "
+              className="white dim no-underline fw6 f4 b db pv1 mv1 "
             >
               Dashboard
             </a>
             <a
               href="/dashboard/myevents"
-              className="white no-underline fw6 f4 b db pv1 mv1 "
+              className="white dim no-underline fw6 f4 b db pv1 mv1 "
             >
               My Events
             </a>
             <a
               href="/dashboard/payouts"
-              className="white no-underline fw6 f4 b db pv1 mv1"
+              className="white dim no-underline fw6 f4 b db pv1 mv1"
             >
               Payouts
             </a>
             <a
               href="/dashboard/create"
-              className="white no-underline fw6 f4 b db pv1 mv1"
+              className="white dim no-underline fw6 f4 b db pv1 mv1"
             >
               Create Event
             </a>
@@ -131,7 +137,7 @@ export const Nav: React.FunctionComponent = () => {
             >
               Socials
             </h2>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1 ">
+            <a href="" className="white dim no-underline fw6 f4 b db pv1 mv1 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
@@ -144,7 +150,7 @@ export const Nav: React.FunctionComponent = () => {
               </svg>
               Instagram
             </a>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
+            <a href="" className="white dim no-underline fw6 f4 b db pv1 mv1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
@@ -157,7 +163,7 @@ export const Nav: React.FunctionComponent = () => {
               </svg>
               Twitter
             </a>
-            <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
+            <a href="" className="white dim no-underline fw6 f4 b db pv1 mv1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
