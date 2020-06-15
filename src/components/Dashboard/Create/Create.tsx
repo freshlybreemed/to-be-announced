@@ -235,8 +235,8 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
             </label>
           </div>
           <main className="w-75-ns w-100 tl center">
-            {Object.keys(ticketTypes).map((curr) => (
-              <article className="dt w-100 bb b--gray pb2 mt2">
+            {Object.keys(ticketTypes).map((curr, key) => (
+              <article key={key} className="dt w-100 bb b--gray pb2 mt2">
                 <div className="dtc v-mid pl3">
                   <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
                     <a className="white no-underline" href="">
