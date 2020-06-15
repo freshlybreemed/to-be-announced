@@ -31,7 +31,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
           {`${formatPrice(ticketType.price.toString())} `}
           {!freeTix &&
             `+ ${formatPrice(
-              (parseFloat(ticketType.price.toString()) * 0.12).toString(),
+              parseFloat(ticketType.fee.toString()).toString()
             )} FEE`}
         </span>
       </div>
@@ -55,14 +55,18 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
               className="bg-transparent tc white bb bt-0 br-0 bl-0 w3-ns w2 mh3-ns mh1"
               onChange={(e) => {
                 setQuantity(parseInt(e.currentTarget.value));
-                updateCart(ticketType._id, e.currentTarget.value);
+                updateCart(
+                  ticketType._id,
+                  e.currentTarget.value,
+                  ticketType.fee
+                );
               }}
             />
             <span
               onClick={() => {
                 if (!soldOut) {
                   setQuantity(quantity + 1);
-                  updateCart(ticketType._id, quantity + 1);
+                  updateCart(ticketType._id, quantity + 1, fee);
                 }
               }}
               className={`f3 noselect br-100 ph2 pb1 ${classnames({

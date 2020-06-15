@@ -25,14 +25,15 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
 }) => {
   const [emptyCart, setEmptyCart] = useState<boolean>(true);
   console.log('cart', cart);
-  const updateCart = async (ticketName: any, quantity: number) => {
+  const updateCart = async (_id: any, quantity: number, fee: number) => {
     const newCart = Object.assign(cart, {
-      [ticketName]: {
-        price: ticketTypes[ticketName].price,
+      [_id]: {
+        price: ticketTypes[_id].price,
         quantity,
+        fee,
       },
     });
-    if (quantity <= 0) delete newCart[ticketName];
+    if (quantity <= 0) delete newCart[_id];
     let newTotal = 0;
     for (var tix in newCart) {
       newTotal +=
