@@ -87,7 +87,13 @@ export const Nav: React.FunctionComponent = () => {
                 `Log In`
               </a>
             ) : (
-              <div onClick={handleLogout}> Log Out</div>
+              <div
+                className="white no-underline fw6 f4 b db pv1 mv1"
+                onClick={handleLogout}
+              >
+                {' '}
+                Log Out
+              </div>
             )}
           </div>
 
