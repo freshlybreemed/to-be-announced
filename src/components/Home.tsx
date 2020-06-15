@@ -21,10 +21,16 @@ export const Home: React.FunctionComponent = () => (
         with online ticketing tools
       </h1>
       <div className="mb4">
-        <a className="b--white dib noselect  br-100 b--solid bg-black hover-bg-white hover-black pa2 mb2 ph4 f3 fw5 mr3">
+        <a
+          href="/signup"
+          className="b--white white no-underline dib noselect  br-100 b--solid bg-black hover-bg-white hover-black pa2 mb2 ph4 f3 fw5 mr3"
+        >
           Sign Up
         </a>
-        <a className="b--white dib bg-black noselect hover-bg-white hover-black  br-100 b--solid pa2 mb2 ph4 f3 fw5">
+        <a
+          href="/dashboard/create"
+          className="b--white white no-underline dib bg-black noselect hover-bg-white hover-black  br-100 b--solid pa2 mb2 ph4 f3 fw5"
+        >
           Submit An Event
         </a>
       </div>
