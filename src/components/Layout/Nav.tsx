@@ -81,13 +81,13 @@ export const Nav: React.FunctionComponent = () => {
                 Log In
               </a>
             ) : (
-              <div
-                className="white dim no-underline fw6 f4 b db pv1 mv1"
+              <a
+                className="white no-underline fw6 f4 b db pv1 mv1"
                 href=""
                 onClick={handleLogout}
               >
                 Log Out
-              </div>
+              </a>
             )}
           </div>
 
