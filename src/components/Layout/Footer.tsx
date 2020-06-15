@@ -24,7 +24,10 @@ export const Footer: React.FunctionComponent = () => (
           placeholder="Email"
         />
       </label>
-      <button type="submit" className="bn bg-transparent white pl3 ml1 fw6 f4">
+      <button
+        type="submit"
+        className="bn bg-transparent white pl3 ml1 fw6 dim f4"
+      >
         Subscribe
       </button>
     </form>
