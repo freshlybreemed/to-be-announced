@@ -66,7 +66,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
               onClick={() => {
                 if (!soldOut) {
                   setQuantity(quantity + 1);
-                  updateCart(ticketType._id, quantity + 1, fee);
+                  updateCart(ticketType._id, quantity + 1, ticketType.fee);
                 }
               }}
               className={`f3 noselect br-100 ph2 pb1 ${classnames({
