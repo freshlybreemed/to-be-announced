@@ -31,8 +31,11 @@ export interface TicketProps {
   sold: number;
   _id: number;
   description: string;
+  donation: boolean;
+  free: boolean;
   ticketEndDate: string;
   enabled: boolean;
+  fee: number;
 }
 
 export interface OrderProps {
