@@ -54,5 +54,6 @@ export interface OrderProps {
 export interface EventCartProps {
   price: number;
   quantity: number;
+  fee: number;
   ticketName: string;
 }
