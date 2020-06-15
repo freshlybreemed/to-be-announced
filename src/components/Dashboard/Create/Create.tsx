@@ -221,12 +221,13 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
             Create A Ticket{' '}
           </div>{' '}
           <div className="mt3">
-            <label className="pa2 mr3 gray switch">
+            <label className="pa2 mr3 gray">
               Refundable?
               <input
                 type="checkbox"
                 onChange={() => setRefundable(!refunds)}
                 checked={refunds}
+                disabled={event ? true : false}
               />{' '}
               <span>
                 <strong></strong>
