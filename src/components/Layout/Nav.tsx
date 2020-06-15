@@ -33,7 +33,7 @@ export const Nav: React.FunctionComponent = () => {
       <div id="flyoutMenu" className={`${visibility}`} style={{ zIndex: 2 }}>
         <div className="overflow-hidden dt flex fr justify-between relative flex">
           <div
-            className="pa4-ns pa3 fw8 f4 white"
+            className="ma4-ns ma3 fw8 f4 dim white"
             onMouseDown={handleMouseDown}
           >
             <svg
@@ -83,6 +83,7 @@ export const Nav: React.FunctionComponent = () => {
             ) : (
               <div
                 className="white dim no-underline fw6 f4 b db pv1 mv1"
+                href=""
                 onClick={handleLogout}
               >
                 Log Out
