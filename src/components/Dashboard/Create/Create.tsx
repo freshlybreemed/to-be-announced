@@ -23,7 +23,9 @@ interface EditProps {
 }
 export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [name, setName] = useState<string>(event ? event.name : '');
-  const [location, setLocation] = useState<object>(event ? event.location : {});
+  const [location, setLocation] = useState<EventProps['location']>(
+    event ? event.location : { venue: '', address: '', placeId: '' }
+  );
   const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(
     event ? event.description : '',
@@ -45,7 +47,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [toggleTicketCreation, setToggleTicketCreation] = useState<boolean>(
     false,
   );
-  const [ticketTypes, setTicketTypes] = useState<Object>(
+  const [ticketTypes, setTicketTypes] = useState<EventProps['ticketTypes']>(
     event ? event.ticketTypes : {},
   );
   const [loading, setLoading] = useState<boolean>(false);
@@ -81,18 +83,23 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     setCurrentTicket(null);
   };
 
-  const setEventLocation = (addy: object) => setLocation(addy);
+  const setEventLocation = (addy: EventProps['location']) => setLocation(addy);
 
-  const eventDetails = {
+  const eventDetails: EventProps = {
     name,
     slug,
     location,
     description,
     eventType,
+    organizerId: '123',
     image,
     tickets: event ? event.tickets : [],
     startDate,
     gross: event ? event.gross : 0,
+    password: event ? event.password : null,
+    listed: event ? event.listed : true,
+    publishDate: event ? event.publishDate : new Date().toString(),
+    changedDate: new Date().toString(),
     endDate,
     ticketTypes,
     refunds,
@@ -214,12 +221,13 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
             Create A Ticket{' '}
           </div>{' '}
           <div className="mt3">
-            <label className="pa2 mr3 gray switch">
+            <label className="pa2 mr3 gray">
               Refundable?
               <input
                 type="checkbox"
                 onChange={() => setRefundable(!refunds)}
                 checked={refunds}
+                disabled={event ? true : false}
               />{' '}
               <span>
                 <strong></strong>
@@ -227,8 +235,8 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
             </label>
           </div>
           <main className="w-75-ns w-100 tl center">
-            {Object.keys(ticketTypes).map((curr) => (
-              <article className="dt w-100 bb b--gray pb2 mt2">
+            {Object.keys(ticketTypes).map((curr, key) => (
+              <article key={key} className="dt w-100 bb b--gray pb2 mt2">
                 <div className="dtc v-mid pl3">
                   <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
                     <a className="white no-underline" href="">
@@ -262,7 +270,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                     {ticketTypes[curr].sold}/{ticketTypes[curr].quantity}
                   </h1>
                   <h1 className="f6 f5-ns fw7 lh-title gray mv0">
-                    {formatPrice(ticketTypes[curr].price)}
+                    {formatPrice(ticketTypes[curr].price.toString())}
                   </h1>
                   {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
                 </div>

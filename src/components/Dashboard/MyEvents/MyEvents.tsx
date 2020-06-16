@@ -2,12 +2,13 @@ import * as React from 'react';
 import classnames from 'classnames';
 import { EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
-
+import { useState } from 'react';
 interface MyEventProps {
   events: EventProps[];
 }
 
 export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
+  const [toggle, setToggle] = useState<boolean>(true);
   console.log(events);
   const isL = useMediaQuery({ query: '(min-width: 60em)' });
   const isM = useMediaQuery({
@@ -27,18 +28,20 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
         </div>
       </div>
       <div>
-        <div className="pv3 mb4">
+        <div className="pv3 mb4 bb-hover">
           <span
-            className=" f4-ns f6 fw6-ns pb2 mr3"
-            style={{
-              borderBottom: '1px solid lightcyan',
-              boxShadow: '0 -3px 0 lightcyan inset',
-            }}
+            onClick={() => setToggle(true)}
+            className={`f4-ns noselect f6 fw6-ns pb2 mr3 ${classnames({
+              active: toggle,
+            })}`}
           >
             Upcoming Events
           </span>
           <span
-            className="ml3 dim noselect f4-ns f6 fw6-ns pb2 gray"
+            onClick={() => setToggle(false)}
+            className={`ml3 noselect f4-ns f6 fw6-ns pb2 gray ${classnames({
+              active: !toggle,
+            })}`}
             // style={{
             //   borderBottom: '1px solid ',
             //   boxShadow: '0 -3px 0 lightcyan inset',

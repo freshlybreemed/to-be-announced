@@ -495,3 +495,13 @@ input:-webkit-autofill:active {
 #container li {
   margin-bottom: 10px;
 }
+
+.bb-hover span:hover {
+  border-bottom: 1px solid lightcyan;
+  box-shadow: 0 -3px 0 lightcyan inset;
+}
+
+.bb-hover span.active {
+  border-bottom: 1px solid lightcyan;
+  box-shadow: 0 -3px 0 lightcyan inset;
+}

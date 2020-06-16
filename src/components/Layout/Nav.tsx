@@ -26,20 +26,14 @@ export const Nav: React.FunctionComponent = () => {
     visibility = 'show';
   }
   return (
-    <div
-      className="overflow-hidden dt flex  justify-between relative mb5-ns mb3  flex 
-  "
-    >
+    <div className="overflow-hidden dt flex justify-between relative mb4-l mb3-m mb2 flex">
       <a href="/" className="fl f3 fw6 white no-underline">
         Social Ticketing
       </a>
       <div id="flyoutMenu" className={`${visibility}`} style={{ zIndex: 2 }}>
-        <div
-          className="overflow-hidden dt flex fr justify-between relative  flex 
-  "
-        >
+        <div className="overflow-hidden dt flex fr justify-between relative flex">
           <div
-            className="pa4-ns pa3 fw8 f4 white"
+            className="ma4-ns ma3 fw8 f4 dim white"
             onMouseDown={handleMouseDown}
           >
             <svg
@@ -56,20 +50,20 @@ export const Nav: React.FunctionComponent = () => {
         <div className="pa5 pt2 flex flex-wrap justify-between w-100">
           <div className="pv3 w-50-ns w-100">
             <h2
-              className="ttu mt0 mb2 f6 fw7 gray "
+              className="ttu mt0 mb2 f6 fw7 gray"
               style={{ letterSpacing: '0.08em' }}
             >
               Social Ticketing
             </h2>
             <a
               href="/events"
-              className="white dim no-underline fw6 f4 b db pv1 mv1 "
+              className="white dim no-underline fw6 f4 b db pv1 mv1"
             >
               About
             </a>
             <a
               href="/events"
-              className="white dim no-underline fw6 f4 b db pv1 mv1 "
+              className="white dim no-underline fw6 f4 b db pv1 mv1"
             >
               Search Events
             </a>
@@ -84,16 +78,16 @@ export const Nav: React.FunctionComponent = () => {
                 href="/venues"
                 className="white dim no-underline fw6 f4 b db pv1 mv1"
               >
-                `Log In`
+                Log In
               </a>
             ) : (
-              <div
-                className="white dim no-underline fw6 f4 b db pv1 mv1"
+              <a
+                className="white no-underline fw6 f4 b db pv1 mv1"
+                href=""
                 onClick={handleLogout}
               >
-                {' '}
                 Log Out
-              </div>
+              </a>
             )}
           </div>
 

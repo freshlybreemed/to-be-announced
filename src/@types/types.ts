@@ -12,12 +12,16 @@ export interface EventProps {
   tickets: OrderProps[];
   endDate: string;
   slug: string;
+  password: string;
   refunds: boolean;
   gross: number;
+  listed: boolean;
   eventType: string;
   ticketTypes: {
     [ticketName: string]: TicketProps;
   };
+  changedDate: string;
+  publishDate: string;
 }
 
 export interface TicketProps {
@@ -27,8 +31,11 @@ export interface TicketProps {
   sold: number;
   _id: number;
   description: string;
+  donation: boolean;
+  free: boolean;
   ticketEndDate: string;
   enabled: boolean;
+  fee: number;
 }
 
 export interface OrderProps {
@@ -47,5 +54,6 @@ export interface OrderProps {
 export interface EventCartProps {
   price: number;
   quantity: number;
+  fee: number;
   ticketName: string;
 }
