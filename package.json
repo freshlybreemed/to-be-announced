@@ -42,7 +42,7 @@
     "next-absolute-url": "^1.1.1",
     "nodemailer": "^6.4.6",
     "react": "^16.8.6",
-    "react-cool-onclickoutside": "^1.4.5",
+    "react-cool-onclickoutside": "^1.5.1",
     "react-datetime": "^2.16.3",
     "react-dom": "^16.8.6",
     "react-fade-in": "^1.0.0",
