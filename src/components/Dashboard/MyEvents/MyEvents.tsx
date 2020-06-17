@@ -4,6 +4,7 @@ import { EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
 import { formatDate, formatTime } from '../../../lib';
+import moment from 'moment';
 interface MyEventProps {
   events: EventProps[];
 }
@@ -64,13 +65,18 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
             {events
               .filter((curr) =>
                 toggle
-                  ? new Date(curr.endDate) < new Date()
-                  : new Date(curr.endDate) > new Date(),
+                  ? moment().isBefore(curr.endDate)
+                  : moment().isAfter(curr.endDate),
               )
               .map((curr, ind) => {
-                const live = new Date(curr.startDate) > new Date();
+                const live = moment().isBefore(curr.endDate);
+                const inProgress = moment().isBetween(
+                  curr.startDate,
+                  curr.endDate,
+                );
                 return (
                   <tr
+                    key={ind}
                     className={`fw7-ns fw5 f5-ns f6 ${classnames({
                       bt: ind > 0,
                     })}`}
@@ -85,12 +91,17 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                     </td>
                     <td
                       className={`pv2 ${classnames({
-                        green: live,
+                        green: live && !inProgress,
                         red: !live,
+                        yellow: inProgress,
                       })}`}
                     >
                       <span className="f5">•</span>{' '}
-                      {live ? `Live` : `Sale Ended`}
+                      {inProgress
+                        ? `In Progress`
+                        : live
+                        ? `Live`
+                        : `Sale Ended`}
                     </td>
                     <td className="pv2">
                       {formatDate(new Date(curr.startDate))}
