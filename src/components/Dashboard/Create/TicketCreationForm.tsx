@@ -153,12 +153,6 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           date={ticketEndDate}
         />
       </div>
-      <div className="mt3">
-        <label className="pa2 input-reset mr3 gray w-75-ns w-100">
-          Refundable?
-        </label>
-        <input type="checkbox" />
-      </div>
 
       {!ticket && (
         <div

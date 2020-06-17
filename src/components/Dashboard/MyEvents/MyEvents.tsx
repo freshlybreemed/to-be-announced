@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import { EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
+import { formatDate, formatTime } from '../../../lib';
+import moment from 'moment';
 interface MyEventProps {
   events: EventProps[];
 }
@@ -42,10 +44,6 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
             className={`ml3 noselect f4-ns f6 fw6-ns pb2 gray ${classnames({
               active: !toggle,
             })}`}
-            // style={{
-            //   borderBottom: '1px solid ',
-            //   boxShadow: '0 -3px 0 lightcyan inset',
-            // }}
           >
             Past Events
           </span>
@@ -64,38 +62,61 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
             </tr>
           </thead>
           <tbody>
-            {events.map((curr, ind) => {
-              const live = new Date(curr.startDate) > new Date();
-              return (
-                <tr
-                  className={`fw7-ns fw5 f5-ns f6 ${classnames({
-                    bt: ind > 0,
-                  })}`}
-                >
-                  <td className="pv2">
-                    <a
-                      className="white no-underline "
-                      href={`/dashboard/manage/${curr.slug}`}
-                    >
-                      {curr.name}
-                    </a>
-                  </td>
-                  <td
-                    className={`pv2 ${classnames({
-                      green: live,
-                      red: !live,
+            {events
+              .filter((curr) =>
+                toggle
+                  ? moment().isBefore(curr.endDate)
+                  : moment().isAfter(curr.endDate),
+              )
+              .map((curr, ind) => {
+                const live = moment().isBefore(curr.endDate);
+                const inProgress = moment().isBetween(
+                  curr.startDate,
+                  curr.endDate,
+                );
+                return (
+                  <tr
+                    key={ind}
+                    className={`fw7-ns fw5 f5-ns f6 ${classnames({
+                      bt: ind > 0,
                     })}`}
                   >
-                    <span className="f5">•</span> {live ? `Live` : `Sale Ended`}
-                  </td>
-                  <td className="pv2">6/1/2020</td>
-                  {isL && <td className="pv2">5:00PM</td>}
-                  {(isM || isL) && (
-                    <td className="pv2">{`${curr.location.venue}`}</td>
-                  )}
-                </tr>
-              );
-            })}
+                    <td className="pv2">
+                      <a
+                        className="white no-underline "
+                        href={`/dashboard/manage/${curr.slug}`}
+                      >
+                        {curr.name}
+                      </a>
+                    </td>
+                    <td
+                      className={`pv2 ${classnames({
+                        green: live && !inProgress,
+                        red: !live,
+                        yellow: inProgress,
+                      })}`}
+                    >
+                      <span className="f5">•</span>{' '}
+                      {inProgress
+                        ? `In Progress`
+                        : live
+                        ? `Live`
+                        : `Sale Ended`}
+                    </td>
+                    <td className="pv2">
+                      {formatDate(new Date(curr.startDate))}
+                    </td>
+                    {isL && (
+                      <td className="pv2">
+                        {formatTime(new Date(curr.startDate))}
+                      </td>
+                    )}
+                    {(isM || isL) && (
+                      <td className="pv2">{`${curr.location.venue}`}</td>
+                    )}
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
