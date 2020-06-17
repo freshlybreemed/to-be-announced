@@ -43,10 +43,6 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
             className={`ml3 noselect f4-ns f6 fw6-ns pb2 gray ${classnames({
               active: !toggle,
             })}`}
-            // style={{
-            //   borderBottom: '1px solid ',
-            //   boxShadow: '0 -3px 0 lightcyan inset',
-            // }}
           >
             Past Events
           </span>
