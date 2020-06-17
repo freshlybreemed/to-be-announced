@@ -64,7 +64,13 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
             </tr>
           </thead>
           <tbody>
-            {events.map((curr, ind) => {
+            {events
+              .filter((curr) =>
+                toggle
+                  ? new Date(curr.endDate) < new Date()
+                  : new Date(curr.endDate) > new Date(),
+              )
+              .map((curr, ind) => {
               const live = new Date(curr.startDate) > new Date();
               return (
                 <tr
