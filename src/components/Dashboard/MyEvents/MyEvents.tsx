@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
+import { formatDate, formatTime } from '../../../lib';
 interface MyEventProps {
   events: EventProps[];
 }
@@ -71,37 +72,44 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                   : new Date(curr.endDate) > new Date(),
               )
               .map((curr, ind) => {
-              const live = new Date(curr.startDate) > new Date();
-              return (
-                <tr
-                  className={`fw7-ns fw5 f5-ns f6 ${classnames({
-                    bt: ind > 0,
-                  })}`}
-                >
-                  <td className="pv2">
-                    <a
-                      className="white no-underline "
-                      href={`/dashboard/manage/${curr.slug}`}
-                    >
-                      {curr.name}
-                    </a>
-                  </td>
-                  <td
-                    className={`pv2 ${classnames({
-                      green: live,
-                      red: !live,
+                const live = new Date(curr.startDate) > new Date();
+                return (
+                  <tr
+                    className={`fw7-ns fw5 f5-ns f6 ${classnames({
+                      bt: ind > 0,
                     })}`}
                   >
-                    <span className="f5">•</span> {live ? `Live` : `Sale Ended`}
-                  </td>
-                  <td className="pv2">6/1/2020</td>
-                  {isL && <td className="pv2">5:00PM</td>}
-                  {(isM || isL) && (
-                    <td className="pv2">{`${curr.location.venue}`}</td>
-                  )}
-                </tr>
-              );
-            })}
+                    <td className="pv2">
+                      <a
+                        className="white no-underline "
+                        href={`/dashboard/manage/${curr.slug}`}
+                      >
+                        {curr.name}
+                      </a>
+                    </td>
+                    <td
+                      className={`pv2 ${classnames({
+                        green: live,
+                        red: !live,
+                      })}`}
+                    >
+                      <span className="f5">•</span>{' '}
+                      {live ? `Live` : `Sale Ended`}
+                    </td>
+                    <td className="pv2">
+                      {formatDate(new Date(curr.startDate))}
+                    </td>
+                    {isL && (
+                      <td className="pv2">
+                        {formatTime(new Date(curr.startDate))}
+                      </td>
+                    )}
+                    {(isM || isL) && (
+                      <td className="pv2">{`${curr.location.venue}`}</td>
+                    )}
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
