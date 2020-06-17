@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import usePlacesAutocomplete, {
   getGeocode,
@@ -26,8 +26,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     },
     debounce: 300,
   });
-  const ref = useRef(null);
-  useOnclickOutside(ref, () => {
+  const ref = useOnclickOutside(() => {
     // When user clicks outside of the component, we can dismiss
     // the searched suggestions by calling this method
     clearSuggestions();
