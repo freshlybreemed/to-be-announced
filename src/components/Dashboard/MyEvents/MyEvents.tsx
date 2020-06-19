@@ -3,7 +3,13 @@ import classnames from 'classnames';
 import { EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
-import { formatDate, formatTime } from '../../../lib';
+import {
+  formatDate,
+  formatTime,
+  getTicketCount,
+  getTicketsSold,
+  formatPrice,
+} from '../../../lib';
 import moment from 'moment';
 interface MyEventProps {
   events: EventProps[];
@@ -11,6 +17,7 @@ interface MyEventProps {
 
 export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
   const [toggle, setToggle] = useState<boolean>(true);
+
   console.log(events);
   const isL = useMediaQuery({ query: '(min-width: 60em)' });
   const isM = useMediaQuery({
@@ -48,77 +55,122 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
             Past Events
           </span>
         </div>
-        <table
-          className=" w-100 tl center f6"
-          style={{ borderCollapse: 'collapse', borderSpacing: 0 }}
-        >
-          <thead>
-            <tr className="pv2 gray">
-              <th className="fw6-ns fw5">Name of Event</th>
-              <th className="fw6-ns fw5">Status</th>
-              <th className="fw6-ns fw5">Date</th>
-              {isL && <th className="fw6-ns fw5">Time</th>}
-              {(isM || isL) && <th className="fw6-ns fw5">Venue</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {events
-              .filter((curr) =>
-                toggle
-                  ? moment().isBefore(curr.endDate)
-                  : moment().isAfter(curr.endDate),
-              )
-              .map((curr, ind) => {
-                const live = moment().isBefore(curr.endDate);
-                const inProgress = moment().isBetween(
-                  curr.startDate,
-                  curr.endDate,
-                );
-                return (
-                  <tr
-                    key={ind}
-                    className={`fw7-ns fw5 f5-ns f6 ${classnames({
-                      bt: ind > 0,
-                    })}`}
-                  >
-                    <td className="pv2">
-                      <a
-                        className="white no-underline "
-                        href={`/dashboard/manage/${curr.slug}`}
-                      >
-                        {curr.name}
-                      </a>
-                    </td>
-                    <td
-                      className={`pv2 ${classnames({
-                        green: live && !inProgress,
-                        red: !live,
-                        yellow: inProgress,
+        {events.length > 0 ? (
+          <table
+            className=" w-100 tl center f6"
+            style={{ borderCollapse: 'collapse' }}
+          >
+            <thead>
+              <tr className="pv2 gray">
+                <th className="fw6-ns fw5">Name of Event</th>
+
+                {isL && <th className="fw6-ns fw5">Gross</th>}
+                {(isM || isL) && <th className="fw6-ns fw5">Status</th>}
+                <th className="fw6-ns fw5">Sold</th>
+              </tr>
+            </thead>
+            <tbody>
+              {events
+                .filter((curr) =>
+                  toggle
+                    ? moment().isBefore(curr.endDate)
+                    : moment().isAfter(curr.endDate)
+                )
+                .map((curr, ind) => {
+                  const live = moment().isBefore(curr.endDate);
+                  const inProgress = moment().isBetween(
+                    curr.startDate,
+                    curr.endDate
+                  );
+                  return (
+                    <tr
+                      key={ind}
+                      className={`fw7-ns fw5 f5-ns f6 ${classnames({
+                        bt: ind > 0,
                       })}`}
                     >
-                      <span className="f5">•</span>{' '}
-                      {inProgress
-                        ? `In Progress`
-                        : live
-                        ? `Live`
-                        : `Sale Ended`}
-                    </td>
-                    <td className="pv2">
-                      {formatDate(new Date(curr.startDate))}
-                    </td>
-                    {isL && (
                       <td className="pv2">
-                        {formatTime(new Date(curr.startDate))}
+                        <a
+                          className="white no-underline "
+                          href={`/dashboard/manage/${curr.slug}`}
+                        >
+                          {curr.name}
+                        </a>
+                        <a className="pt1 gray db no-underline " href="">
+                          {`${formatDate(
+                            new Date(curr.startDate),
+                            'medium'
+                          )} at ${formatTime(new Date(curr.startDate))}`}
+                        </a>
+                        <a className="pt1 dark-gray db no-underline " href="">
+                          {curr.location.venue}
+                        </a>
+                        {!isL && (
+                          <a className="pt1 gray db no-underline " href="">
+                            {`${formatPrice(curr.gross.toString(), true)}`}
+                          </a>
+                        )}
+                        {!isL && !isM && (
+                          <a
+                            className={`pt1  db no-underline  ${classnames({
+                              green: live && !inProgress,
+                              red: !live,
+                              yellow: inProgress,
+                            })}`}
+                            href=""
+                          >
+                            <span className="f5">•</span>{' '}
+                            {inProgress
+                              ? `In Progress`
+                              : live
+                              ? `Live`
+                              : `Sale Ended`}
+                          </a>
+                        )}
                       </td>
-                    )}
-                    {(isM || isL) && (
-                      <td className="pv2">{`${curr.location.venue}`}</td>
-                    )}
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+                      {isL && (
+                        <>
+                          <td className="pv2">
+                            <a className="pt1 gray db no-underline " href="">
+                              {`${formatPrice(curr.gross.toString(), true)}`}
+                            </a>
+                          </td>
+                        </>
+                      )}
+                      {(isM || isL) && (
+                        <>
+                          <td
+                            className={`pv2 ${classnames({
+                              green: live && !inProgress,
+                              red: !live,
+                              yellow: inProgress,
+                            })}`}
+                          >
+                            <span className="f5">•</span>{' '}
+                            {inProgress
+                              ? `In Progress`
+                              : live
+                              ? `Live`
+                              : `Sale Ended`}
+                          </td>
+                        </>
+                      )}
+                      <td className="pv2">{`${getTicketsSold(
+                        curr.ticketTypes
+                      )} / ${getTicketCount(curr.ticketTypes)}`}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        ) : (
+          <p>
+            You don't have any events created yet. Let's create one{' '}
+            <a href="/dashboard/create" className="no-underline white">
+              here
+            </a>
+          </p>
+        )}
       </div>
     </div>
   );

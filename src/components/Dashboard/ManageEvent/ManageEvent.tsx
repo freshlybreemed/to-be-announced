@@ -4,8 +4,9 @@ import {
   formatDate,
   formatPrice,
   formatEventDateTime,
-  getTicketCount,
+  getTicketsSold,
   getOrderTicketCount,
+  getTicketCount,
 } from '../../../lib';
 import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
@@ -106,9 +107,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               </div>
               <div className="fl w-40  tr ">
                 <span className="f3 f4-ns fw6  ">
-                  {`${getTicketCount(event.ticketTypes)}/${ticketTypes.reduce(
-                    (acc, curr) => acc + curr.quantity,
-                    0,
+                  {`${getTicketsSold(event.ticketTypes)}/${getTicketCount(
+                    ticketTypes
                   )}`}
                 </span>
               </div>
