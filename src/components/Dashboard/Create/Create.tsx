@@ -24,7 +24,9 @@ interface EditProps {
 export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [name, setName] = useState<string>(event ? event.name : '');
   const [location, setLocation] = useState<EventProps['location']>(
-    event ? event.location : { venue: '', address: '', placeId: '' }
+    event
+      ? event.location
+      : { venue: '', city: '', state: '', zip: '', address: '', placeId: '' }
   );
   const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(

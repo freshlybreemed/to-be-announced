@@ -3,6 +3,9 @@ export interface EventProps {
   image: string;
   location: {
     venue: string;
+    city: string;
+    state: string;
+    zip: string;
     address: string;
     placeId: string;
   };
