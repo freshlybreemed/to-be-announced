@@ -5,14 +5,17 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
+import { EventProps } from '../../../@types/types';
 interface EventLocationProps {
   setLocation: any;
   location: any;
+  event: EventProps;
 }
 
 export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = ({
   setLocation,
   location,
+  event,
 }) => {
   const [venue, setVenue] = useState<string>(location ? location.venue : '');
   const {
@@ -89,7 +92,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
       <input
         value={venue}
         onChange={handleInput}
-        disabled={!ready || location.venue}
+        disabled={!ready || event ? true : false}
         className={`pa2 bt-0 br-0 bl-0 input-reset bb bg-black w-100 ${classnames(
           { gray: location.venue, white: !location.venue }
         )}`}

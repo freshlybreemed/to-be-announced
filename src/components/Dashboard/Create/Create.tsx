@@ -175,6 +175,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
             Enter Event Location
           </label>
           <PlacesAutoComplete
+            event={event}
             location={location}
             setLocation={setEventLocation}
           />
