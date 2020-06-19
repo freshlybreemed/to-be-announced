@@ -23,7 +23,7 @@ export interface EventProps {
   ticketTypes: {
     [ticketName: string]: TicketProps;
   };
-  changedDate: string;
+  updatedAt: string;
   publishDate: string;
 }
 

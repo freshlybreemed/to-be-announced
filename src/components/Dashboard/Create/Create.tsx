@@ -101,7 +101,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     password: event ? event.password : null,
     listed: event ? event.listed : true,
     publishDate: event ? event.publishDate : new Date().toString(),
-    changedDate: new Date().toString(),
+    updatedAt: new Date().toString(),
     endDate,
     ticketTypes,
     refunds,
