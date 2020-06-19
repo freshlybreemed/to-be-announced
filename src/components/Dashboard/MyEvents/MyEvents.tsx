@@ -56,113 +56,124 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
           </span>
         </div>
         {events.length > 0 ? (
-          <table
-            className=" w-100 tl center f6"
-            style={{ borderCollapse: 'collapse' }}
-          >
-            <thead>
-              <tr className="pv2 gray">
-                <th className="fw6-ns fw5">Name of Event</th>
+          <>
+            <table
+              className=" w-100 tl center f6"
+              style={{ borderCollapse: 'collapse' }}
+            >
+              <thead>
+                <tr className="pv2 gray">
+                  <th className="fw6-ns fw5">Name of Event</th>
 
-                {isL && <th className="fw6-ns fw5">Gross</th>}
-                {(isM || isL) && <th className="fw6-ns fw5">Status</th>}
-                <th className="fw6-ns fw5">Sold</th>
-              </tr>
-            </thead>
-            <tbody>
-              {events
-                .filter((curr) =>
-                  toggle
-                    ? moment().isBefore(curr.endDate)
-                    : moment().isAfter(curr.endDate)
-                )
-                .map((curr, ind) => {
-                  const live = moment().isBefore(curr.endDate);
-                  const inProgress = moment().isBetween(
-                    curr.startDate,
-                    curr.endDate
-                  );
-                  return (
-                    <tr
-                      key={ind}
-                      className={`fw7-ns fw5 f5-ns f6 ${classnames({
-                        bt: ind > 0,
-                      })}`}
-                    >
-                      <td className="pv2">
-                        <a
-                          className="white no-underline "
-                          href={`/dashboard/manage/${curr.slug}`}
-                        >
-                          {curr.name}
-                        </a>
-                        <a className="pt1 gray db no-underline " href="">
-                          {`${formatDate(
-                            new Date(curr.startDate),
-                            'medium'
-                          )} at ${formatTime(new Date(curr.startDate))}`}
-                        </a>
-                        <a className="pt1 dark-gray db no-underline " href="">
-                          {curr.location.venue}
-                        </a>
-                        {!isL && (
-                          <a className="pt1 gray db no-underline " href="">
-                            {`${formatPrice(curr.gross.toString(), true)}`}
-                          </a>
-                        )}
-                        {!isL && !isM && (
+                  {isL && <th className="fw6-ns fw5">Gross</th>}
+                  {(isM || isL) && <th className="fw6-ns fw5">Status</th>}
+                  <th className="fw6-ns fw5">Sold</th>
+                </tr>
+              </thead>
+              <tbody>
+                {events
+                  .filter((curr) =>
+                    toggle
+                      ? moment().isBefore(curr.endDate)
+                      : moment().isAfter(curr.endDate)
+                  )
+                  .map((curr, ind) => {
+                    const live = moment().isBefore(curr.endDate);
+                    const inProgress = moment().isBetween(
+                      curr.startDate,
+                      curr.endDate
+                    );
+                    return (
+                      <tr
+                        key={ind}
+                        className={`fw7-ns fw5 f5-ns f6 ${classnames({
+                          bt: ind > 0,
+                        })}`}
+                      >
+                        <td className="pv2">
                           <a
-                            className={`pt1  db no-underline  ${classnames({
-                              green: live && !inProgress,
-                              red: !live,
-                              yellow: inProgress,
-                            })}`}
-                            href=""
+                            className="white no-underline "
+                            href={`/dashboard/manage/${curr.slug}`}
                           >
-                            <span className="f5">•</span>{' '}
-                            {inProgress
-                              ? `In Progress`
-                              : live
-                              ? `Live`
-                              : `Sale Ended`}
+                            {curr.name}
                           </a>
-                        )}
-                      </td>
-                      {isL && (
-                        <>
-                          <td className="pv2">
+                          <a className="pt1 gray db no-underline " href="">
+                            {`${formatDate(
+                              new Date(curr.startDate),
+                              'medium'
+                            )} at ${formatTime(new Date(curr.startDate))}`}
+                          </a>
+                          <a className="pt1 dark-gray db no-underline " href="">
+                            {curr.location.venue}
+                          </a>
+                          {!isL && (
                             <a className="pt1 gray db no-underline " href="">
                               {`${formatPrice(curr.gross.toString(), true)}`}
                             </a>
-                          </td>
-                        </>
-                      )}
-                      {(isM || isL) && (
-                        <>
-                          <td
-                            className={`pv2 ${classnames({
-                              green: live && !inProgress,
-                              red: !live,
-                              yellow: inProgress,
-                            })}`}
-                          >
-                            <span className="f5">•</span>{' '}
-                            {inProgress
-                              ? `In Progress`
-                              : live
-                              ? `Live`
-                              : `Sale Ended`}
-                          </td>
-                        </>
-                      )}
-                      <td className="pv2">{`${getTicketsSold(
-                        curr.ticketTypes
-                      )} / ${getTicketCount(curr.ticketTypes)}`}</td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
+                          )}
+                          {!isL && !isM && (
+                            <a
+                              className={`pt1  db no-underline  ${classnames({
+                                green: live && !inProgress,
+                                red: !live,
+                                yellow: inProgress,
+                              })}`}
+                              href=""
+                            >
+                              <span className="f5">•</span>{' '}
+                              {inProgress
+                                ? `In Progress`
+                                : live
+                                ? `Live`
+                                : `Sale Ended`}
+                            </a>
+                          )}
+                        </td>
+                        {isL && (
+                          <>
+                            <td className="pv2">
+                              <a className="pt1 gray db no-underline " href="">
+                                {`${formatPrice(curr.gross.toString(), true)}`}
+                              </a>
+                            </td>
+                          </>
+                        )}
+                        {(isM || isL) && (
+                          <>
+                            <td
+                              className={`pv2 ${classnames({
+                                green: live && !inProgress,
+                                red: !live,
+                                yellow: inProgress,
+                              })}`}
+                            >
+                              <span className="f5">•</span>{' '}
+                              {inProgress
+                                ? `In Progress`
+                                : live
+                                ? `Live`
+                                : `Sale Ended`}
+                            </td>
+                          </>
+                        )}
+                        <td className="pv2">{`${getTicketsSold(
+                          curr.ticketTypes
+                        )} / ${getTicketCount(curr.ticketTypes)}`}</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+            {events.filter((curr) => toggle && moment().isBefore(curr.endDate))
+              .length === 0 && (
+              <p>
+                You don't have any upcoming events yet. Let's create one{' '}
+                <a href="/dashboard/create" className="no-underline white">
+                  here
+                </a>
+              </p>
+            )}
+          </>
         ) : (
           <p>
             You don't have any events created yet. Let's create one{' '}
