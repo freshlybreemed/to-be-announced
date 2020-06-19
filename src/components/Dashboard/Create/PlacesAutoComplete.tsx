@@ -5,14 +5,17 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
+import { EventProps } from '../../../@types/types';
 interface EventLocationProps {
   setLocation: any;
   location: any;
+  event: EventProps;
 }
 
 export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = ({
   setLocation,
   location,
+  event,
 }) => {
   const [venue, setVenue] = useState<string>(location ? location.venue : '');
   const {
@@ -50,9 +53,31 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     getGeocode({ address: description })
       .then((results) => {
         console.log(results[0]);
+        const address = `${
+          results[0].address_components.filter((curr) =>
+            curr.types.includes('street_number')
+          )[0].short_name
+        } ${
+          results[0].address_components.filter((curr) =>
+            curr.types.includes('route')
+          )[0].short_name
+        }`;
+        const city = results[0].address_components.filter((curr) =>
+          curr.types.includes('locality')
+        )[0].short_name;
+        const state = results[0].address_components.filter((curr) =>
+          curr.types.includes('administrative_area_level_1')
+        )[0].short_name;
+        const zip = results[0].address_components.filter((curr) =>
+          curr.types.includes('postal_code')
+        )[0].short_name;
+
         const location = {
           venue,
-          address: results[0].formatted_address,
+          address,
+          city,
+          state,
+          zip,
           placeId: results[0].place_id,
         };
         setLocation(location);
@@ -89,7 +114,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
       <input
         value={venue}
         onChange={handleInput}
-        disabled={!ready || location.venue}
+        disabled={!ready || event ? true : false}
         className={`pa2 bt-0 br-0 bl-0 input-reset bb bg-black w-100 ${classnames(
           { gray: location.venue, white: !location.venue }
         )}`}

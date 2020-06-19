@@ -3,6 +3,9 @@ export interface EventProps {
   image: string;
   location: {
     venue: string;
+    city: string;
+    state: string;
+    zip: string;
     address: string;
     placeId: string;
   };
@@ -20,7 +23,7 @@ export interface EventProps {
   ticketTypes: {
     [ticketName: string]: TicketProps;
   };
-  changedDate: string;
+  updatedAt: string;
   publishDate: string;
 }
 

@@ -24,7 +24,9 @@ interface EditProps {
 export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [name, setName] = useState<string>(event ? event.name : '');
   const [location, setLocation] = useState<EventProps['location']>(
-    event ? event.location : { venue: '', address: '', placeId: '' }
+    event
+      ? event.location
+      : { venue: '', city: '', state: '', zip: '', address: '', placeId: '' }
   );
   const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(
@@ -99,7 +101,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     password: event ? event.password : null,
     listed: event ? event.listed : true,
     publishDate: event ? event.publishDate : new Date().toString(),
-    changedDate: new Date().toString(),
+    updatedAt: new Date().toString(),
     endDate,
     ticketTypes,
     refunds,
@@ -173,6 +175,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
             Enter Event Location
           </label>
           <PlacesAutoComplete
+            event={event}
             location={location}
             setLocation={setEventLocation}
           />
