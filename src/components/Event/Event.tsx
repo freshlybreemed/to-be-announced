@@ -78,9 +78,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                     target="_blank"
                     href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
                   >
-                    {`${event.location.address.split(',')[1]}, ${
-                      event.location.address.split(',')[2].split(' ')[1]
-                    }`}{' '}
+                    {`${event.location.address}. ${event.location.city}, ${event.location.state} ${event.location.zip} `}
                   </a>
                 </td>
               </tr>
