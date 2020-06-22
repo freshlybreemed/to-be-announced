@@ -12,6 +12,7 @@ export default wrapAsync(async (req: NextApiRequest, db: any) => {
           ...req.body,
           startDate: new Date(event.startDate),
           endDate: new Date(event.endDate),
+          updatedAt: new Date(),
         },
       },
       { upsert: true },
