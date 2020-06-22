@@ -8,10 +8,10 @@ var yesterday = moment().subtract(1, 'day');
 
 export const validStartDate = (current: any) => current.isAfter(yesterday);
 
-export const validEndDate = (startDate: Date) => (current: any) =>
+export const validEndDate = (startDate: string) => (current: any) =>
   current > moment(startDate).subtract(1, 'day');
 
-export const timeConstraints = (endDate: Date) => {
+export const timeConstraints = (endDate: string) => {
   return { hours: { min: moment(endDate).hour(), max: 24, step: 1 } };
 };
 

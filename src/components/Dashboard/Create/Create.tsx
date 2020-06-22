@@ -191,11 +191,11 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           <label className="f5-ns f6 fw7-ns fw5 db tl">Enter End Time</label>
           <DateTimePicker
             start={false}
-            isValidDate={validEndDate(new Date(startDate))}
+            isValidDate={validEndDate(startDate)}
             date={endDate}
             timeConstraints={{
               minutes: { step: 40, min: 0, max: 24 },
-              ...timeConstraints(new Date(startDate)),
+              ...timeConstraints(startDate),
             }}
             setDate={setEndDate}
           />
