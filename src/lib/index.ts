@@ -30,16 +30,14 @@ export const getOrderTicketCount = (cart: {
 export const getTicketCount = (ticketTypes: {
   [ticketName: string]: TicketProps;
 }) => {
-  return Object.keys(ticketTypes)
-    .map((curr) => ticketTypes[curr])
-    .reduce((acc, curr) => acc + curr.quantity, 0);
+  const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
+  return tickets.reduce((acc, curr) => acc + curr.quantity, 0);
 };
 export const getTicketsSold = (ticketTypes: {
   [ticketName: string]: TicketProps;
 }) => {
-  return Object.keys(ticketTypes)
-    .map((curr) => ticketTypes[curr])
-    .reduce((acc, curr) => acc + curr.sold, 0);
+  const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
+  return tickets.reduce((acc, curr) => acc + curr.sold, 0);
 };
 
 export const setCookie = (key: string, value: string) => {
