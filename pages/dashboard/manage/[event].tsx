@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NextPage } from 'next';
 import { ManageEvent } from '../../../src/components/Dashboard';
 import { Layout } from '../../../src/components/Layout';
+import NoSSR from 'react-no-ssr';
 // import axios from'axios';
 import { EventProps } from '../../../src/@types/types';
 import useRequest from '../../../src/lib/useRequest';
@@ -19,9 +20,11 @@ const Page: NextPage<Props> = () => {
   const { data } = useRequest({ url: `/api/event/${eventSlug}` });
   return (
     <Layout>
-      <script
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
-      />
+      <NoSSR>
+        <script
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
+        />
+      </NoSSR>
 
       <div className="mw9 center pv2 ph3-ns overflow-hidden" id="dashboard">
         <section className="flex-m flex-l nl3-m nr3-m nl3-l nr3-l">

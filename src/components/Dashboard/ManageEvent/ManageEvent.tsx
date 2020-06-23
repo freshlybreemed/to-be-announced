@@ -11,7 +11,7 @@ import {
 import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
-
+import NoSSR from 'react-no-ssr';
 interface ManageProps {
   event: EventProps;
 }
@@ -46,13 +46,15 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               <a className="white no-underline">{event.name}</a>
             </div>
             <div className="f4-ns f5 fw6 lh-title mv0 underline-hover">
-              <a
-                className="white no-underline"
-                target="_blank"
-                href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-              >
-                {event.location.venue}
-              </a>
+              <NoSSR>
+                <a
+                  className="white no-underline"
+                  target="_blank"
+                  href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
+                >
+                  {event.location.venue}
+                </a>
+              </NoSSR>
             </div>
             <div>
               <span className="f4-ns f5 fw6 mv0 gray">
