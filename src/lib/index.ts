@@ -94,7 +94,7 @@ export const formatDate = (date: Date, type = 'short') => {
 };
 
 export const formatEventDateTime = (startDate: Date, endDate: Date) => {
-  var nextDay = moment(startDate.toString()).add(1, 'day');
+  var nextDay = moment(startDate).add(1, 'day');
   return `${format(startDate, 'ccc. MMMM d h:mm a')} - ${
     nextDay.isAfter(endDate)
       ? format(endDate, 'h:mm a')
@@ -102,9 +102,9 @@ export const formatEventDateTime = (startDate: Date, endDate: Date) => {
   }`;
 };
 export const formatEventTime = (startDate: Date, endDate: Date) => {
-  var nextDay = moment(startDate.toString()).add(1, 'day');
+  var nextDay = moment(startDate).add(1, 'day');
   return `${format(startDate, 'h:mm a')} - ${
-    nextDay.isAfter(endDate)
+    nextDay.isAfter(moment(endDate))
       ? format(endDate, 'h:mm a')
       : format(endDate, 'ccc. MMMM d h:mm a')
   }`;
