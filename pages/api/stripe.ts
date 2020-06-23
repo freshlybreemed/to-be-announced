@@ -4,7 +4,7 @@ import { NextApiRequest } from 'next';
 import { OrderProps, EventProps } from '../../src/@types/types';
 
 const saveCheckoutSession = async (order: OrderProps, db: any) =>
-  await db.collection('tba-checkout').insertOne(order);
+  await db.collection('checkout').insertOne(order);
 
 const generateStripeCheckout = async (event: EventProps, order: OrderProps) => {
   const tickets = Object.keys(order.cart)
