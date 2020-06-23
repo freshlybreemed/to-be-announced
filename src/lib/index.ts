@@ -8,10 +8,10 @@ var yesterday = moment().subtract(1, 'day');
 
 export const validStartDate = (current: any) => current.isAfter(yesterday);
 
-export const validEndDate = (startDate: Date) => (current: any) =>
+export const validEndDate = (startDate: string) => (current: any) =>
   current > moment(startDate).subtract(1, 'day');
 
-export const timeConstraints = (endDate: Date) => {
+export const timeConstraints = (endDate: string) => {
   return { hours: { min: moment(endDate).hour(), max: 24, step: 1 } };
 };
 
@@ -30,16 +30,14 @@ export const getOrderTicketCount = (cart: {
 export const getTicketCount = (ticketTypes: {
   [ticketName: string]: TicketProps;
 }) => {
-  return Object.keys(ticketTypes)
-    .map((curr) => ticketTypes[curr])
-    .reduce((acc, curr) => acc + curr.quantity, 0);
+  const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
+  return tickets.reduce((acc, curr) => acc + curr.quantity, 0);
 };
 export const getTicketsSold = (ticketTypes: {
   [ticketName: string]: TicketProps;
 }) => {
-  return Object.keys(ticketTypes)
-    .map((curr) => ticketTypes[curr])
-    .reduce((acc, curr) => acc + curr.sold, 0);
+  const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
+  return tickets.reduce((acc, curr) => acc + curr.sold, 0);
 };
 
 export const setCookie = (key: string, value: string) => {
@@ -96,7 +94,7 @@ export const formatDate = (date: Date, type = 'short') => {
 };
 
 export const formatEventDateTime = (startDate: Date, endDate: Date) => {
-  var nextDay = moment(startDate.toString()).add(1, 'day');
+  var nextDay = moment(startDate).add(1, 'day');
   return `${format(startDate, 'ccc. MMMM d h:mm a')} - ${
     nextDay.isAfter(endDate)
       ? format(endDate, 'h:mm a')
@@ -104,9 +102,9 @@ export const formatEventDateTime = (startDate: Date, endDate: Date) => {
   }`;
 };
 export const formatEventTime = (startDate: Date, endDate: Date) => {
-  var nextDay = moment(startDate.toString()).add(1, 'day');
+  var nextDay = moment(startDate).add(1, 'day');
   return `${format(startDate, 'h:mm a')} - ${
-    nextDay.isAfter(endDate)
+    nextDay.isAfter(moment(endDate))
       ? format(endDate, 'h:mm a')
       : format(endDate, 'ccc. MMMM d h:mm a')
   }`;

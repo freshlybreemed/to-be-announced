@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { formatPrice } from '../../lib';
 import { TicketSelection } from './';
-import { EventCartProps } from '../../@types/types';
+import { EventCartProps, TicketProps } from '../../@types/types';
 interface TicketCheckout {
   setMode: any;
   cart: {
@@ -25,15 +25,15 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
 }) => {
   const [emptyCart, setEmptyCart] = useState<boolean>(true);
   console.log('cart', cart);
-  const updateCart = async (_id: any, quantity: number, fee: number) => {
+  const updateCart = async (ticket: TicketProps, quantity: number) => {
     const newCart = Object.assign(cart, {
-      [_id]: {
-        price: ticketTypes[_id].price,
+      [ticket.ticketName]: {
+        price: ticket.price,
         quantity,
-        fee,
+        fee: ticket.fee,
       },
     });
-    if (quantity <= 0) delete newCart[_id];
+    if (quantity <= 0) delete newCart[ticket.ticketName];
     let newTotal = 0;
     for (var tix in newCart) {
       newTotal +=

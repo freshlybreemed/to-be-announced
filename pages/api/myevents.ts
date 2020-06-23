@@ -3,7 +3,7 @@ import { NextApiRequest } from 'next';
 
 export default wrapAsync(async (_req: NextApiRequest, db: any) => {
   return await db
-    .collection('tba-event')
+    .collection('event')
     .find({
       organizerId: '123',
     })

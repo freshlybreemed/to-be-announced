@@ -42,14 +42,16 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
             onClick={() => setToggle(true)}
             className={`f4-ns noselect f6 fw6-ns pb2 mr3 ${classnames({
               active: toggle,
+              gray: !toggle,
             })}`}
           >
             Upcoming Events
           </span>
           <span
             onClick={() => setToggle(false)}
-            className={`ml3 noselect f4-ns f6 fw6-ns pb2 gray ${classnames({
+            className={`ml3 noselect f4-ns f6 fw6-ns pb2  ${classnames({
               active: !toggle,
+              gray: toggle,
             })}`}
           >
             Past Events
@@ -164,15 +166,16 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                   })}
               </tbody>
             </table>
-            {events.filter((curr) => toggle && moment().isBefore(curr.endDate))
-              .length === 0 && (
-              <p>
-                You don't have any upcoming events yet. Let's create one{' '}
-                <a href="/dashboard/create" className="no-underline white">
-                  here
-                </a>
-              </p>
-            )}
+            {events.filter((curr) => moment().isBefore(curr.endDate)).length ===
+              0 &&
+              toggle && (
+                <p>
+                  You don't have any upcoming events yet. Let's create one{' '}
+                  <a href="/dashboard/create" className="no-underline white">
+                    here
+                  </a>
+                </p>
+              )}
           </>
         ) : (
           <p>

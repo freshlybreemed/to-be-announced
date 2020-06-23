@@ -48,47 +48,49 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
               // style={{ display: 'grid' }}
               className="f4-ns f5 fw6 lh-title mv1 center-s underline-hover white"
             >
-              <tr>
-                <td rowSpan={2} className="mt0 pt1 v-top">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    className="pr1  "
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-                  </svg>
-                </td>
-                <td>
-                  <a
-                    className=" v-top white  no-underline"
-                    target="_blank"
-                    href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-                  >
-                    {event.location.venue}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td className=" f4-ns f5 fw5 lh-solid mv0 underline-hover ">
-                  <a
-                    className="gray no-underline"
-                    target="_blank"
-                    href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-                  >
-                    {`${event.location.address}. ${event.location.city}, ${event.location.state} ${event.location.zip} `}
-                  </a>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td rowSpan={2} className="mt0 pt1 v-top">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      className="pr1  "
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
+                    </svg>
+                  </td>
+                  <td>
+                    <a
+                      className=" v-top white  no-underline"
+                      target="_blank"
+                      href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
+                    >
+                      {event.location.venue}
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td className=" f4-ns f5 fw5 lh-solid mv0 underline-hover ">
+                    <a
+                      className="gray no-underline"
+                      target="_blank"
+                      href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
+                    >
+                      {`${event.location.address}. ${event.location.city}, ${event.location.state} ${event.location.zip} `}
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
             </table>
             <table
               style={{ borderCollapse: 'collapse' }}
               className="f4-ns f5 fw6 pt1 mt1 center-s  white"
             >
               <tr>
-                <td rowSpan={1} className="mt0 v-top">
+                <td rowSpan={2} className="mt0 pt0 v-top">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="15"
@@ -100,20 +102,15 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                     <path d="M20 20h-4v-4h4v4zm-6-10h-4v4h4v-4zm6 0h-4v4h4v-4zm-12 6h-4v4h4v-4zm6 0h-4v4h4v-4zm-6-6h-4v4h4v-4zm16-8v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2z" />
                   </svg>
                 </td>
-                <td className="pv0 f4-ns f5 fw6 dtc v-top lh-solid mv0 underline-hover">
+                <td className="pt1 f4-ns f5 fw6 dtc lh-solid mv0 underline-hover">
                   {`${formatDate(new Date(event.startDate), 'medium')}`}
                 </td>
               </tr>
-            </table>
-            <table
-              style={{ borderCollapse: 'collapse' }}
-              className="f4-ns f5 fw6 mb1 center-s  white"
-            >
               <tr>
-                <td className="f4-ns f5 fw5 dtc lh-title mv0 pt0 underline-hover gray">
+                <td className=" f4-ns f5 fw5 lh-solid mv0 underline-hover gray">
                   {`${formatEventTime(
                     new Date(event.startDate),
-                    new Date(event.endDate),
+                    new Date(event.endDate)
                   )}`}
                 </td>
               </tr>
@@ -238,7 +235,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 </div>
               </section>
               <section className="fl w-48-l w-100 mv2 mv0-ns mv2 pl3-l">
-                <div className="mt3 mt0-ns ">
+                <div className="mt3 mt2-ns ">
                   <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
                     Line Up
                   </span>

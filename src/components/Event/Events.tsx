@@ -35,7 +35,6 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   const isS = useMediaQuery({
     query: '(max-width: 40em)',
   });
-  console.log(isL, isM);
   return (
     <div className={`pv3 relative`}>
       <div className=" ml4-ns ">

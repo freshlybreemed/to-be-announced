@@ -17,9 +17,9 @@ const updateTixCount = async (
   });
 
   order.date = new Date(order.date);
-  await db.collection('tba-ticket').insertOne(order);
+  await db.collection('ticket').insertOne(order);
 
-  return await db.collection('tba-event').updateOne(
+  return await db.collection('event').updateOne(
     { slug: event.slug },
     {
       $inc: {

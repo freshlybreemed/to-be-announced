@@ -42,7 +42,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
               onClick={() => {
                 if (quantity > 0) {
                   setQuantity(quantity - 1);
-                  updateCart(ticketType._id, quantity - 1);
+                  updateCart(ticketType, quantity - 1);
                 }
               }}
               className="f3 noselect br-100 ph2 pb1 bg-white black"
@@ -55,18 +55,14 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
               className="bg-transparent tc white bb bt-0 br-0 bl-0 w3-ns w2 mh3-ns mh1"
               onChange={(e) => {
                 setQuantity(parseInt(e.currentTarget.value));
-                updateCart(
-                  ticketType._id,
-                  e.currentTarget.value,
-                  ticketType.fee
-                );
+                updateCart(ticketType, e.currentTarget.value);
               }}
             />
             <span
               onClick={() => {
                 if (!soldOut) {
                   setQuantity(quantity + 1);
-                  updateCart(ticketType._id, quantity + 1, ticketType.fee);
+                  updateCart(ticketType, quantity + 1);
                 }
               }}
               className={`f3 noselect br-100 ph2 pb1 ${classnames({

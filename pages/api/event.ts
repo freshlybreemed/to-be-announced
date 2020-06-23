@@ -5,13 +5,14 @@ import { EventProps } from '../../src/@types/types';
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
   if (req.method === 'POST') {
     const event: EventProps = req.body;
-    return await db.collection('tba-event').updateOne(
+    return await db.collection('event').updateOne(
       { slug: req.body.slug },
       {
         $set: {
           ...req.body,
           startDate: new Date(event.startDate),
           endDate: new Date(event.endDate),
+          updatedAt: new Date(),
         },
       },
       { upsert: true },
@@ -19,7 +20,7 @@ export default wrapAsync(async (req: NextApiRequest, db: any) => {
   }
   if (req.method === 'GET') {
     return await db
-      .collection('tba-event')
+      .collection('event')
       .find({
         // startDate: {
         //   $gte: new Date(),
@@ -28,6 +29,6 @@ export default wrapAsync(async (req: NextApiRequest, db: any) => {
       .toArray();
   }
   if (req.method === 'DELETE') {
-    return await db.collection('tba-event').deleteMany();
+    return await db.collection('event').deleteMany();
   }
 });
