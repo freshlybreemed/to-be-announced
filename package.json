@@ -55,6 +55,7 @@
     "redux-persist": "^4.9.1",
     "redux-thunk": "^2.3.0",
     "stripe": "^8.55.0",
+    "swr": "^0.2.3",
     "use-places-autocomplete": "^1.2.3"
   },
   "devDependencies": {
