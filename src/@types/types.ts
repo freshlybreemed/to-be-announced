@@ -52,6 +52,11 @@ export interface OrderProps {
   cart: {
     [ticketName: string]: EventCartProps;
   };
+  checkedIn: boolean;
+  cancelled: boolean;
+  refunded: boolean;
+  status: string;
+  orderId: string;
 }
 
 export interface EventCartProps {
