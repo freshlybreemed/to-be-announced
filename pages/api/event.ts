@@ -5,7 +5,7 @@ import { EventProps } from '../../src/@types/types';
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
   if (req.method === 'POST') {
     const event: EventProps = req.body;
-    return await db.collection('tba-event').updateOne(
+    event._id = shortid.generate();
     return await db.collection('event').updateOne(
       { slug: req.body.slug },
       {
