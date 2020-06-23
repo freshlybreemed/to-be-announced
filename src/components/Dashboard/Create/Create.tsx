@@ -159,9 +159,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
       <hr className="o-20 mt4" />
       <div className="w-75-ns w-100 center">
         <div className="mv3">
-          <label className="f5-ns f6 fw7-ns fw5 db tl">
-            Enter Event Details
-          </label>
+          <label className="f5-ns f6 fw7-ns fw5 db tl">Enter Event Name</label>
           <input
             value={name}
             onChange={(event) => {
