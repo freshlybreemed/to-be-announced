@@ -20,10 +20,6 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
   isValidDate,
   timeConstraints,
 }) => {
-  console.log({
-    minutes: { step: 40, min: 0, max: 24 },
-    ...timeConstraints,
-  });
   return (
     <Datetime
       timeFormat=" h:mm a"
