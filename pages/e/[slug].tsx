@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NextPage } from 'next';
+import { NextPage, GetServerSideProps } from 'next';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 import { Event } from '../../src/components/Event';
@@ -16,12 +16,12 @@ const Page: NextPage<EventSearchProps> = ({ event }) => (
   </Layout>
 );
 
-Page.getInitialProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const { slug } = ctx.query;
   const response = await axios.get(`${origin}/api/event/${slug}`);
   const event = response.data[0];
-  return { event };
+  return { props: { event } };
 };
 
 export default Page;
