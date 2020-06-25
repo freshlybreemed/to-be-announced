@@ -39,8 +39,8 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
           'pa2 bt-0 br-0 bl-0 input-reset bb gray bg-black white w-100',
       }}
       value={date}
-      onBlur={(e) => setDate(moment(e).toDate())}
-      onChange={(e) => setDate(moment(e).toDate())}
+      onBlur={(e: any) => setDate(moment(e).toDate())}
+      onChange={(e: any) => setDate(moment(e).toDate())}
       className={`black ${className}`}
       timeConstraints={timeConstraints}
     />
