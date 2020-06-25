@@ -51,7 +51,8 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
               <span className="f4-ns f5 fw6 mv0 gray">
                 {`${formatEventDateTime(
                   new Date(event.startDate),
-                  new Date(event.endDate)
+                  new Date(event.endDate),
+                  event.location.timeZoneId,
                 )}`}
               </span>
             </div>
