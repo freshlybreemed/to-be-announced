@@ -110,7 +110,8 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 <td className=" f4-ns f5 fw5 lh-solid mv0 underline-hover gray">
                   {`${formatEventTime(
                     new Date(event.startDate),
-                    new Date(event.endDate)
+                    new Date(event.endDate),
+                    event.location.timeZoneId,
                   )}`}
                 </td>
               </tr>
