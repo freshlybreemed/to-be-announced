@@ -66,5 +66,6 @@ export interface EventCartProps {
   price: number;
   quantity: number;
   fee: number;
+  _id: string;
   ticketName: string;
 }

@@ -31,6 +31,7 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
         price: ticket.price,
         quantity,
         fee: ticket.fee,
+        _id: ticket._id,
       },
     });
     if (quantity <= 0) delete newCart[ticket.ticketName];
