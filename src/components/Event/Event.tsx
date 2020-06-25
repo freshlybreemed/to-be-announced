@@ -86,35 +86,37 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
               </tbody>
             </table>
             <table
-              style={{ borderCollapse: 'collapse' }}
+              style={{ borderCollapse: 'separate' }}
               className="f4-ns f5 fw6 pt1 mt1 center-s  white"
             >
-              <tr>
-                <td rowSpan={2} className="mt0 pt0 v-top">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="15"
-                    height="15"
-                    className="pr1 "
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 20h-4v-4h4v4zm-6-10h-4v4h4v-4zm6 0h-4v4h4v-4zm-12 6h-4v4h4v-4zm6 0h-4v4h4v-4zm-6-6h-4v4h4v-4zm16-8v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2z" />
-                  </svg>
-                </td>
-                <td className="pt1 f4-ns f5 fw6 dtc lh-solid mv0 underline-hover">
-                  {`${formatDate(new Date(event.startDate), 'medium')}`}
-                </td>
-              </tr>
-              <tr>
-                <td className=" f4-ns f5 fw5 lh-solid mv0 underline-hover gray">
-                  {`${formatEventTime(
-                    new Date(event.startDate),
-                    new Date(event.endDate),
-                    event.location.timeZoneId,
-                  )}`}
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td rowSpan={2} className="mt0 pt0 v-top">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="15"
+                      height="15"
+                      className="pr1 "
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 20h-4v-4h4v4zm-6-10h-4v4h4v-4zm6 0h-4v4h4v-4zm-12 6h-4v4h4v-4zm6 0h-4v4h4v-4zm-6-6h-4v4h4v-4zm16-8v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2z" />
+                    </svg>
+                  </td>
+                  <td className="pt1 f4-ns f5 fw6 dtc lh-solid mv0 underline-hover">
+                    {`${formatDate(new Date(event.startDate), 'medium')}`}
+                  </td>
+                </tr>
+                <tr>
+                  <td className=" f4-ns f5 fw5 lh-solid mv0 underline-hover gray">
+                    {`${formatEventTime(
+                      new Date(event.startDate),
+                      new Date(event.endDate),
+                      event.location.timeZoneId
+                    )}`}
+                  </td>
+                </tr>
+              </tbody>
             </table>
             {/* <h2
               className={`f4-ns f5 fw6 mv0 ${classnames({
