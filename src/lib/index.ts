@@ -111,12 +111,12 @@ export const formatEventTime = (
   var nextDay = moment(startDate).tz(timeZone).add(1, 'day');
   return `${moment(startDate).tz(timeZone).format('h:mm A')} - ${
     nextDay.isAfter(moment(endDate).tz(timeZone))
-      ? moment(endDate).tz(timeZone).format('h:mm a')
+      ? moment(endDate).tz(timeZone).format('h:mm A')
       : moment(endDate).tz(timeZone).format('llll')
   }`;
 };
 
-export const formatTime = (date: Date) => format(date, 'h:mm a');
+export const formatTime = (date: Date) => format(date, 'h:mm A');
 
 // Format price
 export const formatPrice = (number: string, showNumber: boolean = false) => {
