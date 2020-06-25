@@ -12,6 +12,7 @@ import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import NoSSR from 'react-no-ssr';
+import moment from 'moment-timezone';
 interface ManageProps {
   event: EventProps;
 }

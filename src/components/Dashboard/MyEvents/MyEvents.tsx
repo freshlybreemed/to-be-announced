@@ -10,7 +10,7 @@ import {
   getTicketsSold,
   formatPrice,
 } from '../../../lib';
-import moment from 'moment';
+import moment from 'moment-timezone';
 interface MyEventProps {
   events: EventProps[];
 }

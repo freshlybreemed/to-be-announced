@@ -16,7 +16,7 @@ import {
   validStartDate,
   timeConstraints,
 } from '../../../lib';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 interface EditProps {
   event?: EventProps;
