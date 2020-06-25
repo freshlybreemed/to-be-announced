@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import axios from 'axios';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -42,7 +43,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     setLocation('');
   };
 
-  const handleSelect = ({ description, structured_formatting }) => () => {
+  const handleSelect = ({ description, structured_formatting }) => async () => {
     const venue = structured_formatting.main_text;
     // When user selects a place, we can replace the keyword without request data from API
     // by setting the second parameter as "false"
@@ -50,41 +51,48 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     setVenue(description);
     clearSuggestions();
     // Get latitude and longitude via utility functions
-    getGeocode({ address: description })
-      .then((results) => {
-        console.log(results[0]);
-        const address = `${
-          results[0].address_components.filter((curr) =>
-            curr.types.includes('street_number')
-          )[0].short_name
-        } ${
-          results[0].address_components.filter((curr) =>
-            curr.types.includes('route')
-          )[0].short_name
-        }`;
-        const city = results[0].address_components.filter((curr) =>
-          curr.types.includes('locality')
-        )[0].short_name;
-        const state = results[0].address_components.filter((curr) =>
-          curr.types.includes('administrative_area_level_1')
-        )[0].short_name;
-        const zip = results[0].address_components.filter((curr) =>
-          curr.types.includes('postal_code')
-        )[0].short_name;
+    await getGeocode({ address: description })
+      .then(async (results) => {
+        const {
+          address_components,
+          place_id,
+          geometry: {
+            location: { lng, lat },
+          },
+        } = results[0];
+        const placeInfo = address_components
+          .map((curr) => {
+            return { [curr.types[0]]: curr.short_name };
+          })
+          .reduce((obj, item) => {
+            return {
+              ...obj,
+              [Object.keys(item)[0]]: item[Object.keys(item)[0]],
+            };
+          }, {});
 
+        const response = await axios.get(
+          `https://maps.googleapis.com/maps/api/timezone/json?location=${lat()},${lng()}&timestamp=1458000000&key=${
+            process.env.GOOGLE_API_KEY
+          }`,
+        );
+        const {
+          data: { timeZoneId },
+        } = response;
         const location = {
           venue,
-          address,
-          city,
-          state,
-          zip,
-          placeId: results[0].place_id,
+          address: `${placeInfo['street_number'] || ''} ${
+            placeInfo['route'] || ''
+          }`,
+          city: placeInfo['locality'],
+          state: placeInfo['administrative_area_level_1'],
+          zip: placeInfo['postal_code'] || '',
+          lat: lat(),
+          lng: lng(),
+          placeId: place_id,
+          timeZoneId,
         };
         setLocation(location);
-        return getLatLng(results[0]);
-      })
-      .then(({ lat, lng }) => {
-        console.log('📍 Coordinates: ', { lat, lng });
       })
       .catch((error) => {
         console.log('😱 Error: ', error);
@@ -114,9 +122,9 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
       <input
         value={venue}
         onChange={handleInput}
-        disabled={!ready || event ? true : false}
+        disabled={!ready || event ? false : false}
         className={`pa2 bt-0 br-0 bl-0 input-reset bb bg-black w-100 ${classnames(
-          { gray: location.venue, white: !location.venue }
+          { gray: location.venue, white: !location.venue },
         )}`}
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
