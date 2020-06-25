@@ -25,7 +25,7 @@ export const getOrderTicketCount = (cart: {
   return tickets.reduce((acc, curr) => acc + curr.quantity, 0);
 };
 
-export const getTicketCount = (ticketTypes: {
+export const getTicketsCount = (ticketTypes: {
   [ticketName: string]: TicketProps;
 }) => {
   const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);

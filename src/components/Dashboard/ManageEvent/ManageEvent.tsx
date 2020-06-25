@@ -6,7 +6,7 @@ import {
   formatEventDateTime,
   getTicketsSold,
   getOrderTicketCount,
-  getTicketCount,
+  getTicketsCount,
 } from '../../../lib';
 import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
@@ -111,8 +111,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               </div>
               <div className="fl w-40  tr ">
                 <span className="f3 f4-ns fw6  ">
-                  {`${getTicketsSold(event.ticketTypes)}/${getTicketCount(
-                    ticketTypes
+                  {`${getTicketsSold(event.ticketTypes)}/${getTicketsCount(
+                    ticketTypes,
                   )}`}
                 </span>
               </div>

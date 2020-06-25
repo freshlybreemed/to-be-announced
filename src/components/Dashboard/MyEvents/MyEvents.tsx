@@ -6,7 +6,7 @@ import { useState } from 'react';
 import {
   formatDate,
   formatTime,
-  getTicketCount,
+  getTicketsCount,
   getTicketsSold,
   formatPrice,
 } from '../../../lib';
@@ -159,8 +159,8 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                           </>
                         )}
                         <td className="pv2">{`${getTicketsSold(
-                          curr.ticketTypes
-                        )} / ${getTicketCount(curr.ticketTypes)}`}</td>
+                          curr.ticketTypes,
+                        )} / ${getTicketsCount(curr.ticketTypes)}`}</td>
                       </tr>
                     );
                   })}
