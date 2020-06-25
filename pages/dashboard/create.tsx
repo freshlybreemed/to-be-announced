@@ -2,7 +2,6 @@ import * as React from 'react';
 import { NextPage } from 'next';
 import { Create } from '../../src/components/Dashboard';
 import { Layout } from '../../src/components/Layout';
-
 const Page: NextPage = () => (
   <Layout>
     <script

@@ -342,7 +342,8 @@ export const ticketEmail = {
                                                 style="vertical-align: inherit;"
                                                 >${formatEventDateTime(
                                                   new Date(event.startDate),
-                                                  new Date(event.endDate)
+                                                  new Date(event.endDate),
+                                                  event.location.timeZoneId,
                                                 )}
                                               </font></font
                                             >

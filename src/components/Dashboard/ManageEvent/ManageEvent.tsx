@@ -6,7 +6,7 @@ import {
   formatEventDateTime,
   getTicketsSold,
   getOrderTicketCount,
-  getTicketCount,
+  getTicketsCount,
 } from '../../../lib';
 import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
@@ -60,7 +60,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               <span className="f4-ns f5 fw6 mv0 gray">
                 {`${formatEventDateTime(
                   new Date(event.startDate),
-                  new Date(event.endDate)
+                  new Date(event.endDate),
+                  event.location.timeZoneId,
                 )}`}
               </span>
             </div>
@@ -97,7 +98,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               </div>
               <div className="fl w-40 tr">
                 <span className="f3 f4-ns fw6  ">
-                  {formatPrice(event.gross.toString(), true)}
+                  {formatPrice((event.gross / 100).toString(), true)}
                 </span>
               </div>
             </div>
@@ -109,8 +110,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               </div>
               <div className="fl w-40  tr ">
                 <span className="f3 f4-ns fw6  ">
-                  {`${getTicketsSold(event.ticketTypes)}/${getTicketCount(
-                    ticketTypes
+                  {`${getTicketsSold(event.ticketTypes)}/${getTicketsCount(
+                    ticketTypes,
                   )}`}
                 </span>
               </div>

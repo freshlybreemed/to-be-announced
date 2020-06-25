@@ -8,12 +8,15 @@ export interface EventProps {
     zip: string;
     address: string;
     placeId: string;
+    lat: number;
+    lng: number;
+    timeZoneId: string;
   };
   description: string;
-  startDate: string;
+  startDate: Date;
   organizerId: string;
   tickets: OrderProps[];
-  endDate: string;
+  endDate: Date;
   slug: string;
   password: string;
   refunds: boolean;
@@ -63,5 +66,6 @@ export interface EventCartProps {
   price: number;
   quantity: number;
   fee: number;
+  _id: string;
   ticketName: string;
 }

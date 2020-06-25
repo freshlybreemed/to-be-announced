@@ -16,7 +16,7 @@ import {
   validStartDate,
   timeConstraints,
 } from '../../../lib';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 interface EditProps {
   event?: EventProps;
@@ -26,17 +26,29 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [location, setLocation] = useState<EventProps['location']>(
     event
       ? event.location
-      : { venue: '', city: '', state: '', zip: '', address: '', placeId: '' }
+      : {
+          venue: '',
+          city: '',
+          state: '',
+          zip: '',
+          address: '',
+          placeId: '',
+          lng: null,
+          lat: null,
+          timeZoneId: '',
+        },
   );
   const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(
     event ? event.description : '',
   );
-  const [startDate, setStartDate] = useState<string>(
-    event ? moment(event.startDate).format('llll') : '',
+  const [startDate, setStartDate] = useState<Date>(
+    event
+      ? moment.tz(event.startDate, event.location.timeZoneId).toDate()
+      : null,
   );
-  const [endDate, setEndDate] = useState<string>(
-    event ? moment(event.endDate).format('llll') : '',
+  const [endDate, setEndDate] = useState<Date>(
+    event ? moment.tz(event.endDate, event.location.timeZoneId).toDate() : null,
   );
   const [eventType, setEventType] = useState<string>(
     event ? event.eventType : '',
@@ -97,12 +109,12 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     image,
     tickets: event ? event.tickets : [],
     startDate,
+    endDate,
     gross: event ? event.gross : 0,
     password: event ? event.password : null,
     listed: event ? event.listed : true,
     publishDate: event ? event.publishDate : new Date().toString(),
     updatedAt: new Date().toString(),
-    endDate,
     ticketTypes,
     refunds,
   };
@@ -181,6 +193,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         <label className="f5-ns f6 fw7-ns fw5 db tl">Enter Start Time</label>
         <DateTimePicker
           start={true}
+          timeZoneId={location.timeZoneId}
           isValidDate={validStartDate}
           date={startDate}
           setDate={setStartDate}
@@ -188,6 +201,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         <div className="mv3">
           <label className="f5-ns f6 fw7-ns fw5 db tl">Enter End Time</label>
           <DateTimePicker
+            timeZoneId={location.timeZoneId}
             start={false}
             isValidDate={validEndDate(startDate)}
             date={endDate}
@@ -302,6 +316,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           <TicketCreationForm
             addTicket={addTicket}
             startDate={startDate}
+            timeZoneId={event.location.timeZoneId}
             ticket={currentTicket}
             removeTicket={removeTicket}
             updateTicket={updateTicket}

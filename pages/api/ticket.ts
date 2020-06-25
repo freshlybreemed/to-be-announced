@@ -9,11 +9,11 @@ import { NextApiRequest } from 'next';
 const updateTixCount = async (
   order: OrderProps,
   event: EventProps,
-  db: any,
+  db: any
 ) => {
-  let ops = {};
+  let ops = { gross: order.total * 100 };
   Object.keys(order.cart).forEach((curr) => {
-    ops[`ticketTypes.${curr}.sold`] = order.cart[curr].quantity;
+    ops[`ticketTypes.${order.cart[curr]._id}.sold`] = order.cart[curr].quantity;
   });
 
   order.date = new Date(order.date);
@@ -22,10 +22,8 @@ const updateTixCount = async (
   return await db.collection('event').updateOne(
     { slug: event.slug },
     {
-      $inc: {
-        gross: order.total,
-        ...ops,
-      },
+      $inc: ops,
+
       $push: {
         tickets: {
           $each: [order],
@@ -33,7 +31,7 @@ const updateTixCount = async (
           $sort: { date: 1 },
         },
       },
-    },
+    }
   );
 };
 

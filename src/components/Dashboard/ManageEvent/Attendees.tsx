@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 import {
   formatDate,
   formatPrice,
@@ -8,6 +9,7 @@ import {
 import classnames from 'classnames';
 import { EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
+import Router from 'next/router';
 
 interface AttendeesProps {
   event: EventProps;
@@ -51,7 +53,8 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
               <span className="f4-ns f5 fw6 mv0 gray">
                 {`${formatEventDateTime(
                   new Date(event.startDate),
-                  new Date(event.endDate)
+                  new Date(event.endDate),
+                  event.location.timeZoneId,
                 )}`}
               </span>
             </div>
@@ -81,32 +84,41 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
                 <tbody className="lh-copy f4-l f5-m f6">
                   {tickets.map((curr, ind) => {
                     return (
-                      <tr
-                        key={ind}
-                        className={`dim ${classnames({ bt: ind > 0 })}`}
+                      <Link
+                        href={`/manage/${event.slug}/attendees/${curr._id}`}
                       >
-                        <td className="pa1">
-                          {formatDate(new Date(curr.date), 'shorter')}
-                        </td>
-                        <td className="pa1">
-                          <a href="" className="white no-underline">
-                            {`${curr.firstName} ${curr.lastName}`}
-                          </a>
-                        </td>
-                        {isL && (
+                        <tr
+                          onClick={() =>
+                            Router.push(
+                              `/manage/${event.slug}/attendees/${curr._id}`
+                            )
+                          }
+                          key={ind}
+                          className={`dim ${classnames({ bt: ind > 0 })}`}
+                        >
+                          <td className="pa1">
+                            {formatDate(new Date(curr.date), 'shorter')}
+                          </td>
                           <td className="pa1">
                             <a href="" className="white no-underline">
-                              {curr.emailAddress}
+                              {`${curr.firstName} ${curr.lastName}`}
                             </a>
                           </td>
-                        )}
-                        <td className="pa1">
-                          {getOrderTicketCount(curr.cart)}
-                        </td>
-                        <td className="pa1">
-                          {formatPrice(curr.total.toString(), true)}
-                        </td>
-                      </tr>
+                          {isL && (
+                            <td className="pa1">
+                              <a href="" className="white no-underline">
+                                {curr.emailAddress}
+                              </a>
+                            </td>
+                          )}
+                          <td className="pa1">
+                            {getOrderTicketCount(curr.cart)}
+                          </td>
+                          <td className="pa1">
+                            {formatPrice(curr.total.toString(), true)}
+                          </td>
+                        </tr>
+                      </Link>
                     );
                   })}
                 </tbody>

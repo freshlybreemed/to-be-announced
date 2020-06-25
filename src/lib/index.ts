@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import cookie from 'js-cookie';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { TicketProps, EventCartProps } from '../@types/types';
 
 export const stripeClient = process.env.STRIPE_DEV_CLIENT;
@@ -8,17 +8,15 @@ var yesterday = moment().subtract(1, 'day');
 
 export const validStartDate = (current: any) => current.isAfter(yesterday);
 
-export const validEndDate = (startDate: string) => (current: any) =>
+export const validEndDate = (startDate: Date) => (current: any) =>
   current > moment(startDate).subtract(1, 'day');
 
-export const timeConstraints = (endDate: string) => {
+export const timeConstraints = (endDate: Date) => {
   return { hours: { min: moment(endDate).hour(), max: 24, step: 1 } };
 };
 
-export const validTicketEndDate = (startDate: string) => (current: any) =>
-  startDate !== ''
-    ? current <= moment(new Date(startDate)).startOf('day')
-    : true;
+export const validTicketEndDate = (startDate: Date) => (current: any) =>
+  startDate !== undefined ? current <= moment(startDate).startOf('day') : true;
 
 export const getOrderTicketCount = (cart: {
   [ticketName: string]: EventCartProps;
@@ -27,7 +25,7 @@ export const getOrderTicketCount = (cart: {
   return tickets.reduce((acc, curr) => acc + curr.quantity, 0);
 };
 
-export const getTicketCount = (ticketTypes: {
+export const getTicketsCount = (ticketTypes: {
   [ticketName: string]: TicketProps;
 }) => {
   const tickets = Object.keys(ticketTypes).map((curr) => ticketTypes[curr]);
@@ -93,24 +91,32 @@ export const formatDate = (date: Date, type = 'short') => {
   }
 };
 
-export const formatEventDateTime = (startDate: Date, endDate: Date) => {
-  var nextDay = moment(startDate).add(1, 'day');
-  return `${format(startDate, 'ccc. MMMM d h:mm a')} - ${
+export const formatEventDateTime = (
+  startDate: Date,
+  endDate: Date,
+  timeZone: string,
+) => {
+  var nextDay = moment(startDate).tz(timeZone).add(1, 'day');
+  return `${moment(startDate).tz(timeZone).format('llll')} - ${
     nextDay.isAfter(endDate)
-      ? format(endDate, 'h:mm a')
-      : format(endDate, 'ccc. MMMM d h:mm a')
+      ? moment(endDate).tz(timeZone).format('h:mm A')
+      : moment(endDate).tz(timeZone).format('llll')
   }`;
 };
-export const formatEventTime = (startDate: Date, endDate: Date) => {
-  var nextDay = moment(startDate).add(1, 'day');
-  return `${format(startDate, 'h:mm a')} - ${
-    nextDay.isAfter(moment(endDate))
-      ? format(endDate, 'h:mm a')
-      : format(endDate, 'ccc. MMMM d h:mm a')
+export const formatEventTime = (
+  startDate: Date,
+  endDate: Date,
+  timeZone: string,
+) => {
+  var nextDay = moment(startDate).tz(timeZone).add(1, 'day');
+  return `${moment(startDate).tz(timeZone).format('h:mm A')} - ${
+    nextDay.isAfter(moment(endDate).tz(timeZone))
+      ? moment(endDate).tz(timeZone).format('h:mm A')
+      : moment(endDate).tz(timeZone).format('llll')
   }`;
 };
 
-export const formatTime = (date: Date) => format(date, 'h:mm a');
+export const formatTime = (date: Date) => moment(date).format('h:mm A');
 
 // Format price
 export const formatPrice = (number: string, showNumber: boolean = false) => {

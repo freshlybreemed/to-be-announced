@@ -6,11 +6,11 @@ import { useState } from 'react';
 import {
   formatDate,
   formatTime,
-  getTicketCount,
+  getTicketsCount,
   getTicketsSold,
   formatPrice,
 } from '../../../lib';
-import moment from 'moment';
+import moment from 'moment-timezone';
 interface MyEventProps {
   events: EventProps[];
 }
@@ -110,7 +110,10 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                           </a>
                           {!isL && (
                             <a className="pt1 gray db no-underline " href="">
-                              {`${formatPrice(curr.gross.toString(), true)}`}
+                              {`${formatPrice(
+                                (curr.gross / 100).toString(),
+                                true
+                              )}`}
                             </a>
                           )}
                           {!isL && !isM && (
@@ -135,7 +138,10 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                           <>
                             <td className="pv2">
                               <a className="pt1 gray db no-underline " href="">
-                                {`${formatPrice(curr.gross.toString(), true)}`}
+                                {`${formatPrice(
+                                  (curr.gross / 100).toString(),
+                                  true
+                                )}`}
                               </a>
                             </td>
                           </>
@@ -159,8 +165,8 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                           </>
                         )}
                         <td className="pv2">{`${getTicketsSold(
-                          curr.ticketTypes
-                        )} / ${getTicketCount(curr.ticketTypes)}`}</td>
+                          curr.ticketTypes,
+                        )} / ${getTicketsCount(curr.ticketTypes)}`}</td>
                       </tr>
                     );
                   })}

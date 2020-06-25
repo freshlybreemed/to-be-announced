@@ -8,9 +8,10 @@ import { validTicketEndDate } from '../../../lib';
 interface TicketingProps {
   addTicket: any;
   updateTicket: any;
+  timeZoneId: string;
   removeTicket: any;
   ticket: TicketProps;
-  startDate: string;
+  startDate: Date;
 }
 
 export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
@@ -18,6 +19,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   updateTicket,
   ticket,
   startDate,
+  timeZoneId,
   removeTicket,
 }) => {
   const [ticketName, setTicketName] = useState<string>(
@@ -148,6 +150,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
       <div className="mv3">
         <label className="f5-ns f6 fw7-ns fw5 db tl">End Date</label>
         <DateTimePicker
+          timeZoneId={timeZoneId}
           setDate={setTicketEndDate}
           isValidDate={validTicketEndDate(startDate)}
           date={ticketEndDate}
