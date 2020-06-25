@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import axios from 'axios';
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from 'use-places-autocomplete';
+import usePlacesAutocomplete, { getGeocode } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { EventProps } from '../../../@types/types';
 interface EventLocationProps {
