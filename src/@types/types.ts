@@ -13,10 +13,10 @@ export interface EventProps {
     timeZoneId: string;
   };
   description: string;
-  startDate: string;
+  startDate: Date;
   organizerId: string;
   tickets: OrderProps[];
-  endDate: string;
+  endDate: Date;
   slug: string;
   password: string;
   refunds: boolean;
