@@ -110,7 +110,10 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                           </a>
                           {!isL && (
                             <a className="pt1 gray db no-underline " href="">
-                              {`${formatPrice(curr.gross.toString(), true)}`}
+                              {`${formatPrice(
+                                (curr.gross / 100).toString(),
+                                true
+                              )}`}
                             </a>
                           )}
                           {!isL && !isM && (
@@ -135,7 +138,10 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                           <>
                             <td className="pv2">
                               <a className="pt1 gray db no-underline " href="">
-                                {`${formatPrice(curr.gross.toString(), true)}`}
+                                {`${formatPrice(
+                                  (curr.gross / 100).toString(),
+                                  true
+                                )}`}
                               </a>
                             </td>
                           </>

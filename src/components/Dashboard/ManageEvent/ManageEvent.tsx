@@ -98,7 +98,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               </div>
               <div className="fl w-40 tr">
                 <span className="f3 f4-ns fw6  ">
-                  {formatPrice(event.gross.toString(), true)}
+                  {formatPrice((event.gross / 100).toString(), true)}
                 </span>
               </div>
             </div>
