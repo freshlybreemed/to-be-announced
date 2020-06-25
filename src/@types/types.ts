@@ -8,6 +8,8 @@ export interface EventProps {
     zip: string;
     address: string;
     placeId: string;
+    lat: number;
+    lng: number;
     timeZoneId: string;
   };
   description: string;
