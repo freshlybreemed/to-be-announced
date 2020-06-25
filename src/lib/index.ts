@@ -116,7 +116,7 @@ export const formatEventTime = (
   }`;
 };
 
-export const formatTime = (date: Date) => format(date, 'h:mm A');
+export const formatTime = (date: Date) => moment(date).format('h:mm A');
 
 // Format price
 export const formatPrice = (number: string, showNumber: boolean = false) => {
