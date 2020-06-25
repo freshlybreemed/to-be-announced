@@ -1,6 +1,6 @@
 import Datetime from 'react-datetime';
 import React from 'react';
-import moment from 'moment';
+import moment from 'moment-timezone';
 interface DateProps {
   date?: any;
   setDate?: any;
@@ -11,10 +11,12 @@ interface DateProps {
   timeConstraints?: any;
   start?: boolean;
   className?: string;
+  timeZoneId: string;
 }
 export const DateTimePicker: React.FunctionComponent<DateProps> = ({
   setDate,
   date,
+  timeZoneId,
   // start,
   className,
   isValidDate,
@@ -25,6 +27,7 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
       timeFormat=" h:mm a"
       //   dateFormat={false}
       input={true}
+      displayTimeZone={timeZoneId}
       isValidDate={isValidDate}
       closeOnSelect={true}
       inputProps={{
@@ -36,8 +39,8 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
           'pa2 bt-0 br-0 bl-0 input-reset bb gray bg-black white w-100',
       }}
       value={date}
-      onBlur={(e) => setDate(moment(e.toString()))}
-      onChange={(e) => setDate(moment(e.toString()))}
+      onBlur={(e) => setDate(moment(e).toDate())}
+      onChange={(e) => setDate(moment(e).toDate())}
       className={`black ${className}`}
       timeConstraints={timeConstraints}
     />
