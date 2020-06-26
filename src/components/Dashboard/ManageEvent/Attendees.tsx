@@ -97,7 +97,7 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
                           className={`dim ${classnames({ bt: ind > 0 })}`}
                         >
                           <td className="pa1">
-                            {formatDate(new Date(curr.date), 'shorter')}
+                            {formatDate(new Date(curr.orderDate), 'shorter')}
                           </td>
                           <td className="pa1">
                             <a href="" className="white no-underline">
