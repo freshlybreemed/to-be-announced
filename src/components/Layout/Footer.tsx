@@ -3,10 +3,10 @@ import * as React from 'react';
 export const Footer: React.FunctionComponent = () => (
   <footer className="f3-l f4-m f6 relative overflow-hidden pt5 pb2 mt5">
     <div className="pb3 w-50-ns w-100">
-      <a href="" className="white no-underline fw6 f4 b db pv1 mv1 ">
+      <a href="/about" className="white no-underline fw6 f4 b db pv1 mv1 ">
         About
       </a>
-      <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
+      <a href="/events" className="white no-underline fw6 f4 b db pv1 mv1">
         Events
       </a>
       <a href="" className="white no-underline fw6 f4 b db pv1 mv1">
