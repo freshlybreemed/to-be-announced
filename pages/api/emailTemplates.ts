@@ -578,7 +578,7 @@ export const ticketEmail = {
                                                   href=""
                                                   >#3849123</a
                                                 >
-                                                - ${formatDate(order.date)}
+                                                - ${formatDate(order.orderDate)}
                                               </font>
                                             </font>
                                           </td>
