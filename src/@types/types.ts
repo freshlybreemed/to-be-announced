@@ -50,7 +50,7 @@ export interface OrderProps {
   lastName: string;
   phoneNumber: string;
   slug: string;
-  date: Date;
+  orderDate: Date;
   total: number;
   cart: {
     [ticketName: string]: EventCartProps;
@@ -67,5 +67,6 @@ export interface EventCartProps {
   quantity: number;
   fee: number;
   _id: string;
+  ticketNumber:string;
   ticketName: string;
 }
