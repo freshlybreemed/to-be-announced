@@ -7,17 +7,13 @@ import NoSSR from 'react-no-ssr';
 import { EventProps } from '../../../src/@types/types';
 import useRequest from '../../../src/lib/useRequest';
 
-interface Props {
-  event: EventProps;
-}
-
-const Page: NextPage<Props> = () => {
+const Page: NextPage = () => {
   const eventSlug =
     typeof window !== 'undefined'
       ? window.location.pathname.split('/').slice(-1)[0]
       : '';
   console.log(eventSlug);
-  const { data } = useRequest({ url: `/api/event/${eventSlug}` });
+  const { data } = useRequest<EventProps[]>({ url: `/api/event/${eventSlug}` });
   return (
     <Layout>
       <NoSSR>
