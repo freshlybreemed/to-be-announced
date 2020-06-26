@@ -5,6 +5,7 @@ import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
 import { useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import shortid from 'shortid'
 import {
   EventProps,
   OrderProps,
@@ -53,9 +54,9 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
       refunded: false,
       cancelled: false,
       status: 'copped',
-      orderId: '',
+      orderId: shortid.generate(),
       total,
-      date: new Date(),
+      orderDate: new Date(),
       cart,
     };
     if (total >= 0) {
