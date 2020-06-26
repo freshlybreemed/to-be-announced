@@ -85,7 +85,7 @@ export const formatDate = (date: Date, type = 'short') => {
     case 'short':
       return format(date, ' ccc. MMMM d');
     case 'shorter':
-      return format(date, ' MMMM d');
+      return format(new Date(date), ' MMMM d');
     default:
       return;
   }
@@ -116,7 +116,7 @@ export const formatEventTime = (
   }`;
 };
 
-export const formatTime = (date: Date) => moment(date).format('h:mm A');
+export const formatTime = (date: Date,timeZoneId: string) => moment.tz(date,timeZoneId).format('h:mm A');
 
 // Format price
 export const formatPrice = (number: string, showNumber: boolean = false) => {
