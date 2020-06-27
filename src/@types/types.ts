@@ -1,4 +1,5 @@
 export interface EventProps {
+  _id: string;
   name: string;
   image: string;
   location: {
