@@ -4,11 +4,10 @@ import { EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
 import {
-  formatDate,
-  formatTime,
   getTicketsCount,
   getTicketsSold,
   formatPrice,
+  formatDateTimeWithTimeZone,
 } from '../../../lib';
 import moment from 'moment-timezone';
 interface MyEventProps {
@@ -77,13 +76,13 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                   .filter((curr) =>
                     toggle
                       ? moment().isBefore(curr.endDate)
-                      : moment().isAfter(curr.endDate)
+                      : moment().isAfter(curr.endDate),
                   )
                   .map((curr, ind) => {
                     const live = moment().isBefore(curr.endDate);
                     const inProgress = moment().isBetween(
                       curr.startDate,
-                      curr.endDate
+                      curr.endDate,
                     );
                     return (
                       <tr
@@ -100,10 +99,11 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                             {curr.name}
                           </a>
                           <a className="pt1 gray db no-underline " href="">
-                            {`${formatDate(
+                            {formatDateTimeWithTimeZone(
                               new Date(curr.startDate),
-                              'medium'
-                            )} at ${formatTime(new Date(curr.startDate), curr.location.timeZoneId)}`}
+                              'short',
+                              curr.location.timeZoneId,
+                            )}
                           </a>
                           <a className="pt1 dark-gray db no-underline " href="">
                             {curr.location.venue}
@@ -112,7 +112,7 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                             <a className="pt1 gray db no-underline " href="">
                               {`${formatPrice(
                                 (curr.gross / 100).toString(),
-                                true
+                                true,
                               )}`}
                             </a>
                           )}
@@ -140,7 +140,7 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                               <a className="pt1 gray db no-underline " href="">
                                 {`${formatPrice(
                                   (curr.gross / 100).toString(),
-                                  true
+                                  true,
                                 )}`}
                               </a>
                             </td>
