@@ -44,6 +44,20 @@ export interface TicketProps {
   fee: number;
 }
 
+export interface UserTicketProps {
+  ticketName: string;
+  price: number;
+  _id: number;
+  description: string;
+  donation: boolean;
+  free: boolean;
+  barCode:string;
+  fee: number;
+  orderId: string;
+  checkedIn: boolean;
+  checkInDate:Date;
+}
+
 export interface OrderProps {
   emailAddress: string;
   firstName: string;

@@ -44,17 +44,36 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
 
   const handleCheckout = async () => {
     setMode(3);
+    const orderId=shortid.generate()
+    const tickets =[]
+    Object.keys(cart).forEach(curr=>{
+      const tix = cart[curr]
+      const tixCount = tix.quantity
+      for(var i =0;i<tixCount;i++){
+        tickets.push({
+          ...tix,
+          description: event.ticketTypes[cart[curr]._id].description,
+          donation: event.ticketTypes[cart[curr]._id].donation,
+          free: event.ticketTypes[cart[curr]._id].free,
+          barCode:shortid.generate(),
+          orderId,
+          checkedIn: null,
+          checkInDate:null,
+        })
+      }
+    })
     const order: OrderProps = {
       emailAddress,
       firstName,
       lastName,
       slug: event.slug,
+      orderId,
       phoneNumber,
       checkedIn: false,
       refunded: false,
       cancelled: false,
       status: 'copped',
-      orderId: shortid.generate(),
+      tickets,
       total,
       orderDate: new Date(),
       cart,
