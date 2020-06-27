@@ -1,4 +1,5 @@
 export { Dashboard } from './Dashboard';
+export { ManageOrder } from './ManageEvent/ManageOrder';
 export { Attendees } from './ManageEvent/Attendees';
 export { ManageEvent } from './ManageEvent/ManageEvent';
 export { Create } from './Create/Create';

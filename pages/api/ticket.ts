@@ -16,7 +16,7 @@ const updateTixCount = async (
     ops[`ticketTypes.${order.cart[curr]._id}.sold`] = order.cart[curr].quantity;
   });
 
-  order.date = new Date(order.date);
+  order.orderDate = new Date(order.orderDate);
   await db.collection('ticket').insertOne(order);
 
   return await db.collection('event').updateOne(

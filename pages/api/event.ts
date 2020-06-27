@@ -10,6 +10,7 @@ export default wrapAsync(async (req: NextApiRequest, db: any) => {
       {
         $set: {
           ...req.body,
+          publishDate: new Date(event.publishDate),
           startDate: new Date(event.startDate),
           endDate: new Date(event.endDate),
           updatedAt: new Date(),

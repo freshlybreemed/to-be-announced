@@ -1,4 +1,5 @@
 export interface EventProps {
+  _id: string;
   name: string;
   image: string;
   location: {
@@ -44,18 +45,33 @@ export interface TicketProps {
   fee: number;
 }
 
+export interface UserTicketProps {
+  ticketName: string;
+  price: number;
+  description: string;
+  donation: boolean;
+  free: boolean;
+  barCode:string;
+  fee: number;
+  orderId: string;
+  eventId: string;
+  checkedIn: boolean;
+  checkInDate:Date;
+}
+
 export interface OrderProps {
   emailAddress: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
   slug: string;
-  date: Date;
+  orderDate: Date;
   total: number;
   cart: {
     [ticketName: string]: EventCartProps;
   };
   checkedIn: boolean;
+  tickets: UserTicketProps[];
   cancelled: boolean;
   refunded: boolean;
   status: string;

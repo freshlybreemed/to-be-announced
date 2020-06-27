@@ -5,10 +5,12 @@ import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
 import { useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import shortid from 'shortid'
 import {
   EventProps,
   OrderProps,
   EventCartProps,
+  UserTicketProps,
 } from '../../../src/@types/types';
 
 interface EventCheckoutProps {
@@ -42,20 +44,43 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
   };
 
   const handleCheckout = async () => {
+    const {ticketTypes} = event
     setMode(3);
+    const orderId=shortid.generate()
+    const tickets = [] as UserTicketProps[]
+    Object.keys(cart).forEach(curr=>{
+      const tix = cart[curr]
+      for(var i =0;i<tix.quantity;i++){
+        const tempTix = ticketTypes[tix._id]
+        tickets.push({
+          ticketName:tempTix.ticketName,
+          fee:tempTix.fee,
+          price:tempTix.price,
+          description: tempTix.description,
+          donation: tempTix.donation,
+          free: tempTix.free,
+          barCode:shortid.generate(),
+          orderId,
+          eventId:event._id,
+          checkedIn: null,
+          checkInDate:null,
+        })
+      }
+    })
     const order: OrderProps = {
       emailAddress,
       firstName,
       lastName,
       slug: event.slug,
+      orderId,
       phoneNumber,
       checkedIn: false,
       refunded: false,
       cancelled: false,
       status: 'copped',
-      orderId: '',
+      tickets,
       total,
-      date: new Date(),
+      orderDate: new Date(),
       cart,
     };
     if (total >= 0) {

@@ -23,8 +23,8 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
   total,
   setTotal,
 }) => {
-  const [emptyCart, setEmptyCart] = useState<boolean>(true);
-  console.log('cart', cart);
+  const [emptyCart, setEmptyCart] = useState<boolean>(Object.keys(cart).length===0);
+  // console.log('cart', cart);
   const updateCart = async (ticket: TicketProps, quantity: number) => {
     const newCart = Object.assign(cart, {
       [ticket.ticketName]: {
@@ -53,6 +53,7 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
             return (
               <TicketSelection
                 key={curr}
+                cart={cart}
                 updateCart={updateCart}
                 ticketType={ticketTypes[curr]}
               />

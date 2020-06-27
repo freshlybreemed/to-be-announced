@@ -85,30 +85,26 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
                   {tickets.map((curr, ind) => {
                     return (
                       <Link
-                        href={`/manage/${event.slug}/attendees/${curr._id}`}
+                        href={`/dashboard/manage/${event.slug}/order/${curr._id}`}
                       >
                         <tr
                           onClick={() =>
                             Router.push(
-                              `/manage/${event.slug}/attendees/${curr._id}`
+                              `/dashboard/manage/${event.slug}/order/${curr._id}`
                             )
                           }
                           key={ind}
-                          className={`dim ${classnames({ bt: ind > 0 })}`}
+                          className={`dim noselect ${classnames({ bt: ind > 0 })}`}
                         >
                           <td className="pa1">
-                            {formatDate(new Date(curr.date), 'shorter')}
+                            {formatDate((curr.orderDate), 'shorter')}
                           </td>
                           <td className="pa1">
-                            <a href="" className="white no-underline">
                               {`${curr.firstName} ${curr.lastName}`}
-                            </a>
                           </td>
                           {isL && (
                             <td className="pa1">
-                              <a href="" className="white no-underline">
                                 {curr.emailAddress}
-                              </a>
                             </td>
                           )}
                           <td className="pa1">

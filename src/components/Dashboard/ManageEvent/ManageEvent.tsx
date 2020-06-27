@@ -221,10 +221,10 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                         className={`dim ${classnames({ bt: ind > 0 })}`}
                       >
                         <td className="pa1">
-                          {formatDate(new Date(curr.date), 'shorter')}
+                          {formatDate(new Date(curr.orderDate), 'shorter')}
                         </td>
                         <td className="pa1">
-                          <a href="" className="white no-underline">
+                          <a href={`/dashboard/manage/${event.slug}/order/${curr.orderId}`} className="white no-underline">
                             {`${curr.firstName} ${curr.lastName}`}
                           </a>
                         </td>
@@ -246,16 +246,14 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                   })}
                 </tbody>
               </table>
-              <span className="pv2 b bb">
-                <a
-                  className="white no-underline"
-                  href={`/dashboard/manage/${event.slug}/attendees`}
-                >
-                  See More...
-                </a>
-              </span>
             </div>
           </div>
+          <a
+            className="pv2 b bb white no-underline"
+            href={`/dashboard/manage/${event.slug}/attendees`}
+          >
+            See More...
+          </a>
         </section>
       </main>
     </div>

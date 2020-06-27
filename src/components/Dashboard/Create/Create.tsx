@@ -17,10 +17,12 @@ import {
   timeConstraints,
 } from '../../../lib';
 import moment from 'moment-timezone';
+import shortid from 'shortid';
 
 interface EditProps {
   event?: EventProps;
 }
+
 export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [name, setName] = useState<string>(event ? event.name : '');
   const [location, setLocation] = useState<EventProps['location']>(
@@ -38,6 +40,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           timeZoneId: '',
         },
   );
+  const [_id] = useState<string>(event ? event._id : shortid.generate());
   const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(
     event ? event.description : '',
@@ -102,6 +105,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const eventDetails: EventProps = {
     name,
     slug,
+    _id,
     location,
     description,
     eventType,
@@ -118,9 +122,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     ticketTypes,
     refunds,
   };
-
   console.log(eventDetails);
-
   const handleSubmit = async () => {
     setLoading(true);
     const organizerId = '123';

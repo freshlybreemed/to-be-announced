@@ -103,7 +103,7 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                             {`${formatDate(
                               new Date(curr.startDate),
                               'medium'
-                            )} at ${formatTime(new Date(curr.startDate))}`}
+                            )} at ${formatTime(new Date(curr.startDate), curr.location.timeZoneId)}`}
                           </a>
                           <a className="pt1 dark-gray db no-underline " href="">
                             {curr.location.venue}
