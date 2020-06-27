@@ -1,12 +1,13 @@
 import { wrapAsync } from './helpers';
 import { NextApiRequest } from 'next';
 import { EventProps } from '../../src/@types/types';
+import moment from 'moment-timezone';
 
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
   if (req.method === 'POST') {
     const event: EventProps = req.body;
     return await db.collection('event').updateOne(
-      { slug: req.body.slug },
+      { slug: event.slug },
       {
         $set: {
           ...req.body,
