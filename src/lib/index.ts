@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import cookie from 'js-cookie';
 import moment from 'moment-timezone';
 import { TicketProps, EventCartProps } from '../@types/types';
@@ -81,11 +80,11 @@ const getCookieFromServer = (key: string, req: any) => {
 export const formatDate = (date: Date, type = 'short') => {
   switch (type) {
     case 'medium':
-      return format(date, ' ccc. MMMM d, yyyy');
+      return moment(date).format(' ccc. MMMM d, yyyy');
     case 'short':
-      return format(date, ' ccc. MMMM d');
+      return moment(date).format( ' ccc. MMMM d');
     case 'shorter':
-      return format(new Date(date), ' MMMM d');
+      return moment(date).format(' MMMM d');
     default:
       return;
   }
