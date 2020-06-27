@@ -4,18 +4,18 @@ import { ManageOrder } from '../../../../../src/components/Dashboard/';
 import { Layout } from '../../../../../src/components/Layout/';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
-import { EventProps } from '../../../../../src/@types/types';
+import { EventProps, OrderProps } from '../../../../../src/@types/types';
 
 interface Props {
   event: EventProps;
-  ticket: any;
+  order: OrderProps;
 }
 
-const Page: NextPage<Props> = ({ event, ticket }) => (
+const Page: NextPage<Props> = ({ event, order }) => (
   <Layout>
     <div className="mw9 center pv2 ph3-ns overflow-hidden" id="dashboard">
       <section className="flex-m flex-l nl3-m nr3-m nl3-l nr3-l">
-        <ManageOrder ticket={ticket} event={event} />
+        <ManageOrder order={order} event={event} />
       </section>
     </div>
   </Layout>
@@ -23,14 +23,16 @@ const Page: NextPage<Props> = ({ event, ticket }) => (
 
 Page.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
-  const { event,attendee } = ctx.query;
+  const { event, attendee } = ctx.query;
   const eventResponse = await axios.get(`${origin}/api/event/${event}`);
-  const ticketsResponse = await axios.get(`${origin}/api/tickets/${event}`);
+  const orderResponse = await axios.get(`${origin}/api/tickets/${event}`);
   const eventResult = eventResponse.data;
-  const ticketResult = ticketsResponse.data.filter(curr=> curr._id === attendee);
+  const ordertResult = orderResponse.data.filter(
+    (curr) => curr._id === attendee,
+  );
   return {
     event: eventResult[0],
-    ticket: ticketResult[0],
+    order: ordertResult[0],
   };
 };
 
