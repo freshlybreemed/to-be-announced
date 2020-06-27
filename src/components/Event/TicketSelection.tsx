@@ -6,8 +6,9 @@ import { TicketProps, EventCartProps } from '../../@types/types';
 
 interface EventProps {
   updateCart: any;
-  cart: EventCartProps;
-  ticketType: TicketProps;
+  cart: {
+    [ticketName: string]: EventCartProps;
+  };  ticketType: TicketProps;
 }
 
 export const TicketSelection: React.FunctionComponent<EventProps> = ({
@@ -15,9 +16,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
   updateCart,
   cart
 }) => {
-  console.log(cart,ticketType.ticketName in cart)
   const [quantity, setQuantity] = useState<number>(ticketType.ticketName in cart? cart[ticketType.ticketName].quantity:0);
-
   const freeTix = ticketType.price > 0 ? false : true;
   const soldOut = quantity + 1 > ticketType.quantity - ticketType.sold;
   const disabled = !ticketType.enabled;
