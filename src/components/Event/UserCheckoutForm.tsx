@@ -10,6 +10,7 @@ import {
   EventProps,
   OrderProps,
   EventCartProps,
+  UserTicketProps,
 } from '../../../src/@types/types';
 
 interface EventCheckoutProps {
@@ -43,20 +44,24 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
   };
 
   const handleCheckout = async () => {
+    const {ticketTypes} = event
     setMode(3);
     const orderId=shortid.generate()
-    const tickets =[]
+    const tickets = [] as UserTicketProps[]
     Object.keys(cart).forEach(curr=>{
       const tix = cart[curr]
-      const tixCount = tix.quantity
-      for(var i =0;i<tixCount;i++){
+      for(var i =0;i<tix.quantity;i++){
+        const tempTix = ticketTypes[tix._id]
         tickets.push({
-          ...tix,
-          description: event.ticketTypes[cart[curr]._id].description,
-          donation: event.ticketTypes[cart[curr]._id].donation,
-          free: event.ticketTypes[cart[curr]._id].free,
+          ticketName:tempTix.ticketName,
+          fee:tempTix.fee,
+          price:tempTix.price,
+          description: tempTix.description,
+          donation: tempTix.donation,
+          free: tempTix.free,
           barCode:shortid.generate(),
           orderId,
+          eventId:event._id,
           checkedIn: null,
           checkInDate:null,
         })

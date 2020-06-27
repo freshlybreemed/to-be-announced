@@ -47,13 +47,13 @@ export interface TicketProps {
 export interface UserTicketProps {
   ticketName: string;
   price: number;
-  _id: number;
   description: string;
   donation: boolean;
   free: boolean;
   barCode:string;
   fee: number;
   orderId: string;
+  eventId: string;
   checkedIn: boolean;
   checkInDate:Date;
 }
@@ -70,6 +70,7 @@ export interface OrderProps {
     [ticketName: string]: EventCartProps;
   };
   checkedIn: boolean;
+  tickets: UserTicketProps[];
   cancelled: boolean;
   refunded: boolean;
   status: string;
@@ -81,6 +82,5 @@ export interface EventCartProps {
   quantity: number;
   fee: number;
   _id: string;
-  ticketNumber:string;
   ticketName: string;
 }
