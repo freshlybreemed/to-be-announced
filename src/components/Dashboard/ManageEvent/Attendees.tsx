@@ -97,7 +97,7 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
                           className={`dim noselect ${classnames({ bt: ind > 0 })}`}
                         >
                           <td className="pa1">
-                            {formatDate(new Date(curr.orderDate), 'shorter')}
+                            {formatDate((curr.orderDate), 'shorter')}
                           </td>
                           <td className="pa1">
                               {`${curr.firstName} ${curr.lastName}`}
