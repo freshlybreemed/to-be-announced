@@ -1,5 +1,4 @@
 import FadeIn from 'react-fade-in';
-import shortid from 'shortid'
 import * as React from 'react';
 import { useState } from 'react';
 import { formatPrice } from '../../lib';
