@@ -51,12 +51,12 @@ export interface UserTicketProps {
   description: string;
   donation: boolean;
   free: boolean;
-  barCode:string;
+  barCode: string;
   fee: number;
   orderId: string;
   eventId: string;
   checkedIn: boolean;
-  checkInDate:Date;
+  checkInDate: Date;
 }
 
 export interface OrderProps {
