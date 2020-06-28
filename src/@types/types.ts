@@ -64,7 +64,7 @@ export interface OrderProps {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  slug: string;
+  eventId: string;
   orderDate: Date;
   total: number;
   cart: {
@@ -75,7 +75,7 @@ export interface OrderProps {
   cancelled: boolean;
   refunded: boolean;
   status: string;
-  orderId: string;
+  _id: string;
 }
 
 export interface EventCartProps {

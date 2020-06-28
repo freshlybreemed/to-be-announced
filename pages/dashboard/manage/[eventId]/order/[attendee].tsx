@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import { ManageOrder } from '../../../../../src/components/Dashboard/';
-import { Layout } from '../../../../../src/components/Layout/';
+import { ManageOrder } from '../../../../../src/components/Dashboard';
+import { Layout } from '../../../../../src/components/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 import { EventProps, OrderProps } from '../../../../../src/@types/types';
@@ -23,9 +23,9 @@ const Page: NextPage<Props> = ({ event, order }) => (
 
 Page.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
-  const { event, attendee } = ctx.query;
-  const eventResponse = await axios.get(`${origin}/api/event/${event}`);
-  const orderResponse = await axios.get(`${origin}/api/tickets/${event}`);
+  const { eventId, attendee } = ctx.query;
+  const eventResponse = await axios.get(`${origin}/api/_id/${eventId}`);
+  const orderResponse = await axios.get(`${origin}/api/tickets/${eventId}`);
   const eventResult = eventResponse.data;
   const ordertResult = orderResponse.data.filter(
     (curr) => curr._id === attendee,

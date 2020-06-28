@@ -132,7 +132,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         setLoading(false);
         console.error(res.data);
       })
-      .then(() => Router.push(`/dashboard/manage/${eventDetails.slug}`));
+      .then(() => Router.push(`/dashboard/manage/${eventDetails._id}`));
   };
 
   return (

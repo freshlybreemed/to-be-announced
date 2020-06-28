@@ -94,7 +94,7 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                         <td className="pv2">
                           <a
                             className="white no-underline "
-                            href={`/dashboard/manage/${curr.slug}`}
+                            href={`/dashboard/manage/${curr._id}`}
                           >
                             {curr.name}
                           </a>
