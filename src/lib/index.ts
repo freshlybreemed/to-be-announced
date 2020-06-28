@@ -96,9 +96,9 @@ export const formatDateTimeWithTimeZone = (
 export const formatDate = (date: Date, type = 'short') => {
   switch (type) {
     case 'medium':
-      return moment(date).format('llll');
+      return moment(date).format('ddd. MMM Do YYYY [at] h:mm A');
     case 'short':
-      return moment(date).format(' ccc. MMMM d');
+      return moment(date).format('ddd. MMM Do YYYY [at] h:mm A');
     case 'shorter':
       return moment(date).format(' MMMM d');
     default:
