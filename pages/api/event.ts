@@ -1,7 +1,6 @@
 import { wrapAsync } from './helpers';
 import { NextApiRequest } from 'next';
 import { EventProps } from '../../src/@types/types';
-import moment from 'moment-timezone';
 
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
   if (req.method === 'POST') {
