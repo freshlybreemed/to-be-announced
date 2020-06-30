@@ -4,7 +4,7 @@ import {
   formatDate,
   formatPrice,
 } from '../../src/lib/index';
-export const ticketEmail = {
+export const emailTemplates = {
   subject: (eventName) => `You Just Scored Tickets to ${eventName}`,
   content: (event: EventProps, order: OrderProps) => `<!DOCTYPE html>
 <html

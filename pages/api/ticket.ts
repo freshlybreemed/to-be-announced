@@ -1,5 +1,5 @@
 import {
-  wrapAsync,
+  wrapAsync, createDigitalTicket, sendEmail,
   // sendEmail
 } from './helpers';
 import { OrderProps, EventProps } from '../../src/@types/types';
@@ -36,8 +36,8 @@ const updateTixCount = async (
 };
 
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
-  const { event, order } = req.body;
-
-  return await updateTixCount(order, event, db);
-  // return await sendEmail([order.emailAddress], ticketEmail, event, order);
+  const { event, order }: { event: EventProps; order: OrderProps } = req.body;
+   await updateTixCount(order, event, db);
+  // return await createDigitalTicket(order, event);
+  return await sendEmail([order.emailAddress], event, order);
 });
