@@ -82,41 +82,43 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
                   </tr>
                 </thead>
                 <tbody className="lh-copy f4-l f5-m f6">
-                  {tickets.map((curr, ind) => {
-                    return (
-                      <Link
-                        href={`/dashboard/manage/${event.slug}/order/${curr._id}`}
-                      >
-                        <tr
-                          onClick={() =>
-                            Router.push(
-                              `/dashboard/manage/${event.slug}/order/${curr._id}`
-                            )
-                          }
-                          key={ind}
-                          className={`dim noselect ${classnames({ bt: ind > 0 })}`}
+                  {tickets
+                    .map((curr, ind) => {
+                      return (
+                        <Link
+                          href={`/dashboard/manage/${event._id}/order/${curr._id}`}
                         >
-                          <td className="pa1">
-                            {formatDate((curr.orderDate), 'shorter')}
-                          </td>
-                          <td className="pa1">
-                              {`${curr.firstName} ${curr.lastName}`}
-                          </td>
-                          {isL && (
+                          <tr
+                            onClick={() =>
+                              Router.push(
+                                `/dashboard/manage/${event._id}/order/${curr._id}`
+                              )
+                            }
+                            key={ind}
+                            className={`dim noselect ${classnames({
+                              bt: ind > 0,
+                            })}`}
+                          >
                             <td className="pa1">
-                                {curr.emailAddress}
+                              {formatDate(curr.orderDate, 'shorter')}
                             </td>
-                          )}
-                          <td className="pa1">
-                            {getOrderTicketCount(curr.cart)}
-                          </td>
-                          <td className="pa1">
-                            {formatPrice(curr.total.toString(), true)}
-                          </td>
-                        </tr>
-                      </Link>
-                    );
-                  })}
+                            <td className="pa1">
+                              {`${curr.firstName} ${curr.lastName}`}
+                            </td>
+                            {isL && (
+                              <td className="pa1">{curr.emailAddress}</td>
+                            )}
+                            <td className="pa1">
+                              {getOrderTicketCount(curr.cart)}
+                            </td>
+                            <td className="pa1">
+                              {formatPrice(curr.total.toString(), true)}
+                            </td>
+                          </tr>
+                        </Link>
+                      );
+                    })
+                    .reverse()}
                 </tbody>
               </table>
             </div>
