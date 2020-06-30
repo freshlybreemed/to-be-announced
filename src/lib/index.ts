@@ -100,7 +100,7 @@ export const formatDate = (date: Date, type = 'short') => {
     case 'short':
       return moment(date).format('ddd. MMM Do YYYY [at] h:mm A');
     case 'shorter':
-      return moment(date).format(' MMMM d');
+      return moment(date).format('MMMM Do');
     default:
       return;
   }
