@@ -167,9 +167,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                             <td className="pa1 ">
                               {curr.enabled
                                 ? curr.quantity - curr.sold > 0
-                                  ? live
+                                  ? live || inProgress
                                     ? `On Sale`
-                                    : `Ended`
+                                    : `Sale Ended`
                                   : `Sold Out`
                                 : `Hidden`}
                             </td>
