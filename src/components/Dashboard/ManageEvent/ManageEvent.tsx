@@ -219,39 +219,41 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                   </tr>
                 </thead>
                 <tbody className="lh-copy f4-l f5-m f6">
-                  {event.tickets.map((curr, ind) => {
-                    return (
-                      <tr
-                        key={ind}
-                        className={`dim ${classnames({ bt: ind > 0 })}`}
-                      >
-                        <td className="pa1">
-                          {formatDate(new Date(curr.orderDate), 'shorter')}
-                        </td>
-                        <td className="pa1">
-                          <a
-                            href={`/dashboard/manage/${event._id}/order/${curr._id}`}
-                            className="white no-underline"
-                          >
-                            {`${curr.firstName} ${curr.lastName}`}
-                          </a>
-                        </td>
-                        {isL && (
+                  {event.tickets
+                    .map((curr, ind) => {
+                      return (
+                        <tr
+                          key={ind}
+                          className={`dim ${classnames({ bt: ind > 0 })}`}
+                        >
                           <td className="pa1">
-                            <a href="" className="white no-underline">
-                              {curr.emailAddress}
+                            {formatDate(new Date(curr.orderDate), 'shorter')}
+                          </td>
+                          <td className="pa1">
+                            <a
+                              href={`/dashboard/manage/${event._id}/order/${curr._id}`}
+                              className="white no-underline"
+                            >
+                              {`${curr.firstName} ${curr.lastName}`}
                             </a>
                           </td>
-                        )}
-                        <td className="pa1">
-                          {getOrderTicketCount(curr.cart)}
-                        </td>
-                        <td className="pa1">
-                          {formatPrice(curr.total.toString(), true)}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                          {isL && (
+                            <td className="pa1">
+                              <a href="" className="white no-underline">
+                                {curr.emailAddress}
+                              </a>
+                            </td>
+                          )}
+                          <td className="pa1">
+                            {getOrderTicketCount(curr.cart)}
+                          </td>
+                          <td className="pa1">
+                            {formatPrice(curr.total.toString(), true)}
+                          </td>
+                        </tr>
+                      );
+                    })
+                    .reverse()}
                 </tbody>
               </table>
             </div>
