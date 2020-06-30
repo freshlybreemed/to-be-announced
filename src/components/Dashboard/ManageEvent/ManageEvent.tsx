@@ -12,6 +12,7 @@ import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import NoSSR from 'react-no-ssr';
+import moment from 'moment';
 interface ManageProps {
   event: EventProps;
 }
@@ -19,6 +20,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
   event,
 }) => {
   const [live] = useState<boolean>(new Date(event.startDate) > new Date());
+  const [inProgress] = useState<boolean>(
+    moment().isBetween(event.startDate, event.endDate)
+  );
   const [ticketTypes] = useState<any>(
     Object.keys(event.ticketTypes).map((curr) => {
       return event.ticketTypes[curr];
@@ -67,11 +71,12 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
             </div>
             <h2
               className={`f4-ns f5 fw6 mv0 ${classnames({
-                green: live,
+                green: live && !inProgress,
                 red: !live,
+                yellow: inProgress,
               })}`}
             >
-              • {live ? `Live` : `Sale Ended`}
+              • {inProgress ? `In Progress` : live ? `Live` : `Sale Ended`}
             </h2>
           </div>
           <div className="w-auto-m dtc" />
