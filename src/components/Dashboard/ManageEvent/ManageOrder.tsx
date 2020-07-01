@@ -131,12 +131,16 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
                     <span className="normal f7 gray">Time</span>
                   </div>
                 </div>
-                <QRCode
-                  className="v-mid fr"
-                  value={`http://www.socialticketing.com/ticket/${curr.barCode}`}
-                  renderAs="svg"
-                  size={80}
-                />{' '}
+                <div className="v-mid fr">
+                  <div className="">
+                    <QRCode
+                      value={`http://www.socialticketing.com/ticket/${curr.barCode}`}
+                      renderAs="svg"
+                      size={80}
+                    />
+                  </div>
+                  <div>{curr.barCode}</div>
+                </div>
               </div>
             </div>
           );
