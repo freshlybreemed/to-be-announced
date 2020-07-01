@@ -1,11 +1,6 @@
 import * as React from 'react';
 import QRCode from 'qrcode.react';
-import NoSSR from 'react-no-ssr';
-import {
-  formatPrice,
-  formatEventDateTime,
-  getOrderTicketCount,
-} from '../../../lib';
+import { formatPrice, getOrderTicketCount, formatDate } from '../../../lib';
 import { EventProps, OrderProps } from '../../../@types/types';
 
 interface AttendeesProps {
@@ -18,9 +13,9 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
 }) => {
   return (
     <div className={'w-100'}>
-      <main className="mw9 ml4-ns center">
+      <main className="mw9 ml4-ns ph3-l center">
         <article className="dt tc tl-ns w-90-l w-100-m  pb2 mv2">
-          <div className="dtc-l dtc-m pl3-l pt2-m pb2 v-mid  fw7">
+          <div className="dtc-l dtc-m  pt2-m pb2 v-mid  fw7">
             <div className="mb3">
               <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                 Order Details
@@ -40,11 +35,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
             </div>
             <div>
               <span className="f4-ns f5 fw6 mv0 gray">
-                {`${formatEventDateTime(
-                  new Date(event.startDate),
-                  new Date(event.endDate),
-                  event.location.timeZoneId
-                )}`}
+                Purchase Date: {`${formatDate(order.orderDate)}`}
               </span>
             </div>
           </div>
@@ -97,55 +88,54 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
             </div>
           </div>
         </section>
+
         {order.tickets.map((curr) => {
           return (
-            <div className="mt3 pa3 bg-white black">
-              <article className="dt tc tl-ns w-90-l w-100-m  pb2 mv2">
-                <div className="dtc-l dtc-m pl3-l pt1-m pb2 v-mid  fw7">
-                  <div className=" lh-title f4 mv1 underline-hover">
-                    <a className="black no-underline">{event.name}</a>
+            <div className="w-80 ma2 black dib">
+              <div
+                style={{
+                  borderRadius: '8px',
+                }}
+                className="bg-light-gray h-25 fl relative pa2 mt1 bt w-80"
+              >
+                <h3
+                  className="mv2 pv3"
+                  style={{
+                    background:
+                      'linear-gradient(to bottom, #e84c3d 0%, #e84c3d 26%, #ecedef 26%, #ecedef 100%)',
+                  }}
+                >
+                  Social <span className="normal">Ticketing</span>
+                </h3>
+                <div className="fl">
+                  <div className="ttu  mt3">
+                    <h4 className="mv0">{event.name}</h4>
+                    <span className="normal f7 gray">Event</span>
                   </div>
-                  <div className="f6-ns f7 fw6 lh-title mv1 underline-hover">
-                    <NoSSR>
-                      <a
-                        className="gray no-underline"
-                        target="_blank"
-                        href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-                      >
-                        {event.location.venue}
-                      </a>
-                    </NoSSR>
+                  <div className="ttu mt2">
+                    <h4 className="mv0">{`${order.firstName} ${order.lastName}`}</h4>
+                    <span className="normal f7 gray">Name</span>
                   </div>
-                  <div className="mv1">
-                    <span className="f6-ns f7 fw5 mv0 gray">
-                      {`${formatEventDateTime(
-                        new Date(event.startDate),
-                        new Date(event.endDate),
-                        event.location.timeZoneId
-                      )}`}
-                    </span>
+                  <div className="ttu fl mt2">
+                    <h4 className="mv0">{curr.ticketName}</h4>
+                    <span className="normal f7 gray">Ticket</span>
                   </div>
-                  <div className="justify-space flex">
-                    <div className={`f6-ns f7 fw6 pt1 mt1 mb0`}>Name</div>
-                    <div className={`f4-ns f5 fw6 mv0`}>
-                      {`${order.firstName} ${order.lastName}`}
-                    </div>
-                    <h3 className={`f6-ns f7 fw6 pt1 mt1 mb0`}>Ticket type</h3>
-                    <h3 className={`f4-ns f5 fw6 mv0`}>{`${curr}`}</h3>
+                  <div className="ttu fl mt2 ml2">
+                    <h4 className="mv0">3PM</h4>
+                    <span className="normal f7 gray">Time</span>
                   </div>
                 </div>
-                <div className="w-auto-m dtc" />
-
-                <div className="dtc-l dtc-m v-mid  tr">
-                  <QRCode
-                    className="v-mid"
-                    value="http://www.socialticketing.com"
-                    renderAs="svg"
-                    size={115}
-                  />
-                  <div className="tc">{curr.barCode}</div>
+                <div className="v-mid fr">
+                  <div className="">
+                    <QRCode
+                      value={`http://www.socialticketing.com/ticket/${curr.barCode}`}
+                      renderAs="svg"
+                      size={80}
+                    />
+                  </div>
+                  <div>{curr.barCode}</div>
                 </div>
-              </article>
+              </div>
             </div>
           );
         })}

@@ -1,9 +1,5 @@
-import {
-  wrapAsync,
-  // sendEmail
-} from './helpers';
+import { wrapAsync, sendEmail } from './helpers';
 import { OrderProps, EventProps } from '../../src/@types/types';
-// import { ticketEmail } from './emailTemplates';
 import { NextApiRequest } from 'next';
 
 const updateTixCount = async (
@@ -36,8 +32,8 @@ const updateTixCount = async (
 };
 
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
-  const { event, order } = req.body;
-
-  return await updateTixCount(order, event, db);
-  // return await sendEmail([order.emailAddress], ticketEmail, event, order);
+  const { event, order }: { event: EventProps; order: OrderProps } = req.body;
+  await updateTixCount(order, event, db);
+  await sendEmail([order.emailAddress], event, order);
+  return true;
 });

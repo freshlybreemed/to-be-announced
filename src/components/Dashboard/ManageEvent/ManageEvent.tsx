@@ -12,6 +12,7 @@ import classnames from 'classnames';
 import { TicketProps, EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import NoSSR from 'react-no-ssr';
+import moment from 'moment';
 interface ManageProps {
   event: EventProps;
 }
@@ -19,6 +20,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
   event,
 }) => {
   const [live] = useState<boolean>(new Date(event.startDate) > new Date());
+  const [inProgress] = useState<boolean>(
+    moment().isBetween(event.startDate, event.endDate)
+  );
   const [ticketTypes] = useState<any>(
     Object.keys(event.ticketTypes).map((curr) => {
       return event.ticketTypes[curr];
@@ -67,11 +71,12 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
             </div>
             <h2
               className={`f4-ns f5 fw6 mv0 ${classnames({
-                green: live,
+                green: live && !inProgress,
                 red: !live,
+                yellow: inProgress,
               })}`}
             >
-              • {live ? `Live` : `Sale Ended`}
+              • {inProgress ? `In Progress` : live ? `Live` : `Sale Ended`}
             </h2>
           </div>
           <div className="w-auto-m dtc" />
@@ -162,9 +167,9 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                             <td className="pa1 ">
                               {curr.enabled
                                 ? curr.quantity - curr.sold > 0
-                                  ? live
+                                  ? live || inProgress
                                     ? `On Sale`
-                                    : `Ended`
+                                    : `Sale Ended`
                                   : `Sold Out`
                                 : `Hidden`}
                             </td>
@@ -214,43 +219,48 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                   </tr>
                 </thead>
                 <tbody className="lh-copy f4-l f5-m f6">
-                  {event.tickets.map((curr, ind) => {
-                    return (
-                      <tr
-                        key={ind}
-                        className={`dim ${classnames({ bt: ind > 0 })}`}
-                      >
-                        <td className="pa1">
-                          {formatDate(new Date(curr.orderDate), 'shorter')}
-                        </td>
-                        <td className="pa1">
-                          <a href={`/dashboard/manage/${event.slug}/order/${curr.orderId}`} className="white no-underline">
-                            {`${curr.firstName} ${curr.lastName}`}
-                          </a>
-                        </td>
-                        {isL && (
+                  {event.tickets
+                    .map((curr, ind) => {
+                      return (
+                        <tr
+                          key={ind}
+                          className={`dim ${classnames({ bt: ind > 0 })}`}
+                        >
                           <td className="pa1">
-                            <a href="" className="white no-underline">
-                              {curr.emailAddress}
+                            {formatDate(new Date(curr.orderDate), 'shorter')}
+                          </td>
+                          <td className="pa1">
+                            <a
+                              href={`/dashboard/manage/${event._id}/order/${curr._id}`}
+                              className="white no-underline"
+                            >
+                              {`${curr.firstName} ${curr.lastName}`}
                             </a>
                           </td>
-                        )}
-                        <td className="pa1">
-                          {getOrderTicketCount(curr.cart)}
-                        </td>
-                        <td className="pa1">
-                          {formatPrice(curr.total.toString(), true)}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                          {isL && (
+                            <td className="pa1">
+                              <a href="" className="white no-underline">
+                                {curr.emailAddress}
+                              </a>
+                            </td>
+                          )}
+                          <td className="pa1">
+                            {getOrderTicketCount(curr.cart)}
+                          </td>
+                          <td className="pa1">
+                            {formatPrice(curr.total.toString(), true)}
+                          </td>
+                        </tr>
+                      );
+                    })
+                    .reverse()}
                 </tbody>
               </table>
             </div>
           </div>
           <a
             className="pv2 b bb white no-underline"
-            href={`/dashboard/manage/${event.slug}/attendees`}
+            href={`/dashboard/manage/${event._id}/attendees`}
           >
             See More...
           </a>

@@ -4,7 +4,7 @@ import {
   formatDate,
   formatPrice,
 } from '../../src/lib/index';
-export const ticketEmail = {
+export const emailTemplates = {
   subject: (eventName) => `You Just Scored Tickets to ${eventName}`,
   content: (event: EventProps, order: OrderProps) => `<!DOCTYPE html>
 <html
@@ -386,7 +386,11 @@ export const ticketEmail = {
                                                           >
                                                             <a
                                                               class="button raised"
-                                                              href="http://paulgoddarddesign.com/email-marketing"
+                                                              href="https://www.socialticketing.io/dashboard/manage/${
+                                                                event._id
+                                                              }/order/${
+    order._id
+  }"
                                                               target="_blank"
                                                               style="
                                                                 font-size: 14px;
@@ -751,7 +755,8 @@ export const ticketEmail = {
                                               <font
                                                 style="vertical-align: inherit;"
                                                 >${formatPrice(
-                                                  order.total.toString()
+                                                  order.total.toString(),
+                                                  true
                                                 )}
                                               </font></font
                                             >
@@ -855,254 +860,6 @@ export const ticketEmail = {
           </td>
         </tr>
         <!-- END CARD 2 -->
-
-        <!-- START CARD 3 -->
-        <tr>
-          <td
-            width="100%"
-            valign="top"
-            align="center"
-            class="padding-container"
-            style="
-              padding-top: 0px !important;
-              padding-bottom: 18px !important;
-              mso-padding-alt: 0px 0px 18px 0px;
-            "
-          >
-            <table
-              width="600"
-              cellpadding="0"
-              cellspacing="0"
-              border="0"
-              align="center"
-              class="wrapper"
-            >
-              <tbody>
-                <tr>
-                  <td>
-                    <table cellpadding="0" cellspacing="0" border="0">
-                      <tbody>
-                        <tr>
-                          <td
-                            style="
-                              border-radius: 3px;
-                              border-bottom: 2px solid #d4d4d4;
-                            "
-                            class="card-1"
-                            width="100%"
-                            valign="top"
-                            align="center"
-                          >
-                            <table
-                              style="border-radius: 3px;"
-                              width="600"
-                              cellpadding="0"
-                              cellspacing="0"
-                              border="0"
-                              align="center"
-                              class="wrapper"
-                              bgcolor="#ffffff"
-                            >
-                              <tbody>
-                                <tr>
-                                  <td align="center">
-                                    <table
-                                      width="600"
-                                      cellpadding="0"
-                                      cellspacing="0"
-                                      border="0"
-                                      class="container"
-                                    >
-                                      <!-- START HEADER IMAGE -->
-                                      <tbody>
-                                        <tr>
-                                          <td
-                                            align="center"
-                                            class="hund ripplelink"
-                                            width="600"
-                                          >
-                                            <img
-                                              align="center"
-                                              width="600"
-                                              style="
-                                                border-radius: 3px 3px 0px 0px;
-                                                width: 100%;
-                                                max-width: 600px !important;
-                                              "
-                                              class="hund"
-                                              src="http://paulgoddarddesign.com/emails/images/material-design/material-header-3.jpg"
-                                            />
-                                          </td>
-                                        </tr>
-                                        <!-- END HEADER IMAGE -->
-                                        <!-- START BODY COPY -->
-                                        <tr>
-                                          <td
-                                            class="td-padding"
-                                            align="left"
-                                            style="
-                                              font-family: -apple-system,
-                                                BlinkMacSystemFont, avenir next,
-                                                avenir, helvetica neue,
-                                                helvetica, ubuntu, roboto, noto,
-                                                segoe ui, arial, sans-serif;
-                                              color: #212121 !important;
-                                              font-size: 24px;
-                                              line-height: 30px;
-                                              padding-top: 18px;
-                                              padding-left: 18px !important;
-                                              padding-right: 18px !important;
-                                              padding-bottom: 0px !important;
-                                              mso-line-height-rule: exactly;
-                                              mso-padding-alt: 18px 18px 0px
-                                                13px;
-                                            "
-                                          >
-                                            <font
-                                              style="vertical-align: inherit;"
-                                              ><font
-                                                style="vertical-align: inherit;"
-                                              >
-                                                This is a Headline
-                                              </font></font
-                                            >
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td
-                                            class="td-padding"
-                                            align="left"
-                                            style="
-                                              font-family: -apple-system,
-                                                BlinkMacSystemFont, avenir next,
-                                                avenir, helvetica neue,
-                                                helvetica, ubuntu, roboto, noto,
-                                                segoe ui, arial, sans-serif;
-                                              color: #212121 !important;
-                                              font-size: 16px;
-                                              line-height: 24px;
-                                              padding-top: 18px;
-                                              padding-left: 18px !important;
-                                              padding-right: 18px !important;
-                                              padding-bottom: 0px !important;
-                                              mso-line-height-rule: exactly;
-                                              mso-padding-alt: 18px 18px 0px
-                                                18px;
-                                            "
-                                          >
-                                            <font
-                                              style="vertical-align: inherit;"
-                                              ><font
-                                                style="vertical-align: inherit;"
-                                              >
-                                                But I must explain to you how
-                                                all this mistaken idea of
-                                                ​​denouncing pleasure and
-                                                praising pain was born, a
-                                                complete account of the system,
-                                                and expound the actual teachings
-                                                of the great explorer of the
-                                                truth and will unfold in the
-                                                master-builder of human
-                                                happiness.
-                                              </font></font
-                                            >
-                                          </td>
-                                        </tr>
-                                        <!-- END BODY COPY -->
-                                        <!-- BUTTON -->
-                                        <tr>
-                                          <td
-                                            align="left"
-                                            style="
-                                              padding: 18px 18px 18px 18px;
-                                              mso-alt-padding: 18px 18px 18px
-                                                18px !important;
-                                            "
-                                          >
-                                            <table
-                                              width="100%"
-                                              border="0"
-                                              cellspacing="0"
-                                              cellpadding="0"
-                                            >
-                                              <tbody>
-                                                <tr>
-                                                  <td>
-                                                    <table
-                                                      border="0"
-                                                      cellspacing="0"
-                                                      cellpadding="0"
-                                                    >
-                                                      <tbody>
-                                                        <tr>
-                                                          <td
-                                                            align="left"
-                                                            style="
-                                                              border-radius: 3px;
-                                                            "
-                                                            bgcolor="#8856FF"
-                                                          >
-                                                            <a
-                                                              class="button raised"
-                                                              href="http://paulgoddarddesign.com/email-marketing"
-                                                              target="_blank"
-                                                              style="
-                                                                font-size: 14px;
-                                                                line-height: 14px;
-                                                                font-weight: 500;
-                                                                font-family: Helvetica,
-                                                                  Arial,
-                                                                  sans-serif;
-                                                                color: #ffffff;
-                                                                text-decoration: none;
-                                                                border-radius: 3px;
-                                                                padding: 10px
-                                                                  25px;
-                                                                border: 1px
-                                                                  solid #8856ff;
-                                                                display: inline-block;
-                                                              "
-                                                              ><font
-                                                                style="
-                                                                  vertical-align: inherit;
-                                                                "
-                                                                ><font
-                                                                  style="
-                                                                    vertical-align: inherit;
-                                                                  "
-                                                                  >BUTTON</font
-                                                                ></font
-                                                              ></a
-                                                            >
-                                                          </td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </td>
-                                        </tr>
-                                        <!-- END BUTTON -->
-                                      </tbody>
-                                    </table>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-        <!-- END CARD 3 -->
 
         <!-- START COLUMNS -->
         <tr>

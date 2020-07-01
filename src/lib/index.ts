@@ -77,14 +77,30 @@ const getCookieFromServer = (key: string, req: any) => {
   return rawCookie.split('=')[1];
 };
 
+export const formatDateTimeWithTimeZone = (
+  date: Date,
+  type = 'short',
+  timeZoneId,
+) => {
+  switch (type) {
+    case 'medium':
+      return moment.tz(date, timeZoneId).format('llll');
+    case 'short':
+      return moment.tz(date, timeZoneId).format('ddd. MMM Do YYYY [at] h:mm A');
+    case 'shorter':
+      return moment.tz(date, timeZoneId).format(' MMMM d');
+    default:
+      return;
+  }
+};
 export const formatDate = (date: Date, type = 'short') => {
   switch (type) {
     case 'medium':
-      return moment(date).format(' ccc. MMMM d, yyyy');
+      return moment(date).format('ddd. MMM Do YYYY [at] h:mm A');
     case 'short':
-      return moment(date).format( ' ccc. MMMM d');
+      return moment(date).format('ddd. MMM Do YYYY [at] h:mm A');
     case 'shorter':
-      return moment(date).format(' MMMM d');
+      return moment(date).format('MMMM Do');
     default:
       return;
   }
@@ -115,7 +131,8 @@ export const formatEventTime = (
   }`;
 };
 
-export const formatTime = (date: Date,timeZoneId: string) => moment.tz(date,timeZoneId).format('h:mm A');
+export const formatTime = (date: Date, timeZoneId: string) =>
+  moment.tz(date, timeZoneId).format('h:mm A');
 
 // Format price
 export const formatPrice = (number: string, showNumber: boolean = false) => {

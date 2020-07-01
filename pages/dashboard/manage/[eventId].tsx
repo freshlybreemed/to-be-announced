@@ -8,12 +8,12 @@ import { EventProps } from '../../../src/@types/types';
 import useRequest from '../../../src/lib/useRequest';
 
 const Page: NextPage = () => {
-  const eventSlug =
+  const eventId =
     typeof window !== 'undefined'
       ? window.location.pathname.split('/').slice(-1)[0]
       : '';
-  console.log(eventSlug);
-  const { data } = useRequest<EventProps[]>({ url: `/api/event/${eventSlug}` });
+  console.log(eventId);
+  const { data } = useRequest<EventProps[]>({ url: `/api/_id/${eventId}` });
   return (
     <Layout>
       <NoSSR>
@@ -56,7 +56,7 @@ const Page: NextPage = () => {
 //   try {
 //     console.log('try', params);
 //     const event = (
-//       await axios.get(`https://whatstba.com/api/event/${params.event}`)
+//       await axios.get(`https://whatstba.com/api/slug/${params.event}`)
 //     ).data[0];
 //     return { props: { event } };
 //   } catch (err) {

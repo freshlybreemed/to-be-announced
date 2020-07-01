@@ -1,8 +1,12 @@
 const connect = require('./db');
 const cors = require('micro-cors')();
 const nodemailer = require('nodemailer');
+const pdf = require('html-pdf');
+
 import { EventProps, OrderProps } from '../../src/@types/types';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { ticketTemplate } from './ticketTemplate';
+import { emailTemplates } from './emailTemplates';
 
 export const dev = false;
 
@@ -18,41 +22,60 @@ export const wrapAsync = (handler: any) => async (
           'cache-control',
           's-maxage=1 maxage=0, stale-while-revalidate'
         );
-        return res.json(result);
+        return res.send(result);
       })
       .catch((error: any) => res.status(500).json({ error: error.message }))
   );
 };
 
+export const createDigitalTicket = (order, event) => {
+  return new Promise((resolve, reject) => {
+    const tixTemplate = ticketTemplate.content(order, event);
+    console.log(tixTemplate);
+    pdf.create(tixTemplate).toStream((err, buffer: Buffer) => {
+      if (err) {
+        console.log(err);
+        reject(err);
+      }
+      return resolve(buffer);
+    });
+  });
+};
+
 export const sendEmail = async (
   emails: string[],
-  content: any,
   event: EventProps,
   order: OrderProps
 ) => {
   try {
     // Generate test SMTP service account from ethereal.email
-
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-      host: 'smtp-relay.sendinblue.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: 'ebrima.jobe92@gmail.com', // generated ethereal user
-        pass: process.env.NODEMAILER, // generated ethereal password
-      },
-    });
-    const message = content.content(event, order);
-    for (var email in emails) {
-      await transporter.sendMail({
+    await createDigitalTicket(order, event).then(async (tix: any) => {
+      // create reusable transporter object using the default SMTP transport
+      let transporter = await nodemailer.createTransport({
+        host: 'smtp-relay.sendinblue.com',
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: 'ebrima.jobe92@gmail.com', // generated ethereal user
+          pass: process.env.NODEMAILER, // generated ethereal password
+        },
+      });
+      const message = emailTemplates.content(event, order);
+      transporter.sendMail({
         from: `"TBA" <info@whatstba.com>`, // sender address
-        to: emails[email], // list of receivers
-        subject: content.subject(event.name), // Subject line
+        to: emails, // list of receivers
+        subject: emailTemplates.subject(event.name), // Subject line
         text: message, // plain text body
         html: message, // html body
+        attachments: [
+          {
+            filename: 'tickets.pdf',
+            content: tix,
+          },
+        ],
       });
-    }
+      return message;
+    });
   } catch (error) {
     console.error(error);
   }

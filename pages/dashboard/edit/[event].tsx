@@ -27,7 +27,7 @@ const Page: NextPage<Props> = ({ event }) => (
 Page.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const { event } = ctx.query;
-  const response = await axios.get(`${origin}/api/event/${event}`);
+  const response = await axios.get(`${origin}/api/slug/${event}`);
   const result = response.data;
   console.log(result);
   return {

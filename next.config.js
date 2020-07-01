@@ -22,6 +22,7 @@ module.exports = withCSS({
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     STRIPE_DEV_SECRET: process.env.STRIPE_DEV_SECRET,
     STRIPE_DEV_CLIENT: process.env.STRIPE_DEV_CLIENT,
   },

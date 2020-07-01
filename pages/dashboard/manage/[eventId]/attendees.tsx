@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import { Attendees } from '../../../../src/components/Dashboard/';
-import { Layout } from '../../../../src/components/Layout/';
+import { Attendees } from '../../../../src/components/Dashboard';
+import { Layout } from '../../../../src/components/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 import { EventProps } from '../../../../src/@types/types';
@@ -23,9 +23,9 @@ const Page: NextPage<Props> = ({ event, tickets }) => (
 
 Page.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
-  const { event } = ctx.query;
-  const eventResponse = await axios.get(`${origin}/api/event/${event}`);
-  const ticketsResponse = await axios.get(`${origin}/api/tickets/${event}`);
+  const { eventId } = ctx.query;
+  const eventResponse = await axios.get(`${origin}/api/_id/${eventId}`);
+  const ticketsResponse = await axios.get(`${origin}/api/tickets/${eventId}`);
   const eventResult = eventResponse.data;
   const ticketResult = ticketsResponse.data;
   return {

@@ -19,7 +19,7 @@ const Page: NextPage<EventSearchProps> = ({ event }) => (
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const { slug } = ctx.query;
-  const response = await axios.get(`${origin}/api/event/${slug}`);
+  const response = await axios.get(`${origin}/api/slug/${slug}`);
   const event = response.data[0];
   return { props: { event } };
 };
