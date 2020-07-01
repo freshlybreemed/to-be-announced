@@ -755,7 +755,8 @@ export const emailTemplates = {
                                               <font
                                                 style="vertical-align: inherit;"
                                                 >${formatPrice(
-                                                  order.total.toString()
+                                                  order.total.toString(),
+                                                  true
                                                 )}
                                               </font></font
                                             >
