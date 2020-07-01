@@ -1,12 +1,6 @@
 import * as React from 'react';
 import QRCode from 'qrcode.react';
-import NoSSR from 'react-no-ssr';
-import {
-  formatPrice,
-  formatEventDateTime,
-  getOrderTicketCount,
-  formatDate,
-} from '../../../lib';
+import { formatPrice, getOrderTicketCount, formatDate } from '../../../lib';
 import { EventProps, OrderProps } from '../../../@types/types';
 
 interface AttendeesProps {

@@ -1,11 +1,5 @@
-import {
-  wrapAsync,
-  createDigitalTicket,
-  sendEmail,
-  // sendEmail
-} from './helpers';
+import { wrapAsync, sendEmail } from './helpers';
 import { OrderProps, EventProps } from '../../src/@types/types';
-// import { ticketEmail } from './emailTemplates';
 import { NextApiRequest } from 'next';
 
 const updateTixCount = async (
