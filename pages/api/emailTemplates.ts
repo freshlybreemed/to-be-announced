@@ -386,7 +386,11 @@ export const emailTemplates = {
                                                           >
                                                             <a
                                                               class="button raised"
-                                                              href="http://paulgoddarddesign.com/email-marketing"
+                                                              href="https://www.socialticketing.io/dashboard/manage/${
+                                                                event._id
+                                                              }/order/${
+    order._id
+  }"
                                                               target="_blank"
                                                               style="
                                                                 font-size: 14px;
