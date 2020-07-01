@@ -22,25 +22,25 @@ export const wrapAsync = (handler: any) => async (
           'cache-control',
           's-maxage=1 maxage=0, stale-while-revalidate'
         );
-       return  res.status(200).json(result)
+        return res.send(result);
       })
       .catch((error: any) => res.status(500).json({ error: error.message }))
   );
 };
 
-export const createDigitalTicket = (order, event) =>{
+export const createDigitalTicket = (order, event) => {
   return new Promise((resolve, reject) => {
-    pdf.create(ticketTemplate.content(order),{
-      width: '50mm', height: '90mm'}).toBuffer((err,buffer:Buffer)=> {
-        if (err){
-          console.log(err)
-          reject(err)
-        }
-      console.log(buffer);
-      return resolve(buffer)
-    })
-  })
-}
+    const tixTemplate = ticketTemplate.content(order, event);
+    console.log(tixTemplate);
+    pdf.create(tixTemplate).toStream((err, buffer: Buffer) => {
+      if (err) {
+        console.log(err);
+        reject(err);
+      }
+      return resolve(buffer);
+    });
+  });
+};
 
 export const sendEmail = async (
   emails: string[],
@@ -49,8 +49,7 @@ export const sendEmail = async (
 ) => {
   try {
     // Generate test SMTP service account from ethereal.email
-     await createDigitalTicket(order, event).then(async (tix:any)=>{
-      console.log('tix', typeof tix,tix)
+    await createDigitalTicket(order, event).then(async (tix: any) => {
       // create reusable transporter object using the default SMTP transport
       let transporter = await nodemailer.createTransport({
         host: 'smtp-relay.sendinblue.com',
@@ -62,25 +61,26 @@ export const sendEmail = async (
         },
       });
       const message = emailTemplates.content(event, order);
-      console.log(message,emailTemplates.subject(event.name),emails)
-      // await transporter.sendMail({
-      //   from: `"TBA" <info@whatstba.com>`, // sender address
-      //   to: emails, // list of receivers
-      //   subject: emailTemplates.subject(event.name), // Subject line
-      //   text: message, // plain text body
-      //   html: message, // html body
-      //   attachments:[{
-      //     filename:'tickets.pdf',
-      //     content: Buffer.alloc(tix)
-      //   }]
-      // });
-      return ''
-    })
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
-  export const stripeSecret = dev
+      transporter.sendMail({
+        from: `"TBA" <info@whatstba.com>`, // sender address
+        to: emails, // list of receivers
+        subject: emailTemplates.subject(event.name), // Subject line
+        text: message, // plain text body
+        html: message, // html body
+        attachments: [
+          {
+            filename: 'tickets.pdf',
+            content: tix,
+          },
+        ],
+      });
+      return message;
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const stripeSecret = dev
   ? process.env.STRIPE_SECRET_DEV
   : process.env.STRIPE_SECRET_PROD;
