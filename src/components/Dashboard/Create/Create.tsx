@@ -321,7 +321,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           <TicketCreationForm
             addTicket={addTicket}
             startDate={startDate}
-            timeZoneId={event.location.timeZoneId}
+            timeZoneId={location.timeZoneId}
             ticket={currentTicket}
             removeTicket={removeTicket}
             updateTicket={updateTicket}
