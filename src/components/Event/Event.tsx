@@ -104,7 +104,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                     </svg>
                   </td>
                   <td className="pt1 f4-ns f5 fw6 dtc lh-solid mv0 underline-hover">
-                    {`${formatDate(new Date(event.startDate), 'medium')}`}
+                    {`${formatDate(new Date(event.startDate), 'short')}`}
                   </td>
                 </tr>
                 <tr>
