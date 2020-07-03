@@ -4,11 +4,11 @@ import { Attendees } from '../../../../src/components/Dashboard';
 import { Layout } from '../../../../src/components/Layout';
 import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
-import { EventProps } from '../../../../src/@types/types';
+import { EventProps, OrderProps } from '../../../../src/@types/types';
 
 interface Props {
   event: EventProps;
-  tickets: any;
+  tickets: OrderProps;
 }
 
 const Page: NextPage<Props> = ({ event, tickets }) => (
