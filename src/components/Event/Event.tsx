@@ -23,6 +23,12 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
   const [live] = useState<boolean>(new Date(event.startDate) > new Date());
   const reward = useRef<any>(null);
 
+  let tixs = {};
+  Object.keys(event.ticketTypes).map((curr) => {
+    tixs[curr] = event.ticketTypes[curr];
+  });
+  const [tickets] = useState<any>(tixs);
+
   const setMode = (step: number) => {
     setStep(step);
     if (reward.current && step === 4) {
@@ -30,12 +36,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
     }
     // this.reward.punishMe();
   };
-  let tixs = {};
-  Object.keys(event.ticketTypes).map((curr) => {
-    tixs[curr] = event.ticketTypes[curr];
-  });
-  const [tickets] = useState<any>(tixs);
-  // console.log(event);
+
   return (
     <main className="mw9 ml4-ns center">
       <img className="w-100 center db" src={event.image} />
