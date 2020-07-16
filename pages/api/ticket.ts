@@ -34,6 +34,6 @@ const updateTixCount = async (
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
   const { event, order }: { event: EventProps; order: OrderProps } = req.body;
   await updateTixCount(order, event, db);
-  await sendEmail([order.emailAddress], event, order);
+  // await sendEmail([order.emailAddress], event, order);
   return true;
 });
