@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Cleave from 'cleave.js/react';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
-import { useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import shortid from 'shortid';
 import {
@@ -32,7 +31,6 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
   const [lastName, setLastName] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [emailAddress, setEmailAddress] = useState<string>('');
-  const stripe = useStripe();
 
   const validateEmail = (mail: string) => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
@@ -83,36 +81,15 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
       orderDate: new Date(),
       cart,
     };
-    if (total >= 0) {
+    if (total === 0) {
       await axios.post('/api/ticket', {
         order,
         event,
       });
     } else {
-      // Create a Checkout Session.
-      const response = await axios.post('/api/stripe', {
-        order,
-        event,
-      });
-
-      if (response.data.statusCode === 500) {
-        console.error(response.data.message);
-        return;
-      }
-
-      // Redirect to Checkout.
-      const { error } = await stripe!.redirectToCheckout({
-        // Make the id field from the Checkout Session creation API response
-        // available to this file, so you can provide it as parameter here
-        // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-        sessionId: response.data.id,
-      });
-      // If `redirectToCheckout` fails due to a browser or network
-      // error, display the localized error message to your customer
-      // using `error.message`.
-      console.warn(error.message);
+      setMode(4);
     }
-    setMode(4);
+    setMode(5);
   };
   return (
     <div className="pv3 w-100">
