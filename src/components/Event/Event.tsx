@@ -31,10 +31,9 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
 
   const setMode = (step: number) => {
     setStep(step);
-    if (reward.current && step === 4) {
+    if (reward.current && step === 5) {
       reward.current.rewardMe();
     }
-    // this.reward.punishMe();
   };
 
   return (
