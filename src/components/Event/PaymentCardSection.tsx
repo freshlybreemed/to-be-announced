@@ -24,16 +24,13 @@ const CARD_ELEMENT_OPTIONS = {
 
 interface PaymentCheckoutProps {
   handleChange: any;
-  cardRef: any;
 }
 
 export const PaymentCardSection: React.FunctionComponent<PaymentCheckoutProps> = ({
   handleChange,
-  cardRef,
 }) => {
   return (
     <CardElement
-      onReady={cardRef}
       id="card-element"
       options={CARD_ELEMENT_OPTIONS}
       onChange={handleChange}

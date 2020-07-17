@@ -1,4 +1,4 @@
-import { wrapAsync, sendEmail } from './helpers';
+import { wrapAsync } from './helpers';
 import { OrderProps, EventProps } from '../../src/@types/types';
 import { NextApiRequest } from 'next';
 
