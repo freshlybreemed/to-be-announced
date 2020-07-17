@@ -83,7 +83,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                   <div className="w-100 mb3" key={ind}>
                     <a className="white no-underline" href={`/e/${curr.slug}`}>
                       <div
-                        className="w-100 h-100 relative flex"
+                        className="w-100 relative flex"
                         style={{ boxSizing: 'inherit' }}
                       >
                         <div

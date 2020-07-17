@@ -260,9 +260,12 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                       {ticketTypes[curr].ticketName}
                     </a>
                   </h1>
-                  <h2 className="f6 fw6 mt0 mb1 gray">{`Ends ${formatDate(
-                    new Date(2),
-                  )}`}</h2>
+                  <h2 className="f6 fw6 mt0 mb1 gray">
+                    {ticketTypes[curr].ticketEndDate !== '' &&
+                      `Ends ${formatDate(
+                        new Date(ticketTypes[curr].ticketEndDate)
+                      )}`}
+                  </h2>
                   <div>
                     <label className="switch">
                       <input
@@ -318,7 +321,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           <TicketCreationForm
             addTicket={addTicket}
             startDate={startDate}
-            timeZoneId={event.location.timeZoneId}
+            timeZoneId={location.timeZoneId}
             ticket={currentTicket}
             removeTicket={removeTicket}
             updateTicket={updateTicket}

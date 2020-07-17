@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classnames from 'classnames';
+import Link from 'next/link';
 import { EventProps } from '../../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
@@ -92,38 +93,38 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                         })}`}
                       >
                         <td className="pv2">
-                          <a
-                            className="white no-underline "
-                            href={`/dashboard/manage/${curr._id}`}
-                          >
-                            {curr.name}
-                          </a>
-                          <a className="pt1 gray db no-underline " href="">
-                            {formatDateTimeWithTimeZone(
-                              new Date(curr.startDate),
-                              'short',
-                              curr.location.timeZoneId,
-                            )}
-                          </a>
-                          <a className="pt1 dark-gray db no-underline " href="">
-                            {curr.location.venue}
-                          </a>
+                          <Link href={`/dashboard/manage/${curr._id}`}>
+                            <a className="white no-underline ">{curr.name}</a>
+                          </Link>
+                          <Link href={`/dashboard/manage/${curr._id}`}>
+                            <a className="pt1 gray db no-underline ">
+                              {formatDateTimeWithTimeZone(
+                                new Date(curr.startDate),
+                                'short',
+                                curr.location.timeZoneId
+                              )}
+                            </a>
+                          </Link>
+                          <Link href={`/dashboard/manage/${curr._id}`}>
+                            <a className="pt1 dark-gray db no-underline ">
+                              {curr.location.venue}
+                            </a>
+                          </Link>
                           {!isL && (
-                            <a className="pt1 gray db no-underline " href="">
+                            <a className="pt1 gray db no-underline ">
                               {`${formatPrice(
                                 (curr.gross / 100).toString(),
-                                true,
+                                true
                               )}`}
                             </a>
                           )}
                           {!isL && !isM && (
                             <a
-                              className={`pt1  db no-underline  ${classnames({
+                              className={`pt1 no-underline  ${classnames({
                                 green: live && !inProgress,
                                 red: !live,
                                 yellow: inProgress,
                               })}`}
-                              href=""
                             >
                               <span className="f5">•</span>{' '}
                               {inProgress
@@ -137,10 +138,10 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
                         {isL && (
                           <>
                             <td className="pv2">
-                              <a className="pt1 gray db no-underline " href="">
+                              <a className="pt1 gray db no-underline ">
                                 {`${formatPrice(
                                   (curr.gross / 100).toString(),
-                                  true,
+                                  true
                                 )}`}
                               </a>
                             </td>

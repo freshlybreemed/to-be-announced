@@ -1,14 +1,6 @@
 import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import {
-  DEV,
-  FB_TRACKING_ID,
-  SENTRY_TRACKING_ID,
-  SITE_DESCRIPTION,
-  SITE_IMAGE,
-  SITE_NAME,
-  SITE_TITLE,
-} from '../src/constants/env';
+import { DEV, FB_TRACKING_ID, SENTRY_TRACKING_ID } from '../src/constants/env';
 
 export default class extends Document {
   static async getInitialProps(args: any) {
@@ -27,26 +19,14 @@ export default class extends Document {
             name="viewport"
             content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
           />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content={SITE_NAME} />
-          <meta property="og:title" content={SITE_TITLE} />
-          <meta property="og:description" content={SITE_DESCRIPTION} />
-          <meta property="og:image" content={SITE_IMAGE} />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content={SITE_NAME} />
-          <meta name="twitter:title" content={SITE_TITLE} />
-          <meta name="twitter:description" content={SITE_DESCRIPTION} />
-          <meta property="twitter:image" content={SITE_IMAGE} />
-          <meta
-            name="format-detection"
-            content="telephone=no, address=no, email=no"
-          />
+
           <link rel="stylesheet" href="/static/extra.css" />
           <link rel="stylesheet" href="/static/styles.min.css" />
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           />
+
           <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
