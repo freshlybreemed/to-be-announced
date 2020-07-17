@@ -86,10 +86,10 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
         order,
         event,
       });
+      return setMode(5);
     } else {
-      setMode(4);
+      return setMode(4);
     }
-    setMode(5);
   };
   return (
     <div className="pv3 w-100">
@@ -145,7 +145,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
               Total: {formatPrice(total.toString())}
             </span>
             <span
-              onClick={() => handleCheckout() && setMode(3)}
+              onClick={handleCheckout}
               className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns ml fw6 fr"
             >
               {total > 0 ? `Pay` : `Next`}
