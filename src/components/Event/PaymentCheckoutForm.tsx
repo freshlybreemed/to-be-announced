@@ -98,7 +98,6 @@ export const PaymentCheckoutForm: React.FunctionComponent<PaymentCheckoutProps> 
   !readyToCheckout && mode === 4 && prepareCheckout();
   const handleCheckout = async () => {
     const card = elements.getElement(CardElement);
-    console.log(card, elements, stripe);
     const result = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card,
