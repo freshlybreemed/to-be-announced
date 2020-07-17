@@ -137,8 +137,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 'bg-green': step === 0 && live,
                 'bg-red': step > 0 || !live,
                 'bg-animate': step >= 0,
-                // 'o- /': step > 0,
-              })} no-underline white  noselect br-100  pa2 mr2 mt2-l ph4 mt2 `}
+              })} no-underline white  noselect br-100 tc pa2 mr2 mt2-l ph4 mt2 `}
             >
               {!live ? 'Sale Ended' : step === 0 ? 'Get Tickets' : 'Cancel'}
             </div>
