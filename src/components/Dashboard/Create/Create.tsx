@@ -19,6 +19,7 @@ import {
 } from '../../../lib';
 import moment from 'moment-timezone';
 import shortid from 'shortid';
+import classNames from 'classnames';
 
 interface EditProps {
   event?: EventProps;
