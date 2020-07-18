@@ -43,7 +43,7 @@ export interface TicketProps {
   description: string;
   donation: boolean;
   free: boolean;
-  ticketEndDate: string;
+  ticketEndDate: Date;
   enabled: boolean;
   fee: number;
 }

@@ -37,8 +37,8 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   const [description, setDescription] = useState<string>(
     ticket ? ticket.description : '',
   );
-  const [ticketEndDate, setTicketEndDate] = useState<string>(
-    ticket ? ticket.ticketEndDate : ''
+  const [ticketEndDate, setTicketEndDate] = useState<Date>(
+    ticket ? moment.tz(ticket.ticketEndDate, timeZoneId).toDate() : null,
   );
   const [ticketError, setTicketError] = useState<any>({
     ticketName: '',
