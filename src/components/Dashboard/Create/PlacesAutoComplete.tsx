@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import classnames from 'classnames';
 import axios from 'axios';
 import usePlacesAutocomplete, { getGeocode } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
