@@ -19,6 +19,7 @@ import {
 } from '../../../lib';
 import moment from 'moment-timezone';
 import shortid from 'shortid';
+import classNames from 'classnames';
 
 interface EditProps {
   event?: EventProps;
@@ -74,6 +75,10 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     event ? event.lineUp : {},
   );
   const [loading, setLoading] = useState<boolean>(false);
+  const [eventErrors, setEventErrors] = useState<any>({
+    name: false,
+    location: '',
+  });
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
@@ -168,6 +173,19 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
       .then(() => Router.push(`/dashboard/manage/${eventDetails._id}`));
   };
 
+  const checkForErrors = (item) => {
+    if (item.name.length === 0) {
+      setEventErrors({
+        ...eventErrors,
+        name: true,
+      });
+    } else {
+      setEventErrors({
+        ...eventErrors,
+        name: false,
+      });
+    }
+  };
   return (
     <article className="w-100 tc">
       <link
@@ -178,255 +196,316 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/draftail@1.3.0/dist/draftail.css"
       />
-      <div className="ph4 pb2 ttu fw5 f1">
+      <div className="ph4 pb4 mb2 mb0-ns fw5 f1-l f2">
         {event ? `Edit` : `Create`} Event
       </div>
 
       <div className={'w-100 ph4 pt4 bg-white black'}>
         {/* <h1 className="f1-ns f2 mt0">{event ? `Edit` : `Create`} Event</h1> */}
-        <div className="w-75-ns w-100 center">
-          <h3 className="tl mb0">Basic Info</h3>
-          <p className="tl mt0 pt1 f6">
-            Name your event and tell event-goers why they should come. Add
-            details that highlight what makes it unique.
-          </p>
-          <div className="mv3 tl ba">
-            <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1 ">
-              Event Name
-            </label>
-            <input
-              value={name}
-              onChange={(event) => {
-                setName(event.currentTarget.value);
-              }}
-              className="pl2 pb2  input-reset  bn w-90"
-            />
-          </div>
-          <div className="mv3 tl ba">
-            <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1 ">
-              Event Location
-            </label>
-            <PlacesAutoComplete
-              event={event}
-              location={location}
-              setLocation={setEventLocation}
-            />
-          </div>
-          <div className="mv3 tl ba">
-            <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">
-              {' '}
-              Start Time
-            </label>
-            <DateTimePicker
-              start={true}
-              timeZoneId={location.timeZoneId}
-              isValidDate={validStartDate}
-              date={startDate}
-              setDate={setStartDate}
-            />
-          </div>
-          <div className="mv3 tl ba">
-            <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1"> End Time</label>
-            <DateTimePicker
-              timeZoneId={location.timeZoneId}
-              start={false}
-              isValidDate={validEndDate(startDate)}
-              date={endDate}
-              timeConstraints={{
-                minutes: { step: 40, min: 0, max: 24 },
-                ...timeConstraints(startDate),
-              }}
-              setDate={setEndDate}
-            />
-          </div>
-          <div className="mt3 tl ba">
-            <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1"> Event URL</label>
-            <input
-              className="pl2 pb2 input-reset bn  w-90"
-              value={slug}
-              onChange={(e) => setSlug(e.currentTarget.value)}
-            />
-          </div>
-          <hr className="o-20" />
-          <h3 className="tl mb0">Event Image</h3>
-          <div className="mb3">
-            <img src={image} className="db w-100" />
-            <UploadFlyer setImage={setImage} />
-          </div>
-          <hr className="o-20" />
-          <h3 className="tl">Ticket Details</h3>
-          {!toggleTicketCreation && (
-            <div>
-              <div
-                onClick={() => setToggleTicketCreation(true)}
-                className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f5 fw5 mr3 "
-              >
-                Create A Ticket{' '}
-              </div>
-              <div className="mt3">
-                <label className="pa2 mr3 gray">
-                  Refundable?
-                  <input
-                    type="checkbox"
-                    onChange={() => setRefundable(!refunds)}
-                    checked={refunds}
-                    disabled={event ? true : false}
-                  />{' '}
-                  <span>
-                    <strong></strong>
-                  </span>
-                </label>
-              </div>
-              <main className="w-75-ns w-100 tl center">
-                {Object.keys(ticketTypes).map((curr, key) => (
-                  <article key={key} className="dt w-100 bb b--gray pb2 mt2">
-                    <div className="dtc v-mid pl3">
-                      <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
-                        <a className="black no-underline" href="">
-                          {ticketTypes[curr].ticketName}
-                        </a>
-                      </h1>
-                      <h2 className="f6 fw6 mt0 mb1 black">
-                        {ticketTypes[curr].ticketEndDate !== null &&
-                          `Ends ${formatDate(
-                            new Date(ticketTypes[curr].ticketEndDate),
-                          )}`}
-                      </h2>
-                      <div>
-                        <label className="switch">
-                          <input
-                            type="checkbox"
-                            onChange={() =>
-                              updateTicket({
-                                ...ticketTypes[curr],
-                                enabled: !ticketTypes[curr].enabled,
-                              })
-                            }
-                            checked={ticketTypes[curr].enabled}
-                          />
-                          <span>
-                            {/* <em></em> */}
-                            <strong></strong>
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                    <div className="dtc v-mid tr">
-                      <h1 className="f6 f5-ns fw7 lh-title mv0">
-                        {ticketTypes[curr].sold}/{ticketTypes[curr].quantity}
-                      </h1>
-                      <h1 className="f6 f5-ns fw7 lh-title gray mv0">
-                        {formatPrice(ticketTypes[curr].price.toString())}
-                      </h1>
-                      {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
-                    </div>
-                    <div
-                      className="dtc v-mid tr black"
-                      onClick={() => {
-                        setToggleTicketCreation(true);
-                        setCurrentTicket(ticketTypes[curr]);
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        fill="currentColor"
-                        height="24"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z" />
-                      </svg>
-                    </div>
-                  </article>
-                ))}
-              </main>
-            </div>
-          )}
-          {toggleTicketCreation && (
-            <div>
-              <TicketCreationForm
-                addTicket={addTicket}
-                startDate={startDate}
-                timeZoneId={location.timeZoneId}
-                ticket={currentTicket}
-                removeTicket={removeTicket}
-                updateTicket={updateTicket}
-              />{' '}
-              <div
-                onClick={() => {
-                  setToggleTicketCreation(false);
-                  setCurrentTicket(undefined);
+        <div className="w-60-ns w-100 center">
+          <div>
+            <h1 className="tl fw7 mb0 pb3">Basic Info</h1>
+            <p className="tl mt0 pt1 f6">
+              Name your event and tell event-goers why they should come. Add
+              details that highlight what makes it unique.
+            </p>
+            <div
+              className={`mt3 mb2 tl ${classNames({
+                'ba-hover': !eventErrors.name,
+                'ba-hover-error': eventErrors.name,
+              })}`}
+            >
+              <small className="db pl2 pt2 pb1 mid-gray ">
+                Event Name <span className="red">*</span>
+              </small>
+              <input
+                value={name}
+                onChange={(event) => {
+                  setName(event.currentTarget.value);
+                  checkForErrors({ name: event.currentTarget.value });
                 }}
-                className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5"
-              >
-                Cancel
-              </div>
-            </div>
-          )}
-          <br /> <hr className="o-20" />
-          <h3 className="tl mb0">Event Description</h3>
-          <div className="mv3 pv3 w-75-ns w-100 center">
-            <TextEditor
-              setDescription={setDescription}
-              description={description}
-            />
-          </div>
-          <br /> <hr className="o-20" />
-          <h3 className="tl mb0">Event Line Up</h3>
-          {!toggleLineUpCreation && (
-            <div>
-              <div
-                onClick={() => setToggleLineUpCreation(true)}
-                className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f5 fw5 mr3 "
-              >
-                Add Artist
-              </div>
-              <main className="w-75-ns w-100 tl center">
-                {Object.keys(lineUp).map((curr, key) => (
-                  <article key={key} className="dt w-100 spb2 mt2">
-                    <div className="db dtc-ns v-mid-ns">
-                      <img
-                        src={lineUp[curr].imageURL}
-                        className="db w-100 w5-ns"
-                      />
-                    </div>
-                    <div className="db dtc v-mid ph2 pr0-ns pl3-ns">
-                      <p>
-                        <strong> {lineUp[curr].artistName} </strong>
-                        <a
-                          className="no-underline black"
-                          href={`https://instagram.com/${curr}`}
-                          target="_blank"
-                        >
-                          {lineUp[curr].igHandle}
-                        </a>
-                        <br />
-                      </p>
-                    </div>
-                  </article>
-                ))}
-              </main>
-            </div>
-          )}
-          {toggleLineUpCreation && (
-            <div>
-              <ArtistCreationForm
-                addArtist={addArtist}
-                artist={currentArtist}
-                removeArtist={removeArtist}
-                updateArtist={updateArtist}
+                className="pl2 pb2  input-reset  bn w-90"
               />
-              <div
-                onClick={() => {
-                  setToggleTicketCreation(false);
-                  setCurrentTicket(undefined);
-                }}
-                className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5"
-              >
-                Cancel
+            </div>
+
+            {eventErrors.name && (
+              <small className="db tl red">Title is required</small>
+            )}
+            <div className="mv2 tl ba-hover">
+              <small className="mid-gray db pl2 pt2 pb1 ">Event Location</small>
+              <PlacesAutoComplete
+                event={event}
+                location={location}
+                setLocation={setEventLocation}
+              />
+            </div>
+            <div className="mv3 w-100">
+              <div className="dib w-50 pr2">
+                <div className="tl ba-hover overflow-visible">
+                  <small className="mid-gray db pl2 pt2 pb1"> Start Date</small>
+                  <DateTimePicker
+                    timeZoneId={location.timeZoneId}
+                    isValidDate={validStartDate}
+                    timeMode={false}
+                    dateMode={true}
+                    date={startDate}
+                    setDate={setStartDate}
+                  />
+                </div>
+              </div>
+              <div className="dib  w-50 ">
+                <div className="tl ba-hover overflow-visible">
+                  <small className="mid-gray db pl2 pt2 pb1"> Start Time</small>
+                  <DateTimePicker
+                    timeMode={true}
+                    dateMode={false}
+                    timeZoneId={location.timeZoneId}
+                    isValidDate={validStartDate}
+                    date={startDate}
+                    setDate={setStartDate}
+                  />
+                </div>
               </div>
             </div>
-          )}
+            <div className="dt mv3 w-100">
+              <div className="dib w-50 pr2">
+                <div className="tl ba-hover overflow-visible">
+                  {' '}
+                  <small className=" mid-gray  db pl2 pt2 pb1"> End Date</small>
+                  <DateTimePicker
+                    timeZoneId={location.timeZoneId}
+                    timeMode={false}
+                    dateMode={true}
+                    isValidDate={validEndDate(startDate)}
+                    date={endDate}
+                    timeConstraints={{
+                      minutes: { step: 40, min: 0, max: 24 },
+                      ...timeConstraints(startDate),
+                    }}
+                    setDate={setEndDate}
+                  />
+                </div>
+              </div>
+              <div className="dib w-50 ">
+                <div className="tl ba-hover overflow-visible">
+                  <small className=" mid-gray  db pl2 pt2 pb1"> End Time</small>
+                  <DateTimePicker
+                    timeZoneId={location.timeZoneId}
+                    timeMode={true}
+                    dateMode={false}
+                    isValidDate={validEndDate(startDate)}
+                    date={endDate}
+                    timeConstraints={{
+                      minutes: { step: 40, min: 0, max: 24 },
+                      ...timeConstraints(startDate),
+                    }}
+                    setDate={setEndDate}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mv3 tl ba-hover  ">
+              <small className=" mid-gray db pl2 pt2 pb1"> Event URL</small>
+              <input
+                className="pl2 pb2 input-reset bn  w-90"
+                value={slug}
+                onChange={(e) => setSlug(e.currentTarget.value)}
+              />
+            </div>
+            <hr className="o-20 " />
+          </div>
+          <div className="mv4 pv2">
+            <h1 className="tl fw7 mb0 pb3">Event Image</h1>
+            <div className="mb5">
+              <img src={image} className="db w-100" />
+              <UploadFlyer setImage={setImage} />
+            </div>
+            <hr className="o-20 " />
+          </div>
+          <div className="mv4 pv2">
+            <h1 className="tl fw7 mb0 pb3">Ticket Details</h1>
+            {!toggleTicketCreation && (
+              <div>
+                <div
+                  onClick={() => setToggleTicketCreation(true)}
+                  className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f5 fw5"
+                >
+                  Create A Ticket
+                </div>
+                <div className="mt3">
+                  <label className="pa2 mr3 gray">
+                    Refundable?
+                    <input
+                      type="checkbox"
+                      onChange={() => setRefundable(!refunds)}
+                      checked={refunds}
+                      disabled={event ? true : false}
+                    />{' '}
+                    <span>
+                      <strong></strong>
+                    </span>
+                  </label>
+                </div>
+                <main className="w-75-ns w-100 tl center">
+                  {Object.keys(ticketTypes).map((curr, key) => (
+                    <article
+                      key={key}
+                      className={`dt w-100   ${classNames({
+                        bt: key > 0,
+                      })} b--gray pb2 mt2`}
+                    >
+                      <div className="dtc v-mid pl3">
+                        <h1 className="f6 f5-ns fw7 lh-title mv0 pb1 underline-hover">
+                          <a className="black no-underline" href="">
+                            {ticketTypes[curr].ticketName}
+                          </a>
+                        </h1>
+                        <h2 className="f6 fw6 mt0 mb1 black">
+                          {ticketTypes[curr].ticketEndDate !== null &&
+                            `Ends ${formatDate(
+                              new Date(ticketTypes[curr].ticketEndDate),
+                            )}`}
+                        </h2>
+                        <div>
+                          <label className="switch">
+                            <input
+                              type="checkbox"
+                              onChange={() =>
+                                updateTicket({
+                                  ...ticketTypes[curr],
+                                  enabled: !ticketTypes[curr].enabled,
+                                })
+                              }
+                              checked={ticketTypes[curr].enabled}
+                            />
+                            <span>
+                              {/* <em></em> */}
+                              <strong></strong>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="dtc v-mid tr">
+                        <h1 className="f6 f5-ns fw7 lh-title mv0">
+                          {ticketTypes[curr].sold}/{ticketTypes[curr].quantity}
+                        </h1>
+                        <h1 className="f6 f5-ns fw7 lh-title gray mv0">
+                          {formatPrice(ticketTypes[curr].price.toString())}
+                        </h1>
+                        {/* <h2 className="f6 fw6 mt0 mb0 gray">Los Angeles</h2> */}
+                      </div>
+                      <div
+                        className="dtc v-mid tr black"
+                        onClick={() => {
+                          setToggleTicketCreation(true);
+                          setCurrentTicket(ticketTypes[curr]);
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z" />
+                        </svg>
+                      </div>
+                    </article>
+                  ))}
+                </main>
+              </div>
+            )}
+            {toggleTicketCreation && (
+              <div>
+                <TicketCreationForm
+                  addTicket={addTicket}
+                  startDate={startDate}
+                  timeZoneId={location.timeZoneId}
+                  ticket={currentTicket}
+                  removeTicket={removeTicket}
+                  updateTicket={updateTicket}
+                />{' '}
+                <div
+                  onClick={() => {
+                    setToggleTicketCreation(false);
+                    setCurrentTicket(undefined);
+                  }}
+                  className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5"
+                >
+                  Cancel
+                </div>
+              </div>
+            )}
+          </div>
+          <hr className="o-20" />
+          <div className="mv4 pv2">
+            <h1 className="tl fw7 mb0 pb3">Event Description</h1>
+            <div className="mv3 pv3 w-75-ns w-100 center">
+              <TextEditor
+                setDescription={setDescription}
+                description={description}
+              />
+            </div>
+          </div>
+          <hr className="o-20" />
+          <div className="mv4 pt2">
+            <h1 className="tl fw7 mb0 pb3">Event Line Up</h1>
+            {!toggleLineUpCreation && (
+              <div>
+                <div
+                  onClick={() => setToggleLineUpCreation(true)}
+                  className="mv4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f5 fw5"
+                >
+                  Add Artist
+                </div>
+                <main className="w-75-ns w-100 tl center">
+                  {Object.keys(lineUp).map((curr, key) => (
+                    <article key={key} className="dt w-100 spb2 mt2">
+                      <div className="db dtc-ns v-mid-ns">
+                        <img
+                          src={lineUp[curr].imageURL}
+                          className="db w-100 w5-ns"
+                        />
+                      </div>
+                      <div className="db dtc v-mid ph2 pr0-ns pl3-ns">
+                        <p>
+                          <strong> {lineUp[curr].artistName} </strong>
+                          <a
+                            className="no-underline black"
+                            href={`https://instagram.com/${curr}`}
+                            target="_blank"
+                          >
+                            {lineUp[curr].igHandle}
+                          </a>
+                          <br />
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </main>
+              </div>
+            )}
+            {toggleLineUpCreation && (
+              <div>
+                <ArtistCreationForm
+                  addArtist={addArtist}
+                  artist={currentArtist}
+                  removeArtist={removeArtist}
+                  updateArtist={updateArtist}
+                />
+                <div
+                  onClick={() => {
+                    setToggleTicketCreation(false);
+                    setCurrentTicket(undefined);
+                  }}
+                  className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5"
+                >
+                  Cancel
+                </div>
+              </div>
+            )}
+          </div>
         </div>
         <div
           className="mv4 b--black dib noselect br-100 b--solid pa2 ph4 f3 fw5"

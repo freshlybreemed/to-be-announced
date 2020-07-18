@@ -49,7 +49,7 @@ export const UploadFlyer: React.FunctionComponent<EventImageProps> = ({
 
   return (
     <div className="mt4 relative overflow-hidden dib">
-      <div className="b--black dib  br-100 b--solid pa1 ph3 f5 fw5">
+      <div className="b--black dib noselect br-100 b--solid pa1 ph3 f5 fw5">
         {' '}
         <i aria-label="icon: plus" className="center">
           <svg

@@ -5,6 +5,7 @@ import { DateTimePicker } from './DateTimePicker';
 import { TicketProps } from '../../../@types/types';
 import { validTicketEndDate } from '../../../lib';
 import moment from 'moment-timezone';
+import classNames from 'classnames';
 
 interface TicketingProps {
   addTicket: any;
@@ -42,7 +43,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
     ticket ? moment.tz(ticket.ticketEndDate, timeZoneId).toDate() : null,
   );
   const [ticketError, setTicketError] = useState<any>({
-    ticketName: '',
+    ticketName: false,
     quantity: '',
     price: '',
   });
@@ -66,17 +67,17 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
       case 'ticketName':
         return setTicketError({
           ...ticketError,
-          ticketName: item[key].length > 0 ? '' : 'Ticket Name Missing',
+          ticketName: item[key].length > 0,
         });
       case 'price':
         return setTicketError({
           ...ticketError,
-          price: /^\d+$/.test(item[key]) ? '' : 'Not a number',
+          price: /^\d+$/.test(item[key]),
         });
       case 'quantity':
         return setTicketError({
           ...ticketError,
-          quantity: item[key].length > 0 ? '' : 'Not a number',
+          quantity: item[key].length > 0,
         });
       default:
         break;
@@ -86,9 +87,15 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
 
   return (
     <div className="mw6 center w-75-ns w-100">
-      <div className="mv3  tl ba">
-        <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">Ticket Name</label>
-
+      <div
+        className={`mt3 mb2 tl ${classNames({
+          'ba-hover': !ticketError.ticketName,
+          'ba-hover-error': ticketError.ticketNamee,
+        })}`}
+      >
+        <small className="db pl2 pt2 pb1 mid-gray ">
+          Ticket Name <span className="red">*</span>
+        </small>
         <input
           value={ticketName}
           onChange={async (event) => {
@@ -101,10 +108,15 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           {ticketError.ticketName}
         </small>
       </div>
-      <div className="mv3  tl ba">
-        <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">
-          Ticket Quantity
-        </label>
+      <div
+        className={`mt3 mb2 tl ${classNames({
+          'ba-hover': !ticketError.quantity,
+          'ba-hover-error': ticketError.quantity,
+        })}`}
+      >
+        <small className="db pl2 pt2 pb1 mid-gray ">
+          Ticket Quantity <span className="red">*</span>
+        </small>
         <input
           value={quantity}
           type="number"
@@ -119,10 +131,13 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           {ticketError.quantity}
         </small>
       </div>
-      <div className="mv3 tl ba">
-        <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">
-          Ticket Description
-        </label>
+      <div
+        className={`mt3 mb2 tl ${classNames({
+          'ba-hover': !ticketError.quantity,
+          'ba-hover-error': ticketError.quantity,
+        })}`}
+      >
+        <small className="db pl2 pt2 pb1 mid-gray ">Ticket Description</small>
         <input
           value={description}
           onChange={(event) => {
@@ -131,8 +146,15 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           className="pl2 pb2 bn input-reset  mr3  w-90"
         />
       </div>
-      <div className="mv3 tl ba">
-        <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">Price</label>
+      <div
+        className={`mt3 mb2 tl ${classNames({
+          'ba-hover': !ticketError.quantity,
+          'ba-hover-error': ticketError.quantity,
+        })}`}
+      >
+        <small className="db pl2 pt2 pb1 mid-gray ">
+          Price <span className="red">*</span>
+        </small>
         <span style={{ minWidth: '40px' }} className="absolute pl2 pb2 tl">
           $
         </span>
@@ -152,20 +174,39 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
           {ticketError.price}
         </small>
       </div>
-      <div className="mv3 tl ba">
-        <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">End Date</label>
-        <DateTimePicker
-          timeZoneId={timeZoneId}
-          setDate={setTicketEndDate}
-          isValidDate={validTicketEndDate(startDate)}
-          date={ticketEndDate}
-        />
+      <div className="mv3 w-100">
+        <div className="dib w-50 pr2">
+          <div className="tl ba-hover overflow-visible">
+            <small className="db pl2 pt2 pb1 mid-gray ">End Date</small>
+            <DateTimePicker
+              timeZoneId={timeZoneId}
+              timeMode={false}
+              dateMode={true}
+              setDate={setTicketEndDate}
+              isValidDate={validTicketEndDate(startDate)}
+              date={ticketEndDate}
+            />
+          </div>
+        </div>
+        <div className="dib  w-50 ">
+          <div className="tl ba-hover overflow-visible">
+            <small className="db pl2 pt2 pb1 mid-gray ">End Time</small>
+            <DateTimePicker
+              timeZoneId={timeZoneId}
+              timeMode={true}
+              dateMode={false}
+              setDate={setTicketEndDate}
+              isValidDate={validTicketEndDate(startDate)}
+              date={ticketEndDate}
+            />
+          </div>
+        </div>
       </div>
 
       {!ticket && (
         <div
           onClick={() => addTicket(updatedTicket)}
-          className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+          className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
           Add
         </div>
