@@ -254,54 +254,26 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                   Line Up
                 </span>
                 <div className="pt2-ns mt4 pt1">
-                  <img
-                    className="db mw-100 "
-                    src="https://wikibirthday.com/wp-content/uploads/2018/11/Chase-B-Wiki-Bio-Age-Height-Net-Worth-2018.jpg"
-                    alt=""
-                  />
-                  <p>
-                    <strong> OG Chase B, </strong>
-                    <a
-                      className="no-underline white"
-                      href="https://instagram.com/ogchaseb"
-                      target="_blank"
-                    >
-                      @ogchaseb
-                    </a>
-                    <br />
-                  </p>
-                  <img
-                    className="db mw-100 "
-                    src="https://images.squarespace-cdn.com/content/v1/53d1dfbae4b039a3a0158351/1571371316055-UBE44B0C76GNTAA38875/ke17ZwdGBToddI8pDm48kFWxnDtCdRm2WA9rXcwtIYR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UcTSrQkGwCGRqSxozz07hWZrYGYYH8sg4qn8Lpf9k1pYMHPsat2_S1jaQY3SwdyaXg/675E1F44-FA8D-4762-8335-F862013AE729-10830-000009C3559CD954.JPG"
-                    alt=""
-                  />
-                  <p>
-                    <strong>Where's Nasty, </strong>
-                    <a
-                      className="no-underline white"
-                      href="https://instagram.com/wheresnasty"
-                      target="_blank"
-                    >
-                      @wheresnasty
-                    </a>
-                    <br />
-                  </p>
-                  <img
-                    className="db mw-100 "
-                    src="https://i1.sndcdn.com/avatars-000323351569-5jjgjf-t500x500.jpg"
-                    alt=""
-                  />
-                  <p>
-                    <strong>DJ Steph Cakes, </strong>
-                    <a
-                      className="no-underline white"
-                      href="https://instagram.com/djstephcakes"
-                      target="_blank"
-                    >
-                      @djstephcakes
-                    </a>
-                    <br />
-                  </p>
+                  {Object.keys(event.lineUp).map((curr) => (
+                    <div>
+                      <img
+                        className="db mw-100 "
+                        src={event.lineUp[curr].imageURL}
+                        alt=""
+                      />
+                      <p>
+                        <strong>{event.lineUp[curr].artistName} </strong>
+                        <a
+                          className="no-underline white"
+                          href="https://instagram.com/ogchaseb"
+                          target="_blank"
+                        >
+                          {curr}
+                        </a>
+                        <br />
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </section>
