@@ -49,6 +49,7 @@ export interface TicketProps {
 }
 
 export interface LineUpProps {
+  _id: number;
   igHandle: string;
   imageURL: string;
   igPost: string;

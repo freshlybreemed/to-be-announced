@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { LineUpProps } from '../../../@types/types';
 import axios from 'axios';
+import cheerio from 'cheerio';
 
 interface TicketingProps {
   addArtist: any;
@@ -22,6 +23,7 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
   const [imageURL, setImageURL] = useState<string>(
     artist ? artist.imageURL : '',
   );
+  const [_id] = useState<number>(artist ? artist._id : 0);
   const [igPost, setigPost] = useState<string>(artist ? artist.igPost : '');
   const [artistName, setArtistName] = useState<string>(
     artist ? artist.artistName : '',
@@ -35,9 +37,10 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
     igPost,
     imageURL,
     artistName,
+    _id,
   };
 
-  const fetchIgLink = (url: string) => {
+  const fetchIgLink = async (url: string) => {
     if (
       url.substring(0, 8) === 'https://' ||
       url.substring(0, 7) === 'http://' ||
@@ -55,11 +58,18 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
           ...artistError,
           igPost: '',
         });
-        return axios
-          .get(`/api/insta/${meta}`)
-          .then((res) => setImageURL(res.data))
+        return await axios
+          .get(`https://www.instagram.com/p/${meta}`)
+          .then((res) => {
+            console.log(res);
+            let $ = cheerio.load(res.data);
+
+            // //basic data from the meta tags
+            const image_link = $('meta[property="og:image"]').attr('content');
+            setImageURL(image_link);
+          })
           .catch((error) =>
-            setArtistError({ ...artistError, igPost: error.response.data }),
+            setArtistError({ ...artistError, igPost: error.response.data })
           );
       }
     } else {

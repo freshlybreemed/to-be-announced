@@ -88,9 +88,10 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     setTicketTypes(tickets);
     setToggleTicketCreation(false);
   };
-  const addArtist = (artist: LineUpProps) => {
+  const addArtist = (artist) => {
     const artists = lineUp;
-    artists[artist.igHandle] = artist;
+    artist._id = Object.keys(artists).length;
+    artists[artist._id] = artist;
     setLineUp(artists);
     setToggleLineUpCreation(false);
   };
@@ -98,7 +99,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const updateArtist = (artist: LineUpProps) => {
     const artists = {
       ...lineUp,
-      [artist.igHandle]: artist,
+      [artist._id]: artist,
     };
 
     setLineUp(artists);
@@ -109,7 +110,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     const artists = {
       ...lineUp,
     };
-    delete artists[artist.igHandle];
+    delete artists[artist._id];
 
     setLineUp(artists);
     setToggleLineUpCreation(false);
@@ -471,14 +472,32 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                       <div className="db dtc v-mid ph2 pr0-ns pl3-ns">
                         <p>
                           <strong> {lineUp[curr].artistName} </strong>
-                          <a
-                            className="no-underline black"
-                            href={`https://instagram.com/${curr}`}
-                            target="_blank"
+                          {lineUp[curr].igHandle.length > 1 && (
+                            <a
+                              className="no-underline black"
+                              href={`https://instagram.com/${curr}`}
+                              target="_blank"
+                            >
+                              {lineUp[curr].igHandle}
+                            </a>
+                          )}
+                          <div
+                            className="dtc v-mid tr black"
+                            onClick={() => {
+                              setToggleLineUpCreation(true);
+                              setCurrentArtist(lineUp[curr]);
+                            }}
                           >
-                            {lineUp[curr].igHandle}
-                          </a>
-                          <br />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              fill="currentColor"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z" />
+                            </svg>
+                          </div>
                         </p>
                       </div>
                     </article>
