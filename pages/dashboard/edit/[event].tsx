@@ -11,16 +11,12 @@ interface Props {
 }
 
 const Page: NextPage<Props> = ({ event }) => (
-  <Layout>
+  <Layout noPadding={true}>
     <script
       src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
     />
 
-    <div className="mw9 center pv2 ph3-ns overflow-hidden" id="dashboard">
-      <section className="flex-m flex-l nl3-m nr3-m nl3-l nr3-l">
-        <Create event={event} />
-      </section>
-    </div>
+    <Create event={event} />
   </Layout>
 );
 
