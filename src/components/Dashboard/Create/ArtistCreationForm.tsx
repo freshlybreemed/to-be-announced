@@ -78,8 +78,10 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
   // };
   return (
     <div className="mw6 center w-75-ns w-100">
-      <div className="mv3  tl ba">
-        <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">Artist Name</label>
+      <div className={`mt3 mb2 tl ba-hover`}>
+        <small className="db pl2 pt2 pb1 mid-gray ">
+          Artist Name <span className="red">*</span>
+        </small>
 
         <input
           value={artistName}
@@ -89,10 +91,8 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
           className="pl2 pb2 bn input-reset  mr3  w-90"
         />
       </div>
-      <div className="mv3  tl ba">
-        <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">
-          Instagram Handle
-        </label>
+      <div className={`mt3 mb2 tl ba-hover`}>
+        <small className="db pl2 pt2 pb1 mid-gray ">Instagram Handle</small>
 
         <input
           value={igHandle}
@@ -102,11 +102,13 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
           className="pl2 pb2 bn input-reset  mr3  w-90"
         />
       </div>
-      <div className="mt3 mb1 tl ba">
-        <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">IG Post URL</label>
+      <div className={`mt3 mb2 tl ba-hover`}>
+        <small className="db pl2 pt2 pb1 mid-gray ">
+          IG Post URL <span className="red">*</span>
+        </small>
         <input
           value={igPost}
-          placeholder="https://www.instagram.com/p/CB9k1EChdyk/"
+          placeholder="ex: https://www.instagram.com/p/CB9k1EChdyk/"
           onChange={(event) => {
             setigPost(event.currentTarget.value);
             fetchIgLink(event.currentTarget.value.replace(/\s/g, ''));
