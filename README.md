@@ -1,6 +1,6 @@
 # TBA
 
-Future of event tickitngs
+Future of event ticketing
 
 
 ## Built With
