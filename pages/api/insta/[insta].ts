@@ -10,11 +10,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     `https://www.instagram.com/p/${insta}`,
     (error, _response, html) => {
       if (!error) {
-        console.log('Insta_grab : ' + insta + ' : Loaded');
         let $ = cheerio.load(html);
 
         //basic data from the meta tags
         const image_link = $('meta[property="og:image"]').attr('content');
+        console.log(image_link);
         if (image_link) {
           res.send(image_link);
         } else {
