@@ -208,8 +208,10 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
               details that highlight what makes it unique.
             </p>
             <div
-              style={{ transition: 'background .24s cubic-bezier(.4,0,.3,1)' }}
-              className={`mt3 mb2 tl ba-hover`}
+              className={`mt3 mb2 tl ${classNames({
+                'ba-hover': !eventErrors.name,
+                'ba-hover-error': eventErrors.name,
+              })}`}
             >
               <small className="db pl2 pt2 pb1 mid-gray ">
                 Event Name <span className="red">*</span>
