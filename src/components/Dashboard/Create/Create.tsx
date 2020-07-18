@@ -244,7 +244,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                 <div className="tl ba-hover overflow-visible">
                   <small className="mid-gray db pl2 pt2 pb1"> Start Date</small>
                   <DateTimePicker
-                    start={true}
                     timeZoneId={location.timeZoneId}
                     isValidDate={validStartDate}
                     timeMode={false}
@@ -258,7 +257,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                 <div className="tl ba-hover overflow-visible">
                   <small className="mid-gray db pl2 pt2 pb1"> Start Time</small>
                   <DateTimePicker
-                    start={true}
                     timeMode={true}
                     dateMode={false}
                     timeZoneId={location.timeZoneId}
@@ -276,7 +274,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                   <small className=" mid-gray  db pl2 pt2 pb1"> End Date</small>
                   <DateTimePicker
                     timeZoneId={location.timeZoneId}
-                    start={false}
                     timeMode={false}
                     dateMode={true}
                     isValidDate={validEndDate(startDate)}
@@ -291,7 +288,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
               </div>
               <div className="dib w-50 ">
                 <div className="tl ba-hover overflow-visible">
-                  {' '}
                   <small className=" mid-gray  db pl2 pt2 pb1"> End Time</small>
                   <DateTimePicker
                     timeZoneId={location.timeZoneId}
