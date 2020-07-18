@@ -30,7 +30,7 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
       inputProps={{
         style: { boxSizing: 'initial' },
         className: 'pl2 pb2 input-reset bn w-90',
-        onKeyDown: (e) => e.preventDefault(),
+        readOnly: true,
       }}
       value={date}
       onBlur={(e: any) => setDate(moment(e).toDate())}
