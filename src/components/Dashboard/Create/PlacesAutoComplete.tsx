@@ -120,12 +120,10 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
         value={venue}
         onChange={handleInput}
         disabled={!ready || event ? false : false}
-        className={`pa2 bt-0 br-0 bl-0 input-reset bb bg-black w-100 ${classnames(
-          { gray: location.venue, white: !location.venue },
-        )}`}
+        className={`pl2 pb2 input-reset w-90 bn   `}
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === 'OK' && <ul className="list pl0">{renderSuggestions()}</ul>}
+      {status === 'OK' && <ul className="list pl2">{renderSuggestions()}</ul>}
     </div>
   );
 };
