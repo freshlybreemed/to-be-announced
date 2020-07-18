@@ -4,10 +4,7 @@ import moment from 'moment-timezone';
 interface DateProps {
   date?: any;
   setDate?: any;
-  setEndDate?: any;
-  setStartDate?: any;
   isValidDate?: any;
-  ticketEndDate?: any;
   timeConstraints?: any;
   timeMode: boolean;
   dateMode: boolean;
@@ -32,9 +29,6 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
       closeOnSelect={true}
       inputProps={{
         style: { boxSizing: 'initial' },
-        //  placeholder: setTicketEndDate
-        //    ? ``
-        //    : `${start ? `Start` : `End`} Date`,
         className: 'pl2 pb2 input-reset bn w-90',
       }}
       value={date}
