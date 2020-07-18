@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import classnames from 'classnames';
 import { useEffect, useState } from 'react';
+import { formatDate } from '../../lib';
 
 function useMounted() {
   const [mounted, setMounted] = useState(false);
@@ -32,7 +33,6 @@ const obj = {
   },
   photoGallery: [
     'https://dice-media.imgix.net/attachments/2020-01-15/4bed9553-1604-4ebf-976d-5dfd03f12666.jpg?rect=0%2C81%2C2048%2C1118',
-    'https://dice-media.imgix.net/attachments/2020-01-15/b7a5dd28-2559-4af6-a0c4-35fcc4a13a03.jpg',
   ],
   upcomingEvents: [
     {
@@ -85,7 +85,7 @@ export const Venues: React.FunctionComponent = () => {
           <div className="fw6 f5 pv1">Social Links</div>
           <a
             href={obj.socialLinks.facebook}
-            className="fw7 f4 black no-underline"
+            className="fw7 f4 black no-underline mr2 "
           >
             Facebook
           </a>
@@ -152,7 +152,7 @@ export const Venues: React.FunctionComponent = () => {
                       ></div>
                     </div>
 
-                    <h4 className="f5 fw4 mb0">{curr.startDate.toString()}</h4>
+                    <h4 className="f5 fw4 mb0">{formatDate(curr.startDate)}</h4>
                     <a href="" className="black no-underline">
                       <h4 className="f4 fw8 mt2 mb0 ttu">{curr.title}</h4>
                     </a>

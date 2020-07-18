@@ -35,8 +35,7 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
         //  placeholder: setTicketEndDate
         //    ? ``
         //    : `${start ? `Start` : `End`} Date`,
-        className:
-          'pa2 bt-0 br-0 bl-0 input-reset bb gray bg-black white w-100',
+        className: 'pl2 pb2 input-reset bn w-90',
       }}
       value={date}
       onBlur={(e: any) => setDate(moment(e).toDate())}

@@ -24,6 +24,9 @@ export interface EventProps {
   gross: number;
   listed: boolean;
   eventType: string;
+  lineUp: {
+    [igHandle: string]: LineUpProps;
+  };
   ticketTypes: {
     [ticketName: string]: TicketProps;
   };
@@ -40,9 +43,16 @@ export interface TicketProps {
   description: string;
   donation: boolean;
   free: boolean;
-  ticketEndDate: string;
+  ticketEndDate: Date;
   enabled: boolean;
   fee: number;
+}
+
+export interface LineUpProps {
+  igHandle: string;
+  imageURL: string;
+  igPost: string;
+  artistName: string;
 }
 
 export interface UserTicketProps {

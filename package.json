@@ -26,6 +26,7 @@
     "@types/mongodb": "^3.5.10",
     "@types/redux-logger": "^3.0.7",
     "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
     "cleave.js": "^1.5.10",
     "draft-convert": "^2.1.10",
