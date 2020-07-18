@@ -4,6 +4,7 @@ import Cleave from 'cleave.js/react';
 import { DateTimePicker } from './DateTimePicker';
 import { TicketProps } from '../../../@types/types';
 import { validTicketEndDate } from '../../../lib';
+import moment from 'moment-timezone';
 
 interface TicketingProps {
   addTicket: any;
