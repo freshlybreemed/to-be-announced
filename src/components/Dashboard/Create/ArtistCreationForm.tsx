@@ -23,6 +23,7 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
   const [imageURL, setImageURL] = useState<string>(
     artist ? artist.imageURL : '',
   );
+  const [_id] = useState<number>(artist ? artist._id : 0);
   const [igPost, setigPost] = useState<string>(artist ? artist.igPost : '');
   const [artistName, setArtistName] = useState<string>(
     artist ? artist.artistName : '',
@@ -36,6 +37,7 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
     igPost,
     imageURL,
     artistName,
+    _id,
   };
 
   const fetchIgLink = async (url: string) => {
