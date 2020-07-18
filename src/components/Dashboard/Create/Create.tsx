@@ -291,7 +291,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                   <small className=" mid-gray  db pl2 pt2 pb1"> End Time</small>
                   <DateTimePicker
                     timeZoneId={location.timeZoneId}
-                    start={false}
                     timeMode={true}
                     dateMode={false}
                     isValidDate={validEndDate(startDate)}
