@@ -113,25 +113,17 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                   {`${formatEventTime(
                     new Date(event.startDate),
                     new Date(event.endDate),
-                    event.location.timeZoneId
+                    event.location.timeZoneId,
                   )}`}
                 </td>
               </tr>
             </tbody>
           </table>
-          {/* <h2
-              className={`f4-ns f5 fw6 mv0 ${classnames({
-                green: live,
-                red: !live,
-              })}`}
-            >
-              • {live ? `Live` : `Sale Ended`}
-            </h2> */}
         </div>
         {step < 3 && (
           <div className="dtc-l v-mid tr-l tc f2-l f3 fw6">
             <div
-              onClick={() => (step === 0 ? setMode(1) : setMode(0))}
+              onClick={() => (step === 0 && live ? setMode(1) : setMode(0))}
               className={`dib-l ${classnames({
                 'bg-green': step === 0 && live,
                 'bg-red': step > 0 || !live,
