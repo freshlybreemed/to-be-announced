@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-const cheerio = require('cheerio');
-const request = require('request');
+import cheerio from 'cheerio';
+import request from 'request';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   let {
     query: { insta },
   }: { query?: { insta?: string } } = req;
-  await request(
+  return await request(
     `https://www.instagram.com/p/${insta}`,
     async (error, _response, html) => {
       if (!error) {
@@ -14,7 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         //basic data from the meta tags
         const image_link = $('meta[property="og:image"]').attr('content');
-        console.log($, image_link);
+        console.log(image_link);
         if (image_link) {
           res.send(image_link);
         } else {
