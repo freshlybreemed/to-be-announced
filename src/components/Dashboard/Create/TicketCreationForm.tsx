@@ -165,7 +165,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
       {!ticket && (
         <div
           onClick={() => addTicket(updatedTicket)}
-          className="mt4 b--white hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+          className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
           Add
         </div>

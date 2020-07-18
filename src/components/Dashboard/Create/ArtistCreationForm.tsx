@@ -106,6 +106,7 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
         <label className="f6-ns f7 fw6-ns db pl2 pt2 pb1">IG Post URL</label>
         <input
           value={igPost}
+          placeholder="https://www.instagram.com/p/CB9k1EChdyk/"
           onChange={(event) => {
             setigPost(event.currentTarget.value);
             fetchIgLink(event.currentTarget.value.replace(/\s/g, ''));
@@ -120,7 +121,7 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
       {!artist && (
         <div
           onClick={() => addArtist(updatedArtist)}
-          className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+          className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5  "
         >
           Add
         </div>
@@ -129,13 +130,13 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
         <>
           <div
             onClick={() => updateArtist(updatedArtist)}
-            className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+            className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5  "
           >
             Update
           </div>
           <div
             onClick={() => removeArtist(updatedArtist)}
-            className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+            className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5  "
           >
             Remove
           </div>
