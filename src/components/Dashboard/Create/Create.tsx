@@ -202,7 +202,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
 
       <div className={'w-100 ph4 pt4 bg-white black'}>
         {/* <h1 className="f1-ns f2 mt0">{event ? `Edit` : `Create`} Event</h1> */}
-        <div className="w-75-ns w-100 center">
+        <div className="w-60-ns w-100 center">
           <div>
             <h1 className="tl fw7 mb0 pb3">Basic Info</h1>
             <p className="tl mt0 pt1 f6">
@@ -239,31 +239,77 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                 setLocation={setEventLocation}
               />
             </div>
-            <div className="mv3 tl ba-hover">
-              <small className="mid-gray db pl2 pt2 pb1"> Start Time</small>
-              <DateTimePicker
-                start={true}
-                timeZoneId={location.timeZoneId}
-                isValidDate={validStartDate}
-                date={startDate}
-                setDate={setStartDate}
-              />
+            <div className="mv3 w-100">
+              <div className="dib w-50 pr2">
+                <div className="tl ba-hover overflow-visible">
+                  <small className="mid-gray db pl2 pt2 pb1"> Start Date</small>
+                  <DateTimePicker
+                    start={true}
+                    timeZoneId={location.timeZoneId}
+                    isValidDate={validStartDate}
+                    timeMode={false}
+                    dateMode={true}
+                    date={startDate}
+                    setDate={setStartDate}
+                  />
+                </div>
+              </div>
+              <div className="dib  w-50 ">
+                <div className="tl ba-hover overflow-visible">
+                  <small className="mid-gray db pl2 pt2 pb1"> Start Time</small>
+                  <DateTimePicker
+                    start={true}
+                    timeMode={true}
+                    dateMode={false}
+                    timeZoneId={location.timeZoneId}
+                    isValidDate={validStartDate}
+                    date={startDate}
+                    setDate={setStartDate}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="mv3 tl ba-hover">
-              <small className=" mid-gray  db pl2 pt2 pb1"> End Time</small>
-              <DateTimePicker
-                timeZoneId={location.timeZoneId}
-                start={false}
-                isValidDate={validEndDate(startDate)}
-                date={endDate}
-                timeConstraints={{
-                  minutes: { step: 40, min: 0, max: 24 },
-                  ...timeConstraints(startDate),
-                }}
-                setDate={setEndDate}
-              />
+            <div className="dt mv3 w-100">
+              <div className="dib w-50 pr2">
+                <div className="tl ba-hover overflow-visible">
+                  {' '}
+                  <small className=" mid-gray  db pl2 pt2 pb1"> End Date</small>
+                  <DateTimePicker
+                    timeZoneId={location.timeZoneId}
+                    start={false}
+                    timeMode={false}
+                    dateMode={true}
+                    isValidDate={validEndDate(startDate)}
+                    date={endDate}
+                    timeConstraints={{
+                      minutes: { step: 40, min: 0, max: 24 },
+                      ...timeConstraints(startDate),
+                    }}
+                    setDate={setEndDate}
+                  />
+                </div>
+              </div>
+              <div className="dib w-50 ">
+                <div className="tl ba-hover overflow-visible">
+                  {' '}
+                  <small className=" mid-gray  db pl2 pt2 pb1"> End Time</small>
+                  <DateTimePicker
+                    timeZoneId={location.timeZoneId}
+                    start={false}
+                    timeMode={true}
+                    dateMode={false}
+                    isValidDate={validEndDate(startDate)}
+                    date={endDate}
+                    timeConstraints={{
+                      minutes: { step: 40, min: 0, max: 24 },
+                      ...timeConstraints(startDate),
+                    }}
+                    setDate={setEndDate}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="mt3 mb5 tl ba-hover">
+            <div className="mv3 tl ba-hover  ">
               <small className=" mid-gray db pl2 pt2 pb1"> Event URL</small>
               <input
                 className="pl2 pb2 input-reset bn  w-90"

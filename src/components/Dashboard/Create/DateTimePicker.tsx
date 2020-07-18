@@ -9,16 +9,16 @@ interface DateProps {
   isValidDate?: any;
   ticketEndDate?: any;
   timeConstraints?: any;
-  start?: boolean;
-  className?: string;
+  timeMode: boolean;
+  dateMode: boolean;
   timeZoneId: string;
 }
 export const DateTimePicker: React.FunctionComponent<DateProps> = ({
   setDate,
   date,
+  dateMode,
+  timeMode,
   timeZoneId,
-  // start,
-  className,
   isValidDate,
   timeConstraints,
 }) => {
@@ -28,6 +28,8 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
       //   dateFormat={false}
       input={true}
       displayTimeZone={timeZoneId}
+      dateFormat={dateMode}
+      timeFormat={timeMode}
       isValidDate={isValidDate}
       closeOnSelect={true}
       inputProps={{
@@ -40,7 +42,7 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
       value={date}
       onBlur={(e: any) => setDate(moment(e).toDate())}
       onChange={(e: any) => setDate(moment(e).toDate())}
-      className={`black ${className}`}
+      className={`black `}
       timeConstraints={timeConstraints}
     />
   );
