@@ -24,8 +24,6 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
 }) => {
   return (
     <Datetime
-      timeFormat=" h:mm a"
-      //   dateFormat={false}
       input={true}
       displayTimeZone={timeZoneId}
       dateFormat={dateMode}
