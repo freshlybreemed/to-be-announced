@@ -74,6 +74,10 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     event ? event.lineUp : {},
   );
   const [loading, setLoading] = useState<boolean>(false);
+  const [eventErrors, setEventErrors] = useState<any>({
+    name: false,
+    location: '',
+  });
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
@@ -168,6 +172,20 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
       .then(() => Router.push(`/dashboard/manage/${eventDetails._id}`));
   };
 
+  const checkForErrors = (item) => {
+    if (item.name.length === 0) {
+      console.log('bro');
+      setEventErrors({
+        ...eventErrors,
+        name: true,
+      });
+    } else {
+      setEventErrors({
+        ...eventErrors,
+        name: false,
+      });
+    }
+  };
   return (
     <article className="w-100 tc">
       <link
