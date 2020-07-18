@@ -50,7 +50,7 @@ export const Nav: React.FunctionComponent = () => {
         <div className="pa5 pt2 flex flex-wrap justify-between w-100">
           <div className="pv3 w-50-ns w-100">
             <h2
-              className="ttu mt0 mb2 f6 fw7 gray"
+              className="ttu mt0 mb2 f6-ns f7 fw7 gray"
               style={{ letterSpacing: '0.08em' }}
             >
               Social Ticketing
@@ -65,7 +65,7 @@ export const Nav: React.FunctionComponent = () => {
               href="/events"
               className="white dim no-underline fw6 f4 b db pv1 mv1"
             >
-              Search Events
+              Events
             </a>
             <a
               href="/venues"
