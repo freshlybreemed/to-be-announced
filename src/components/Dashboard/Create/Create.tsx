@@ -175,7 +175,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
 
   const checkForErrors = (item) => {
     if (item.name.length === 0) {
-      console.log('bro');
       setEventErrors({
         ...eventErrors,
         name: true,
