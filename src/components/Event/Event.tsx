@@ -164,6 +164,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                   reward.current = ref;
                 }}
                 config={{ spread: 150, lifetime: 400, elementCount: 350 }}
+                type="confetti"
               />
             </div>
             <FadeIn>

@@ -515,8 +515,8 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                 />
                 <div
                   onClick={() => {
-                    setToggleTicketCreation(false);
-                    setCurrentTicket(undefined);
+                    setToggleLineUpCreation(false);
+                    setCurrentArtist(null);
                   }}
                   className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5"
                 >
