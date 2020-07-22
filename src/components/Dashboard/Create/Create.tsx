@@ -442,7 +442,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           <hr className="o-20" />
           <div className="mv4 pv2">
             <h1 className="tl fw7 mb0 pb3">Event Description</h1>
-            <div className="mv3 pv3 w-75-ns w-100 center">
+            <div className="mv3 pv3 w-100 center">
               <TextEditor
                 setDescription={setDescription}
                 description={description}
