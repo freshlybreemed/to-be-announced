@@ -14,6 +14,10 @@ const Page: NextPage = () => (
     <script
       src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
     />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.39/jodit.min.css"
+    />
 
     <Create />
   </Layout>
