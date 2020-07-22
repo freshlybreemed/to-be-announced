@@ -1,14 +1,10 @@
-import React from 'react';
-import { convertFromRaw, convertToRaw } from 'draft-js';
-import { convertToHTML, convertFromHTML } from 'draft-convert';
+import React, { useRef } from 'react';
+import dynamic from 'next/dynamic';
+const importJodit = () => import('jodit-react');
 
-import {
-  DraftailEditor,
-  BLOCK_TYPE,
-  INLINE_STYLE,
-  ENTITY_TYPE,
-} from 'draftail';
-
+const JoditEditor = dynamic(importJodit, {
+  ssr: false,
+});
 interface TextEditorProps {
   description: string;
   setDescription: any;
@@ -17,93 +13,27 @@ export const TextEditor: React.FunctionComponent<TextEditorProps> = ({
   setDescription,
   description,
 }) => {
-  const onSave = (content) => {
-    setDescription(toHTML(content));
-    window.sessionStorage.setItem('draftail:content', JSON.stringify(content));
+  const editor = useRef(null);
+
+  const config = {
+    readonly: false, // all options from https://xdsoft.net/jodit/doc/
+    showCharsCounter: false,
+    showWordsCounter: false,
+    direction: 'ltr',
+    buttons:
+      ',,,,italic,|,ul,ol,|,font,,image,file,video,table,link,align,|,hr,symbol,fullsize,print,about',
+    buttonsMD: 'bold,image,|,paragraph,\n,align,|,dots',
+    buttonsXS: ',,align,undo,redo,|',
+    buttonsSM: 'bold,image,|,paragraph,,\n,align,|',
   };
-
-  const exporterConfig = {
-    blockToHTML: (block) => {
-      if (block.type === BLOCK_TYPE.BLOCKQUOTE) {
-        return <blockquote />;
-      }
-
-      // Discard atomic blocks, as they get converted based on their entity.
-      if (block.type === BLOCK_TYPE.ATOMIC) {
-        return {
-          start: '',
-          end: '',
-        };
-      }
-
-      return null;
-    },
-
-    entityToHTML: (entity, originalText) => {
-      if (entity.type === ENTITY_TYPE.LINK) {
-        return <a href={entity.data.url}>{originalText}</a>;
-      }
-
-      if (entity.type === ENTITY_TYPE.IMAGE) {
-        return <img src={entity.data.src} alt={entity.data.alt} />;
-      }
-
-      if (entity.type === ENTITY_TYPE.HORIZONTAL_RULE) {
-        return <hr />;
-      }
-
-      return originalText;
-    },
-  };
-  const importerConfig = {
-    htmlToEntity: (nodeName, node, createEntity) => {
-      // a tags will become LINK entities, marked as mutable, with only the URL as data.
-      if (nodeName === 'a') {
-        return createEntity(ENTITY_TYPE.LINK, 'MUTABLE', { url: node.href });
-      }
-
-      if (nodeName === 'img') {
-        return createEntity(ENTITY_TYPE.IMAGE, 'IMMUTABLE', {
-          src: node.src,
-        });
-      }
-
-      if (nodeName === 'hr') {
-        return createEntity(ENTITY_TYPE.HORIZONTAL_RULE, 'IMMUTABLE', {});
-      }
-
-      return null;
-    },
-    htmlToBlock: (nodeName) => {
-      if (nodeName === 'hr' || nodeName === 'img') {
-        // "atomic" blocks is how Draft.js structures block-level entities.
-        return 'atomic';
-      }
-
-      return null;
-    },
-  };
-
-  const toHTML = (raw) =>
-    raw ? convertToHTML(exporterConfig)(convertFromRaw(raw)) : '';
-
-  const fromHTML = (html) =>
-    typeof window !== 'undefined'
-      ? convertToRaw(convertFromHTML(importerConfig)(html))
-      : '';
 
   return (
-    <DraftailEditor
-      rawContentState={description.length > 0 ? fromHTML(description) : null}
-      onSave={onSave}
-      blockTypes={[
-        { type: BLOCK_TYPE.HEADER_THREE },
-        { type: BLOCK_TYPE.UNORDERED_LIST_ITEM },
-      ]}
-      inlineStyles={[
-        { type: INLINE_STYLE.BOLD },
-        { type: INLINE_STYLE.ITALIC },
-      ]}
+    <JoditEditor
+      ref={editor}
+      value={description}
+      config={config}
+      tabIndex={1} // tabIndex of textarea
+      onBlur={(newContent) => setDescription(newContent)} // preferred to use only this option to update the content for performance reasons
     />
   );
 };
