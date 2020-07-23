@@ -236,50 +236,44 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
             </FadeIn>
           </div>
         )}
-        <div className=" dib">
-          <FadeIn>
-            <section className="fl w-48-l w-100 ">
-              <div className="pl0 ">
-                <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
-                  Description
-                </span>
-                <div
-                  className="pt2-ns mt2 pt1 f3-ns f4 lh-title "
-                  dangerouslySetInnerHTML={{ __html: event.description }}
-                />
-              </div>
-            </section>
-            <section className="fl w-48-l w-100 mv2 mv0-ns mv2 pl3-l">
-              <div className="mt3 mt2-ns ">
-                <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
-                  Line Up
-                </span>
-                <div className="pt2-ns mt4 pt1">
-                  {Object.keys(event.lineUp).map((curr) => (
-                    <div>
-                      <img
-                        className="db mw-100 "
-                        src={event.lineUp[curr].imageURL}
-                        alt=""
-                      />
-                      <p>
-                        <strong>{event.lineUp[curr].artistName} </strong>
-                        <a
-                          className="no-underline white"
-                          href="https://instagram.com/ogchaseb"
-                          target="_blank"
-                        >
-                          {curr}
-                        </a>
-                        <br />
-                      </p>
-                    </div>
-                  ))}
+        <article className="cf w-100">
+          <div className="fl w-100 w-50-ns tl">
+            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
+              Description
+            </span>
+            <div
+              className="pt2-ns mt2 pt1 f3-ns f4 lh-title "
+              dangerouslySetInnerHTML={{ __html: event.description }}
+            />
+          </div>
+          <div className="fl w-100 w-50-ns  tl">
+            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
+              Line Up
+            </span>
+            <div className="pt2-ns mt4 pt1">
+              {Object.keys(event.lineUp).map((curr) => (
+                <div>
+                  <img
+                    className="db mw-100 "
+                    src={event.lineUp[curr].imageURL}
+                    alt=""
+                  />
+                  <p>
+                    <strong>{event.lineUp[curr].artistName}</strong>
+                    <a
+                      className="no-underline white"
+                      href="https://instagram.com/"
+                      target="_blank"
+                    >
+                      {curr}
+                    </a>
+                    <br />
+                  </p>
                 </div>
-              </div>
-            </section>
-          </FadeIn>
-        </div>
+              ))}
+            </div>
+          </div>
+        </article>
       </div>
     </main>
   );
