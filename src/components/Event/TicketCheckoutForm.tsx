@@ -41,7 +41,7 @@ export const TicketCheckoutForm: React.FunctionComponent<TicketCheckout> = ({
         newCart[tix].quantity * (newCart[tix].price + newCart[tix].fee);
     }
     setCart(newCart);
-    setTotal(newTotal);
+    setTotal(parseFloat(newTotal.toFixed(2)));
     setEmptyCart(Object.keys(cart).length === 0);
   };
 
