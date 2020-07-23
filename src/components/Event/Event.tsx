@@ -4,12 +4,13 @@ import FadeIn from 'react-fade-in';
 import Reward from 'react-rewards';
 import { formatEventTime, formatDate } from '../../lib';
 import { TicketCheckoutForm, UserCheckoutForm } from './';
-import { EventProps } from '../../@types/types';
+import { EventProps, UserTicketProps, OrderProps } from '../../@types/types';
 import classnames from 'classnames';
 import { PaymentCheckoutForm } from './PaymentCheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-
+import shortid from 'shortid';
+import axios from 'axios';
 const stripePromise = loadStripe(process.env.STRIPE_DEV_CLIENT);
 
 interface EventViewProps {
@@ -19,9 +20,16 @@ interface EventViewProps {
 export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
   const [step, setStep] = useState<number>(0);
   const [cart, setCart] = useState<any>({});
+  const [order, setOrder] = useState<OrderProps>(null);
   const [total, setTotal] = useState<number>(0);
   const [live] = useState<boolean>(new Date(event.startDate) > new Date());
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [emailAddress, setEmailAddress] = useState<string>('');
   const reward = useRef<any>(null);
+  const [readyToCheckout, setReadyToCheckout] = useState<boolean>(false);
+  const [clientSecret, setClientSecret] = useState<string>(null);
 
   let tixs = {};
   Object.keys(event.ticketTypes).map((curr) => {
@@ -35,7 +43,114 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
       reward.current.rewardMe();
     }
   };
+  const prepareCheckout = async () => {
+    const { ticketTypes } = event;
+    const _id = shortid.generate();
+    const tickets = [] as UserTicketProps[];
+    Object.keys(cart).forEach((curr) => {
+      const tix = cart[curr];
+      for (var i = 0; i < tix.quantity; i++) {
+        const tempTix = ticketTypes[tix._id];
+        tickets.push({
+          ticketName: tempTix.ticketName,
+          fee: tempTix.fee,
+          price: tempTix.price,
+          description: tempTix.description,
+          donation: tempTix.donation,
+          free: tempTix.free,
+          barCode: shortid.generate(),
+          orderId: _id,
+          eventId: event._id,
+          checkedIn: null,
+          checkInDate: null,
+        });
+      }
+    });
+    const order: OrderProps = {
+      emailAddress,
+      firstName,
+      lastName,
+      eventId: event._id,
+      _id,
+      phoneNumber,
+      checkedIn: false,
+      refunded: false,
+      cancelled: false,
+      status: 'copped',
+      tickets,
+      total,
+      orderDate: new Date(),
+      cart,
+    };
 
+    const response = await axios.post('/api/stripe', {
+      order,
+      event,
+    });
+
+    if (response.data.statusCode === 500) {
+      console.error(response.data.message);
+      return;
+    }
+    const {
+      data: { client_secret },
+    } = response;
+    setOrder(order);
+    setReadyToCheckout(true);
+    setClientSecret(client_secret);
+    return client_secret;
+  };
+
+  const handleFreeCheckout = async () => {
+    const { ticketTypes } = event;
+    setMode(3);
+    const _id = shortid.generate();
+    const tickets = [] as UserTicketProps[];
+    Object.keys(cart).forEach((curr) => {
+      const tix = cart[curr];
+      for (var i = 0; i < tix.quantity; i++) {
+        const tempTix = ticketTypes[tix._id];
+        tickets.push({
+          ticketName: tempTix.ticketName,
+          fee: tempTix.fee,
+          price: tempTix.price,
+          description: tempTix.description,
+          donation: tempTix.donation,
+          free: tempTix.free,
+          barCode: shortid.generate(),
+          orderId: _id,
+          eventId: event._id,
+          checkedIn: null,
+          checkInDate: null,
+        });
+      }
+    });
+    const order: OrderProps = {
+      emailAddress,
+      firstName,
+      lastName,
+      eventId: event._id,
+      _id,
+      phoneNumber,
+      checkedIn: false,
+      refunded: false,
+      cancelled: false,
+      status: 'copped',
+      tickets,
+      total,
+      orderDate: new Date(),
+      cart,
+    };
+    if (total === 0) {
+      await axios.post('/api/ticket', {
+        order,
+        event,
+      });
+      return setMode(5);
+    } else {
+      return setMode(4);
+    }
+  };
   return (
     <main className="mw9 ml4-ns center">
       <img className="w-100 center db" src={event.image} />
@@ -152,10 +267,47 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 total={total}
                 event={event}
                 cart={cart}
+                prepareCheckout={prepareCheckout}
+                order={order}
+                readyToCheckout={readyToCheckout}
+                clientSecret={clientSecret}
               />
             </FadeIn>
           </div>
         </Elements>
+        {step === 6 && (
+          <div className="w-100 dib">
+            <div className="tc">
+              <Reward
+                ref={(ref) => {
+                  reward.current = ref;
+                }}
+                config={{ spread: 150, lifetime: 400, elementCount: 350 }}
+                type="confetti"
+              />
+            </div>
+            <FadeIn>
+              <span className="f3-l f4 br-100 b--solid pv2 ph3 ">
+                Confirmation
+              </span>
+              <div className="pv4 f3-ns f4 tc lh-title">
+                <div className="mv1 fw6 f1-ns f2">Thanks for your order!</div>
+                <span className="b">
+                  Order{' '}
+                  <a className="white no-underline" href="">
+                    #1354025632
+                  </a>
+                </span>
+                <strong>
+                  <p>
+                    We've sent a confirmation email with details to your email.
+                  </p>
+                  <p className="gray">Questions? Text support to 411</p>
+                </strong>
+              </div>
+            </FadeIn>
+          </div>
+        )}
         {step === 5 && (
           <div className="w-100 dib">
             <div className="tc">
@@ -211,10 +363,17 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 Checkout
               </span>
               <UserCheckoutForm
+                handleFreeCheckout={handleFreeCheckout}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                phoneNumber={phoneNumber}
+                setPhoneNumber={setPhoneNumber}
+                emailAddress={emailAddress}
+                setEmailAddress={setEmailAddress}
                 setMode={setMode}
                 total={total}
-                event={event}
-                cart={cart}
               />
             </FadeIn>
           </div>
