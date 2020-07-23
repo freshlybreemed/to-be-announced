@@ -20,11 +20,13 @@ export const TextEditor: React.FunctionComponent<TextEditorProps> = ({
     showCharsCounter: false,
     showWordsCounter: false,
     direction: 'ltr',
+    defaultActionOnPaste: 'insert_only_text',
+    askBeforePasteHTML: false,
     buttons:
       ',,,,italic,|,ul,ol,|,font,,image,file,video,table,link,align,|,hr,symbol,fullsize,print,about',
-    buttonsMD: 'bold,image,|,paragraph,\n,align,|,dots',
+    buttonsMD: 'bold,link,image,|,paragraph,\n,align,|,dots',
     buttonsXS: ',,align,undo,redo,|',
-    buttonsSM: 'bold,image,|,paragraph,,\n,align,|',
+    buttonsSM: 'bold,link,image,|,paragraph,,\n,align,|',
   };
 
   return (
