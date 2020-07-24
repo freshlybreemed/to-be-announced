@@ -1,37 +1,35 @@
 import * as React from 'react';
-import { useState } from 'react';
 import Cleave from 'cleave.js/react';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
-import axios from 'axios';
-import shortid from 'shortid';
-import {
-  EventProps,
-  OrderProps,
-  EventCartProps,
-  UserTicketProps,
-} from '../../../src/@types/types';
 
 interface EventCheckoutProps {
   setMode: any;
   total: number;
-  event: EventProps;
-  cart: {
-    [ticketName: string]: EventCartProps;
-  };
+  firstName: any;
+  setFirstName: any;
+  lastName: any;
+  setLastName: any;
+  phoneNumber: any;
+  setPhoneNumber: any;
+  emailAddress: any;
+  setEmailAddress: any;
+  handleFreeCheckout: any;
 }
 
 export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
   total,
-  event,
-  cart,
+  handleFreeCheckout,
   setMode,
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  phoneNumber,
+  setPhoneNumber,
+  emailAddress,
+  setEmailAddress,
 }) => {
-  const [firstName, setFirstName] = useState<string>('');
-  const [lastName, setLastName] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [emailAddress, setEmailAddress] = useState<string>('');
-
   const validateEmail = (mail: string) => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
       console.log('You have entered an valid email address!');
@@ -41,86 +39,36 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
     return false;
   };
 
-  const handleCheckout = async () => {
-    const { ticketTypes } = event;
-    setMode(3);
-    const _id = shortid.generate();
-    const tickets = [] as UserTicketProps[];
-    Object.keys(cart).forEach((curr) => {
-      const tix = cart[curr];
-      for (var i = 0; i < tix.quantity; i++) {
-        const tempTix = ticketTypes[tix._id];
-        tickets.push({
-          ticketName: tempTix.ticketName,
-          fee: tempTix.fee,
-          price: tempTix.price,
-          description: tempTix.description,
-          donation: tempTix.donation,
-          free: tempTix.free,
-          barCode: shortid.generate(),
-          orderId: _id,
-          eventId: event._id,
-          checkedIn: null,
-          checkInDate: null,
-        });
-      }
-    });
-    const order: OrderProps = {
-      emailAddress,
-      firstName,
-      lastName,
-      eventId: event._id,
-      _id,
-      phoneNumber,
-      checkedIn: false,
-      refunded: false,
-      cancelled: false,
-      status: 'copped',
-      tickets,
-      total,
-      orderDate: new Date(),
-      cart,
-    };
-    if (total === 0) {
-      await axios.post('/api/ticket', {
-        order,
-        event,
-      });
-      return setMode(5);
-    } else {
-      return setMode(4);
-    }
-  };
   return (
     <div className="pv3 w-100">
       <form className="w-100 pt4 mw7 center">
         <div className="dt w-100">
-          <div className="mv3 dtc w-48 pb3">
-            <label className="f5-ns f6 fw7-ns fw5 db pv2">First Name</label>
+          <div className="mt1 dtc w-48 pb3 ">
+            <small className=" db  pb1">First Name</small>
 
             <input
               value={firstName}
-              className="bg-transparent white bb pa2 mr3 w-90"
+              className="bg-transparent ba-hover white pv2 pl2 mr3 w-90"
               onChange={(e) => setFirstName(e.currentTarget.value)}
             />
           </div>
-          <div className="mv3 dtc w-48">
-            <label className="f5-ns f6 fw7-ns fw5 db pv2">Last Name</label>
+          <div className="mt1 dtc w-48 pb3 ">
+            <small className=" db  pb1">Last Name</small>
 
             <input
               value={lastName}
-              className="bg-transparent white bb pa2 mr3 w-90"
+              className="bg-transparent white ba-hover pv2 pl2 mr3 w-90"
               onChange={(e) => setLastName(e.currentTarget.value)}
             />
           </div>
         </div>
         <div className="dt w-100 mb2 pb2">
           <div className="mv3 dtc w-48">
-            <label className="f5-ns f6 fw7-ns fw5 db pv2 ">Email Address</label>
+            <small className=" db pb1">Email Address</small>
 
             <input
               value={emailAddress}
-              className="bg-transparent white bb pa2 mr3 w-90"
+              className="bg-transparent white ba-hover pa2 mr3 w-90"
               onChange={(e) => {
                 setEmailAddress(e.currentTarget.value);
                 validateEmail(emailAddress);
@@ -128,7 +76,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
             />
           </div>
           <div className="mv3 dtc w-48">
-            <label className="f5-ns f6 fw7-ns fw5 db pv2 ">Phone Number</label>
+            <small className=" db  pb1">Phone Number</small>
 
             <Cleave
               value={phoneNumber}
@@ -145,7 +93,7 @@ export const UserCheckoutForm: React.FunctionComponent<EventCheckoutProps> = ({
               Total: {formatPrice(total.toString())}
             </span>
             <span
-              onClick={handleCheckout}
+              onClick={handleFreeCheckout}
               className="b--white hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f3-l f4-m f5 fw5-ns ml fw6 fr"
             >
               {total > 0 ? `Pay` : `Next`}

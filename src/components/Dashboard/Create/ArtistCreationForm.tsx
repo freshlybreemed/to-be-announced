@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { LineUpProps } from '../../../@types/types';
 import axios from 'axios';
 import cheerio from 'cheerio';
+import classNames from 'classnames';
 
 interface TicketingProps {
   addArtist: any;
@@ -112,7 +113,12 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
           className="pl2 pb2 bn input-reset  mr3  w-90"
         />
       </div>
-      <div className={`mt3 mb2 tl ba-hover`}>
+      <div
+        className={`mt3 mb2 tl  ${classNames({
+          'ba-hover': !artistError.igPost,
+          'ba-hover-error': artistError.igPost,
+        })}`}
+      >
         <small className="db pl2 pt2 pb1 mid-gray ">
           IG Post URL <span className="red">*</span>
         </small>
