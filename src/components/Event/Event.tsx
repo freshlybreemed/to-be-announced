@@ -396,7 +396,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           </div>
         )}
         <article className="cf w-100">
-          <div className="fl w-100 w-50-ns tl">
+          <div className="fl w-100 w-50-ns tl mb4">
             <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
               Description
             </span>
