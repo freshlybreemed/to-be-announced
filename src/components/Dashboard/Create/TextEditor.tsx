@@ -25,7 +25,7 @@ export const TextEditor: React.FunctionComponent<TextEditorProps> = ({
     buttons:
       ',,,,italic,|,ul,ol,|,font,,image,file,video,table,link,align,|,hr,symbol,fullsize,print,about',
     buttonsMD: 'bold,link,image,|,paragraph,\n,align,|,dots',
-    buttonsXS: ',,align,undo,redo,|',
+    buttonsXS: 'bold,link,align,undo,redo,|',
     buttonsSM: 'bold,link,image,|,paragraph,,\n,align,|',
   };
 
