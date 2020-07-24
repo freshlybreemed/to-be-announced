@@ -15,7 +15,9 @@ module.exports = withCSS({
     return config;
   },
   cssModules: true,
-
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   env: {
     MONGO_URL: process.env.MONGO_URL,
     NODEMAILER: process.env.NODEMAILER,
