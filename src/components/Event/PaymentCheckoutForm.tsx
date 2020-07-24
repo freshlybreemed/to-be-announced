@@ -5,12 +5,10 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import { formatPrice } from '../../lib';
 import axios from 'axios';
-import shortid from 'shortid';
 import {
   EventProps,
   OrderProps,
   EventCartProps,
-  UserTicketProps,
 } from '../../../src/@types/types';
 import { useState } from 'react';
 
