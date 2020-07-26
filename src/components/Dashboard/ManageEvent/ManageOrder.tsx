@@ -11,6 +11,9 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
   event,
   order,
 }) => {
+  const [price] = React.useState<string>(
+    formatPrice(order.total.toString(), true)
+  );
   return (
     <div className={'w-100'}>
       <main className="mw9 ml4-ns ph3-l center">
@@ -79,7 +82,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
 
                       <td className="pa1">{getOrderTicketCount(order.cart)}</td>
                       <td className="pa1">
-                        {formatPrice(order.total.toString(), true)}
+                        {order.refunded ? `(${price})` : `${price}`}
                       </td>
                     </tr>
                   }

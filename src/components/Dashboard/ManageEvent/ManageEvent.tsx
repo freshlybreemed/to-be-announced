@@ -221,6 +221,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                 <tbody className="lh-copy f4-l f5-m f6">
                   {event.tickets
                     .map((curr, ind) => {
+                      const price = formatPrice(curr.total.toString(), true);
                       return (
                         <tr
                           key={ind}
@@ -247,8 +248,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                           <td className="pa1">
                             {getOrderTicketCount(curr.cart)}
                           </td>
-                          <td className="pa1">
-                            {formatPrice(curr.total.toString(), true)}
+                          <td className="pa1 tc">
+                            {curr.refunded ? `(${price})` : `${price}`}
                           </td>
                         </tr>
                       );
