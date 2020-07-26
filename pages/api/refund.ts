@@ -54,7 +54,7 @@ const updateOrder = async (order: OrderProps, event: EventProps, db: any) => {
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
   const { event, order }: { event: EventProps; order: OrderProps } = req.body;
 
-  await refundOrder(order);
+  order.total > 0 && (await refundOrder(order));
   await updateOrder(order, event, db);
   return true;
 });
