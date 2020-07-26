@@ -5,6 +5,10 @@ import classnames from 'classnames';
 import { EventProps, TicketProps } from '../../@types/types';
 import { useMediaQuery } from 'react-responsive';
 import { useEffect, useState } from 'react';
+import algoliasearch from 'algoliasearch';
+
+const client = algoliasearch(process.env.ALGORIA_ID, process.env.ALGORIA_KEY);
+const index = client.initIndex('events');
 
 function useMounted() {
   const [mounted, setMounted] = useState(false);
@@ -28,6 +32,8 @@ const getLowestPrice = (ticketTypes: { [ticketName: string]: TicketProps }) => {
 
 export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   const isMounted = useMounted();
+  const [eventResults, setEventResults] = useState<EventProps[]>(events);
+  const [query, setQuery] = useState<string>('');
   const isL = useMediaQuery({ query: '(min-width: 60em)' });
   const isM = useMediaQuery({
     query: '(max-width: 60em) and (min-width: 40em)',
@@ -35,6 +41,18 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   const isS = useMediaQuery({
     query: '(max-width: 40em)',
   });
+
+  const getEvents = (query) => {
+    index
+      .search(query)
+      .then(({ hits }: any) => {
+        setEventResults(hits);
+        console.log(hits);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className={`pv3 relative`}>
       <div className=" ml4-ns ">
@@ -54,10 +72,12 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
             <input
               className="pa2 bt-0 br-0 bl-0 input-reset bb bg-transparent white w-70-l w-50-m w-40 mr3"
               placeholder="Search events"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.currentTarget.value);
+                getEvents(e.currentTarget.value);
+              }}
             />
-            <a className="tr b--white dib noselect dim br-100 b--solid pa2 mb2 ph3-ns ph2 f3-l f5-m f6 fw5-ns fw4 mr3">
-              Search
-            </a>
           </div>
           {isMounted ? (
             <FadeIn>
@@ -79,7 +99,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                   boxSizing: 'inherit',
                 }}
               >
-                {events.map((curr: EventProps, ind) => (
+                {eventResults.map((curr: EventProps, ind) => (
                   <div className="w-100 mb3" key={ind}>
                     <a className="white no-underline" href={`/e/${curr.slug}`}>
                       <div
