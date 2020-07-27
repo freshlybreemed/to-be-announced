@@ -130,7 +130,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
           <div className="bg-black-80">
             <div className="dtc-l dtc-m v-mid tr f5-l f6 fw5 ">
               <span
-                onClick={!order.refunded && openModal}
+                onClick={openModal}
                 className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2"
               >
                 {order.refunded ? 'Refunded' : 'Refund'}
