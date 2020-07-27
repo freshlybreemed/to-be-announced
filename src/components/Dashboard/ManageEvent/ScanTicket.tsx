@@ -24,7 +24,7 @@ export const ScanTicket: React.FunctionComponent = () => {
       <div className="w-80">
         <QrReader
           delay={300}
-          facingMode={facing ? 'user' : 'environement'}
+          facingMode={facing ? 'user' : 'environment'}
           onError={handleError}
           onScan={handleScan}
           style={{ width: '100%' }}
