@@ -212,7 +212,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
                 <div className="v-mid fr">
                   <div className="">
                     <QRCode
-                      value={`http://www.socialticketing.com/ticket/${curr.barCode}`}
+                      value={`${curr.barCode}`}
                       renderAs="svg"
                       size={80}
                     />
