@@ -505,3 +505,16 @@ input:-webkit-autofill:active {
   border-bottom: 1px solid lightcyan;
   box-shadow: 0 -3px 0 lightcyan inset;
 }
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}

@@ -56,6 +56,7 @@ export const PaymentCheckoutForm: React.FunctionComponent<PaymentCheckoutProps> 
     if (result.error) {
       // Inform the user if there was an error.
       setError(result.error.message);
+      return setMode(4);
     } else {
       setError(null);
       console.log(result);
@@ -68,7 +69,7 @@ export const PaymentCheckoutForm: React.FunctionComponent<PaymentCheckoutProps> 
         event,
       });
     }
-    setMode(5);
+    return setMode(5);
   };
 
   // Handle real-time validation errors from the card Element.

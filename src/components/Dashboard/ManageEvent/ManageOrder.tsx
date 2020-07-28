@@ -2,6 +2,29 @@ import * as React from 'react';
 import QRCode from 'qrcode.react';
 import { formatPrice, getOrderTicketCount, formatDate } from '../../../lib';
 import { EventProps, OrderProps } from '../../../@types/types';
+import Modal from 'react-modal';
+import axios from 'axios';
+
+const customStyles = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    backgroundColor: 'black',
+    color: 'white',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 interface AttendeesProps {
   event: EventProps;
@@ -11,8 +34,69 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
   event,
   order,
 }) => {
+  const [modalIsOpen, setIsOpen] = React.useState<boolean>(false);
+  const [price] = React.useState<string>(
+    formatPrice(order.total.toString(), true)
+  );
+  const [processing, setProcessing] = React.useState<boolean>(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+    // subtitle.style.color = '#f00';
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const refundOrder = async () => {
+    await axios
+      .post('/api/refund', {
+        order,
+        event,
+      })
+      .then(() => {
+        setIsOpen(false);
+      });
+  };
+
   return (
     <div className={'w-100'}>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <h3>Are you sure you want to process a refund?</h3>
+        <div className="dtc-l dtc-m v-mid tr f5-l f6 fw5 ">
+          <span
+            onClick={() => {
+              setProcessing(true);
+              refundOrder();
+            }}
+            className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2"
+          >
+            {processing && <i className="fa fa-spinner fa-spin mr2" />}
+            {processing ? 'Refunding...' : 'Yes'}
+          </span>
+          {!processing && (
+            <span
+              onClick={() => {
+                setProcessing(false);
+                closeModal();
+              }}
+              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
+            >
+              No
+            </span>
+          )}
+        </div>
+      </Modal>
       <main className="mw9 ml4-ns ph3-l center">
         <article className="dt tc tl-ns w-90-l w-100-m  pb2 mv2">
           <div className="dtc-l dtc-m  pt2-m pb2 v-mid  fw7">
@@ -45,12 +129,12 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
         <section className="w-100 ">
           <div className="bg-black-80">
             <div className="dtc-l dtc-m v-mid tr f5-l f6 fw5 ">
-              <a
-                href={`/e/${event.slug}`}
+              <span
+                onClick={openModal}
                 className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2"
               >
-                Refund
-              </a>
+                {order.refunded ? 'Refunded' : 'Refund'}
+              </span>
               <a
                 href={`/dashboard/edit/${event.slug}`}
                 className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
@@ -58,7 +142,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
                 Edit Info
               </a>
             </div>
-            <div className="pt4 pr2-ns mr3-ns">
+            <div className="pv4 pr2-ns mr3-ns">
               <table
                 className="f6-ns f7 w-100  pb2 center"
                 style={{ borderCollapse: 'collapse' }}
@@ -79,7 +163,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
 
                       <td className="pa1">{getOrderTicketCount(order.cart)}</td>
                       <td className="pa1">
-                        {formatPrice(order.total.toString(), true)}
+                        {order.refunded ? `(${price})` : `${price}`}
                       </td>
                     </tr>
                   }
@@ -88,15 +172,17 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
             </div>
           </div>
         </section>
-
-        {order.tickets.map((curr) => {
-          return (
-            <div className="w-80 ma2 black dib">
+        <span className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2">
+          Tickets
+        </span>
+        <div className=" mt2 flex flex-wrap">
+          {order.tickets.map((curr) => {
+            return (
               <div
+                className="w-100 center ma2 black bg-light-gray h-25 fl relative pa2 mt1 bt w-80-ns"
                 style={{
                   borderRadius: '8px',
                 }}
-                className="bg-light-gray h-25 fl relative pa2 mt1 bt w-80"
               >
                 <h3
                   className="mv2 pv3"
@@ -128,7 +214,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
                 <div className="v-mid fr">
                   <div className="">
                     <QRCode
-                      value={`http://www.socialticketing.com/ticket/${curr.barCode}`}
+                      value={`${curr.barCode}`}
                       renderAs="svg"
                       size={80}
                     />
@@ -136,9 +222,9 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
                   <div>{curr.barCode}</div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </main>
     </div>
   );

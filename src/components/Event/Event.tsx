@@ -72,6 +72,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
       lastName,
       eventId: event._id,
       _id,
+      token: null,
       phoneNumber,
       checkedIn: false,
       refunded: false,
@@ -129,6 +130,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
       emailAddress,
       firstName,
       lastName,
+      token: null,
       eventId: event._id,
       _id,
       phoneNumber,
@@ -275,39 +277,6 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
             </FadeIn>
           </div>
         </Elements>
-        {step === 6 && (
-          <div className="w-100 dib">
-            <div className="tc">
-              <Reward
-                ref={(ref) => {
-                  reward.current = ref;
-                }}
-                config={{ spread: 150, lifetime: 400, elementCount: 350 }}
-                type="confetti"
-              />
-            </div>
-            <FadeIn>
-              <span className="f3-l f4 br-100 b--solid pv2 ph3 ">
-                Confirmation
-              </span>
-              <div className="pv4 f3-ns f4 tc lh-title">
-                <div className="mv1 fw6 f1-ns f2">Thanks for your order!</div>
-                <span className="b">
-                  Order{' '}
-                  <a className="white no-underline" href="">
-                    #1354025632
-                  </a>
-                </span>
-                <strong>
-                  <p>
-                    We've sent a confirmation email with details to your email.
-                  </p>
-                  <p className="gray">Questions? Text support to 411</p>
-                </strong>
-              </div>
-            </FadeIn>
-          </div>
-        )}
         {step === 5 && (
           <div className="w-100 dib">
             <div className="tc">

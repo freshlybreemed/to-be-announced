@@ -88,6 +88,12 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               View
             </a>
             <a
+              href={`/dashboard/manage/${event._id}/scan`}
+              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
+            >
+              Check In
+            </a>
+            <a
               href={`/dashboard/edit/${event.slug}`}
               className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
             >
@@ -221,6 +227,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                 <tbody className="lh-copy f4-l f5-m f6">
                   {event.tickets
                     .map((curr, ind) => {
+                      const price = formatPrice(curr.total.toString(), true);
                       return (
                         <tr
                           key={ind}
@@ -247,8 +254,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                           <td className="pa1">
                             {getOrderTicketCount(curr.cart)}
                           </td>
-                          <td className="pa1">
-                            {formatPrice(curr.total.toString(), true)}
+                          <td className="pa1 tc">
+                            {curr.refunded ? `(${price})` : `${price}`}
                           </td>
                         </tr>
                       );

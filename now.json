@@ -7,6 +7,8 @@
       "NODEMAILER": "@nodemailer",
       "FIREBASE_APP_ID": "@firebase-app-id",
       "STRIPE_DEV_SECRET": "@stripe-dev-secret",
+      "ALGORIA_ID": "@algoria-id",
+      "ALGORIA_KEY": "@algoria-key",
       "STRIPE_DEV_CLIENT": "@stripe-dev-client"
     }
   },

@@ -85,6 +85,7 @@ export interface OrderProps {
   tickets: UserTicketProps[];
   cancelled: boolean;
   refunded: boolean;
+  token: any;
   status: string;
   _id: string;
 }

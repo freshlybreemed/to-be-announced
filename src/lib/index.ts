@@ -109,19 +109,19 @@ export const formatDate = (date: Date, type = 'short') => {
 export const formatEventDateTime = (
   startDate: Date,
   endDate: Date,
-  timeZone: string,
+  timeZone: string
 ) => {
   var nextDay = moment(startDate).tz(timeZone).add(1, 'day');
   return `${moment(startDate).tz(timeZone).format('llll')} - ${
     nextDay.isAfter(endDate)
-      ? moment(endDate).tz(timeZone).format('h:mm A')
-      : moment(endDate).tz(timeZone).format('llll')
+      ? moment(endDate).tz(timeZone).format('h:mm A z')
+      : moment(endDate).tz(timeZone).format('llll z')
   }`;
 };
 export const formatEventTime = (
   startDate: Date,
   endDate: Date,
-  timeZone: string,
+  timeZone: string
 ) => {
   var nextDay = moment(startDate).tz(timeZone).add(1, 'day');
   return `${moment(startDate).tz(timeZone).format('h:mm A')} - ${
