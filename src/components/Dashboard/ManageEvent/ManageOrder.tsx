@@ -142,7 +142,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
                 Edit Info
               </a>
             </div>
-            <div className="pt4 pr2-ns mr3-ns">
+            <div className="pv4 pr2-ns mr3-ns">
               <table
                 className="f6-ns f7 w-100  pb2 center"
                 style={{ borderCollapse: 'collapse' }}
@@ -172,15 +172,17 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
             </div>
           </div>
         </section>
-
-        {order.tickets.map((curr) => {
-          return (
-            <div className="w-80 ma2 black dib">
+        <span className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2">
+          Tickets
+        </span>
+        <div className=" mt2 flex flex-wrap">
+          {order.tickets.map((curr) => {
+            return (
               <div
+                className="w-100 center ma2 black bg-light-gray h-25 fl relative pa2 mt1 bt w-80-ns"
                 style={{
                   borderRadius: '8px',
                 }}
-                className="bg-light-gray h-25 fl relative pa2 mt1 bt w-80"
               >
                 <h3
                   className="mv2 pv3"
@@ -220,9 +222,9 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
                   <div>{curr.barCode}</div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </main>
     </div>
   );
