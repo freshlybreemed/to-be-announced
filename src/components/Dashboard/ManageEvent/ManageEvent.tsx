@@ -88,6 +88,12 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
               View
             </a>
             <a
+              href={`/dashboard/manage/${event._id}/scan`}
+              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
+            >
+              Check In
+            </a>
+            <a
               href={`/dashboard/edit/${event.slug}`}
               className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
             >
