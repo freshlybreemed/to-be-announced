@@ -62,6 +62,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
         setIsOpen(false);
       });
   };
+  console.log(order);
 
   return (
     <div className={'w-100'}>
@@ -106,20 +107,14 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
               </span>
             </div>
             <div className=" lh-title f3 mb0 mt0-ns underline-hover">
-              <a className="white no-underline">{event.name}</a>
+              {`${order.firstName} ${order.lastName}`}
             </div>
             <div className="f4-ns f5 fw6 lh-title mv0 underline-hover">
-              <a
-                className="white no-underline"
-                target="_blank"
-                href={`https://www.google.com/maps/place/?q=place_id:${event.location.placeId}`}
-              >
-                {event.location.venue}
-              </a>
+              {order.emailAddress}
             </div>
             <div>
               <span className="f4-ns f5 fw6 mv0 gray">
-                Purchase Date: {`${formatDate(order.orderDate)}`}
+                Purchase Date: {`${formatDate(order.orderDate, 'medium')}`}
               </span>
             </div>
           </div>
