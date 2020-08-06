@@ -144,6 +144,15 @@ export const formatPrice = (number: string, showNumber: boolean = false) => {
   }).format(fnumber);
 };
 
+export const redirect = (context, target) => {
+  console.log(context, target);
+  if (context.res) {
+    context.res.writeHead(303, { Location: target });
+    context.res.end();
+  } else {
+    useRouter().replace(target);
+  }
+};
 export const slugify = (str: string) => {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
   str = str.toLowerCase();
