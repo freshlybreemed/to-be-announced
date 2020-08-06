@@ -73,12 +73,12 @@ export const Nav: React.FunctionComponent = () => {
             >
               Venues
             </a>
-            {isLoggedIn ? (
+            {!isLoggedIn ? (
               <a
-                href="/venues"
+                href="/signup"
                 className="white dim no-underline fw6 f4 b db pv1 mv1"
               >
-                Log In
+                Sign Up
               </a>
             ) : (
               <a
