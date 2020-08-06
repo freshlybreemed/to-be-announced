@@ -387,13 +387,13 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                     alt=""
                   />
                   <p>
-                    <strong>{event.lineUp[curr].artistName}</strong>
+                    <strong>{event.lineUp[curr].artistName}, </strong>
                     <a
                       className="no-underline white"
                       href="https://instagram.com/"
                       target="_blank"
                     >
-                      {curr}
+                      {event.lineUp[curr].igHandle}
                     </a>
                     <br />
                   </p>
