@@ -1,6 +1,7 @@
 import cookie from 'js-cookie';
 import moment from 'moment-timezone';
 import { TicketProps, EventCartProps } from '../@types/types';
+import { useRouter } from 'next/router';
 
 export const stripeClient = process.env.STRIPE_DEV_CLIENT;
 var yesterday = moment().subtract(1, 'day');
@@ -80,13 +81,15 @@ const getCookieFromServer = (key: string, req: any) => {
 export const formatDateTimeWithTimeZone = (
   date: Date,
   type = 'short',
-  timeZoneId,
+  timeZoneId
 ) => {
   switch (type) {
     case 'medium':
       return moment.tz(date, timeZoneId).format('llll');
     case 'short':
-      return moment.tz(date, timeZoneId).format('ddd. MMM Do YYYY [at] h:mm A');
+      return moment
+        .tz(date, timeZoneId)
+        .format('ddd. MMM Do, YYYY [at] h:mm A');
     case 'shorter':
       return moment.tz(date, timeZoneId).format(' MMMM d');
     default:
@@ -96,9 +99,9 @@ export const formatDateTimeWithTimeZone = (
 export const formatDate = (date: Date, type = 'short') => {
   switch (type) {
     case 'medium':
-      return moment(date).format('ddd. MMM Do YYYY [at] h:mm A');
+      return moment(date).format('ddd. MMM Do, YYYY [at] h:mm A');
     case 'short':
-      return moment(date).format('ddd. MMM Do YYYY');
+      return moment(date).format('ddd. MMM Do, YYYY');
     case 'shorter':
       return moment(date).format('MMMM Do');
     default:
