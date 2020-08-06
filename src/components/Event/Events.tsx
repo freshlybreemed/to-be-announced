@@ -86,8 +86,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                 style={{
                   display: 'grid',
                   gridTemplateColumns: `${classnames({
-                    'repeat(3, 1fr)': isL,
-                    'repeat(2, 1fr)': isM,
+                    'repeat(2, 1fr)': isM || isL,
                     'repeat(1, 1fr)': isS,
                   })}`,
                   gridColumnGap: classnames({
@@ -122,7 +121,10 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                       <h4 className="f5 fw4 mb0">
                         {formatDate(new Date(curr.startDate))}
                         {' — '}
-                        {formatTime(new Date(curr.startDate),curr.location.timeZoneId)}
+                        {formatTime(
+                          new Date(curr.startDate),
+                          curr.location.timeZoneId
+                        )}
                       </h4>
                       <h4 className="f4 fw8 mt2 mb0 ttu">{curr.name}</h4>
                       <h4 className="f5 fw6 mt1 pt1 ">
