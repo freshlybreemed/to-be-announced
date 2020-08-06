@@ -1,12 +1,12 @@
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: "tba-platform.firebaseapp.com",
-  databaseURL: "https://tba-platform.firebaseio.com",
-  projectId: "tba-platform",
-  storageBucket: "tba-platform.appspot.com",
-  messagingSenderId: "744460150181",
+  authDomain: 'socialticketing-743cf.firebaseapp.com',
+  databaseURL: 'https://socialticketing-743cf.firebaseio.com',
+  projectId: 'socialticketing-743cf',
+  storageBucket: 'socialticketing-743cf.appspot.com',
+  messagingSenderId: '189841305756',
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: "G-ZVNZC9DCSE",
+  measurementId: 'G-W25NTC97G0',
 };
 
 export { firebaseConfig };
