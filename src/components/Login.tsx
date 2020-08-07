@@ -55,16 +55,20 @@ export const Login: React.FunctionComponent = ({}) => {
             Email
           </label>
           <input
-            className="bt-0 br-0 bl-0 bb pa2 input-reset ba bg-black  white w-100"
+            className="ba pa2 input-reset ba bg-black  white w-100"
             type="email"
             value={email}
             onChange={(event) => {
               setEmail(event.currentTarget.value);
-              setError("");
+              setError('');
             }}
           />
         </div>
         <div className="mv3">
+          <div className="mv3 tl ba-hover  ">
+            <small className=" mid-gray db pl2 pt2 pb1"> Event URL</small>
+            <input className="pl2 pb2 input-reset bn  w-90" />
+          </div>
           <label className="db fw6 lh-copy f6" htmlFor="password">
             Password
           </label>
