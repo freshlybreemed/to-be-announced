@@ -100,9 +100,9 @@ export const Login: React.FunctionComponent = ({}) => {
           {loading ? 'Logging in...' : 'Login'}
         </a>
 
-        <div className="mt4 tl dib  pt3">
+        <div className="mt4 tl dib pt3">
           <a className="white b" href="">
-            Forgot password?{' '}
+            Forgot password?
           </a>
         </div>
       </form>

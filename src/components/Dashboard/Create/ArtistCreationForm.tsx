@@ -102,6 +102,9 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
           className="pl2 pb2 bn input-reset  mr3  w-90"
         />
       </div>
+      <small className="hljs-strong tl f6 db mb1 red">
+        {artistError.artistName}
+      </small>
       <div className={`mt3 mb2 tl ba-hover`}>
         <small className="db pl2 pt2 pb1 mid-gray ">Instagram Handle</small>
 
