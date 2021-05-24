@@ -18,7 +18,7 @@ const generateStripeCheckout = async (event: EventProps, order: OrderProps) => {
       ...metaData,
     },
     currency: 'USD',
-    amount: order.total * 100,
+    amount: Math.floor(order.total * 100),
   });
 
   return session;

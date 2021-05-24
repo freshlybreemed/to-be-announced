@@ -127,7 +127,7 @@ export const SignUp: React.FunctionComponent = ({}) => {
         </div>
         <a
           onClick={handleSignUp}
-          className="b--white dib dim noselect fl  br-100 b--solid pa2 ph4 f4 fw5"
+          className="b--white dib dim noselect fl br-100 b--solid pa2 ph4 f4 fw5"
         >
           {loading && <i className="fa fa-spinner fa-spin mr2" />}
           {loading ? 'Creating Account...' : 'Create Account'}

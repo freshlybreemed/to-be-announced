@@ -454,11 +454,12 @@ td.rdtYear:hover {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-transition: 'color 9999s ease-out, background-color 9999s ease-out';
-  -webkit-transition-delay: 9999s;
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #000000 inset !important;
+  /*use inset box-shadow to cover background-color*/
+  -webkit-text-fill-color: #ffffff !important;
+  /*use text fill color to cover font color*/
 }
 
 #flyoutMenu {
