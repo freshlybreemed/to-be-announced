@@ -49,9 +49,9 @@ export const UploadFlyer: React.FunctionComponent<EventImageProps> = ({
 
   return (
     <div className="mt4 relative overflow-hidden dib">
-      <div className="b--black dib noselect br-100 b--solid pa1 ph3 f5 fw5">
+      <div className="ba bw1 b--black dib noselect br-100 b--solid pa2 ph3 f5 fw5">
         {' '}
-        <i aria-label="icon: plus" className="center">
+        {/* <i aria-label="icon: plus" className="center">
           <svg
             viewBox="64 64 896 896"
             focusable="false"
@@ -65,7 +65,7 @@ export const UploadFlyer: React.FunctionComponent<EventImageProps> = ({
             <path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"></path>
           </svg>
         </i>
-        <br />
+        */}
         Upload Flyer
       </div>
       <input
