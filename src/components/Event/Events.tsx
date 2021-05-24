@@ -118,7 +118,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                           className="o-100  "
                         ></div>
                       </div>
-                      <h4 className="f5 fw4 mb0">
+                      <h4 className="f5 fw4 mt2">
                         {formatDate(new Date(curr.startDate))}
                         {' — '}
                         {formatTime(
@@ -132,12 +132,14 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                         {curr.location.venue}
                       </h4>
                     </a>
-                    <a
-                      href={`/e/${curr.slug}`}
-                      className="bg-black white br-100 pa2 tc f4-ns f6 fw6-ns fw5 grow no-underline ph4 b--solid "
-                    >
-                      Get Tickets
-                    </a>
+                    <div className="mt3">
+                      <a
+                        href={`/e/${curr.slug}`}
+                        className="bg-black white br-100 pa2 tc f4-ns f6 fw6-ns fw5 grow no-underline ph4 b--solid "
+                      >
+                        Get Tickets
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>
