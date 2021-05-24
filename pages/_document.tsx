@@ -21,6 +21,7 @@ export default class extends Document {
           />
 
           <link rel="stylesheet" href="/static/extra.css" />
+          <link rel="stylesheet" href="/static/tailwind.min.css" />
           <link rel="stylesheet" href="/static/styles.min.css" />
           <link
             rel="stylesheet"
