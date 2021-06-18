@@ -206,7 +206,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
           </section>
         </div>
         <section className="fl w-100 ">
-          <div className="bg-black-80">
+          <div className="bg-black-80 mb3">
             <span className="ba bw2 f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
               Attendee List
             </span>
@@ -271,7 +271,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
             </div>
           </div>
           <a
-            className="pv2 b bb white no-underline"
+            className="pv2 mt4 b pa2 ba br-100 white no-underline"
             href={`/dashboard/manage/${event._id}/attendees`}
           >
             See More...

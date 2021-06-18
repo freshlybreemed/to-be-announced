@@ -47,7 +47,7 @@ export const Login: React.FunctionComponent = ({}) => {
 
   return (
     <div className={'pv1 tc'}>
-      <h1 className="mb0 mt3 pt3">Login</h1>
+      <h1 className="mb0 mt3 pv3 font-bold">Login</h1>
       <h4 className="gray mt0">
         Don't have an account?{' '}
         <span>
@@ -92,20 +92,16 @@ export const Login: React.FunctionComponent = ({}) => {
             Subscribe to Social Ticketing Newsletter
           </label>
         </div>
-        <a
-          onClick={handleLogin}
-          className="b--white db dim noselect fl  br-100 b--solid pa2 ph4 f4 fw5"
-        >
-          {loading && <i className="fa fa-spinner fa-spin mr2" />}
-          {loading ? 'Logging in...' : 'Login'}
-        </a>
-        <div className="mt4  fl dib pt3">
-          <a className="white b" href="/terms">
+        <div className="fl dib pt3">
+          <a
+            onClick={handleLogin}
+            className="b--white db dim noselect fl ba bw2 br-100 b--solid pa2 ph4 f4 fw5"
+          >
+            {loading && <i className="fa fa-spinner fa-spin mr2" />}
+            {loading ? 'Logging in...' : 'Login'}
+          </a>
+          <a className="white " href="/terms">
             Forgot password?{' '}
-
-        <div className="mt4 tl dib pt3">
-          <a className="white b" href="">
-            Forgot password?
           </a>
         </div>
       </form>

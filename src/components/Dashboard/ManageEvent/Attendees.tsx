@@ -64,7 +64,7 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
 
         <section className="fl w-100 ">
           <div className="bg-black-80">
-            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+            <span className="f3-l f4 fw6-l fw4 br-100 ba bw1 b--solid pv2 ph3 mv2">
               Attendee List
             </span>
             <div className="pt4 pr2-ns mr3-ns">
@@ -72,13 +72,13 @@ export const Attendees: React.FunctionComponent<AttendeesProps> = ({
                 className="f6-ns f7 w-100  pb2 center"
                 style={{ borderCollapse: 'collapse' }}
               >
-                <thead>
+                <thead className="bb">
                   <tr className="f5-ns f6 fw7 tl">
-                    <th className="pa1 bb b--gray bw1 ">Date</th>
-                    <th className="pa1 bb b--gray bw1 ">Name</th>
-                    {isL && <th className="pa1 bb b--gray bw1  ">Email</th>}
-                    <th className="pa1 bb b--gray bw1  ">Quantity</th>
-                    <th className="pa1 bb b--gray bw1 ">Total Sales</th>
+                    <th className="pa1 ">Date</th>
+                    <th className="pa1 ">Name</th>
+                    {isL && <th className="pa1 ">Email</th>}
+                    <th className="pa1">Quantity</th>
+                    <th className="pa1">Total Sales</th>
                   </tr>
                 </thead>
                 <tbody className="lh-copy f4-l f5-m f6">
