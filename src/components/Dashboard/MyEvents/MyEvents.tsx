@@ -26,11 +26,11 @@ export const MyEvents: React.FunctionComponent<MyEventProps> = ({ events }) => {
   return (
     <div className={'w-100 vh-100'}>
       <div className="mw8-ns w-100 dt pb3">
-        <h1 className="dtc f1-ns f3 mt0">Manage Events</h1>
+        <h1 className="dtc f1-ns f3 mt0 font-bold">Manage Events</h1>
         <div className={`dtc v-mid tr`}>
           <a
             href={`/dashboard/create`}
-            className="f4-l f5-m f7 fw6-l fw4 br-100 b--solid pv2-ns pv1 ph3-ns ph2 white noselect no-underline"
+            className="f4-l f5-m f7 fw6-l fw4 br-100 ba bw1 b--solid pv2-ns pv1 ph3-ns ph2 white noselect no-underline"
           >
             + Create Event
           </a>

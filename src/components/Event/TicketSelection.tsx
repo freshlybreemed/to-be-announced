@@ -23,7 +23,7 @@ export const TicketSelection: React.FunctionComponent<EventProps> = ({
   return (
     <li
       className={`flex items-center pa3 ph0-l ${classnames({
-        'bb b--gray bw1': true,
+        'bb b--gray': true,
       })}`}
       key={ticketType.ticketName}
     >
