@@ -5,11 +5,14 @@ import { setCookie } from '../lib';
 // import axios, { AxiosResponse } from 'axios';
 import Router from 'next/router';
 
+
 export const Login: React.FunctionComponent = ({}) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  
+    
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     // setSignInText('Signing In...');
@@ -20,7 +23,6 @@ export const Login: React.FunctionComponent = ({}) => {
       // setLoading(false);
       return;
     }
-
     let isError = false;
     Firebase.login(Firebase.EMAIL, { email, password })
       .catch((result) => {
@@ -101,7 +103,7 @@ export const Login: React.FunctionComponent = ({}) => {
             {loading ? 'Logging in...' : 'Login'}
           </a>
           <a className="white " href="/terms">
-            Forgot password?{' '}
+            Forgot password?
           </a>
         </div>
       </form>

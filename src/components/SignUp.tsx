@@ -54,7 +54,7 @@ export const SignUp: React.FunctionComponent = ({}) => {
 
   return (
     <div className={'pv1 tc'}>
-      <h1 className="mb0 mt3 pt3">Create An Account</h1>
+      <h1 className="mb0 mt3 pt3 font-bold">Create An Account</h1>
       <h4 className="gray mt0">
         Already have an account?{' '}
         <span>
@@ -127,7 +127,7 @@ export const SignUp: React.FunctionComponent = ({}) => {
         </div>
         <a
           onClick={handleSignUp}
-          className="b--white dib dim noselect fl br-100 b--solid pa2 ph4 f4 fw5"
+          className="b--white dib dim noselect fl ba bw1 br-100 b--solid pa2 ph4 f4 fw5"
         >
           {loading && <i className="fa fa-spinner fa-spin mr2" />}
           {loading ? 'Creating Account...' : 'Create Account'}
