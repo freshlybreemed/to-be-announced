@@ -10,10 +10,10 @@ const withAuthSync = (WrappedComponent) =>
     static async getInitialProps(ctx) {
       const isLoggedIn = getCookie('id_token', ctx.req) ? true : false;
 
-      if (!isLoggedIn) {
-        redirect(ctx, '/login');
-        return { isLoggedIn };
-      }
+      // if (!isLoggedIn) {
+      //   redirect(ctx, '/login');
+      //   return { isLoggedIn };
+      // }
       const componentProps =
         WrappedComponent.getInitialProps &&
         (await WrappedComponent.getInitialProps(ctx));
