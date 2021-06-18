@@ -30,6 +30,10 @@ const getLowestPrice = (ticketTypes: { [ticketName: string]: TicketProps }) => {
   return formatPrice(lowestPrice.toString());
 };
 
+const isSalesEnded = (endDate: Date) => {
+  return  new Date() > new Date(endDate)
+}
+
 export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   const isMounted = useMounted();
   const [eventResults, setEventResults] = useState<EventProps[]>(events);
@@ -137,7 +141,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                         href={`/e/${curr.slug}`}
                         className="bg-black white bw1 ba br-100 pa2 tc f4-ns f6 fw6-ns fw5 grow no-underline ph4 b--solid "
                       >
-                        Get Tickets
+                      {!isSalesEnded(curr.endDate) ?  `Get Tickets`: `Sales Ended`}
                       </a>
                     </div>
                   </div>

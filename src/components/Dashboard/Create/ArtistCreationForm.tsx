@@ -52,6 +52,7 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
     })
       .then((res) => {
         setImageURL(res.data.secure_url);
+        console.log('updated')
       })
       .catch((err) => {
         console.log(err);
@@ -82,52 +83,6 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
     _id,
   };
 
-  const fetchIgLink = async (url: string) => {
-    if (
-      url.substring(0, 8) === 'https://' ||
-      url.substring(0, 7) === 'http://' ||
-      url.substring(0, 13) === 'instagram.com' ||
-      url.substring(0, 4) === 'www.'
-    ) {
-      const meta = url.split('/').filter((word) => word.length === 11)[0];
-      if (!meta) {
-        return setArtistError({
-          ...artistError,
-          igPost: 'Invalid URL. Please try again',
-        });
-      } else {
-        setArtistError({
-          ...artistError,
-          igPost: '',
-        });
-        return await axios
-          .get(`https://www.instagram.com/p/${meta}`)
-          .then((res) => {
-            console.log(res);
-            let $ = cheerio.load(res.data);
-
-            // //basic data from the meta tags
-            const image_link = $('meta[property="og:image"]').attr('content');
-            setImageURL(image_link);
-          })
-          .catch((error) =>
-            setArtistError({ ...artistError, igPost: error.response.data })
-          );
-      }
-    } else {
-      setArtistError({
-        ...artistError,
-        igPost: 'Invalid URL. Please try again',
-      });
-    }
-  };
-
-  // const checkForErrors = async () => {
-  //   setArtistError({
-  //     ...artistError,
-  //     igPost: 'Invalid URL',
-  //   });
-  // };
   return (
     <div className="mw6 center w-75-ns w-100">
       <div className={`mt3 mb2 tl ba-hover`}>
@@ -192,7 +147,7 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
           </div>
           <div
             onClick={() => removeArtist(updatedArtist)}
-            className="mt4 b--black hover-bg-white hover-black dib noselect  ba bw1 br-100 b--solid pa1 ph3 f5 fw5  "
+            className="mt4 b--black hover-bg-white hover-black dib noselect  ba mr2 bw1 br-100 b--solid pa1 ph3 f5 fw5  "
           >
             Remove
           </div>
