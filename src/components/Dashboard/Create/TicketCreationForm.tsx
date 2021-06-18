@@ -14,6 +14,8 @@ interface TicketingProps {
   removeTicket: any;
   ticket: TicketProps;
   startDate: Date;
+  setToggleTicketCreation: (toggle: boolean) => void;
+  setCurrentTicket: (ticket: any) => void;
 }
 
 export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
@@ -23,6 +25,8 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
   startDate,
   timeZoneId,
   removeTicket,
+  setToggleTicketCreation,
+  setCurrentTicket
 }) => {
   const [ticketName, setTicketName] = useState<string>(
     ticket ? ticket.ticketName : ''
@@ -206,7 +210,7 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
       {!ticket && (
         <div
           onClick={() => addTicket(updatedTicket)}
-          className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+          className="mt4 b--black hover-bg-white hover-black dib noselect ba bw1 br-100 b--solid pa1 ph3 f5 fw5 mr3 "
         >
           Add
         </div>
@@ -215,18 +219,27 @@ export const TicketCreationForm: React.FunctionComponent<TicketingProps> = ({
         <>
           <div
             onClick={() => updateTicket(updatedTicket)}
-            className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+            className="mt4 b--black hover-bg-white hover-black dib noselect ba br-100 b--solid pa1 ph3 f5 fw5 mr3 "
           >
             Update
           </div>
           <div
             onClick={() => removeTicket(updatedTicket)}
-            className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5 mr3 "
+            className="mt4 b--black hover-bg-white hover-black dib noselect ba br-100 b--solid pa1 ph3 f5 fw5 mr3 "
           >
             Remove
           </div>
         </>
       )}
+       <div
+          onClick={() => {
+            setToggleTicketCreation(false);
+            setCurrentTicket(undefined);
+          }}
+          className="mt4 b--black hover-bg-white hover-black dib noselect ba bw1 br-100 b--solid pa1 ph3 f5 fw5"
+        >
+          Cancel
+      </div>
     </div>
   );
 };

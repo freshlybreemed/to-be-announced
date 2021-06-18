@@ -10,6 +10,8 @@ interface TicketingProps {
   updateArtist: any;
   removeArtist: any;
   artist: LineUpProps;
+  setToggleLineUpCreation: (toggle: boolean) => void;
+  setCurrentArtist: (ticket: any) => void;
 }
 
 export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
@@ -17,6 +19,8 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
   updateArtist,
   artist,
   removeArtist,
+  setToggleLineUpCreation,
+  setCurrentArtist
 }) => {
   const [igHandle, setIgHandle] = useState<string>(
     artist ? artist.igHandle : '',
@@ -173,7 +177,7 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
       {!artist && (
         <div
           onClick={() => addArtist(updatedArtist)}
-          className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5  "
+          className="mt4 b--black hover-bg-white hover-black dib noselect mr2 ba bw1 br-100 b--solid pa1 ph3 f5 fw5  "
         >
           Add
         </div>
@@ -182,18 +186,27 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
         <>
           <div
             onClick={() => updateArtist(updatedArtist)}
-            className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5  "
+            className="mt4 b--black hover-bg-white hover-black dib noselect ba mr2 bw1 br-100 b--solid pa1 ph3 f5 fw5  "
           >
             Update
           </div>
           <div
             onClick={() => removeArtist(updatedArtist)}
-            className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa1 ph3 f5 fw5  "
+            className="mt4 b--black hover-bg-white hover-black dib noselect  ba bw1 br-100 b--solid pa1 ph3 f5 fw5  "
           >
             Remove
           </div>
         </>
       )}
+       <div
+          onClick={() => {
+            setToggleLineUpCreation(false);
+            setCurrentArtist(undefined);
+          }}
+          className="mt4 b--black hover-bg-white hover-black dib noselect ba bw1 br-100 b--solid pa1 ph3 f5 fw5"
+        >
+          Cancel
+      </div>
     </div>
   );
 };
