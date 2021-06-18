@@ -52,7 +52,6 @@ export interface LineUpProps {
   _id: number;
   igHandle: string;
   imageURL: string;
-  igPost: string;
   artistName: string;
 }
 

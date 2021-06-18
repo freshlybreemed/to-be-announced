@@ -25,7 +25,6 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
     artist ? artist.imageURL : '',
   );
   const [_id] = useState<number>(artist ? artist._id : 0);
-  const [igPost, setigPost] = useState<string>(artist ? artist.igPost : '');
   const [artistName, setArtistName] = useState<string>(
     artist ? artist.artistName : '',
   );
@@ -33,9 +32,47 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
     artistName: '',
     igPost: '',
   });
+  const [uploading, setUploading] = useState<boolean>(false);
+  console.log(uploading);
+
+  const processUpload = async (e: File) => {
+    setUploading(true);
+
+    const formData = new FormData();
+    formData.append('file', e);
+    formData.append('upload_preset', 'wfrfnmis');
+
+    await axios(`https://api.cloudinary.com/v1_1/dzsf703vh/image/upload`, {
+      method: 'POST',
+      data: formData,
+    })
+      .then((res) => {
+        setImageURL(res.data.secure_url);
+      })
+      .catch((err) => {
+        console.log(err);
+        setUploading(false);
+      });
+  };
+
+  const beforeUpload = (file: File) => {
+    const isJPGorPNG = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJPGorPNG) {
+      console.error('You can only upload JPG or PNG file!');
+    }
+    const isLt5M = file.size / 1024 / 1024 < 5;
+    if (!isLt5M) {
+      console.error('Image must smaller than 5MB!');
+    }
+    return isJPGorPNG && isLt5M;
+  };
+  const handleChange = async (selectorFiles: FileList) => {
+    const file = selectorFiles[0];
+    beforeUpload(file) && (await processUpload(file));
+  };
+
   const updatedArtist: LineUpProps = {
     igHandle: `@${igHandle.split('@')[igHandle.split('@').length - 1]}`,
-    igPost,
     imageURL,
     artistName,
     _id,
@@ -116,23 +153,17 @@ export const ArtistCreationForm: React.FunctionComponent<TicketingProps> = ({
           className="pl2 pb2 bn input-reset  mr3  w-90"
         />
       </div>
-      <div
-        className={`mt3 mb2 tl  ${classNames({
-          'ba-hover': !artistError.igPost,
-          'ba-hover-error': artistError.igPost,
-        })}`}
-      >
-        <small className="db pl2 pt2 pb1 mid-gray ">
-          IG Post URL <span className="red">*</span>
-        </small>
+      <div className="mt2 relative overflow-hidden dib">
+        <div className="ba bw1 b--black dib noselect br-100 b--solid pa2 ph3 f5 fw5"
+          onClick={()=>document.getElementById('artistUpload').click()}>
+          Upload Image
+        </div>
         <input
-          value={igPost}
-          placeholder="ex: https://www.instagram.com/p/CB9k1EChdyk/"
-          onChange={(event) => {
-            setigPost(event.currentTarget.value);
-            fetchIgLink(event.currentTarget.value.replace(/\s/g, ''));
-          }}
-          className="pl2 pb2 bn input-reset  mr3  w-90"
+          type="file"
+          id="artistUpload"
+          onChange={(e) => handleChange(e.target.files)}
+          style={{ left: 0, top: 0 }}
+          className="absolute o-0"
         />
       </div>
       <small className="hljs-strong tl f6 db mb1 red">
