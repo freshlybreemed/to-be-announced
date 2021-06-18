@@ -9,7 +9,7 @@ import classnames from 'classnames';
 import { PaymentCheckoutForm } from './PaymentCheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import shortid from 'shortid';
+import customId from 'custom-id';
 import axios from 'axios';
 const stripePromise = loadStripe(process.env.STRIPE_DEV_CLIENT);
 
@@ -45,7 +45,6 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
   };
   const prepareCheckout = async () => {
     const { ticketTypes } = event;
-    const _id = shortid.generate();
     const tickets = [] as UserTicketProps[];
     Object.keys(cart).forEach((curr) => {
       const tix = cart[curr];
@@ -58,8 +57,8 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           description: tempTix.description,
           donation: tempTix.donation,
           free: tempTix.free,
-          barCode: shortid.generate(),
-          orderId: _id,
+          barCode: customId({}),
+          orderId: customId({}),
           eventId: event._id,
           checkedIn: null,
           checkInDate: null,
@@ -105,7 +104,6 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
   const handleFreeCheckout = async () => {
     const { ticketTypes } = event;
     setMode(3);
-    const _id = shortid.generate();
     const tickets = [] as UserTicketProps[];
     Object.keys(cart).forEach((curr) => {
       const tix = cart[curr];
@@ -118,8 +116,8 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
           description: tempTix.description,
           donation: tempTix.donation,
           free: tempTix.free,
-          barCode: shortid.generate(),
-          orderId: _id,
+          barCode: customId({}),
+          orderId: customId({}),
           eventId: event._id,
           checkedIn: null,
           checkInDate: null,
@@ -406,3 +404,4 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
     </main>
   );
 };
+

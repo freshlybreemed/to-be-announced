@@ -18,7 +18,7 @@ import {
   timeConstraints,
 } from '../../../lib';
 import moment from 'moment-timezone';
-import shortid from 'shortid';
+import customId from 'custom-id';
 import classNames from 'classnames';
 
 interface EditProps {
@@ -42,7 +42,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           timeZoneId: '',
         },
   );
-  const [_id] = useState<string>(event ? event._id : shortid.generate());
+  const [_id] = useState<string>(event ? event._id : customId({}));
   const [image, setImage] = useState<string>(event ? event.image : '');
   const [description, setDescription] = useState<string>(
     event ? event.description : '',
