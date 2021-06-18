@@ -147,6 +147,10 @@ export const formatPrice = (number: string, showNumber: boolean = false) => {
   }).format(fnumber);
 };
 
+export function getCurrentYear() {
+  return new Date().getFullYear();
+}
+
 export const redirect = (context, target) => {
   console.log(context, target);
   if (context.res) {

@@ -366,7 +366,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
         )}
         <article className="cf w-100">
           <div className="fl w-100 w-50-ns tl mb4">
-            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
+            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 bw2">
               Description
             </span>
             <div
@@ -375,7 +375,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
             />
           </div>
           <div className="fl w-100 w-50-ns  tl">
-            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 ">
+            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 bw2">
               Line Up
             </span>
             <div className="pt2-ns mt4 pt1">

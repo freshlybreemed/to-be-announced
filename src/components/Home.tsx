@@ -16,7 +16,7 @@ export const Home: React.FunctionComponent = () => (
         </video>
       </div> */}
 
-      <h1 className="f1-ns f2 fw5">
+      <h1 className="f1-ns f2 font-bold">
         Discover live experiences that match your passions or create your own
         with online ticketing tools
       </h1>

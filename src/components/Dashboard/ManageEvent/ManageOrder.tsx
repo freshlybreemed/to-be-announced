@@ -101,8 +101,8 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
       <main className="mw9 ml4-ns ph3-l center">
         <article className="dt tc tl-ns w-90-l w-100-m  pb2 mv2">
           <div className="dtc-l dtc-m  pt2-m pb2 v-mid  fw7">
-            <div className="mb3">
-              <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+            <div className="mb3 bg-black-80">
+              <span className="f3-l f4 fw6-l fw4 ba bw2  br-100 b--solid pv2 ph3 mv2">
                 Order Details
               </span>
             </div>
@@ -126,13 +126,13 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
             <div className="dtc-l dtc-m v-mid tr f5-l f6 fw5 ">
               <span
                 onClick={openModal}
-                className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2"
+                className="b--white dib no-underline white noselect dim br-100 ba b--solid pa2 mt2-l ph3 mr2"
               >
                 {order.refunded ? 'Refunded' : 'Refund'}
               </span>
               <a
                 href={`/dashboard/edit/${event.slug}`}
-                className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
+                className="b--white dib no-underline white noselect dim br-100 ba b--solid pa2 mr2 mt2-l ph3 mt2"
               >
                 Edit Info
               </a>
@@ -142,11 +142,11 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
                 className="f6-ns f7 w-100  pb2 center"
                 style={{ borderCollapse: 'collapse' }}
               >
-                <thead>
+                <thead className="bb">
                   <tr className="f5-ns f6 fw7 tl">
-                    <th className="pa1 bb b--gray bw1 ">Ticket Buyer</th>
-                    <th className="pa1 bb b--gray bw1  ">Quantity</th>
-                    <th className="pa1 bb b--gray bw1 ">Total Sales</th>
+                    <th className="pa1  ">Ticket Buyer</th>
+                    <th className="pa1 ">Quantity</th>
+                    <th className="pa1 ">Total Sales</th>
                   </tr>
                 </thead>
                 <tbody className="lh-copy f4-l f5-m f6">

@@ -56,7 +56,7 @@ export const Login: React.FunctionComponent = ({}) => {
           </a>
         </span>
       </h4>
-      <form className="mw6 center mv5">
+      <form className="dib w-100 mw6 center mv5">
         <div className="mv3">
           <div className="mv3 tl ba-hover  ">
             <small className=" db pl2 pt2 pb1"> Email Address</small>
@@ -94,11 +94,14 @@ export const Login: React.FunctionComponent = ({}) => {
         </div>
         <a
           onClick={handleLogin}
-          className="b--white dib dim noselect fl br-100 b--solid pa2 ph4 f4 fw5"
+          className="b--white db dim noselect fl  br-100 b--solid pa2 ph4 f4 fw5"
         >
           {loading && <i className="fa fa-spinner fa-spin mr2" />}
           {loading ? 'Logging in...' : 'Login'}
         </a>
+        <div className="mt4  fl dib pt3">
+          <a className="white b" href="/terms">
+            Forgot password?{' '}
 
         <div className="mt4 tl dib pt3">
           <a className="white b" href="">

@@ -3,6 +3,7 @@ import {
   formatEventDateTime,
   formatDate,
   formatPrice,
+  getCurrentYear
 } from '../../src/lib/index';
 export const emailTemplates = {
   subject: (eventName) => `You Just Scored Tickets to ${eventName}`,
@@ -802,7 +803,7 @@ export const emailTemplates = {
                                                           >
                                                             <a
                                                               class="button raised"
-                                                              href="http://paulgoddarddesign.com/email-marketing"
+                                                              href="https://socialticketing.io/dashboard/manage/${event._id}/order/${order._id}"
                                                               target="_blank"
                                                               style="
                                                                 font-size: 14px;
@@ -828,7 +829,7 @@ export const emailTemplates = {
                                                                   style="
                                                                     vertical-align: inherit;
                                                                   "
-                                                                  >BUTTON</font
+                                                                  >TICKETS</font
                                                                 ></font
                                                               ></a
                                                             >
@@ -1517,24 +1518,6 @@ export const emailTemplates = {
                                             </a>
                                           </td>
                                           <td width="20"></td>
-                                          <td
-                                            align="right"
-                                            valign="top"
-                                            class="social"
-                                          >
-                                            <a href="#" target="_blank">
-                                              <img
-                                                src="http://paulgoddarddesign.com/emails/images/material-design/github-icon.png"
-                                                height="24"
-                                                alt="github"
-                                                border="0"
-                                                style="
-                                                  display: block;
-                                                  max-width: 24px;
-                                                "
-                                              />
-                                            </a>
-                                          </td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -1564,7 +1547,7 @@ export const emailTemplates = {
                                   >
                                     <font style="vertical-align: inherit;"
                                       ><font style="vertical-align: inherit;">
-                                        © 2020 TBA, All rights reserved.
+                                        © ${getCurrentYear()} TBA, All rights reserved.
                                       </font></font
                                     >
                                   </td>

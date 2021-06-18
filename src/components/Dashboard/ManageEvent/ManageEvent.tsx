@@ -83,19 +83,19 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
           <div className="dtc-l dtc-m v-mid tr f4-l f5 fw5">
             <a
               href={`/e/${event.slug}`}
-              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2"
+              className="ba bw1 b--white dib no-underline white noselect dim br-100 b--solid pa2 mt2-l ph3 mr2"
             >
               View
             </a>
             <a
               href={`/dashboard/manage/${event._id}/scan`}
-              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
+              className="ba bw1 b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
             >
               Check In
             </a>
             <a
               href={`/dashboard/edit/${event.slug}`}
-              className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
+              className="ba bw1 b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2"
             >
               Edit
             </a>
@@ -142,7 +142,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
         <div className="flex flex-wrap justify-between w-100 nr3 mb4">
           <section className="fl w-48-l w-100 mb2 ">
             <div className="bg-black-80  pl0 ">
-              <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+              <span className="ba bw2 f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                 Sales By Ticket Types{' '}
               </span>
               <div className="pt4 pb0-l pb3  ">
@@ -153,10 +153,10 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                   >
                     <thead className="bb">
                       <tr className="f5 fw7 tl ">
-                        <th className="pa1 bb b--gray bw1 ">Ticket Type</th>
-                        <th className="pa1 bb b--gray bw1 ">Price</th>
-                        <th className="pa1 bb b--gray bw1 ">Sold</th>
-                        <th className="pa1 bb b--gray bw1">Status </th>
+                        <th className="pa1">Ticket Type</th>
+                        <th className="pa1">Price</th>
+                        <th className="pa1 ">Sold</th>
+                        <th className="pa1">Status </th>
                       </tr>
                     </thead>
                     <tbody className="lh-copy f4">
@@ -191,7 +191,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
 
           <section className="fl w-48-ns w-100 mb2 ">
             <div className="bg-black-80  ">
-              <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+              <span className="ba bw2 f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
                 Payouts{' '}
               </span>
               <p className="pt4">
@@ -207,7 +207,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
         </div>
         <section className="fl w-100 ">
           <div className="bg-black-80">
-            <span className="f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
+            <span className="ba bw2 f3-l f4 fw6-l fw4 br-100 b--solid pv2 ph3 mv2">
               Attendee List
             </span>
             <div className="pt4 pr2-ns mr3-ns">
@@ -215,13 +215,13 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                 className="f6-ns f7 w-100  pb2 center"
                 style={{ borderCollapse: 'collapse' }}
               >
-                <thead>
+                <thead className="bb">
                   <tr className="f5-ns f6 fw7 tl">
-                    <th className="pa1 bb b--gray bw1 ">Date</th>
-                    <th className="pa1 bb b--gray bw1 ">Name</th>
-                    {isL && <th className="pa1 bb b--gray bw1  ">Email</th>}
-                    <th className="pa1 bb b--gray bw1  ">Quantity</th>
-                    <th className="pa1 bb b--gray bw1 ">Total Sales</th>
+                    <th className="pa1">Date</th>
+                    <th className="pa1 ">Name</th>
+                    {isL && <th className="pa1">Email</th>}
+                    <th className="pa1 tc">Quantity</th>
+                    <th className="pa1 tc" >Total Sales</th>
                   </tr>
                 </thead>
                 <tbody className="lh-copy f4-l f5-m f6">
@@ -231,10 +231,15 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                       return (
                         <tr
                           key={ind}
-                          className={`dim ${classnames({ bt: ind > 0 })}`}
+                          className={`dim ${classnames({ 'border-b-1': ind > 0 })}`}
                         >
                           <td className="pa1">
-                            {formatDate(new Date(curr.orderDate), 'shorter')}
+                            <a
+                                href={`/dashboard/manage/${event._id}/order/${curr._id}`}
+                                className="white no-underline"
+                              >
+                              {formatDate(new Date(curr.orderDate), 'shorter')}
+                            </a>
                           </td>
                           <td className="pa1">
                             <a
@@ -246,12 +251,12 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                           </td>
                           {isL && (
                             <td className="pa1">
-                              <a href="" className="white no-underline">
+                              <a href={`/dashboard/manage/${event._id}/order/${curr._id}`} className="white no-underline">
                                 {curr.emailAddress}
                               </a>
                             </td>
                           )}
-                          <td className="pa1">
+                          <td className="pa1 tc">
                             {getOrderTicketCount(curr.cart)}
                           </td>
                           <td className="pa1 tc">

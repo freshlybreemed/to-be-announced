@@ -7,7 +7,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
    return  await pdf.create(ticketTemplate.content(order, event),{width: '50mm',
     height: '90mm'}).toBuffer(async (err,buffer)=>{
-        console.log(buffer,err)
         res.send(buffer)
       })
       
