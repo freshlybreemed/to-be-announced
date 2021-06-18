@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NextPage } from 'next';
 import { Create } from '../../src/components/Dashboard';
 import { Layout } from '../../src/components/Layout';
+import SecuredPage from '../../src/hoc/securedPage';
 
 const data = {
   title: `Create Event`,
@@ -23,4 +24,4 @@ const Page: NextPage = () => (
   </Layout>
 );
 
-export default Page;
+export default SecuredPage(Page);
