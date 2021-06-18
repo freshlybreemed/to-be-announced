@@ -5,6 +5,7 @@ import axios from 'axios';
 import absoluteUrl from 'next-absolute-url';
 import { Create } from '../../../src/components/Dashboard';
 import { EventProps } from '../../../src/@types/types';
+import SecuredPage from '../../../src/hoc/securedPage';
 
 interface Props {
   event: EventProps;
@@ -31,4 +32,4 @@ Page.getInitialProps = async (ctx) => {
   };
 };
 
-export default Page;
+export default SecuredPage(Page);

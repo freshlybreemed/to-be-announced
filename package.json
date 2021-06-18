@@ -30,6 +30,7 @@
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
     "cleave.js": "^1.5.10",
+    "custom-id": "^1.2.0",
     "firebase": "^7.14.2",
     "html-pdf": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
@@ -59,7 +60,6 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^4.9.1",
     "redux-thunk": "^2.3.0",
-    "shortid": "^2.2.15",
     "stripe": "^8.55.0",
     "swr": "^0.2.3",
     "use-places-autocomplete": "^1.2.3"
