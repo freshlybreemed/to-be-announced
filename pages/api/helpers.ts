@@ -61,7 +61,7 @@ export const sendEmail = async (
         },
       });
       const message = emailTemplates.content(event, order);
-      transporter.sendMail({
+      await transporter.sendMail({
         from: `"TBA" <info@whatstba.com>`, // sender address
         to: emails, // list of receivers
         subject: emailTemplates.subject(event.name), // Subject line
@@ -77,7 +77,7 @@ export const sendEmail = async (
       return message;
     });
   } catch (error) {
-    console.error(error);
+    console.error('error email',error);
   }
 };
 

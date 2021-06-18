@@ -56,11 +56,11 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   return (
     <div className={`pv3 relative`}>
       <div className=" ml4-ns ">
-        <h1 className="f1-ns f2 ">Find upcoming events near you </h1>
+        <h1 className="f1-ns f2 font-bold">Find upcoming events near you </h1>
         <div className="bg-near-black overflow-hidden pa2 pa3-ns br3 ">
           <div className="mb4 ph2 ">
             <svg
-              className="white mt3"
+              className="white mt3 inline mr2"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -98,7 +98,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                   boxSizing: 'inherit',
                 }}
               >
-                {eventResults.map((curr: EventProps, ind) => (
+                {eventResults.reverse().map((curr: EventProps, ind) => (
                   <div className="w-100 mb3" key={ind}>
                     <a className="white no-underline" href={`/e/${curr.slug}`}>
                       <div
@@ -118,7 +118,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                           className="o-100  "
                         ></div>
                       </div>
-                      <h4 className="f5 fw4 mb0">
+                      <h4 className="f5 fw4 mt2">
                         {formatDate(new Date(curr.startDate))}
                         {' — '}
                         {formatTime(
@@ -132,12 +132,14 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                         {curr.location.venue}
                       </h4>
                     </a>
-                    <a
-                      href={`/e/${curr.slug}`}
-                      className="bg-black white br-100 pa2 tc f4-ns f6 fw6-ns fw5 grow no-underline ph4 b--solid "
-                    >
-                      Get Tickets
-                    </a>
+                    <div className="mt3">
+                      <a
+                        href={`/e/${curr.slug}`}
+                        className="bg-black white bw1 ba br-100 pa2 tc f4-ns f6 fw6-ns fw5 grow no-underline ph4 b--solid "
+                      >
+                        Get Tickets
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>

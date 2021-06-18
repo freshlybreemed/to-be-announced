@@ -134,11 +134,11 @@ export const SignUp: React.FunctionComponent = ({}) => {
         </a>
         <div className="mt4 tl dib pt3">
           By creating an account you agree to our{' '}
-          <a className="white b" href="">
+          <a className="white b" href="/terms">
             Privacy Policy
           </a>{' '}
           and{' '}
-          <a className="white b" href="">
+          <a className="white b" href="/terms">
             Terms and Conditions.
           </a>
         </div>

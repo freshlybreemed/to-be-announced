@@ -4,6 +4,7 @@ import { MyEvents } from '../../src/components/Dashboard/';
 import { Layout } from '../../src/components/Layout/';
 import { EventProps } from '../../src/@types/types';
 import useRequest from '../../src/lib/useRequest';
+import SecuredPage from '../../src/hoc/securedPage';
 
 
 const Page: NextPage = () => {
@@ -27,4 +28,4 @@ const Page: NextPage = () => {
   }
 
 
-export default Page;
+export default SecuredPage(Page);

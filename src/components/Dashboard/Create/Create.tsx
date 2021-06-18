@@ -329,7 +329,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
               <div>
                 <div
                   onClick={() => setToggleTicketCreation(true)}
-                  className="mt4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f5 fw5"
+                  className="mt4 b--black ba bw1 hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f5 fw5"
                 >
                   Create A Ticket
                 </div>
@@ -456,7 +456,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
               <div>
                 <div
                   onClick={() => setToggleLineUpCreation(true)}
-                  className="mv4 b--black hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f5 fw5"
+                  className="mv4 b--black ba bw1 hover-bg-white hover-black dib noselect br-100 b--solid pa2 ph3 f5 fw5"
                 >
                   Add Artist
                 </div>
@@ -527,7 +527,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
           </div>
         </div>
         <div
-          className="mv4 b--black dib noselect br-100 b--solid pa2 ph4 f3 fw5"
+          className="mv4 b--black ba bw1 dib noselect br-100 b--solid pa2 ph4 f3 fw5"
           onClick={() => handleSubmit()}
         >
           {loading && <i className="fa fa-spinner fa-spin mr2" />}
