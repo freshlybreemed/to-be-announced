@@ -1,11 +1,28 @@
 import * as React from 'react';
 import { formatDate, formatPrice, formatTime } from '../../lib';
 import FadeIn from 'react-fade-in';
-import classnames from 'classnames';
 import { EventProps, TicketProps } from '../../@types/types';
-import { useMediaQuery } from 'react-responsive';
 import { useEffect, useState } from 'react';
 import algoliasearch from 'algoliasearch';
+import styled from 'styled-components';
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: 16px;
+  grid-row-gap: 32px;
+  box-sizing: inherit;
+  
+  @media (min-width: 80em){
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 80em) and (min-width: 55em){
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 55em) and (min-width: 40em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
 
 const client = algoliasearch(process.env.ALGORIA_ID, process.env.ALGORIA_KEY);
 const index = client.initIndex('events');
@@ -30,21 +47,13 @@ const getLowestPrice = (ticketTypes: { [ticketName: string]: TicketProps }) => {
   return formatPrice(lowestPrice.toString());
 };
 
-const isSalesEnded = (endDate: Date) => {
-  return  new Date() > new Date(endDate)
-}
+const isSalesEnded = (endDate: Date) => new Date() > new Date(endDate);
+
 
 export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
   const isMounted = useMounted();
   const [eventResults, setEventResults] = useState<EventProps[]>(events);
   const [query, setQuery] = useState<string>('');
-  const isL = useMediaQuery({ query: '(min-width: 60em)' });
-  const isM = useMediaQuery({
-    query: '(max-width: 60em) and (min-width: 40em)',
-  });
-  const isS = useMediaQuery({
-    query: '(max-width: 40em)',
-  });
 
   const getEvents = (query) => {
     index
@@ -57,6 +66,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
         console.log(err);
       });
   };
+
   return (
     <div className={`pv3 relative`}>
       <div className=" ml4-ns ">
@@ -85,23 +95,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
           </div>
           {isMounted ? (
             <FadeIn>
-              <div
-                className="center"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: `${classnames({
-                    'repeat(2, 1fr)': isM || isL,
-                    'repeat(1, 1fr)': isS,
-                  })}`,
-                  gridColumnGap: classnames({
-                    '32px': isL,
-                    '16px': isM,
-                    '8px': isS,
-                  }),
-                  gridRowGap: classnames({ '64px': isL, '32px': isM || isS }),
-                  boxSizing: 'inherit',
-                }}
-              >
+              <Grid>
                 {eventResults.reverse().map((curr: EventProps, ind) => (
                   <div className="w-100 mb3" key={ind}>
                     <a className="white no-underline" href={`/e/${curr.slug}`}>
@@ -146,7 +140,7 @@ export const Events: React.FunctionComponent<MyEventsProps> = ({ events }) => {
                     </div>
                   </div>
                 ))}
-              </div>
+              </Grid>
             </FadeIn>
           ) : (
             <div className="f1 tc">
