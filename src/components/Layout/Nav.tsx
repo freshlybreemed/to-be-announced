@@ -91,7 +91,7 @@ export const Nav: React.FunctionComponent = () => {
             )}
           </div>
 
-          <div className="pv3 w-50-ns w-100">
+          {isLoggedIn && <div className="pv3 w-50-ns w-100">
             <h2
               className="ttu mt0 mb2 f6 fw7 gray "
               style={{ letterSpacing: '0.08em' }}
@@ -123,7 +123,7 @@ export const Nav: React.FunctionComponent = () => {
               Create Event
             </a>
           </div>
-
+          }
           <div className="pv3 w-50-ns w-100">
             <h2
               className="ttu mt0 mb2 f6 fw7 gray "
