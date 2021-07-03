@@ -20,12 +20,11 @@ export default wrapAsync(async (req: NextApiRequest, db: any) => {
     );
   }
   if (req.method === 'GET') {
+    const { organizerId } = req.query;
     return await db
       .collection('event')
       .find({
-        // startDate: {
-        //   $gte: new Date(),
-        // },
+        organizerId
       })
       .toArray();
   }

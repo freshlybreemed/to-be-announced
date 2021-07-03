@@ -16,6 +16,7 @@ import {
   validEndDate,
   validStartDate,
   timeConstraints,
+  getCookie
 } from '../../../lib';
 import moment from 'moment-timezone';
 import customId from 'custom-id';
@@ -79,6 +80,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     name: false,
     location: '',
   });
+  const organizerId = getCookie('id_token', null);
 
   const addTicket = (ticket: TicketProps) => {
     const tickets = ticketTypes;
@@ -147,7 +149,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     location,
     description,
     eventType,
-    organizerId: '123',
+    organizerId,
     image,
     lineUp,
     tickets: event ? event.tickets : [],
