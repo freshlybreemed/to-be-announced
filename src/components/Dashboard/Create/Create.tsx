@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 import {
@@ -79,6 +79,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   const [eventErrors, setEventErrors] = useState<any>({
     name: false,
     location: '',
+    endDate: false,
   });
   const organizerId = getCookie('id_token', null);
 
@@ -164,9 +165,9 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     refunds,
   };
   console.log(eventDetails);
+
   const handleSubmit = async () => {
     setLoading(true);
-    const organizerId = '123';
     return await axios
       .post('/api/event', { ...eventDetails, organizerId })
       .catch((res) => {
@@ -177,18 +178,72 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
   };
 
   const checkForErrors = (item) => {
-    if (item.name.length === 0) {
-      setEventErrors({
-        ...eventErrors,
-        name: true,
-      });
-    } else {
-      setEventErrors({
-        ...eventErrors,
-        name: false,
-      });
-    }
+      let hasErrors = false;
+      const key = Object.keys(item)[0];
+      switch(key){
+        case 'name':
+          if (item.name.length === 0) {
+            console.log('dude',eventErrors)
+            hasErrors = true;
+            setEventErrors({
+              ...eventErrors,
+              name: true,
+            });
+          } else {
+            setEventErrors({
+              ...eventErrors,
+              name: false,
+            });
+          }
+          break;
+        case 'location':
+          if (item.location.length === 0) {
+            console.log('dude',eventErrors)
+            hasErrors = true;
+            setEventErrors({
+              ...eventErrors,
+              location: true,
+            });
+          } else {
+            setEventErrors({
+              ...eventErrors,
+              location: false,
+            });
+          }
+          break;
+        case 'startDate':
+          if(eventDetails.endDate<=item[key]){
+            hasErrors = true;
+            setEventErrors({
+              ...eventErrors,
+              endDate: true,
+            });
+          }else {
+            setEventErrors({
+              ...eventErrors,
+              endDate: false,
+            });
+          }  
+          break;
+        case 'endDate':
+          if(eventDetails.startDate>=item[key]){
+            hasErrors = true;
+            setEventErrors({
+              ...eventErrors,
+              endDate: true,
+            });
+          }else {
+            setEventErrors({
+              ...eventErrors,
+              endDate: false,
+            });
+          }  
+          break;
+      }
+      console.log('erors',eventErrors)
+      return hasErrors;
   };
+
   return (
     <article className="w-100 tc">
       <link
@@ -204,7 +259,6 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
       </div>
 
       <div className={'w-100 ph4 pt4 bg-white black'}>
-        {/* <h1 className="f1-ns f2 mt0">{event ? `Edit` : `Create`} Event</h1> */}
         <div className="w-60-ns w-100 center">
           <div>
             <h1 className="tl fw7 mb0 pb3">Basic Info</h1>
@@ -225,7 +279,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                 value={name}
                 onChange={(event) => {
                   setName(event.currentTarget.value);
-                  checkForErrors({ name: event.currentTarget.value });
+                  checkForErrors({name:event.currentTarget.value})
                 }}
                 className="pl2 pb2  input-reset  bn w-90"
               />
@@ -234,14 +288,21 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
             {eventErrors.name && (
               <small className="db tl red">Title is required</small>
             )}
-            <div className="mv2 tl ba-hover">
+            <div className={`mt3 mb2 tl ${classNames({
+                'ba-hover': !eventErrors.location,
+                'ba-hover-error': eventErrors.location,
+              })}`}>
               <small className="mid-gray db pl2 pt2 pb1 ">Event Location</small>
               <PlacesAutoComplete
                 event={event}
                 location={location}
                 setLocation={setEventLocation}
+                checkForErrors={checkForErrors}
               />
             </div>
+            {eventErrors.location && (
+              <small className="db tl red">Location is required</small>
+            )}
             <div className="mv3 w-100">
               <div className="dib w-50 pr2">
                 <div className="tl ba-hover overflow-visible">
@@ -253,6 +314,8 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                     dateMode={true}
                     date={startDate}
                     setDate={setStartDate}
+                    checkForErrors={checkForErrors}
+                    type={'startDate'}
                   />
                 </div>
               </div>
@@ -266,14 +329,18 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                     isValidDate={validStartDate}
                     date={startDate}
                     setDate={setStartDate}
+                    checkForErrors={checkForErrors}
+                    type="startDate"
                   />
                 </div>
               </div>
             </div>
             <div className="dt mv3 w-100">
               <div className="dib w-50 pr2">
-                <div className="tl ba-hover overflow-visible">
-                  {' '}
+                <div className={`mt3 mb2 tl ${classNames({
+                'ba-hover': !eventErrors.endDate,
+                'ba-hover-error': eventErrors.endDate,
+              })} overflow-visible`}>
                   <small className=" mid-gray  db pl2 pt2 pb1"> End Date</small>
                   <DateTimePicker
                     timeZoneId={location.timeZoneId}
@@ -285,12 +352,18 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                       minutes: { step: 40, min: 0, max: 24 },
                       ...timeConstraints(startDate),
                     }}
+                    checkForErrors={checkForErrors}
+                    type={'endDate'}
                     setDate={setEndDate}
                   />
                 </div>
+               
               </div>
               <div className="dib w-50 ">
-                <div className="tl ba-hover overflow-visible">
+                <div className={`mt3 mb2 tl overflow-visible ${classNames({
+                'ba-hover': !eventErrors.endDate,
+                'ba-hover-error': eventErrors.endDate,
+              })}`}>
                   <small className=" mid-gray  db pl2 pt2 pb1"> End Time</small>
                   <DateTimePicker
                     timeZoneId={location.timeZoneId}
@@ -303,9 +376,14 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
                       ...timeConstraints(startDate),
                     }}
                     setDate={setEndDate}
+                    type={'endDate'}
+                    checkForErrors={checkForErrors}
                   />
                 </div>
               </div>
+              {eventErrors.endDate && (
+                <small className="db tl red">Invalid end date/time</small>
+              )}
             </div>
             <div className="mv3 tl ba-hover  ">
               <small className=" mid-gray db pl2 pt2 pb1"> Event URL</small>
