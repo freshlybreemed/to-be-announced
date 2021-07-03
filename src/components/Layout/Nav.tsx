@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-
+import Link from 'next/link'
 import { getCookieFromBrowser, removeCookie } from '../../lib';
 import Router from 'next/router';
 export const Nav: React.FunctionComponent = () => {
@@ -38,9 +38,9 @@ export const Nav: React.FunctionComponent = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="15"
+              width="20"
               fill="currentColor"
-              height="15"
+              height="20"
               viewBox="0 0 24 24"
             >
               <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
@@ -56,7 +56,7 @@ export const Nav: React.FunctionComponent = () => {
               Social Ticketing
             </h2>
             <a
-              href="/events"
+              href="/about"
               className="white dim no-underline fw6 f4 b db pv1 mv1"
             >
               About
@@ -91,7 +91,7 @@ export const Nav: React.FunctionComponent = () => {
             )}
           </div>
 
-          {/* {isLoggedIn && ( */}
+          {isLoggedIn && (
           <div className="pv3 w-50-ns w-100">
             <h2
               className="ttu mt0 mb2 f6 fw7 gray "
@@ -99,18 +99,20 @@ export const Nav: React.FunctionComponent = () => {
             >
               Manage
             </h2>
-            <a
-              href="/dashboard"
-              className="white dim no-underline fw6 f4 b db pv1 mv1 "
+            <Link
+            href="/dashboard">
+              <a
+                className="white dim no-underline fw6 f4 b db pv1 mv1 "
+              >
+              Dashboard</a>
+            </Link>
+            <Link
+            href="/dashboard/myevents"
+            ><a
+            className="white dim no-underline fw6 f4 b db pv1 mv1 "
             >
-              Dashboard
-            </a>
-            <a
-              href="/dashboard/myevents"
-              className="white dim no-underline fw6 f4 b db pv1 mv1 "
-            >
-              My Events
-            </a>
+              My Events</a>
+            </Link>
             <a
               href="/dashboard/payouts"
               className="white dim no-underline fw6 f4 b db pv1 mv1"
@@ -124,7 +126,7 @@ export const Nav: React.FunctionComponent = () => {
               Create Event
             </a>
           </div>
-          {/* } */}
+          )}
           <div className="pv3 w-50-ns w-100">
             <h2
               className="ttu mt0 mb2 f6 fw7 gray "
