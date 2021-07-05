@@ -23,7 +23,6 @@ const updateTixCount = async (
       $push: {
         tickets: {
           $each: [order],
-          $slice: 10,
           $sort: { date: 1 },
         },
       },
