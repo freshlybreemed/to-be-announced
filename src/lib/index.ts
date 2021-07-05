@@ -56,7 +56,7 @@ export const removeCookie = (key: string) => {
 };
 
 export const getCookie = (key: string, req: any) => {
-  return process.browser
+  return process.browser || !req
     ? getCookieFromBrowser(key)
     : getCookieFromServer(key, req);
 };

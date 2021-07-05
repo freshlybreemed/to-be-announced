@@ -1,6 +1,6 @@
 export const DEV = process.env.NODE_ENV !== 'production';
 
-export const GA_TRACKING_ID = 'UA-170856828-1';
+export const GA_TRACKING_ID = 'UA-201311147-1';
 export const FB_TRACKING_ID = '';
 export const SENTRY_TRACKING_ID = '';
 

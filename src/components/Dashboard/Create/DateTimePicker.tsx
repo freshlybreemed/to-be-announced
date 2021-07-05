@@ -3,12 +3,14 @@ import React from 'react';
 import moment from 'moment-timezone';
 interface DateProps {
   date?: any;
+  type: string;
   setDate?: any;
   isValidDate?: any;
   timeConstraints?: any;
   timeMode: boolean;
   dateMode: boolean;
   timeZoneId: string;
+  checkForErrors:(item: any) => boolean;
 }
 export const DateTimePicker: React.FunctionComponent<DateProps> = ({
   setDate,
@@ -18,6 +20,8 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
   timeZoneId,
   isValidDate,
   timeConstraints,
+  type,
+  checkForErrors
 }) => {
   return (
     <Datetime
@@ -34,7 +38,10 @@ export const DateTimePicker: React.FunctionComponent<DateProps> = ({
       }}
       value={date}
       onBlur={(e: any) => setDate(moment(e).toDate())}
-      onChange={(e: any) => setDate(moment(e).toDate())}
+      onChange={(e: any) => {
+        setDate(moment(e).toDate());
+        checkForErrors({[type]: moment(e).toDate()})
+      }}
       className={`black `}
       timeConstraints={timeConstraints}
     />

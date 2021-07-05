@@ -21,6 +21,7 @@ export interface EventProps {
   slug: string;
   password: string;
   refunds: boolean;
+  pageViews: number;
   gross: number;
   listed: boolean;
   eventType: string;

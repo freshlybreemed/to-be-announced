@@ -48,7 +48,9 @@ export const PaymentCheckoutForm: React.FunctionComponent<PaymentCheckoutProps> 
       payment_method: {
         card,
         billing_details: {
-          name: 'Jenny Rosen',
+          name: `${order.firstName} ${order.lastName}`,
+          email: order.emailAddress,
+          phone: order.phoneNumber
         },
       },
     });

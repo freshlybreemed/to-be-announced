@@ -4,11 +4,14 @@ import { MyEvents } from '../../src/components/Dashboard/';
 import { Layout } from '../../src/components/Layout/';
 import { EventProps } from '../../src/@types/types';
 import useRequest from '../../src/lib/useRequest';
+import { getCookie } from '../../src/lib';
 import SecuredPage from '../../src/hoc/securedPage';
 
 
 const Page: NextPage = () => {
-  const { data }  = useRequest<EventProps[]>({ url: `/api/event` })
+  const organizerId = getCookie('id_token', null);
+
+  const { data }  = useRequest<EventProps[]>({ url: `/api/myevents`, params: { organizerId } })
   return(
   <Layout>
     <div>

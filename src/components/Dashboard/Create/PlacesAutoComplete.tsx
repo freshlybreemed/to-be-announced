@@ -7,12 +7,15 @@ interface EventLocationProps {
   setLocation: any;
   location: any;
   event: EventProps;
+  checkForErrors:(item: any) => boolean;
+
 }
 
 export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = ({
   setLocation,
   location,
   event,
+  checkForErrors
 }) => {
   const [venue, setVenue] = useState<string>(location ? location.venue : '');
   const {
@@ -37,6 +40,7 @@ export const PlacesAutoComplete: React.FunctionComponent<EventLocationProps> = (
     setValue(e.target.value);
     setVenue(e.target.value);
     setLocation('');
+    checkForErrors({location: e.target.value})
   };
 
   const handleSelect = ({ description, structured_formatting }) => async () => {

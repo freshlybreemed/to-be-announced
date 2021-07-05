@@ -22,11 +22,7 @@ export default wrapAsync(async (req: NextApiRequest, db: any) => {
   if (req.method === 'GET') {
     return await db
       .collection('event')
-      .find({
-        // startDate: {
-        //   $gte: new Date(),
-        // },
-      })
+      .find({ })
       .toArray();
   }
   if (req.method === 'DELETE') {

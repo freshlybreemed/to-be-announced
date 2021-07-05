@@ -70,7 +70,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
       firstName,
       lastName,
       eventId: event._id,
-      _id,
+      _id: customId({}),
       token: null,
       phoneNumber,
       checkedIn: false,
@@ -130,7 +130,7 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
       lastName,
       token: null,
       eventId: event._id,
-      _id,
+      _id: customId({}),
       phoneNumber,
       checkedIn: false,
       refunded: false,
@@ -294,9 +294,9 @@ export const Event: React.FunctionComponent<EventViewProps> = ({ event }) => {
                 <div className="mv1 fw6 f1-ns f2">Thanks for your order!</div>
                 <span className="b">
                   Order{' '}
-                  <a className="white no-underline" href="">
-                    #1354025632
-                  </a>
+                  <span className="white no-underline">
+                    {`#${order._id}`}
+                  </span>
                 </span>
                 <strong>
                   <p>

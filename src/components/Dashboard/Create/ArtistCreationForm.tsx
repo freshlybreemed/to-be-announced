@@ -2,8 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { LineUpProps } from '../../../@types/types';
 import axios from 'axios';
-import cheerio from 'cheerio';
-import classNames from 'classnames';
 
 interface TicketingProps {
   addArtist: any;
