@@ -11,7 +11,7 @@ import SecuredPage from '../../src/hoc/securedPage';
 const Page: NextPage = () => {
   const organizerId = getCookie('id_token', null);
 
-  const { data }  = useRequest<EventProps[]>({ url: `/api/event`, params: { organizerId } })
+  const { data }  = useRequest<EventProps[]>({ url: `/api/myevents`, params: { organizerId } })
   return(
   <Layout>
     <div>

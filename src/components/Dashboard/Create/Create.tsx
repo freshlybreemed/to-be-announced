@@ -150,6 +150,7 @@ export const Create: React.FunctionComponent<EditProps> = ({ event }) => {
     location,
     description,
     eventType,
+    pageViews: event? event.pageViews: 0,
     organizerId,
     image,
     lineUp,

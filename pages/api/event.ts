@@ -20,12 +20,9 @@ export default wrapAsync(async (req: NextApiRequest, db: any) => {
     );
   }
   if (req.method === 'GET') {
-    const { organizerId } = req.query;
     return await db
       .collection('event')
-      .find({
-        organizerId
-      })
+      .find({ })
       .toArray();
   }
   if (req.method === 'DELETE') {

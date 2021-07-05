@@ -134,7 +134,7 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                 <span className="f4-ns fw6 f5 tc ">Page Views</span>
               </div>
               <div className="fl w-40   tr ">
-                <span className="f3 f4-ns fw6 ">743</span>
+                <span className="f3 f4-ns fw6 ">{Math.floor(event.pageViews)}</span>
               </div>
             </div>
           </article>
@@ -265,7 +265,8 @@ export const ManageEvent: React.FunctionComponent<ManageProps> = ({
                         </tr>
                       );
                     })
-                    .reverse()}
+                    .reverse()
+                    .slice(0,10)}
                 </tbody>
               </table>
             </div>

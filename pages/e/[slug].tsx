@@ -15,7 +15,7 @@ const Page: NextPage<EventSearchProps> = () => {
       ? window.location.pathname.split('/').slice(-1)[0]
       : '';
   const { data } = useRequest({
-    url: `/api/slug/${slug}`,
+    url: `/api/event/${slug}`,
   });
   const event: EventProps = data ? data[0] : null;
   const site = {
