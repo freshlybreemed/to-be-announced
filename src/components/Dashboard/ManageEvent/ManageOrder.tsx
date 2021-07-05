@@ -167,8 +167,7 @@ export const ManageOrder: React.FunctionComponent<AttendeesProps> = ({
             </div>
           </div>
         </section>
-        <span className="b--white dib no-underline white noselect dim br-100 b--solid pa2 mr2 mt2-l ph3 mt2">
-          Tickets
+        <span                 className="b--white dib no-underline white noselect dim br-100 ba b--solid pa2 mr2 mt2-l ph3 mt2">          Tickets
         </span>
         <div className=" mt2 flex flex-wrap">
           {order.tickets.map((curr) => {
