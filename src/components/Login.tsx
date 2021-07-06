@@ -15,7 +15,6 @@ export const Login: React.FunctionComponent = ({}) => {
     
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    // setSignInText('Signing In...');
     setLoading(true);
     if (!(email && password)) {
       setError('Please fill in email and password');
@@ -63,7 +62,7 @@ export const Login: React.FunctionComponent = ({}) => {
           <div className="mv3 tl ba-hover  ">
             <small className=" db pl2 pt2 pb1"> Email Address</small>
             <input
-              className="pl2 pb2 input-reset bn  w-90"
+              className="pl2 pb2 input-reset bg-transparent w-90"
               type="email"
               value={email}
               onChange={(event) => {
@@ -76,7 +75,7 @@ export const Login: React.FunctionComponent = ({}) => {
         <div className="mv3 tl ba-hover  ">
           <small className=" db pl2 pt2 pb1"> Password</small>
           <input
-            className="pl2 pb2 input-reset bn  w-90"
+            className="pl2 pb2 input-reset bg-transparent w-90"
             type="password"
             value={password}
             onChange={(event) => {
@@ -95,14 +94,15 @@ export const Login: React.FunctionComponent = ({}) => {
           </label>
         </div>
         <div className="fl dib pt3">
-          <a
+          <button
             onClick={handleLogin}
             className="b--white db dim noselect fl ba bw2 br-100 b--solid pa2 ph4 f4 fw5"
           >
             {loading && <i className="fa fa-spinner fa-spin mr2" />}
             {loading ? 'Logging in...' : 'Login'}
-          </a>
-          <a className="white " href="/terms">
+            
+          </button>
+          <a className="white " href="/forgot">
             Forgot password?
           </a>
         </div>
