@@ -15,7 +15,6 @@ export const Login: React.FunctionComponent = ({}) => {
     
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    // setSignInText('Signing In...');
     setLoading(true);
     if (!(email && password)) {
       setError('Please fill in email and password');
@@ -101,8 +100,9 @@ export const Login: React.FunctionComponent = ({}) => {
           >
             {loading && <i className="fa fa-spinner fa-spin mr2" />}
             {loading ? 'Logging in...' : 'Login'}
+            
           </button>
-          <a className="white " href="/terms">
+          <a className="white " href="/forgot">
             Forgot password?
           </a>
         </div>
