@@ -27,7 +27,7 @@ module.exports = withCSS({
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     STRIPE_DEV_SECRET: process.env.STRIPE_DEV_SECRET,
     STRIPE_DEV_CLIENT: process.env.STRIPE_DEV_CLIENT,
-    ALGORIA_ID: process.env.ALGORIA_ID,
-    ALGORIA_KEY: process.env.ALGORIA_KEY,
+    ALGOLIA_ID: process.env.ALGOLIA_ID,
+    ALGOLIA_KEY: process.env.ALGOLIA_KEY,
   },
 });

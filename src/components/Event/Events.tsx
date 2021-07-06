@@ -24,7 +24,7 @@ const Grid = styled.div`
   }
 `;
 
-const client = algoliasearch(process.env.ALGORIA_ID, process.env.ALGORIA_KEY);
+const client = algoliasearch(process.env.ALGOLIA_ID, process.env.ALGOLIA_KEY);
 const index = client.initIndex('events');
 
 function useMounted() {
