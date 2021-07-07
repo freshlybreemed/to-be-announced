@@ -20,7 +20,6 @@ const updateUser = async (user: any, db: any) => {
 };
 
 export default wrapAsync(async (req: NextApiRequest, db: any) => {
-  const { user }: { user: any } = req.body;
-  console.log(user);
-  return user.new ? await createUser(user, db) : await updateUser(user, db);
+  const { data } = req.body;
+  return await updateUser(data, db);
 });

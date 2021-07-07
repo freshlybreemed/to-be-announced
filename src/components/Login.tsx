@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import Firebase from '../lib/firebase';
 import { setCookie } from '../lib';
-// import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import Router from 'next/router';
 
 
@@ -35,14 +35,14 @@ export const Login: React.FunctionComponent = ({}) => {
         }
         setCookie('id_token', result.user.uid);
         Router.push('/');
-        // axios
-        //   .post('/api/user', { data: { firebase: result.user } })
-        //   .then((res: AxiosResponse) => {
-        //     const user = res.data;
-        //     if (user.admin) {
-        //       setCookie('id_token_a', 'true');
-        //     }
-        //   });
+        axios
+          .post('/api/user', { data: { firebase: result.user } })
+          .then((res: AxiosResponse) => {
+            const user = res.data;
+            if (user.admin) {
+              setCookie('id_token_a', 'true');
+            }
+          });
       });
   };
 
