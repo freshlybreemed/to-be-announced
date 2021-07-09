@@ -41,7 +41,7 @@ const updateOrder = async (order: OrderProps, event: EventProps, db: any) => {
       return curr;
     }),
     ticketTypes: tickets,
-    gross: event.gross - order.total * 100,
+    gross: Math.floor(event.gross - order.total * 100),
   };
 
   await db

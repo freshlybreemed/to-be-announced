@@ -7,7 +7,7 @@ const updateTixCount = async (
   event: EventProps,
   db: any
 ) => {
-  let ops = { gross: order.total * 100 };
+  let ops = { gross: Math.floor(order.total * 100) };
   Object.keys(order.cart).forEach((curr) => {
     ops[`ticketTypes.${order.cart[curr]._id}.sold`] = order.cart[curr].quantity;
   });
