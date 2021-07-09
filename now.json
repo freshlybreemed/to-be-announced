@@ -9,6 +9,7 @@
       "STRIPE_DEV_SECRET": "@stripe-dev-secret",
       "ALGOLIA_ID": "@algolia-id",
       "ALGOLIA_KEY": "@algolia-key",
+      "SENDPULSE": "@sendpulse",
       "STRIPE_DEV_CLIENT": "@stripe-dev-client"
     }
   },
@@ -20,6 +21,7 @@
     "ALGOLIA_KEY": "@algolia-key",
     "NODEMAILER": "@nodemailer",
     "FIREBASE_APP_ID": "@firebase-app-id",
+    "SENDPULSE": "@sendpulse",
     "STRIPE_DEV_SECRET": "@stripe-dev-secret",
     "STRIPE_DEV_CLIENT": "@stripe-dev-client"
   }

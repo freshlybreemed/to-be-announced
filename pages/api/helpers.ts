@@ -31,7 +31,6 @@ export const wrapAsync = (handler: any) => async (
 export const createDigitalTicket = (order, event) => {
   return new Promise((resolve, reject) => {
     const tixTemplate = ticketTemplate.content(order, event);
-    console.log(tixTemplate);
     pdf.create(tixTemplate).toStream((err, buffer: Buffer) => {
       if (err) {
         console.log(err);
@@ -52,17 +51,17 @@ export const sendEmail = async (
     await createDigitalTicket(order, event).then(async (tix: any) => {
       // create reusable transporter object using the default SMTP transport
       let transporter = await nodemailer.createTransport({
-        host: 'smtp-relay.sendinblue.com',
+        host: 'smtp-pulse.com',
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: 'ebrima.jobe92@gmail.com', // generated ethereal user
-          pass: process.env.NODEMAILER, // generated ethereal password
+          user: 'chickenandmumbosauce@gmail.com', // generated ethereal user
+          pass: process.env.SENDPULSE, // generad ethereal password
         },
       });
       const message = emailTemplates.content(event, order);
       await transporter.sendMail({
-        from: `"TBA" <info@whatstba.com>`, // sender address
+        from: `info@socialticketing.io`, // sender address
         to: emails, // list of receivers
         subject: emailTemplates.subject(event.name), // Subject line
         text: message, // plain text body
